@@ -1,0 +1,772 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>StatSVN - Directory HospitalUI/NurseUI/</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="Generator" content="StatSVN 0.7.0"/>
+<link rel="stylesheet" href="objectlab-statcvs.css" type="text/css"/>
+<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&#38;login=statsvn&#38;apiKey=R_2c362b417d0517c27876cbaca1bb68cc"></script>
+<script type="text/javascript" charset="utf-8">
+   // wait until page is loaded to call API
+   var redir_url;
+   var short_url;
+   BitlyCB.myShortenCallback = function(data) {
+      // this is how to get a result of shortening a single url
+      var result;
+      short_url=null;
+      for (var r in data.results) {
+         result = data.results[r];
+         result['longUrl'] = r;
+         short_url = result['shortUrl'];
+         break;
+      }
+      if (short_url==null) // bit.ly failed
+      document.location=redir_url;
+      else
+      redirToTwitter();
+   };
+   function shortenTweet(url) {
+      if (short_url == null || redir_url!=url) {
+      redir_url = url;
+      BitlyClient.shorten(document.location, 'BitlyCB.myShortenCallback');
+      }
+      else
+      redirToTwitter();
+      return false;
+   }
+   function redirToTwitter() { 
+      // replace {0} which is visible as %7B0} in the link
+      document.location = redir_url.replace('%7B0}', short_url);
+   }
+</script>
+  </head>
+
+<body>
+
+<h1>Directory HospitalUI/NurseUI/</h1>
+<div id="parentlink">&#171; <a href="index.html">Development Statistics for /SWOP It1B/src</a></div>
+<dl class="attributes">
+    <dt>Directory Created:</dt>
+    <dd><span class="date">2011-12-08 00:50</span></dd>
+    <dt>Directory Deleted:</dt>
+    <dd><span class="date">2012-04-05 11:52</span></dd>
+    <dt>Total Files:</dt>
+    <dd>0</dd>
+    <dt>Deleted Files:</dt>
+    <dd>4</dd>
+    <dt>Lines of Code:</dt>
+    <dd>0</dd>
+</dl>
+<p class="dirtree">
+<a href="dir.html">[root]</a>/<a href="dir_HospitalUI.html">HospitalUI</a>/<strong>NurseUI</strong><br/>
+</p>
+
+<div class="section">
+<h2>Developers</h2>
+  <table  rules="groups" summary="All authors and the number of their changes and lines of code in this directory">
+    <colgroup align="left"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Changes</th>
+        <th>Lines of Code</th>
+        <th>Lines per Change</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Totals</th>
+        <td>52 (100.0%)</td>
+        <td>0 (-)</td>
+        <td>0.0</td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr  class="odd">
+        <th><a href="user_s0219269.html" class="author">s0219269</a></th>
+        <td>7 (13.5%)</td>
+        <td>0 (-)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="user_s0208025.html" class="author">s0208025</a></th>
+        <td>32 (61.5%)</td>
+        <td>0 (-)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="user_s0203664.html" class="author">s0203664</a></th>
+        <td>11 (21.2%)</td>
+        <td>0 (-)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="user_s0180183.html" class="author">s0180183</a></th>
+        <td>2 (3.8%)</td>
+        <td>0 (-)</td>
+        <td>0.0</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="section">
+<h2>Most Recent Commits</h2>
+<dl class="commitlist">
+  <dt><a name="32"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-05 11:52</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">477</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Oude UI verwijderd
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="del">(del)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="del">(del)</span>,
+        NurseUI.java&#160;<span class="del">(del)</span>,
+        RegisterPatientUI.java&#160;<span class="del">(del)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="31"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-04 16:09</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">464</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Fuckup van Jeroen V.G. opgelost.<br />
+Argument[] heeft nu een abstractielaag naar ArgumentList.<br />
+Uitbreidbaarheid toegevoegd, met WorldPopulatedArgument<br />
+Tests verbeterd voor abstractielaag :/ hele hoop ;(
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="30"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 21:14</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">392</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Warehouse constructor -&gt; WarehouseMaker<br />
+NotEnoughSpace &amp; NoItemsAvailableExceptions -&gt; StockCapacityException
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="29"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 20:46</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">390</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+InvalidArgumentException 
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>,
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="28"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 18:59</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">389</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Exceptions gegroepeerd.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>,
+        NurseUI.java&#160;<span class="change">(changed)</span>,
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="27"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-22 19:12</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">284</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+treatments update<br />
+voortgang update<br />
+stock &amp; warehouse update
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="26"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-20 15:28</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">229</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+comments<br />
+Utils van de UI hernoemd naar UtilsUI<br />
+setTime in hospital Admin  hernoemd naar advanceTime
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>,
+        NurseUI.java&#160;<span class="change">(changed)</span>,
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="25"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-20 14:49</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">227</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+MedicalTests nagekeken
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="24"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-19 18:55</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">219</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Rename dummymedicalTest<br />
+Commentaar geschreven<br />
+move AppointmentConstraint<br />
+Made treatmentcommand voor undo<br />
+een hoop nullpointers...<br />
+<br />
+en merge
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        NurseUI.java&#160;<span class="change">(changed)</span>,
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="23"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-19 18:41</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">217</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+TODO's
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="22"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-19 18:00</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">215</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+TODO's
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        NurseUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="21"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-19 17:23</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">213</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+warehousemanager aangemaakt
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="20"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-19 15:02</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">209</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Commentaar gescheven.<br />
+<br />
+people en machines gemerged tot resources in worlds
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>,
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="19"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-17 16:30</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">205</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Dubbele code verwijderd uit AdminController.<br />
+Commentaargeschreven in AdminController, DoctorController, NurseController<br />
+<br />
+En een beetje vereenvoudiging in patientController
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="18"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-14 20:18</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">191</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Testen voor machines begonnen, <br />
+<br />
+nog niet af, <br />
+<br />
+Testen van staff aangepast, een aantal exceptions worden nu dieper in de code, dus vaker en sneller gegooid.<br />
+<br />
+Nu ook met merge
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="17"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-14 14:27</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">182</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Update en testen voor results afgewerkt :)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="16"></a>
+    <a href="user_s0180183.html" class="author">s0180183</a>
+    <span class="date">2011-12-14 11:26</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">181</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+CheckInPatientTest toegevoegd<br />
+scheduling bij check in toegevoegd heb gezien dat iemand anders dit gisteren avond ook al had gedaan. Aangezien ik verschillende bugs heb gevonden bij het schedulen en deze heb gefixt heb ik mijn versie gecommit. Het grootste verschil is dat ik een nieuwe klasse met interface appointable heb gemaakt DoctorPatientAppointment. Ben niet zeker of het nodig is, maar kan makkeleijk weggehaald worden.<br />
+heb verder nog een klasse AllTests gemaakt waarin alle testen staan zodat er makkelijk alle testen kunnen gerunt worden.<br />
+Ik heb nog vershillende kleine aanpassingen gemaakt hier en daar een ook een beetje commentaar toegevoegt.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="15"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-13 23:08</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">179</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+scheduling toegevoegd (aangeroepen in registerPatientUI) aan registerPatient usecase<br />
+volledige registerPatient usecase kan nu getest worden, testen moeten nog geschreven worden
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="14"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-12 00:34</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">169</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+world update (dubbele functies person&amp;patient weggewerkt)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="13"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-11 15:50</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">164</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+EnterTreatmentResultUI werkt, nog een usecase :)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterTreatmentResultUI.java&#160;<span class="new">(new)</span>,
+        NurseUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="12"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-11 14:12</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">163</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+testen gemaakt voor xray enter result<br />
+medicalTestsresult moet nog gemaakt worden.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="11"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-10 16:43</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">159</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+EnterMedicalTestResult werkt,<br />
+<br />
+De patientfile moet nog wat uitgebreid worden : regel 76 XRay.java<br />
+<br />
+Appointments worden nog niet opgeslagen of er zit een fout in de manier van beslissen...
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="10"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-10 16:23</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">158</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Reverted obfuscated code to readable...<br />
+<br />
+enterMedicalTestUI zou moeten werken, kan nog niet getest worden: appointments werken nog niet<br />
+<br />
+Xraymachien toegevoegd aan wereld<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="new">(new)</span>,
+        NurseUI.java&#160;<span class="change">(changed)</span>,
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="9"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-08 18:18</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">149</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Conflicten opgelost.<br />
+<br />
+Dataleak opgelost in controllers<br />
+Testen herwerkt vanwege dataleak, nu ook meer information expert<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="8"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-08 17:50</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">148</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+ui fix
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="7"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-08 17:22</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">145</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+lol weg, lol :)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="6"></a>
+    <a href="user_s0180183.html" class="author">s0180183</a>
+    <span class="date">2011-12-08 16:36</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">139</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+loginTest<br />
+<br />
+testcases toegevoegd <br />
+<br />
+enkele bugs opgelost
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="5"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-08 16:33</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">138</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+discharge en checkin =&gt; werkt
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="4"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-08 15:26</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">132</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+patient factory fix
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="3"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-08 14:37</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">129</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+patient fix
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="2"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-08 02:26</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">127</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+usecase register patient af buiten:<br />
+food (voor veel later)<br />
+check-in registeren<br />
+appointment maken<br />
+patients &lt;=&gt; personwithlogin oplossen
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="1"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-08 00:50</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">125</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+UI opgesplitst<br />
+exception gecatched bij een test
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        NurseUI.java&#160;<span class="new">(new)</span>,
+        RegisterPatientUI.java&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+</dl>
+
+</div><div id="generatedby">Generated by <a href="http://www.statsvn.org">StatSVN</a> 0.7.0</div>
+</body>
+</html>

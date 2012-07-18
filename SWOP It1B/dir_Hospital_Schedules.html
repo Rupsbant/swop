@@ -1,0 +1,997 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>StatSVN - Directory Hospital/Schedules/</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="Generator" content="StatSVN 0.7.0"/>
+<link rel="stylesheet" href="objectlab-statcvs.css" type="text/css"/>
+<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&#38;login=statsvn&#38;apiKey=R_2c362b417d0517c27876cbaca1bb68cc"></script>
+<script type="text/javascript" charset="utf-8">
+   // wait until page is loaded to call API
+   var redir_url;
+   var short_url;
+   BitlyCB.myShortenCallback = function(data) {
+      // this is how to get a result of shortening a single url
+      var result;
+      short_url=null;
+      for (var r in data.results) {
+         result = data.results[r];
+         result['longUrl'] = r;
+         short_url = result['shortUrl'];
+         break;
+      }
+      if (short_url==null) // bit.ly failed
+      document.location=redir_url;
+      else
+      redirToTwitter();
+   };
+   function shortenTweet(url) {
+      if (short_url == null || redir_url!=url) {
+      redir_url = url;
+      BitlyClient.shorten(document.location, 'BitlyCB.myShortenCallback');
+      }
+      else
+      redirToTwitter();
+      return false;
+   }
+   function redirToTwitter() { 
+      // replace {0} which is visible as %7B0} in the link
+      document.location = redir_url.replace('%7B0}', short_url);
+   }
+</script>
+  </head>
+
+<body>
+
+<h1>Directory Hospital/Schedules/</h1>
+<div id="parentlink">&#171; <a href="index.html">Development Statistics for /SWOP It1B/src</a></div>
+<dl class="attributes">
+    <dt>Directory Created:</dt>
+    <dd><span class="date">2011-11-15 19:07</span></dd>
+    <dt>Total Files:</dt>
+    <dd>9</dd>
+    <dt>Deleted Files:</dt>
+    <dd>6</dd>
+    <dt>Lines of Code:</dt>
+    <dd>1011</dd>
+</dl>
+<p class="dirtree">
+<a href="dir.html">[root]</a>/<a href="dir_Hospital.html">Hospital</a>/<strong>Schedules</strong><br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder.png" width="15" height="13" alt="directory in repo" title="directory in repo"/> 
+<a href="dir_Hospital_Schedules_ConstraintSolver.html">ConstraintSolver</a> 
+(2 files, 148 lines)<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder.png" width="15" height="13" alt="directory in repo" title="directory in repo"/> 
+<a href="dir_Hospital_Schedules_Constraints.html">Constraints</a> 
+(5 files, 360 lines)<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder.png" width="15" height="13" alt="directory in repo" title="directory in repo"/> 
+<a href="dir_Hospital_Schedules_Constraints_Implementation.html">Implementation</a> 
+(6 files, 322 lines)<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder.png" width="15" height="13" alt="directory in repo" title="directory in repo"/> 
+<a href="dir_Hospital_Schedules_Constraints_Preference.html">Preference</a> 
+(5 files, 228 lines)<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder.png" width="15" height="13" alt="directory in repo" title="directory in repo"/> 
+<a href="dir_Hospital_Schedules_Constraints_Priority.html">Priority</a> 
+(3 files, 76 lines)<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder.png" width="15" height="13" alt="directory in repo" title="directory in repo"/> 
+<a href="dir_Hospital_Schedules_Constraints_Warehouse.html">Warehouse</a> 
+(1 files, 51 lines)<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder-deleted.png" width="15" height="13" alt="Folder removed from repo" title="Folder removed from repo"/> 
+<a href="dir_Hospital_Schedules_Preference.html">Preference</a> 
+(0 files, 0 lines)<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder-deleted.png" width="15" height="13" alt="Folder removed from repo" title="Folder removed from repo"/> 
+<a href="dir_Hospital_Schedules_Priority.html">Priority</a> 
+(0 files, 0 lines)<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="folder.png" width="15" height="13" alt="directory in repo" title="directory in repo"/> 
+<a href="dir_Hospital_Schedules_ScheduleGroups.html">ScheduleGroups</a> 
+(3 files, 114 lines)<br />
+</p>
+
+<div class="section">
+<h2>Lines of Code</h2>
+<p class="chart"><img src="loc_module_Hospital_Schedules.png" alt="Hospital/Schedules/ Lines of Code" width="800" height="500" /></p></div>
+<div class="section">
+<h2>Developers</h2>
+  <table  rules="groups" summary="All authors and the number of their changes and lines of code in this directory">
+    <colgroup align="left"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Changes</th>
+        <th>Lines of Code</th>
+        <th>Lines per Change</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Totals</th>
+        <td>191 (100.0%)</td>
+        <td>1011 (100.0%)</td>
+        <td>5.2</td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr  class="odd">
+        <th><a href="user_s0208025.html" class="author">s0208025</a></th>
+        <td>146 (76.4%)</td>
+        <td>852 (84.3%)</td>
+        <td>5.8</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="user_s0219269.html" class="author">s0219269</a></th>
+        <td>33 (17.3%)</td>
+        <td>87 (8.6%)</td>
+        <td>2.6</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="user_s0180183.html" class="author">s0180183</a></th>
+        <td>6 (3.1%)</td>
+        <td>72 (7.1%)</td>
+        <td>12.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="user_s0203664.html" class="author">s0203664</a></th>
+        <td>6 (3.1%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="section">
+<h2>Most Recent Commits</h2>
+<dl class="commitlist">
+  <dt><a name="40"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-05 18:08</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">497</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Commit vergeten...
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="39"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-05 10:10</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">469</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+HasTime is een nieuwe interface om dubbele code in Appointment, TimeFrame en Time te verwijderen.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="38"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-04 23:22</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">465</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Commit voor de avond, begin van Items en Appointments
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        ItemsAvailableAppointmentObserver.java&#160;<span class="del">(del)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="37"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-03 17:08</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">457</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Commentaar en opkuisen...
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">5 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="36"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-03 15:51</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">453</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+AppointmentFactoryTest
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="35"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-02 20:22</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">446</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Alles is verplaatst
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="34"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-02 20:07</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">443</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Volgende tests
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Schedule.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="33"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-02 16:02</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">441</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+XRayConstraint testen
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="32"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-02 13:56</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">439</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Debugging NurseAppointmentBackToBack<br />
+Done!<br />
+Lots of little bugs found ;)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="31"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-02 11:58</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">438</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Campussen toegevoegd aan wereld.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="30"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-02 11:37</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">435</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Extracted interface TimeFrameConstraint.<br />
+Voor GetCampusconstraint, moest interface zijn...<br />
+Veel tekstaanpassing, weinig codeverandering.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">5 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="29"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 18:16</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">427</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Solver aangepast zodat een schedulable zijn constraints ook in rekening gebracht worden.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Schedulable.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="28"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:55</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">426</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Appointment: ConstraintList updatet.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="27"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:42</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">422</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Constraints afwerken.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Schedulable.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="26"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 22:40</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">415</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Debugging van appointments, en PriorityArgument klaar...
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="25"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 21:47</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">412</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Priority getter gemaakt in Appointment<br />
+Priority wordt bijgehouden in AppointmentCommand.<br />
+PriorityArgument gemaakt<br />
+TODO: geef een PriorityArgument naar buiten in MedicationController, TreatmentController
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="24"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2012-03-22 20:21</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">409</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+campus added to patient<br />
+campusses added to basicworld
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="23"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 19:59</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">407</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+BackToBAckConstraints zouden moeten werken!
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="22"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-18 12:41</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">404</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Constraints...<br />
+En Appointments opgelost.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">10 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="del">(del)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="del">(del)</span>,
+        SingleSchedulableGroup.java&#160;<span class="del">(del)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="21"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2012-03-15 20:03</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">403</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+added basic campus object and campusses in the world
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Schedulable.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="20"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 22:28</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">397</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+WorldTime!!!!
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        TimeFrameDelay.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="19"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 22:17</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">396</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Backlink AppointmentCommand in Appointment
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="18"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 18:59</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">389</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Exceptions gegroepeerd.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">11 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        ItemsAvailableAppointmentObserver.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        SingleSchedulableGroup.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>,
+        TimeFrameDelay.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="17"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 18:50</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">388</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Refactorings...
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="16"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-06 11:59</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">386</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Verschillende lijn veranderingen . Geen code veranderd.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">9 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        ItemsAvailableAppointmentObserver.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="15"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-30 14:33</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">352</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+more javadocs, please keep these up to date (all @param tags, all @return tags, all @throws tags, for every function)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="14"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-30 12:42</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">346</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Conflict, bugs van gisteren<br />
+<br />
+En opmerkingen.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="13"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 00:01</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">341</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+undo/redo sysouts gefixt
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        ItemsAvailableAppointmentObserver.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="12"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-29 15:36</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">331</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Verslag een beetje, voorgestelde inhoudsopgave toegevoegd..., kan gemakkelijk verwijderd worden<br />
+<br />
+NurseConstraint werkt, XRay ook:<br />
+10 van 9:00 tot 9:15<br />
+1 van 8:00 tot 8:15 (2012)<br />
+9 van 8:15 tot 8:30 (2012)<br />
+1 van 8:00 tot 8:15 (2013)<br />
+<br />
+Aanpassing ongedaan gemaakt: list items: niet uitbreidbaar, moet gevraagd worden aan de warehouse.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="11"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-29 14:56</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">329</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+javadocs (hopelijk de laatste keer)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        ItemsAvailableAppointmentObserver.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="10"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-29 13:25</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">326</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Verslag aanpassing aan schedules: de uren van de nurse als constraint toegevoegd<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        SingleSchedulableGroup.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="9"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-28 22:29</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">308</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+javadoc fixing (please keep documentation up to date when changing functions)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="8"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-28 19:27</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">304</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Systeem werkt weer!<br />
+<br />
+Een beetje irritant .getClass terug moeten gebruiken :(...<br />
+Er is 1 stock per order, en juist 1 stock<br />
+<br />
+Eerst wordt een treatmentCommand gemaakt, daarin een ItemReservator, en een AppointmentCommand .<br />
+<br />
+De treatmentcommand wordt uitgevoerd, direct. Indien de diagnose in een geldige toestand komt wordt de ItemReservator uitgevoerd. Deze registreerd de listeners. Indien de listeners in orde zijn wordt de AppointmentCommand uitgevoerd<br />
+<br />
+Het reserveren reserveert nu gewoon een plaats in de queue, ipv een object.<br />
+Dit lost op dat er items kunnen vergaan voor het uitvoeren van de Treatment...<br />
+<br />
+Nu nog testen :) en UI
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        ItemsAvailableAppointmentObserver.java&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="7"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-28 00:06</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">300</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Commit voor de avond, Warehouse refactored, getClass weggehaald... <br />
+Nu moeten de Controllers nog aangepast worden. Er zitten nog fouten in, voor morgen. Gebruik de versie ervoor. <br />
+SBN-&gt; Update To... 299(denk ik).
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="6"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-23 16:31</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">291</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+javadocs
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">12 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        Schedulable.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        SingleSchedulableGroup.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>,
+        TimeFrameDelay.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="5"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-22 17:23</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">280</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Commentaar bij Schedules en Treatments.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">8 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        SingleSchedulableGroup.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>,
+        TimeFrameDelay.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="4"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-22 16:23</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">276</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Commit comment.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Schedulable.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="3"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-22 12:46</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">265</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Nog wat opgekuist hopelijk niks kapot.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        SingleSchedulableGroup.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="2"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-21 19:39</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">263</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+XRayConstraint werkt !!!!
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        SingleSchedulableGroup.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="1"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-21 19:32</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">262</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+warehouseui
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        TimeFrameDelay.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+</dl>
+
+<p>(28 more)</p>
+</div><div id="generatedby">Generated by <a href="http://www.statsvn.org">StatSVN</a> 0.7.0</div>
+</body>
+</html>

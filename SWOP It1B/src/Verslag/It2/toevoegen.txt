@@ -1,0 +1,5 @@
+Werkverdeling:
+
+Jeroen Van Gool:
+totaal aantal uur: ongeveer 65 uur
+lijst: Testing,Verslag,Diagnoses,Treatments,MedicalTest

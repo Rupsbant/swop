@@ -1,0 +1,651 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>StatSVN - Directory Hospital/People/PeopleFactories/</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="Generator" content="StatSVN 0.7.0"/>
+<link rel="stylesheet" href="objectlab-statcvs.css" type="text/css"/>
+<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&#38;login=statsvn&#38;apiKey=R_2c362b417d0517c27876cbaca1bb68cc"></script>
+<script type="text/javascript" charset="utf-8">
+   // wait until page is loaded to call API
+   var redir_url;
+   var short_url;
+   BitlyCB.myShortenCallback = function(data) {
+      // this is how to get a result of shortening a single url
+      var result;
+      short_url=null;
+      for (var r in data.results) {
+         result = data.results[r];
+         result['longUrl'] = r;
+         short_url = result['shortUrl'];
+         break;
+      }
+      if (short_url==null) // bit.ly failed
+      document.location=redir_url;
+      else
+      redirToTwitter();
+   };
+   function shortenTweet(url) {
+      if (short_url == null || redir_url!=url) {
+      redir_url = url;
+      BitlyClient.shorten(document.location, 'BitlyCB.myShortenCallback');
+      }
+      else
+      redirToTwitter();
+      return false;
+   }
+   function redirToTwitter() { 
+      // replace {0} which is visible as %7B0} in the link
+      document.location = redir_url.replace('%7B0}', short_url);
+   }
+</script>
+  </head>
+
+<body>
+
+<h1>Directory Hospital/People/PeopleFactories/</h1>
+<div id="parentlink">&#171; <a href="index.html">Development Statistics for /SWOP It1B/src</a></div>
+<dl class="attributes">
+    <dt>Directory Created:</dt>
+    <dd><span class="date">2011-12-07 13:37</span></dd>
+    <dt>Total Files:</dt>
+    <dd>4</dd>
+    <dt>Deleted Files:</dt>
+    <dd>1</dd>
+    <dt>Lines of Code:</dt>
+    <dd>204</dd>
+</dl>
+<p class="dirtree">
+<a href="dir.html">[root]</a>/<a href="dir_Hospital.html">Hospital</a>/<a href="dir_Hospital_People.html">People</a>/<strong>PeopleFactories</strong><br/>
+</p>
+
+<div class="section">
+<h2>Lines of Code</h2>
+<p class="chart"><img src="loc_module_Hospital_People_PeopleFactories.png" alt="Hospital/People/PeopleFactories/ Lines of Code" width="800" height="500" /></p></div>
+<div class="section">
+<h2>Developers</h2>
+  <table  rules="groups" summary="All authors and the number of their changes and lines of code in this directory">
+    <colgroup align="left"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Changes</th>
+        <th>Lines of Code</th>
+        <th>Lines per Change</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Totals</th>
+        <td>57 (100.0%)</td>
+        <td>204 (100.0%)</td>
+        <td>3.5</td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr  class="odd">
+        <th><a href="user_s0208025.html" class="author">s0208025</a></th>
+        <td>47 (82.5%)</td>
+        <td>142 (69.6%)</td>
+        <td>3.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="user_s0203664.html" class="author">s0203664</a></th>
+        <td>3 (5.3%)</td>
+        <td>62 (30.4%)</td>
+        <td>20.6</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="user_s0219269.html" class="author">s0219269</a></th>
+        <td>4 (7.0%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="user_s0180183.html" class="author">s0180183</a></th>
+        <td>3 (5.3%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="section">
+<h2>Most Recent Commits</h2>
+<dl class="commitlist">
+  <dt><a name="25"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-05 13:38</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">478</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+StayShiftPreference veranderd nr Change bij doctors als default
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="24"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-04 16:09</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">464</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Fuckup van Jeroen V.G. opgelost.<br />
+Argument[] heeft nu een abstractielaag naar ArgumentList.<br />
+Uitbreidbaarheid toegevoegd, met WorldPopulatedArgument<br />
+Tests verbeterd voor abstractielaag :/ hele hoop ;(
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        StaffFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="23"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-02 20:22</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">446</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Alles is verplaatst
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="22"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-04-01 13:52</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">431</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Preferences afgewerkt... Deze keer wel mooi.<br />
+En nog een kleine bug verwijderd ;)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="21"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:42</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">423</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Constraints voor Persons.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="20"></a>
+    <a href="user_s0180183.html" class="author">s0180183</a>
+    <span class="date">2012-03-22 21:28</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">411</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+warehouse encapsulation voor reserving en ne vorige commit die ni goe is gegaan
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="19"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-09 20:24</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">402</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Bugfix2
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="18"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-09 20:18</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">401</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Bugfix 1<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        StaffFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="17"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 22:53</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">399</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+validateResults() gemaakt
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="16"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 22:05</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">395</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Factory Arguments 1ste stap duidelijker met getEmptyArguments, en validate()
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        StaffFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="15"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 20:46</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">390</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+InvalidArgumentException 
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="14"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 18:59</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">389</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Exceptions gegroepeerd.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="13"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-06 11:59</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">386</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Verschillende lijn veranderingen . Geen code veranderd.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="12"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-23 14:49</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">289</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+javadocs<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        StaffFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="11"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-21 15:41</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">243</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+warehousefactory, er kunnen nu meerdere warehousemanagers gemaakt worden
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="10"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-19 17:23</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">213</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+warehousemanager aangemaakt
+    </p>
+    <p class="commitdetails"><strong>62</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        WarehouseFactory.java&#160;<span class="new">(new&#160;62)</span>,
+        WarehouserFactory.java&#160;<span class="del">(del)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="9"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-15 16:12</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">196</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Factories nog netter gemaakt, zie functie in utils, deze controleerd of het type goed is en zorgt ervoor dat er veilig can gecast worden.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="8"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-15 15:31</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">194</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Testen van machines werken,<br />
+Exceptions van Factories wat aangepast, en voor StaffFactories duidelijker en netter gemaakt.<br />
+Ga nu hetzelfde doen bij medicaltest en treatment.<br />
+<br />
+Gebroken test gerepareerd door bug in Time: Zie TimeTest.java: hier wordt het mooi duidelijk waarom de testen voor de code moet gemaakt worden, zodat we de testen niet aanpassen naar de code!<br />
+<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="7"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-14 20:18</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">191</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Testen voor machines begonnen, <br />
+<br />
+nog niet af, <br />
+<br />
+Testen van staff aangepast, een aantal exceptions worden nu dieper in de code, dus vaker en sneller gegooid.<br />
+<br />
+Nu ook met merge
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="6"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-14 19:27</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">190</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Add equimentUI gedaan<br />
+<br />
+Hotfixes van Tom ontdaan en bij de bron aangepakt:<br />
+public int compareTo(Time t){<br />
+     return t.getTime().compareTo(time);<br />
+ }<br />
+naar <br />
+public int compareTo(Time t){<br />
+    return time.compareTo(t.getTime());<br />
+}	.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        StaffFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="5"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-11 14:12</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">163</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+testen gemaakt voor xray enter result<br />
+medicalTestsresult moet nog gemaakt worden.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouserFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="4"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-07 17:01</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">124</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+afwerken van ConstraintException voor alle klassen
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="3"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-07 16:37</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">123</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Diagnosis bij het aanmaken van een treatment mee te geven.<br />
+Nog niet af, bijna.<br />
+<br />
+Bug van empty staff name ook bezig met oplossen, doctor in orde, nog nurse<br />
+XRay moet nog aangepast worden.<br />
+<br />
+20ste keer, goeie keer???<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="2"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-07 14:24</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">118</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Diagnosis en diagnosis with secondopinion ontdubbeld, controller moet nog afgewerkt worden.<br />
+<br />
+Testen gemaakt , nog niet afgewerkt<br />
+<br />
+bon eerst eten<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        StaffFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouserFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="1"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-07 13:37</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">115</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+LoginTests werken, kleine bugs eruitgehaald<br />
+Usecases afgewerkt : <br />
+login, logout<br />
+<br />
+Factories voor addHospitalStaff gemaakt. Deze moeten nog toegevoegd worden aan de wereld.
+    </p>
+    <p class="commitdetails"><strong>142</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="new">(new&#160;60)</span>,
+        NurseFactory.java&#160;<span class="new">(new&#160;62)</span>,
+        StaffFactory.java&#160;<span class="new">(new&#160;20)</span>,
+        WarehouserFactory.java&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+</dl>
+
+</div><div id="generatedby">Generated by <a href="http://www.statsvn.org">StatSVN</a> 0.7.0</div>
+</body>
+</html>

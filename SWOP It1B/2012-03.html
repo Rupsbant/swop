@@ -1,0 +1,1711 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>StatSVN - March 2012 Commit Log</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="Generator" content="StatSVN 0.7.0"/>
+<link rel="stylesheet" href="objectlab-statcvs.css" type="text/css"/>
+<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&#38;login=statsvn&#38;apiKey=R_2c362b417d0517c27876cbaca1bb68cc"></script>
+<script type="text/javascript" charset="utf-8">
+   // wait until page is loaded to call API
+   var redir_url;
+   var short_url;
+   BitlyCB.myShortenCallback = function(data) {
+      // this is how to get a result of shortening a single url
+      var result;
+      short_url=null;
+      for (var r in data.results) {
+         result = data.results[r];
+         result['longUrl'] = r;
+         short_url = result['shortUrl'];
+         break;
+      }
+      if (short_url==null) // bit.ly failed
+      document.location=redir_url;
+      else
+      redirToTwitter();
+   };
+   function shortenTweet(url) {
+      if (short_url == null || redir_url!=url) {
+      redir_url = url;
+      BitlyClient.shorten(document.location, 'BitlyCB.myShortenCallback');
+      }
+      else
+      redirToTwitter();
+      return false;
+   }
+   function redirToTwitter() { 
+      // replace {0} which is visible as %7B0} in the link
+      document.location = redir_url.replace('%7B0}', short_url);
+   }
+</script>
+  </head>
+
+<body>
+
+<h1>March 2012 Commit Log</h1>
+<div id="parentlink">&#171; <a href="index.html">Development Statistics for /SWOP It1B/src</a></div>
+
+<div id="nav" class="section">
+<h2>Commit Logs</h2>
+<ul>
+    <li><a href="commitlog.html">April 2012</a></li>
+    <li><span class="here">March 2012</span></li>
+    <li><a href="2012-02.html">February 2012</a></li>
+    <li><a href="2012-01.html">January 2012</a></li>
+    <li><a href="2011-12.html">December 2011</a></li>
+    <li><a href="2011-11.html">November 2011</a></li>
+</ul>
+</div><dl class="attributes">
+    <dt>Number of Commits:</dt>
+    <dd>36</dd>
+    <dt>Number of Active Developers:</dt>
+    <dd>4</dd>
+</dl>
+<dl class="commitlist">
+  <dt><a name="36"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2012-03-29 21:08</span>
+    <a class="permalink" title="Permalink to this commit" href="#36">#36</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">430</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Implemented login to a specific campus, used by NurseController to check in patients at a specific location<br />
+moved getting the list of people that can log in to world (from worldcontroller)
+    </p>
+    <p class="commitdetails"><strong>103</strong> lines of code changed in <span class="files">19 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        AdministratorController.java&#160;<span class="change">(changed)</span>,
+        CampusController.java&#160;<span class="new">(new&#160;51)</span>,
+        DoctorController.java&#160;<span class="change">(changed)</span>,
+        LoginController.java&#160;<span class="change">(changed)</span>,
+        NurseController.java&#160;<span class="change">(changed)</span>,
+        WareHouseController.java&#160;<span class="change">(changed)</span>,
+        WorldController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>,
+        HospitalAdministrator.java&#160;<span class="change">(changed)</span>,
+        LoginInfo.java&#160;<span class="change">(changed)</span>,
+        Nurse.java&#160;<span class="change">(changed)</span>,
+        Staff.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        WarehouseManager.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        BasicWorld.java&#160;<span class="change">(changed)</span>,
+        Campus.java&#160;<span class="change">(changed)</span>,
+        CampusInfo.java&#160;<span class="new">(new&#160;52)</span>,
+        World.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/AdminUI</strong>:
+        AdvanceTimeUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/MainUI</strong>:
+        MainUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="35"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 18:43</span>
+    <a class="permalink" title="Permalink to this commit" href="#35">#35</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">429</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+PreferenceList in world en commentaar
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules/Preference</strong>:
+        Preference.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        World.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="34"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 18:40</span>
+    <a class="permalink" title="Permalink to this commit" href="#34">#34</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">428</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Preferences implemented.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">5 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Preference</strong>:
+        ChangeLocationPreference.java&#160;<span class="new">(new)</span>,
+        HasPreference.java&#160;<span class="new">(new)</span>,
+        Preference.java&#160;<span class="change">(changed)</span>,
+        StayShiftPreference.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="33"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 18:16</span>
+    <a class="permalink" title="Permalink to this commit" href="#33">#33</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">427</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Solver aangepast zodat een schedulable zijn constraints ook in rekening gebracht worden.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Schedulable.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/ConstraintSolver</strong>:
+        Solver.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Constraints</strong>:
+        TimeFrameConstraint.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="32"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:55</span>
+    <a class="permalink" title="Permalink to this commit" href="#32">#32</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">426</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Appointment: ConstraintList updatet.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">11 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Argument</strong>:
+        PriorityArgument.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        MedicalTestController.java&#160;<span class="change">(changed)</span>,
+        StaffController.java&#160;<span class="change">(changed)</span>,
+        WorldController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        MedicalTest.java&#160;<span class="change">(changed)</span>,
+        XRayScan.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>,
+        Nurse.java&#160;<span class="change">(changed)</span>,
+        Staff.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        Treatment.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="31"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:43</span>
+    <a class="permalink" title="Permalink to this commit" href="#31">#31</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">425</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Achterblijvertje, veel commits hé.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        WarehouseManager.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="30"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:42</span>
+    <a class="permalink" title="Permalink to this commit" href="#30">#30</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">424</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Machine Constraints.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Machine</strong>:
+        Machine.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="29"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:42</span>
+    <a class="permalink" title="Permalink to this commit" href="#29">#29</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">423</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Constraints voor Persons.
+    </p>
+    <p class="commitdetails"><strong>11</strong> lines of code changed in <span class="files">6 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Patient</strong>:
+        Patient.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>,
+        HospitalAdministrator.java&#160;<span class="change">(changed)</span>,
+        Nurse.java&#160;<span class="change">(changed)</span>,
+        Unmovable.java&#160;<span class="new">(new&#160;11)</span>
+      </li>
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="28"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:42</span>
+    <a class="permalink" title="Permalink to this commit" href="#28">#28</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">422</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Constraints afwerken.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Schedulable.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Constraints</strong>:
+        UnmovableConstraint.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Preference</strong>:
+        PreferenceConstraint.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="27"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-29 17:33</span>
+    <a class="permalink" title="Permalink to this commit" href="#27">#27</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">421</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Constraints nog beter :)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">5 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules/Constraints</strong>:
+        BasicTimeFrameConstraint.java&#160;<span class="change">(changed)</span>,
+        NotMovingBackToBackConstraint.java&#160;<span class="del">(del)</span>,
+        NurseAppointmentBackToBackConstraint.java&#160;<span class="new">(new)</span>,
+        TimeFrameConstraint.java&#160;<span class="change">(changed)</span>,
+        UnmovableConstraint.java&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="26"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 23:27</span>
+    <a class="permalink" title="Permalink to this commit" href="#26">#26</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">420</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Medication opkuisen.. met UI.
+    </p>
+    <p class="commitdetails"><strong>29</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Argument</strong>:
+        NoneArgument.java&#160;<span class="new">(new&#160;29)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        MedicationFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/DoctorUI</strong>:
+        TreatmentUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/MainUI</strong>:
+        UtilsUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="25"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 22:40</span>
+    <a class="permalink" title="Permalink to this commit" href="#25">#25</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">415</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Debugging van appointments, en PriorityArgument klaar...
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">7 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Argument</strong>:
+        PriorityArgument.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        LoginController.java&#160;<span class="change">(changed)</span>,
+        WorldController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/ConstraintSolver</strong>:
+        Solver.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="24"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 21:52</span>
+    <a class="permalink" title="Permalink to this commit" href="#24">#24</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">413</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Een PriorityArgument wordt meegegeven naar de UI.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital</strong>:
+        Utils.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        MedicalTestController.java&#160;<span class="change">(changed)</span>,
+        TreatmentController.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="23"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 21:47</span>
+    <a class="permalink" title="Permalink to this commit" href="#23">#23</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">412</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Priority getter gemaakt in Appointment<br />
+Priority wordt bijgehouden in AppointmentCommand.<br />
+PriorityArgument gemaakt<br />
+TODO: geef een PriorityArgument naar buiten in MedicationController, TreatmentController
+    </p>
+    <p class="commitdetails"><strong>62</strong> lines of code changed in <span class="files">11 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Argument</strong>:
+        PriorityArgument.java&#160;<span class="new">(new&#160;62)</span>
+      </li>
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        NurseController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        BloodAnalysisFactory.java&#160;<span class="change">(changed)</span>,
+        MedicalTestCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        Patient.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        TreatmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        FoodStock.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="22"></a>
+    <a href="user_s0180183.html" class="author">s0180183</a>
+    <span class="date">2012-03-22 21:28</span>
+    <a class="permalink" title="Permalink to this commit" href="#22">#22</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">411</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+warehouse encapsulation voor reserving en ne vorige commit die ni goe is gegaan
+    </p>
+    <p class="commitdetails"><strong>56</strong> lines of code changed in <span class="files">22 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Machine</strong>:
+        BloodAnalyzer.java&#160;<span class="change">(changed)</span>,
+        MachineFactory.java&#160;<span class="change">(changed)</span>,
+        SurgicalEquipment.java&#160;<span class="change">(changed)</span>,
+        UltraSoundMachine.java&#160;<span class="change">(changed)</span>,
+        XRayMachine.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        BloodAnalysisFactory.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScanFactory.java&#160;<span class="change">(changed)</span>,
+        XRayFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        DiagnosisFactory.java&#160;<span class="change">(changed)</span>,
+        DiagnosisInfo.java&#160;<span class="change">(changed)</span>,
+        DiagnosisSecondOpinionFactory.java&#160;<span class="change">(changed)</span>,
+        PatientFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        CastFactory.java&#160;<span class="change">(changed)</span>,
+        MedicationFactory.java&#160;<span class="change">(changed)</span>,
+        SurgeryFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        FoodStock.java&#160;<span class="change">(changed)</span>,
+        ItemReservation.java&#160;<span class="new">(new&#160;56)</span>,
+        ReserveItemObserver.java&#160;<span class="change">(changed)</span>,
+        Stock.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="21"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 21:13</span>
+    <a class="permalink" title="Permalink to this commit" href="#21">#21</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">410</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Een verbeteringetje
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital</strong>:
+        Utils.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        CastFactory.java&#160;<span class="change">(changed)</span>,
+        MedicationFactory.java&#160;<span class="change">(changed)</span>,
+        SurgeryFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="20"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2012-03-22 20:21</span>
+    <a class="permalink" title="Permalink to this commit" href="#20">#20</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">409</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+campus added to patient<br />
+campusses added to basicworld
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">7 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        LoginController.java&#160;<span class="change">(changed)</span>,
+        NurseController.java&#160;<span class="change">(changed)</span>,
+        WorldController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        Patient.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        BasicWorld.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="19"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 20:06</span>
+    <a class="permalink" title="Permalink to this commit" href="#19">#19</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">408</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Er kunnen nu ook afspraken op het uur gemaakt worden.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules/Constraints</strong>:
+        DoctorBackToBackConstraint.java&#160;<span class="change">(changed)</span>,
+        NotMovingBackToBackConstraint.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="18"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 19:59</span>
+    <a class="permalink" title="Permalink to this commit" href="#18">#18</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">407</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+BackToBAckConstraints zouden moeten werken!
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">9 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Constraints</strong>:
+        BackToBackConstraint.java&#160;<span class="del">(del)</span>,
+        DoctorBackToBackConstraint.java&#160;<span class="new">(new)</span>,
+        NotMovingBackToBackConstraint.java&#160;<span class="new">(new)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Preference</strong>:
+        StayShiftPreference.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Priority</strong>:
+        PriorityConstraint.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        Time.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="17"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-22 19:49</span>
+    <a class="permalink" title="Permalink to this commit" href="#17">#17</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">406</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Revert Campus
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/World</strong>:
+        Campus.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="16"></a>
+    <a href="user_s0180183.html" class="author">s0180183</a>
+    <span class="date">2012-03-22 19:47</span>
+    <a class="permalink" title="Permalink to this commit" href="#16">#16</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">405</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+LIFO naar FIFO veranderd volgens nieuwe opgave
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        Stock.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="15"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-18 12:41</span>
+    <a class="permalink" title="Permalink to this commit" href="#15">#15</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">404</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Constraints...<br />
+En Appointments opgelost.
+    </p>
+    <p class="commitdetails"><strong>317</strong> lines of code changed in <span class="files">43 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        test.txt&#160;<span class="new">(new)</span>
+      </li>
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        NurseController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception/Scheduling</strong>:
+        ScheduleConstraintException.java&#160;<span class="new">(new&#160;11)</span>,
+        ScheduleGroupUnavailable.java&#160;<span class="change">(changed)</span>,
+        SchedulingException.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        MedicalTest.java&#160;<span class="change">(changed)</span>,
+        MedicalTestCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>,
+        Nurse.java&#160;<span class="change">(changed)</span>,
+        Staff.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="del">(del)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="del">(del)</span>,
+        SingleSchedulableGroup.java&#160;<span class="del">(del)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/ConstraintSolver</strong>:
+        AppointmentConstraintSolver.java&#160;<span class="new">(new&#160;27)</span>,
+        Solver.java&#160;<span class="new">(new&#160;121)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Constraints</strong>:
+        BackToBackConstraint.java&#160;<span class="new">(new)</span>,
+        BasicTimeFrameConstraint.java&#160;<span class="new">(new&#160;44)</span>,
+        NullConstraint.java&#160;<span class="change">(changed)</span>,
+        NurseTimeConstraint.java&#160;<span class="del">(del)</span>,
+        TimeFrameConstraint.java&#160;<span class="change">(changed)</span>,
+        WorkingHoursTimeConstraint.java&#160;<span class="new">(new)</span>,
+        XRayConstraint.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Preference</strong>:
+        Preference.java&#160;<span class="new">(new)</span>,
+        PreferenceConstraint.java&#160;<span class="new">(new)</span>,
+        StayShiftPreference.java&#160;<span class="new">(new)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Priority</strong>:
+        HighLowPriority.java&#160;<span class="new">(new)</span>,
+        Priority.java&#160;<span class="new">(new)</span>,
+        PriorityConstraint.java&#160;<span class="new">(new)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/ScheduleGroups</strong>:
+        MultiScheduleGroup.java&#160;<span class="new">(new&#160;59)</span>,
+        ScheduleGroup.java&#160;<span class="new">(new&#160;18)</span>,
+        SingleSchedulableGroup.java&#160;<span class="new">(new&#160;37)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        Treatment.java&#160;<span class="change">(changed)</span>,
+        TreatmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        Campus.java&#160;<span class="change">(changed)</span>,
+        Time.java&#160;<span class="change">(changed)</span>,
+        TimeUtils.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="14"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2012-03-15 20:03</span>
+    <a class="permalink" title="Permalink to this commit" href="#14">#14</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">403</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+added basic campus object and campusses in the world
+    </p>
+    <p class="commitdetails"><strong>88</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Schedulable.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        BasicWorld.java&#160;<span class="change">(changed)</span>,
+        Campus.java&#160;<span class="new">(new&#160;88)</span>,
+        World.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="13"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-09 20:24</span>
+    <a class="permalink" title="Permalink to this commit" href="#13">#13</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">402</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Bugfix2
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        XRayFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="12"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-09 20:18</span>
+    <a class="permalink" title="Permalink to this commit" href="#12">#12</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">401</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Bugfix 1<br />
+
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        StaffFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        World.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="11"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 22:53</span>
+    <a class="permalink" title="Permalink to this commit" href="#11">#11</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">399</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+validateResults() gemaakt
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">25 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        MedicalTestResultController.java&#160;<span class="change">(changed)</span>,
+        PatientController.java&#160;<span class="change">(changed)</span>,
+        TreatmentResultController.java&#160;<span class="change">(changed)</span>,
+        WorldController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Factory</strong>:
+        Factory.java&#160;<span class="change">(changed)</span>,
+        Result.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Machine</strong>:
+        Machine.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        BloodAnalysis.java&#160;<span class="change">(changed)</span>,
+        BloodAnalysisFactory.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScan.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScanFactory.java&#160;<span class="change">(changed)</span>,
+        XRayFactory.java&#160;<span class="change">(changed)</span>,
+        XRayScan.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        DiagnosisFactory.java&#160;<span class="change">(changed)</span>,
+        DiagnosisSecondOpinionFactory.java&#160;<span class="change">(changed)</span>,
+        PatientFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        Cast.java&#160;<span class="change">(changed)</span>,
+        CastFactory.java&#160;<span class="change">(changed)</span>,
+        Medication.java&#160;<span class="change">(changed)</span>,
+        MedicationFactory.java&#160;<span class="change">(changed)</span>,
+        Surgery.java&#160;<span class="change">(changed)</span>,
+        SurgeryFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="10"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 22:28</span>
+    <a class="permalink" title="Permalink to this commit" href="#10">#10</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">397</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+WorldTime!!!!
+    </p>
+    <p class="commitdetails"><strong>72</strong> lines of code changed in <span class="files">7 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        AdministratorController.java&#160;<span class="change">(changed)</span>,
+        WorldController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        TimeFrameDelay.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        WarehouseMaker.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        World.java&#160;<span class="change">(changed)</span>,
+        WorldTime.java&#160;<span class="new">(new&#160;72)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="9"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 22:17</span>
+    <a class="permalink" title="Permalink to this commit" href="#9">#9</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">396</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Backlink AppointmentCommand in Appointment
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="8"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 22:05</span>
+    <a class="permalink" title="Permalink to this commit" href="#8">#8</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">395</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Factory Arguments 1ste stap duidelijker met getEmptyArguments, en validate()
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">21 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        PatientController.java&#160;<span class="change">(changed)</span>,
+        WorldController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Factory</strong>:
+        Factory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Machine</strong>:
+        BloodAnalyzer.java&#160;<span class="change">(changed)</span>,
+        Machine.java&#160;<span class="change">(changed)</span>,
+        SurgicalEquipment.java&#160;<span class="change">(changed)</span>,
+        UltraSoundMachine.java&#160;<span class="change">(changed)</span>,
+        XRayMachine.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        BloodAnalysisFactory.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScanFactory.java&#160;<span class="change">(changed)</span>,
+        XRayFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        DiagnosisFactory.java&#160;<span class="change">(changed)</span>,
+        DiagnosisSecondOpinionFactory.java&#160;<span class="change">(changed)</span>,
+        PatientFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        StaffFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        CastFactory.java&#160;<span class="change">(changed)</span>,
+        MedicationFactory.java&#160;<span class="change">(changed)</span>,
+        SurgeryFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="7"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2012-03-08 22:03</span>
+    <a class="permalink" title="Permalink to this commit" href="#7">#7</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">394</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+kleine refactorings + verslag
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">7 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital</strong>:
+        Utils.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Argument</strong>:
+        MedicationArgument.java&#160;<span class="del">(del)</span>,
+        TimeArgument.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        DiagnosisController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        OrderList.java&#160;<span class="change">(changed)</span>,
+        Stock.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/OrderPlacers</strong>:
+        NormalOrderPlacer.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="6"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 21:14</span>
+    <a class="permalink" title="Permalink to this commit" href="#6">#6</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">392</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Warehouse constructor -&gt; WarehouseMaker<br />
+NotEnoughSpace &amp; NoItemsAvailableExceptions -&gt; StockCapacityException
+    </p>
+    <p class="commitdetails"><strong>64</strong> lines of code changed in <span class="files">15 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        PatientController.java&#160;<span class="change">(changed)</span>,
+        TreatmentController.java&#160;<span class="change">(changed)</span>,
+        WareHouseController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception/Warehouse</strong>:
+        NoSpaceAvailableException.java&#160;<span class="del">(del)</span>,
+        StockCapacityException.java&#160;<span class="new">(new)</span>,
+        StockNotFoundException.java&#160;<span class="del">(del)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        TreatmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        ItemReservator.java&#160;<span class="change">(changed)</span>,
+        Stock.java&#160;<span class="change">(changed)</span>,
+        Warehouse.java&#160;<span class="change">(changed)</span>,
+        WarehouseMaker.java&#160;<span class="new">(new&#160;64)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        World.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/DoctorUI</strong>:
+        TreatmentUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/WareHouseUI</strong>:
+        FillStockUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="5"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 20:46</span>
+    <a class="permalink" title="Permalink to this commit" href="#5">#5</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">390</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+InvalidArgumentException 
+    </p>
+    <p class="commitdetails"><strong>11</strong> lines of code changed in <span class="files">61 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        DiagnosisController.java&#160;<span class="change">(changed)</span>,
+        MachineController.java&#160;<span class="change">(changed)</span>,
+        MedicalTestController.java&#160;<span class="change">(changed)</span>,
+        MedicalTestResultController.java&#160;<span class="change">(changed)</span>,
+        PatientController.java&#160;<span class="change">(changed)</span>,
+        StaffController.java&#160;<span class="change">(changed)</span>,
+        TreatmentController.java&#160;<span class="change">(changed)</span>,
+        TreatmentResultController.java&#160;<span class="change">(changed)</span>,
+        WareHouseController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception/Arguments</strong>:
+        ArgumentConstraintException.java&#160;<span class="change">(changed)</span>,
+        ArgumentIsNullException.java&#160;<span class="change">(changed)</span>,
+        ArgumentNotAnsweredException.java&#160;<span class="change">(changed)</span>,
+        InvalidArgumentException.java&#160;<span class="new">(new&#160;11)</span>,
+        WrongArgumentListException.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Factory</strong>:
+        Factory.java&#160;<span class="change">(changed)</span>,
+        Result.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Machine</strong>:
+        BloodAnalyzer.java&#160;<span class="change">(changed)</span>,
+        SurgicalEquipment.java&#160;<span class="change">(changed)</span>,
+        UltraSoundMachine.java&#160;<span class="change">(changed)</span>,
+        XRayMachine.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        BloodAnalysis.java&#160;<span class="change">(changed)</span>,
+        BloodAnalysisFactory.java&#160;<span class="change">(changed)</span>,
+        MedicalTestCommand.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScan.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScanFactory.java&#160;<span class="change">(changed)</span>,
+        XRayFactory.java&#160;<span class="change">(changed)</span>,
+        XRayScan.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        DiagnosisCommand.java&#160;<span class="change">(changed)</span>,
+        DiagnosisFactory.java&#160;<span class="change">(changed)</span>,
+        DiagnosisSecondOpinionFactory.java&#160;<span class="change">(changed)</span>,
+        PatientFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        Cast.java&#160;<span class="change">(changed)</span>,
+        CastFactory.java&#160;<span class="change">(changed)</span>,
+        Medication.java&#160;<span class="change">(changed)</span>,
+        MedicationFactory.java&#160;<span class="change">(changed)</span>,
+        Surgery.java&#160;<span class="change">(changed)</span>,
+        SurgeryFactory.java&#160;<span class="change">(changed)</span>,
+        TreatmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        ItemFactory.java&#160;<span class="change">(changed)</span>,
+        Stock.java&#160;<span class="change">(changed)</span>,
+        Warehouse.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/Items</strong>:
+        ActivatedCarbon.java&#160;<span class="change">(changed)</span>,
+        Aspirin.java&#160;<span class="change">(changed)</span>,
+        Meal.java&#160;<span class="change">(changed)</span>,
+        Misc.java&#160;<span class="change">(changed)</span>,
+        SleepingTablet.java&#160;<span class="change">(changed)</span>,
+        Vitamin.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/AdminUI</strong>:
+        AddHospitalEquipmentUI.java&#160;<span class="change">(changed)</span>,
+        AddHospitalStaffUI.java&#160;<span class="change">(changed)</span>,
+        AdvanceTimeUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/DoctorUI</strong>:
+        EnterDiagnosisUI.java&#160;<span class="change">(changed)</span>,
+        OrderMedicalUI.java&#160;<span class="change">(changed)</span>,
+        TreatmentUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>,
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/WareHouseUI</strong>:
+        FillStockUI.java&#160;<span class="change">(changed)</span>,
+        WareHouseUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="4"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 18:59</span>
+    <a class="permalink" title="Permalink to this commit" href="#4">#4</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">389</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Exceptions gegroepeerd.
+    </p>
+    <p class="commitdetails"><strong>352</strong> lines of code changed in <span class="files">163 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital</strong>:
+        Utils.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Argument</strong>:
+        MedicationArgument.java&#160;<span class="change">(changed)</span>,
+        TimeArgument.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        AdministratorController.java&#160;<span class="change">(changed)</span>,
+        DiagnosisController.java&#160;<span class="change">(changed)</span>,
+        DoctorController.java&#160;<span class="change">(changed)</span>,
+        MachineController.java&#160;<span class="change">(changed)</span>,
+        MedicalTestController.java&#160;<span class="change">(changed)</span>,
+        MedicalTestResultController.java&#160;<span class="change">(changed)</span>,
+        NurseController.java&#160;<span class="change">(changed)</span>,
+        PatientController.java&#160;<span class="change">(changed)</span>,
+        PatientFile.java&#160;<span class="change">(changed)</span>,
+        StaffController.java&#160;<span class="change">(changed)</span>,
+        TreatmentController.java&#160;<span class="change">(changed)</span>,
+        TreatmentResultController.java&#160;<span class="change">(changed)</span>,
+        WareHouseController.java&#160;<span class="change">(changed)</span>,
+        WorldController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception</strong>:
+        ArgumentConstraintException.java&#160;<span class="del">(del)</span>,
+        ArgumentIsNullException.java&#160;<span class="del">(del)</span>,
+        ArgumentNotAnsweredException.java&#160;<span class="del">(del)</span>,
+        CannotDischargeException.java&#160;<span class="del">(del)</span>,
+        CannotDoException.java&#160;<span class="del">(del)</span>,
+        IllegalScheduleException.java&#160;<span class="del">(del)</span>,
+        IllegalStockTypeException.java&#160;<span class="del">(del)</span>,
+        InvalidDiagnosisException.java&#160;<span class="del">(del)</span>,
+        InvalidPatientException.java&#160;<span class="del">(del)</span>,
+        ItemNotFoundException.java&#160;<span class="del">(del)</span>,
+        ItemNotReservedException.java&#160;<span class="del">(del)</span>,
+        ItemTypeNotFoundException.java&#160;<span class="del">(del)</span>,
+        NeedsExpirationTimeException.java&#160;<span class="del">(del)</span>,
+        NeedsNoExpirationTimeException.java&#160;<span class="del">(del)</span>,
+        NoOpenedPatientFileException.java&#160;<span class="del">(del)</span>,
+        NoSpaceAvailableException.java&#160;<span class="del">(del)</span>,
+        NotDoneException.java&#160;<span class="del">(del)</span>,
+        NotEnoughItemsAvailableException.java&#160;<span class="del">(del)</span>,
+        OrderUnavailableException.java&#160;<span class="del">(del)</span>,
+        PatientIsCheckedInException.java&#160;<span class="del">(del)</span>,
+        PatientIsDischargedException.java&#160;<span class="del">(del)</span>,
+        SchedulableAlreadyExistsException.java&#160;<span class="del">(del)</span>,
+        ScheduleGroupUnavailable.java&#160;<span class="del">(del)</span>,
+        SchedulingException.java&#160;<span class="del">(del)</span>,
+        StockNotFoundException.java&#160;<span class="del">(del)</span>,
+        WrongArgumentListException.java&#160;<span class="del">(del)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception/Arguments</strong>:
+        ArgumentConstraintException.java&#160;<span class="new">(new&#160;15)</span>,
+        ArgumentIsNullException.java&#160;<span class="new">(new&#160;24)</span>,
+        ArgumentNotAnsweredException.java&#160;<span class="new">(new&#160;22)</span>,
+        WrongArgumentListException.java&#160;<span class="new">(new&#160;22)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception/Command</strong>:
+        CannotDoException.java&#160;<span class="new">(new&#160;23)</span>,
+        NotDoneException.java&#160;<span class="new">(new&#160;8)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception/Patient</strong>:
+        CannotDischargeException.java&#160;<span class="new">(new&#160;8)</span>,
+        InvalidDiagnosisException.java&#160;<span class="new">(new&#160;23)</span>,
+        InvalidPatientException.java&#160;<span class="new">(new&#160;8)</span>,
+        NoOpenedPatientFileException.java&#160;<span class="new">(new&#160;9)</span>,
+        PatientIsCheckedInException.java&#160;<span class="new">(new&#160;8)</span>,
+        PatientIsDischargedException.java&#160;<span class="new">(new&#160;8)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception/Scheduling</strong>:
+        IllegalScheduleException.java&#160;<span class="new">(new&#160;8)</span>,
+        SchedulableAlreadyExistsException.java&#160;<span class="new">(new&#160;24)</span>,
+        ScheduleGroupUnavailable.java&#160;<span class="new">(new&#160;14)</span>,
+        SchedulingException.java&#160;<span class="new">(new&#160;23)</span>
+      </li>
+      <li>
+        <strong>Hospital/Exception/Warehouse</strong>:
+        IllegalStockTypeException.java&#160;<span class="new">(new&#160;16)</span>,
+        ItemNotFoundException.java&#160;<span class="new">(new&#160;8)</span>,
+        ItemNotReservedException.java&#160;<span class="new">(new&#160;23)</span>,
+        ItemTypeNotFoundException.java&#160;<span class="new">(new&#160;18)</span>,
+        NeedsExpirationTimeException.java&#160;<span class="new">(new&#160;8)</span>,
+        NeedsNoExpirationTimeException.java&#160;<span class="new">(new&#160;8)</span>,
+        NoSpaceAvailableException.java&#160;<span class="new">(new)</span>,
+        NotEnoughItemsAvailableException.java&#160;<span class="new">(new&#160;8)</span>,
+        OrderUnavailableException.java&#160;<span class="new">(new&#160;16)</span>,
+        StockNotFoundException.java&#160;<span class="new">(new)</span>
+      </li>
+      <li>
+        <strong>Hospital/Factory</strong>:
+        Command.java&#160;<span class="change">(changed)</span>,
+        Factory.java&#160;<span class="change">(changed)</span>,
+        Result.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Machine</strong>:
+        BloodAnalyzer.java&#160;<span class="change">(changed)</span>,
+        SurgicalEquipment.java&#160;<span class="change">(changed)</span>,
+        UltraSoundMachine.java&#160;<span class="change">(changed)</span>,
+        XRayMachine.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        BloodAnalysis.java&#160;<span class="change">(changed)</span>,
+        BloodAnalysisFactory.java&#160;<span class="change">(changed)</span>,
+        MedicalTest.java&#160;<span class="change">(changed)</span>,
+        MedicalTestCommand.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScan.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScanFactory.java&#160;<span class="change">(changed)</span>,
+        XRayFactory.java&#160;<span class="change">(changed)</span>,
+        XRayScan.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        Diagnosis.java&#160;<span class="change">(changed)</span>,
+        DiagnosisApproveCommand.java&#160;<span class="change">(changed)</span>,
+        DiagnosisCommand.java&#160;<span class="change">(changed)</span>,
+        DiagnosisFactory.java&#160;<span class="change">(changed)</span>,
+        DiagnosisSecondOpinion.java&#160;<span class="change">(changed)</span>,
+        DiagnosisSecondOpinionFactory.java&#160;<span class="change">(changed)</span>,
+        Patient.java&#160;<span class="change">(changed)</span>,
+        PatientFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>,
+        HospitalAdministrator.java&#160;<span class="change">(changed)</span>,
+        LoginInfo.java&#160;<span class="change">(changed)</span>,
+        Nurse.java&#160;<span class="change">(changed)</span>,
+        Person.java&#160;<span class="change">(changed)</span>,
+        Staff.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        ItemsAvailableAppointmentObserver.java&#160;<span class="change">(changed)</span>,
+        MultiScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        SingleSchedulableGroup.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>,
+        TimeFrameDelay.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Constraints</strong>:
+        XRayConstraint.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        Cast.java&#160;<span class="change">(changed)</span>,
+        CastFactory.java&#160;<span class="change">(changed)</span>,
+        Medication.java&#160;<span class="change">(changed)</span>,
+        MedicationFactory.java&#160;<span class="change">(changed)</span>,
+        Surgery.java&#160;<span class="change">(changed)</span>,
+        SurgeryFactory.java&#160;<span class="change">(changed)</span>,
+        Treatment.java&#160;<span class="change">(changed)</span>,
+        TreatmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        FoodStock.java&#160;<span class="change">(changed)</span>,
+        Item.java&#160;<span class="change">(changed)</span>,
+        ItemFactory.java&#160;<span class="change">(changed)</span>,
+        ItemReservator.java&#160;<span class="change">(changed)</span>,
+        OrderList.java&#160;<span class="change">(changed)</span>,
+        ReserveItemObserver.java&#160;<span class="change">(changed)</span>,
+        Stock.java&#160;<span class="change">(changed)</span>,
+        Warehouse.java&#160;<span class="change">(changed)</span>,
+        WarehouseManager.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/ItemQueues</strong>:
+        FIFOQueue.java&#160;<span class="change">(changed)</span>,
+        LIFOQueue.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/Items</strong>:
+        ActivatedCarbon.java&#160;<span class="change">(changed)</span>,
+        Aspirin.java&#160;<span class="change">(changed)</span>,
+        ExpiringItem.java&#160;<span class="change">(changed)</span>,
+        Meal.java&#160;<span class="change">(changed)</span>,
+        Misc.java&#160;<span class="change">(changed)</span>,
+        SleepingTablet.java&#160;<span class="change">(changed)</span>,
+        Vitamin.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/OrderPlacers</strong>:
+        FullyStockOrderPlacer.java&#160;<span class="change">(changed)</span>,
+        MealOrderPlacer.java&#160;<span class="change">(changed)</span>,
+        NormalOrderPlacer.java&#160;<span class="change">(changed)</span>,
+        OrderPlacer.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        BasicWorld.java&#160;<span class="change">(changed)</span>,
+        Time.java&#160;<span class="change">(changed)</span>,
+        TimeSubject.java&#160;<span class="change">(changed)</span>,
+        World.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/AdminUI</strong>:
+        AddHospitalEquipmentUI.java&#160;<span class="change">(changed)</span>,
+        AddHospitalStaffUI.java&#160;<span class="change">(changed)</span>,
+        AdvanceTimeUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/DoctorUI</strong>:
+        DoctorUI.java&#160;<span class="change">(changed)</span>,
+        EnterDiagnosisUI.java&#160;<span class="change">(changed)</span>,
+        OpenPatientFileUI.java&#160;<span class="change">(changed)</span>,
+        OrderMedicalUI.java&#160;<span class="change">(changed)</span>,
+        TreatmentUI.java&#160;<span class="change">(changed)</span>,
+        UndoPreviousActionUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/MainUI</strong>:
+        MainUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/NurseUI</strong>:
+        EnterMedicalTestResultUI.java&#160;<span class="change">(changed)</span>,
+        EnterTreatmentResultUI.java&#160;<span class="change">(changed)</span>,
+        NurseUI.java&#160;<span class="change">(changed)</span>,
+        RegisterPatientUI.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/WareHouseUI</strong>:
+        FillStockUI.java&#160;<span class="change">(changed)</span>,
+        WareHouseUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="3"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-08 18:50</span>
+    <a class="permalink" title="Permalink to this commit" href="#3">#3</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">388</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Refactorings...
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">7 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/People</strong>:
+        HospitalAdministrator.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        Stock.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        TimeSubject.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="2"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2012-03-06 11:59</span>
+    <a class="permalink" title="Permalink to this commit" href="#2">#2</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">386</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Verschillende lijn veranderingen . Geen code veranderd.
+    </p>
+    <p class="commitdetails"><strong>49</strong> lines of code changed in <span class="files">70 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Argument</strong>:
+        Argument.java&#160;<span class="change">(changed)</span>,
+        BasicArgument.java&#160;<span class="change">(changed)</span>,
+        DoctorArgument.java&#160;<span class="change">(changed)</span>,
+        IntegerArgument.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        DoctorController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Factory</strong>:
+        Command.java&#160;<span class="change">(changed)</span>,
+        Factory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        BloodAnalysis.java&#160;<span class="change">(changed)</span>,
+        MedicalTestCommand.java&#160;<span class="change">(changed)</span>,
+        UltraSoundScan.java&#160;<span class="change">(changed)</span>,
+        XRayFactory.java&#160;<span class="change">(changed)</span>,
+        XRayScan.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        DiagnosisApproveCommand.java&#160;<span class="change">(changed)</span>,
+        DiagnosisCommand.java&#160;<span class="change">(changed)</span>,
+        DiagnosisFactory.java&#160;<span class="change">(changed)</span>,
+        DiagnosisInfo.java&#160;<span class="change">(changed)</span>,
+        DiagnosisSecondOpinion.java&#160;<span class="change">(changed)</span>,
+        DiagnosisSecondOpinionFactory.java&#160;<span class="change">(changed)</span>,
+        Patient.java&#160;<span class="change">(changed)</span>,
+        PatientFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>,
+        HospitalAdministrator.java&#160;<span class="change">(changed)</span>,
+        LoginInfo.java&#160;<span class="change">(changed)</span>,
+        Person.java&#160;<span class="change">(changed)</span>,
+        Staff.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People/PeopleFactories</strong>:
+        DoctorFactory.java&#160;<span class="change">(changed)</span>,
+        NurseFactory.java&#160;<span class="change">(changed)</span>,
+        WarehouseFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        Appointable.java&#160;<span class="change">(changed)</span>,
+        Appointment.java&#160;<span class="change">(changed)</span>,
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        AppointmentFactory.java&#160;<span class="change">(changed)</span>,
+        DoctorPatientAppointment.java&#160;<span class="change">(changed)</span>,
+        ItemsAvailableAppointmentObserver.java&#160;<span class="change">(changed)</span>,
+        Schedule.java&#160;<span class="change">(changed)</span>,
+        ScheduleGroup.java&#160;<span class="change">(changed)</span>,
+        TimeFrame.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules/Constraints</strong>:
+        NullConstraint.java&#160;<span class="change">(changed)</span>,
+        TimeFrameConstraint.java&#160;<span class="change">(changed)</span>,
+        XRayConstraint.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        Cast.java&#160;<span class="change">(changed)</span>,
+        Medication.java&#160;<span class="change">(changed)</span>,
+        MedicationFactory.java&#160;<span class="change">(changed)</span>,
+        Treatment.java&#160;<span class="change">(changed)</span>,
+        TreatmentCommand.java&#160;<span class="change">(changed)</span>,
+        TreatmentFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        FoodStock.java&#160;<span class="change">(changed)</span>,
+        Item.java&#160;<span class="change">(changed)</span>,
+        ItemFactory.java&#160;<span class="change">(changed)</span>,
+        ItemReservator.java&#160;<span class="change">(changed)</span>,
+        Order.java&#160;<span class="change">(changed)</span>,
+        OrderList.java&#160;<span class="change">(changed)</span>,
+        ReserveItemObserver.java&#160;<span class="change">(changed)</span>,
+        Stock.java&#160;<span class="change">(changed)</span>,
+        Warehouse.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/ItemQueues</strong>:
+        FIFOQueue.java&#160;<span class="new">(new&#160;49)</span>,
+        ItemQueue.java&#160;<span class="change">(changed)</span>,
+        LIFOQueue.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/Items</strong>:
+        ActivatedCarbon.java&#160;<span class="change">(changed)</span>,
+        MedicationItem.java&#160;<span class="change">(changed)</span>,
+        Misc.java&#160;<span class="change">(changed)</span>,
+        Vitamin.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/OrderPlacers</strong>:
+        FullyStockOrderPlacer.java&#160;<span class="change">(changed)</span>,
+        MealOrderPlacer.java&#160;<span class="change">(changed)</span>,
+        NormalOrderPlacer.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        BasicWorld.java&#160;<span class="change">(changed)</span>,
+        Time.java&#160;<span class="change">(changed)</span>,
+        TimeSubject.java&#160;<span class="change">(changed)</span>,
+        TimeUtils.java&#160;<span class="change">(changed)</span>,
+        World.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="1"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2012-03-01 20:43</span>
+    <a class="permalink" title="Permalink to this commit" href="#1">#1</a>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">385</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+scenario test
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        NurseController.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+</dl>
+
+<p class="previous"><a href="2012-02.html">February 2012</a> &#187; </p>
+<div id="generatedby">Generated by <a href="http://www.statsvn.org">StatSVN</a> 0.7.0</div>
+</body>
+</html>

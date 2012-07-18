@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>StatSVN - Directory Verslag/Pictures/</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="Generator" content="StatSVN 0.7.0"/>
+<link rel="stylesheet" href="objectlab-statcvs.css" type="text/css"/>
+<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&#38;login=statsvn&#38;apiKey=R_2c362b417d0517c27876cbaca1bb68cc"></script>
+<script type="text/javascript" charset="utf-8">
+   // wait until page is loaded to call API
+   var redir_url;
+   var short_url;
+   BitlyCB.myShortenCallback = function(data) {
+      // this is how to get a result of shortening a single url
+      var result;
+      short_url=null;
+      for (var r in data.results) {
+         result = data.results[r];
+         result['longUrl'] = r;
+         short_url = result['shortUrl'];
+         break;
+      }
+      if (short_url==null) // bit.ly failed
+      document.location=redir_url;
+      else
+      redirToTwitter();
+   };
+   function shortenTweet(url) {
+      if (short_url == null || redir_url!=url) {
+      redir_url = url;
+      BitlyClient.shorten(document.location, 'BitlyCB.myShortenCallback');
+      }
+      else
+      redirToTwitter();
+      return false;
+   }
+   function redirToTwitter() { 
+      // replace {0} which is visible as %7B0} in the link
+      document.location = redir_url.replace('%7B0}', short_url);
+   }
+</script>
+  </head>
+
+<body>
+
+<h1>Directory Verslag/Pictures/</h1>
+<div id="parentlink">&#171; <a href="index.html">Development Statistics for /SWOP It1B/src</a></div>
+<dl class="attributes">
+    <dt>Directory Created:</dt>
+    <dd><span class="date">2011-12-30 05:30</span></dd>
+    <dt>Total Files:</dt>
+    <dd>19</dd>
+    <dt>Deleted Files:</dt>
+    <dd>1</dd>
+    <dt>Lines of Code:</dt>
+    <dd>2389</dd>
+</dl>
+<p class="dirtree">
+<a href="dir.html">[root]</a>/<a href="dir_Verslag.html">Verslag</a>/<strong>Pictures</strong><br/>
+</p>
+
+<div class="section">
+<h2>Lines of Code</h2>
+<p class="chart"><img src="loc_module_Verslag_Pictures.png" alt="Verslag/Pictures/ Lines of Code" width="800" height="500" /></p></div>
+<div class="section">
+<h2>Developers</h2>
+  <table  rules="groups" summary="All authors and the number of their changes and lines of code in this directory">
+    <colgroup align="left"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Changes</th>
+        <th>Lines of Code</th>
+        <th>Lines per Change</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Totals</th>
+        <td>21 (100.0%)</td>
+        <td>2389 (100.0%)</td>
+        <td>113.7</td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr  class="odd">
+        <th><a href="user_s0219269.html" class="author">s0219269</a></th>
+        <td>5 (23.8%)</td>
+        <td>1363 (57.1%)</td>
+        <td>272.6</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="user_s0203664.html" class="author">s0203664</a></th>
+        <td>6 (28.6%)</td>
+        <td>404 (16.9%)</td>
+        <td>67.3</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="user_s0208025.html" class="author">s0208025</a></th>
+        <td>6 (28.6%)</td>
+        <td>357 (14.9%)</td>
+        <td>59.5</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="user_s0180183.html" class="author">s0180183</a></th>
+        <td>4 (19.0%)</td>
+        <td>265 (11.1%)</td>
+        <td>66.2</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="section">
+<h2>Most Recent Commits</h2>
+<dl class="commitlist">
+  <dt><a name="11"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-31 16:51</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">377</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Volledig klassediagramma online!
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        KlasseDiagramma Systeem.pdf&#160;<span class="new">(new)</span>,
+        KlassenDiagramma.vpp&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="10"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-31 16:28</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">376</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Klasse diagramma bijna af, alleen  nog timeFrame en TimeFrameDelay vergeten
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        untitled.vpp&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="9"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-31 15:13</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">374</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+eclemma verslag<br />
+use case list orders in het verslag ingevoegd
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        Eclemma.png&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="8"></a>
+    <a href="user_s0180183.html" class="author">s0180183</a>
+    <span class="date">2011-12-30 21:18</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">369</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+verslag FillStock toegevoegt en in de code de klassse FoodStock om food te verwijderen en te bestellen. het ontwerp is ni helemaal in orde maar ik zeg dit ook in het verslag.
+    </p>
+    <p class="commitdetails"><strong>265</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        StockOrder.png&#160;<span class="new">(new)</span>,
+        StockOrder.svg&#160;<span class="new">(new&#160;265)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="7"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-30 16:37</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">362</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Verslag toegevoegd.
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        OrderMedicalTest.pdf&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="6"></a>
+    <a href="user_s0208025.html" class="author">s0208025</a>
+    <span class="date">2011-12-30 14:36</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">353</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+verder gewerkt aan verslag, een aantal zinnen aangepast op leesbaarheid...
+    </p>
+    <p class="commitdetails"><strong>357</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        MakeAppointment.png&#160;<span class="new">(new)</span>,
+        MakeAppointment.svg&#160;<span class="new">(new&#160;357)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="5"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-30 14:01</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">349</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+svg (zonder nummertjes)
+    </p>
+    <p class="commitdetails"><strong>1363</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        ApproveDiagnosis.svg&#160;<span class="new">(new&#160;521)</span>,
+        EnterDiagnosis.svg&#160;<span class="new">(new&#160;417)</span>,
+        Login.svg&#160;<span class="new">(new&#160;425)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="4"></a>
+    <a href="user_s0219269.html" class="author">s0219269</a>
+    <span class="date">2011-12-30 13:41</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">348</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+update verslag, ROOD=&gt; nog niet gedaan
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        OrderMedicalTest.png&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="3"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 13:29</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">347</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+.svg convertion
+    </p>
+    <p class="commitdetails"><strong>404</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        Order Medical Test.png&#160;<span class="del">(del)</span>,
+        Order Medical Test.svg&#160;<span class="new">(new&#160;404)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="2"></a>
+    <a href="user_s0180183.html" class="author">s0180183</a>
+    <span class="date">2011-12-30 12:09</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">344</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+het eerste stuk van het Warehouse gedeelte van het verslag toegevoegt. ben nu de rest naar latex aan het zetten en de sequence diagramma aan het afmaken. Er is bij mij een probleem waardoor mijn afbeelding niet in het document komt. als iemand daar is naar kan kijken
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        Observer.png&#160;<span class="new">(new)</span>,
+        Warehouse1.png&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="1"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 05:30</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">343</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+medicaltests &amp; treatments verslag
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        ApproveDiagnosis.png&#160;<span class="new">(new)</span>,
+        EnterDiagnosis.png&#160;<span class="new">(new)</span>,
+        Login.png&#160;<span class="new">(new)</span>,
+        Order Medical Test.png&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+</dl>
+
+</div><div id="generatedby">Generated by <a href="http://www.statsvn.org">StatSVN</a> 0.7.0</div>
+</body>
+</html>

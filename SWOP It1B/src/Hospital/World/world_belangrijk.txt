@@ -1,0 +1,5 @@
+Waarom zijn Staff en Paitent losgekoppeld in de Wereld? Deze moeten niet losgekoppeld zijn:
+gebruik gePersonOfClass(Patient.class) en
+getPersonOfClass(Staff.class) als deze opgesplitst moeten worden...
+
+Hierdoor verminderen we de coupling sterk!

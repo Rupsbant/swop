@@ -1,0 +1,724 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>StatSVN - /SWOP It1B/src Developers: s0203664</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="Generator" content="StatSVN 0.7.0"/>
+<link rel="stylesheet" href="objectlab-statcvs.css" type="text/css"/>
+<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&#38;login=statsvn&#38;apiKey=R_2c362b417d0517c27876cbaca1bb68cc"></script>
+<script type="text/javascript" charset="utf-8">
+   // wait until page is loaded to call API
+   var redir_url;
+   var short_url;
+   BitlyCB.myShortenCallback = function(data) {
+      // this is how to get a result of shortening a single url
+      var result;
+      short_url=null;
+      for (var r in data.results) {
+         result = data.results[r];
+         result['longUrl'] = r;
+         short_url = result['shortUrl'];
+         break;
+      }
+      if (short_url==null) // bit.ly failed
+      document.location=redir_url;
+      else
+      redirToTwitter();
+   };
+   function shortenTweet(url) {
+      if (short_url == null || redir_url!=url) {
+      redir_url = url;
+      BitlyClient.shorten(document.location, 'BitlyCB.myShortenCallback');
+      }
+      else
+      redirToTwitter();
+      return false;
+   }
+   function redirToTwitter() { 
+      // replace {0} which is visible as %7B0} in the link
+      document.location = redir_url.replace('%7B0}', short_url);
+   }
+</script>
+  </head>
+
+<body>
+
+<h1>/SWOP It1B/src Developers: s0203664</h1>
+<div id="parentlink">&#171; <a href="index.html">Development Statistics for /SWOP It1B/src</a> &#171; <a href="developers.html">Developers</a></div>
+<dl class="attributes">
+    <dt>Login name:</dt>
+    <dd>s0203664</dd>
+    <dt>Total Commits:</dt>
+    <dd>436 (14.2%)</dd>
+    <dt>Lines of Code:</dt>
+    <dd>3,181 (7.7%)</dd>
+    <dt>Most Recent Commit:</dt>
+    <dd><span class="date">2012-04-06 19:35</span></dd>
+    <dt>Tweet this:</dt>
+    <dd><a onclick="return shortenTweet(this.href);" href="http://twitter.com/home?status=s0203664%20contributed%203%2C181%20(7.7%25)%20lines%20to%20%2FSWOP%20It1B%2Fsrc%20%7B0}%20most%20recent%20commit%202012-04-06%20stats%20by%20StatSVN%20http%3A%2F%2Fstatsvn.org"><img style="border:0px" alt="Tweet this" src="tweet-this.png"/></a></dd>
+</dl>
+
+<div class="section">
+<h2>Activity by Clock Time</h2>
+<p class="chart"><img src="activity_time_s0203664.png" alt="Activity by Hour of Day for s0203664" width="800" height="500" /></p><p class="chart"><img src="activity_day_s0203664.png" alt="Activity by Day of Week for s0203664" width="800" height="500" /></p></div>
+<div class="section">
+<h2>Activity in Directories</h2>
+  <table  rules="groups" summary="Overview of this author's activities in different directories">
+    <colgroup align="left"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <colgroup align="right"/>
+    <thead>
+      <tr>
+        <th>Directory</th>
+        <th>Changes</th>
+        <th>Lines of Code</th>
+        <th>Lines per Change</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Totals</th>
+        <td>436 (100.0%)</td>
+        <td>3181 (100.0%)</td>
+        <td>7.2</td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_MedicalTest.html" class="directory">Hospital/MedicalTest/</a></th>
+        <td>27 (6.2%)</td>
+        <td>746 (23.5%)</td>
+        <td>27.6</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Hospital_Patient.html" class="directory">Hospital/Patient/</a></th>
+        <td>30 (6.9%)</td>
+        <td>663 (20.8%)</td>
+        <td>22.1</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_Controllers.html" class="directory">Hospital/Controllers/</a></th>
+        <td>84 (19.3%)</td>
+        <td>472 (14.8%)</td>
+        <td>5.6</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Verslag_Pictures.html" class="directory">Verslag/Pictures/</a></th>
+        <td>6 (1.4%)</td>
+        <td>404 (12.7%)</td>
+        <td>67.3</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_Treatments.html" class="directory">Hospital/Treatments/</a></th>
+        <td>27 (6.2%)</td>
+        <td>369 (11.6%)</td>
+        <td>13.6</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Hospital_Machine.html" class="directory">Hospital/Machine/</a></th>
+        <td>22 (5.0%)</td>
+        <td>228 (7.2%)</td>
+        <td>10.3</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_WareHouse.html" class="directory">Hospital/WareHouse/</a></th>
+        <td>37 (8.5%)</td>
+        <td>70 (2.2%)</td>
+        <td>1.8</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Hospital_People_PeopleFactories.html" class="directory">Hospital/People/PeopleFactories/</a></th>
+        <td>3 (0.7%)</td>
+        <td>62 (1.9%)</td>
+        <td>20.6</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_Exception.html" class="directory">Hospital/Exception/</a></th>
+        <td>9 (2.1%)</td>
+        <td>53 (1.7%)</td>
+        <td>5.8</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Hospital_Argument.html" class="directory">Hospital/Argument/</a></th>
+        <td>9 (2.1%)</td>
+        <td>50 (1.6%)</td>
+        <td>5.5</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_People.html" class="directory">Hospital/People/</a></th>
+        <td>19 (4.4%)</td>
+        <td>48 (1.5%)</td>
+        <td>2.5</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Verslag.html" class="directory">Verslag/</a></th>
+        <td>17 (3.9%)</td>
+        <td>16 (0.5%)</td>
+        <td>0.9</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_HospitalUI_WareHouseUI.html" class="directory">HospitalUI/WareHouseUI/</a></th>
+        <td>7 (1.6%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_HospitalUI_NurseUI.html" class="directory">HospitalUI/NurseUI/</a></th>
+        <td>11 (2.5%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_HospitalUI_MainUI.html" class="directory">HospitalUI/MainUI/</a></th>
+        <td>8 (1.8%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_HospitalUI_DoctorUI.html" class="directory">HospitalUI/DoctorUI/</a></th>
+        <td>39 (8.9%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_HospitalUI_AdminUI.html" class="directory">HospitalUI/AdminUI/</a></th>
+        <td>15 (3.4%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_HospitalUI.html" class="directory">HospitalUI/</a></th>
+        <td>12 (2.8%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_World.html" class="directory">Hospital/World/</a></th>
+        <td>32 (7.3%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Hospital_WareHouse_OrderPlacers.html" class="directory">Hospital/WareHouse/OrderPlacers/</a></th>
+        <td>3 (0.7%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_Schedules.html" class="directory">Hospital/Schedules/</a></th>
+        <td>6 (1.4%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Hospital_Factory.html" class="directory">Hospital/Factory/</a></th>
+        <td>1 (0.2%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir_Hospital_Diagnosis.html" class="directory">Hospital/Diagnosis/</a></th>
+        <td>7 (1.6%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="even">
+        <th><a href="dir_Hospital.html" class="directory">Hospital/</a></th>
+        <td>2 (0.5%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+      <tr  class="odd">
+        <th><a href="dir.html" class="directory">/</a></th>
+        <td>3 (0.7%)</td>
+        <td>0 (0.0%)</td>
+        <td>0.0</td>
+      </tr>
+    </tbody>
+  </table>
+
+<p class="chart"><img src="directory_sizes_s0203664.png" alt="Activity of s0203664" width="800" height="500" /></p></div>
+<div class="section">
+<h2>Most Recent Commits</h2>
+<dl class="commitlist">
+  <dt><a name="20"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2012-04-06 19:35</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">523</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+verslag
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag</strong>:
+        SWOP12.tex&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="19"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2012-04-05 15:56</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">486</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+verslag update
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag</strong>:
+        SWOP12.tex&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="18"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2012-04-03 19:01</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">460</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+add staff &amp; add equipment
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">13 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        MachineController.java&#160;<span class="change">(changed)</span>,
+        StaffController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Machine</strong>:
+        BloodAnalyzer.java&#160;<span class="change">(changed)</span>,
+        Machine.java&#160;<span class="change">(changed)</span>,
+        SurgicalEquipment.java&#160;<span class="change">(changed)</span>,
+        UltraSoundMachine.java&#160;<span class="change">(changed)</span>,
+        XRayMachine.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        HospitalAdministrator.java&#160;<span class="change">(changed)</span>,
+        Nurse.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        WarehouseManager.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        BasicWorld.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/AdminUI</strong>:
+        AddHospitalEquipmentUI.java&#160;<span class="change">(changed)</span>,
+        AddHospitalStaffUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="17"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2012-03-01 20:43</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">385</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+scenario test
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        NurseController.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="16"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-31 17:23</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">379</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+werkverdeling Jeroen Van Gool (toe te voegen bij finale pdf)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag</strong>:
+        toevoegen.txt&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="15"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-31 14:59</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">373</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+usecase list orders (toevoegen aan verslag!)<br />
+viel niet echt veel over te melden :p
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag</strong>:
+        toevoegen.txt&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="14"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 17:06</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">365</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+administration =&gt; toevoegen!<br />
+todo: advance time
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag</strong>:
+        toevoegen.txt&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="13"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 15:26</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">358</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+opmerking over grasp patterns
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag</strong>:
+        Opmerkingen&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="12"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 14:28</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">351</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+Verdeling!
+    </p>
+    <p class="commitdetails"><strong>16</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag</strong>:
+        Opmerkingen&#160;<span class="change">(changed)</span>,
+        Verdeling.txt&#160;<span class="new">(new&#160;16)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="11"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 13:29</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">347</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+.svg convertion
+    </p>
+    <p class="commitdetails"><strong>404</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        Order Medical Test.png&#160;<span class="del">(del)</span>,
+        Order Medical Test.svg&#160;<span class="new">(new&#160;404)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="10"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 05:30</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">343</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+medicaltests &amp; treatments verslag
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">9 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        TreatmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Verslag</strong>:
+        ApproveDiagnosis.png&#160;<span class="del">(del)</span>,
+        EnterDiagnosis.png&#160;<span class="del">(del)</span>,
+        Login.png&#160;<span class="del">(del)</span>,
+        toevoegen.txt&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Verslag/Pictures</strong>:
+        ApproveDiagnosis.png&#160;<span class="new">(new)</span>,
+        EnterDiagnosis.png&#160;<span class="new">(new)</span>,
+        Login.png&#160;<span class="new">(new)</span>,
+        Order Medical Test.png&#160;<span class="new">(new)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="9"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-30 00:01</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">341</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+undo/redo sysouts gefixt
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">11 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        DoctorController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Factory</strong>:
+        Command.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        MedicalTestCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Patient</strong>:
+        DiagnosisApproveCommand.java&#160;<span class="change">(changed)</span>,
+        DiagnosisCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Schedules</strong>:
+        AppointmentCommand.java&#160;<span class="change">(changed)</span>,
+        ItemsAvailableAppointmentObserver.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        TreatmentCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        ItemReservator.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/DoctorUI</strong>:
+        UndoPreviousActionUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="8"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-29 22:57</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">340</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+medicaltestcommand implementeert nu Command, dus kan undo/redo
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        MedicalTestController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/MedicalTest</strong>:
+        MedicalTestCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="7"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-29 18:26</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">334</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+diagnosis fix
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Patient</strong>:
+        Diagnosis.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="6"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-29 18:23</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">333</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+all tests working again!
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">1 file</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        MedicationFactory.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="5"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-29 14:41</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">328</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+medication update
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        TreatmentController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        Medication.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>HospitalUI/DoctorUI</strong>:
+        TreatmentUI.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="4"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-29 14:16</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">327</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+diagnosis fix (unschedule weggedaan)
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">3 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Patient</strong>:
+        Diagnosis.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/Treatments</strong>:
+        Treatment.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/World</strong>:
+        BasicWorld.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="3"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-29 04:57</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">324</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+commandinfos in doctor bijgehouden ipv in doctorcontroller, hierdoor kan je na een logout nog steeds dingen undo/redo'en
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Controllers</strong>:
+        DoctorController.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/People</strong>:
+        Doctor.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="2"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-29 04:36</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">322</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+diagnosiscommand.toestring toegevoegd + verslag
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">2 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/Patient</strong>:
+        DiagnosisCommand.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Verslag</strong>:
+        toevoegen.txt&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+  <dt><a name="1"></a>
+    <a href="user_s0203664.html" class="author">s0203664</a>
+    <span class="date">2011-12-29 01:09</span>
+    <span class="revisionNumberOuter">Rev.: <span class="revisionNumberInner">319</span></span>
+  </dt>
+  <dd>
+    <p class="comment">
+warehouse fix
+    </p>
+    <p class="commitdetails"><strong>0</strong> lines of code changed in <span class="files">4 files</span>:</p>
+    <ul class="commitdetails">
+      <li>
+        <strong>Hospital/WareHouse</strong>:
+        Stock.java&#160;<span class="change">(changed)</span>
+      </li>
+      <li>
+        <strong>Hospital/WareHouse/OrderPlacers</strong>:
+        MealOrderPlacer.java&#160;<span class="change">(changed)</span>,
+        NormalOrderPlacer.java&#160;<span class="change">(changed)</span>,
+        OrderPlacer.java&#160;<span class="change">(changed)</span>
+      </li>
+    </ul>
+  </dd>
+
+</dl>
+
+<p>(77 more)</p>
+</div><div id="generatedby">Generated by <a href="http://www.statsvn.org">StatSVN</a> 0.7.0</div>
+</body>
+</html>

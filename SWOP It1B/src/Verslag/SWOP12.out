@@ -1,0 +1,57 @@
+\BOOKMARK [1][-]{section.1}{Inleiding}{}
+\BOOKMARK [2][-]{subsection.1.1}{Overzicht van het verslag}{section.1}
+\BOOKMARK [2][-]{subsection.1.2}{Veronderstellingen }{section.1}
+\BOOKMARK [1][-]{section.2}{Het systeem}{}
+\BOOKMARK [2][-]{subsection.2.1}{Overzicht}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Gebruikers }{section.2}
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Beschrijving}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Usecases: Login, Logout}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Bespreking GRASP, uitbreidbaarheid en nadelen}{subsection.2.2}
+\BOOKMARK [2][-]{subsection.2.3}{Input en output}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Beschrijving}{subsection.2.3}
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Publieke Werking}{subsection.2.3}
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Interne Werking}{subsection.2.3}
+\BOOKMARK [3][-]{subsubsection.2.3.4}{Bespreking GRASP en uitbreidbaarheid}{subsection.2.3}
+\BOOKMARK [2][-]{subsection.2.4}{Diagnoses }{section.2}
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Beschrijving}{subsection.2.4}
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Usecases: EnterDiagnosis, ApproveDiagnosis}{subsection.2.4}
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Bespreking GRASP}{subsection.2.4}
+\BOOKMARK [2][-]{subsection.2.5}{Magazijn}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Beschrijving}{subsection.2.5}
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Interne Werking}{subsection.2.5}
+\BOOKMARK [3][-]{subsubsection.2.5.3}{Bespreking GRASP}{subsection.2.5}
+\BOOKMARK [3][-]{subsubsection.2.5.4}{Nadelen}{subsection.2.5}
+\BOOKMARK [2][-]{subsection.2.6}{Medische testen en behandelingen \040}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.6.1}{Beschrijving: medische testen}{subsection.2.6}
+\BOOKMARK [3][-]{subsubsection.2.6.2}{Beschrijving: behandelingen}{subsection.2.6}
+\BOOKMARK [3][-]{subsubsection.2.6.3}{Verloop usecases: OrderMedicalTest en EnterTreatment}{subsection.2.6}
+\BOOKMARK [3][-]{subsubsection.2.6.4}{Bespreking GRASP en uitbreidbaarheid}{subsection.2.6}
+\BOOKMARK [2][-]{subsection.2.7}{Tijdsplanning }{section.2}
+\BOOKMARK [3][-]{subsubsection.2.7.1}{Beschrijving}{subsection.2.7}
+\BOOKMARK [3][-]{subsubsection.2.7.2}{Bespreking GRASP en uitbreidbaarheid}{subsection.2.7}
+\BOOKMARK [2][-]{subsection.2.8}{Administratie}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.8.1}{Beschrijving}{subsection.2.8}
+\BOOKMARK [3][-]{subsubsection.2.8.2}{Verloop usecase: Add staff \046 machine}{subsection.2.8}
+\BOOKMARK [1][-]{section.3}{Onbresproken Usecases}{}
+\BOOKMARK [2][-]{subsection.3.1}{Preference}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Undo \046 Redo}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{Consult Patientfile}{section.3}
+\BOOKMARK [2][-]{subsection.3.4}{Close Patientfile}{section.3}
+\BOOKMARK [2][-]{subsection.3.5}{Discharge Patient}{section.3}
+\BOOKMARK [2][-]{subsection.3.6}{Register Patient}{section.3}
+\BOOKMARK [2][-]{subsection.3.7}{Enter Medicaltest result}{section.3}
+\BOOKMARK [2][-]{subsection.3.8}{Enter TreatmentResult}{section.3}
+\BOOKMARK [2][-]{subsection.3.9}{Advance Time}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.9.1}{Bespreking GRASP en uitbreidbaarheid}{subsection.3.9}
+\BOOKMARK [2][-]{subsection.3.10}{Fill stock}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.10.1}{Bespreking GRASP en uitbreidbaarheid}{subsection.3.10}
+\BOOKMARK [2][-]{subsection.3.11}{List orders}{section.3}
+\BOOKMARK [1][-]{section.4}{Public API}{}
+\BOOKMARK [1][-]{section.5}{Conclusie}{}
+\BOOKMARK [1][-]{section.6}{Appendices}{}
+\BOOKMARK [2][-]{subsection.6.1}{De user interface }{section.6}
+\BOOKMARK [2][-]{subsection.6.2}{Testverslag}{section.6}
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Teststrategie}{subsection.6.2}
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Eclemma-verslag}{subsection.6.2}
+\BOOKMARK [2][-]{subsection.6.3}{Werkverdeling}{section.6}
+\BOOKMARK [2][-]{subsection.6.4}{Volledig klassendiagram }{section.6}
