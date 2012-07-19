@@ -8,7 +8,6 @@ import Hospital.Machine.Machine;
 import Hospital.People.Nurse;
 import Hospital.Schedules.Appointable;
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.Implementation.NurseAppointmentBackToBackConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;

@@ -18,6 +18,7 @@ import Hospital.World.World;
 import Hospital.People.Doctor;
 import Hospital.Schedules.ConstraintSolver.GetC;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
 import Hospital.Treatments.Medication;
@@ -91,7 +92,7 @@ public class AppointmentFactoryTest {
         System.out.println("makeAppointment");
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
         Campus tempCampus = new Campus("abc", w);
-        GetCampusConstraint tfConstraints = new GetC(tempCampus);
+        TimeFrameConstraint tfConstraints = new GetC(tempCampus);
         List<ScheduleGroup> groups = Arrays.asList((ScheduleGroup) new SingleSchedulableGroup(ruben));
         Appointable t = new XRayScan(3, 3, "topje van m'n neus");
         AppointmentCommand appC = new AppointmentCommand(w, t, Collections.EMPTY_LIST, new HighLowPriority(true));

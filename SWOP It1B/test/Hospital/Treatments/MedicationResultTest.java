@@ -63,16 +63,16 @@ public class MedicationResultTest {
     @Test
     public void arguments()
             throws CannotChangeException, WrongArgumentListException,
-            InvalidArgumentException, StockException {
+            InvalidArgumentException, StockException, CannotDoException {
         assertFalse("Result not entered yet", med.isResultEntered());
         PublicArgument[] args = (PublicArgument[]) med.getEmptyResultArgumentList();
         assertTrue("Wrong argument, should be IntegerArgument", args[0].getClass().equals(BooleanArgument.class));
         assertTrue("Wrong argument, should be StringArgument", args[1].getClass().equals(StringArgument.class));
         args[0].enterAnswer("no");
         args[1].enterAnswer("patient is genezen");
-        World world = TestUtil.getWorldForTesting();
-        Campus campus = world.getCampusFromInfo(world.getCampuses().get(0));
-        med.setItemReservationCommand(new ItemReservationCommand(med));
+        ItemReservationCommand itemReservationCommand = new ItemReservationCommand(med);
+        itemReservationCommand.execute();
+        med.setItemReservationCommand(itemReservationCommand);
         med.enterResult(args);
         assertTrue("Result was entered", med.isResultEntered());
         assertEquals("ResultString is not parsed correctly or arguments not entered correctly",

@@ -14,6 +14,7 @@ import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.ScheduleTestUtil;
 import Hospital.Schedules.TimeFrame;
@@ -111,7 +112,7 @@ public class AppointmentConstraintSolverTest {
         ScheduleGroup single1 = new SingleSchedulableGroup(ruben);
         SingleSchedulableGroup single2 = new SingleSchedulableGroup(d);
         List<ScheduleGroup> groups = Arrays.asList(single1, single2);
-        GetCampusConstraint constraint = new GetC(campusNorth);
+        TimeFrameConstraint constraint = new GetC(campusNorth);
         constraint.addConstraintList(new PriorityConstraint(new HighLowPriority(false)));
         instance.setScheduleGroups(groups);
         instance.setFirstTimeFrame(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20));
@@ -128,7 +129,7 @@ public class AppointmentConstraintSolverTest {
         ScheduleGroup single1 = new SingleSchedulableGroup(ruben);
         SingleSchedulableGroup single2 = new SingleSchedulableGroup(d);
         List<ScheduleGroup> groups = Arrays.asList(single1, single2);
-        GetCampusConstraint constraint = new GetC(campusNorth);
+        TimeFrameConstraint constraint = new GetC(campusNorth);
         constraint.addConstraintList(new PriorityConstraint(new HighLowPriority(false)));
         instance.setScheduleGroups(groups);
         instance.setFirstTimeFrame(new TimeFrame(new Time(2011, 11, 8, 9, 20), 20));

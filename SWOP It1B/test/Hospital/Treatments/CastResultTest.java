@@ -37,7 +37,13 @@ import Hospital.Exception.Warehouse.StockException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Patient.Diagnosis;
 import Hospital.People.Doctor;
+import Hospital.Schedules.Appointment;
+import Hospital.Schedules.TimeFrame;
 import Hospital.WareHouse.ItemReservationCommand;
+import Hospital.World.Campus;
+import Hospital.World.Time;
+import Hospital.World.World;
+import java.util.Collections;
 
 public class CastResultTest {
 
@@ -64,12 +70,15 @@ public class CastResultTest {
     @Test
     public void arguments()
             throws ArgumentConstraintException, CannotChangeException, WrongArgumentListException,
-            ArgumentNotAnsweredException, ArgumentIsNullException, StockException, InvalidArgumentException {
+            ArgumentNotAnsweredException, ArgumentIsNullException, StockException, InvalidArgumentException, CannotDoException {
         assertFalse("Result not entered yet", med.isResultEntered());
         PublicArgument[] args = (PublicArgument[]) med.getEmptyResultArgumentList();
         assertTrue("Wrong argument, should be IntegerArgument", args[0].getClass().equals(StringArgument.class));
         args[0].enterAnswer("reportje");
-        med.setItemReservationCommand(new ItemReservationCommand(med));
+        med.setAppointment(new Appointment(new TimeFrame(new Time(), 15), Collections.EMPTY_LIST, null, new Campus("Cast Campus", new World())));
+        ItemReservationCommand itemReservationCommand = new ItemReservationCommand(med);
+        itemReservationCommand.execute();
+        med.setItemReservationCommand(itemReservationCommand);
         med.enterResult(args);
         assertTrue("Result was entered", med.isResultEntered());
         assertEquals("Report: reportje", med.getResultString());

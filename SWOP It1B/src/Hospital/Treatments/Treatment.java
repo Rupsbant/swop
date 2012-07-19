@@ -137,6 +137,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
             itemReservationCommand.use();
         } catch (NotDoneException ex) {
             Logger.getLogger(Treatment.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
         } catch (CannotDoException ex) {
             throw new RuntimeException("Command can only be done if appointment was scheduled!!!");
         }
@@ -160,7 +161,6 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
      * @return List of names of items
      */
     public ItemInfo[] getNeededItems() {
-        //TODO verander dit naar een object ipv String
         return new ItemInfo[0];
     }
 

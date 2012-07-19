@@ -54,17 +54,16 @@ public class SurgeryResultTest {
 
     @Test
     public void arguments()
-            throws InvalidArgumentException, CannotChangeException, WrongArgumentListException, StockException {
+            throws InvalidArgumentException, CannotChangeException, WrongArgumentListException, StockException, CannotDoException {
         assertFalse("Result not entered yet", med.isResultEntered());
         PublicArgument[] args = (PublicArgument[]) med.getEmptyResultArgumentList();
         assertTrue("Wrong argument, should be IntegerArgument", args[0].getClass().equals(StringArgument.class));
         assertTrue("Wrong argument, should be StringArgument", args[1].getClass().equals(StringArgument.class));
         args[0].enterAnswer("patient is genezen");
         args[1].enterAnswer("nope");
-        World world = TestUtil.getWorldForTesting();
-        Campus campus = world.getCampusFromInfo(world.getCampuses().get(0));
-        //med.setItemReservator(new ItemReservator(new String[0],WarehouseMaker.getWarehouse(world,campus)));
-        med.setItemReservationCommand(new ItemReservationCommand(med));
+        ItemReservationCommand itemReservationCommand = new ItemReservationCommand(med);
+        itemReservationCommand.execute();
+        med.setItemReservationCommand(itemReservationCommand);
         med.enterResult(args);
         assertTrue("Result was entered", med.isResultEntered());
         assertEquals("Report: patient is genezen\nSpecial Aftercare: nope", med.getResultString());
