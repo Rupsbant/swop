@@ -84,8 +84,8 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
     /**
      * @see Hospital.Schedules.Appointable#getConstraints()
      */
-    public GetCampusConstraint getConstraints() {
-        GetCampusConstraint getC = new NurseAppointmentBackToBackConstraint();
+    public TimeFrameConstraint getConstraints() {
+        NurseAppointmentBackToBackConstraint getC = new NurseAppointmentBackToBackConstraint();
         getC.addConstraintList(new ItemConstraint(getC, this));
         return getC;
     }

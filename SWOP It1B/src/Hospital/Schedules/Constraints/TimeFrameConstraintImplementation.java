@@ -4,7 +4,6 @@ import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.People.Nurse;
 import Hospital.People.Staff;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
 

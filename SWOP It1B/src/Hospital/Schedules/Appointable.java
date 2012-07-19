@@ -1,6 +1,7 @@
 package Hospital.Schedules;
 
 import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public interface Appointable {
      * Returns the constraints this Appointable must satisfy for the Patient.
      * @return Normally no constraints must be satisfied.
      */
-    public GetCampusConstraint getConstraints();
+    public TimeFrameConstraint getConstraints();
 
     /**
      * Returns the resources of the hospital that are needed for this Appointable.

@@ -26,7 +26,7 @@ public class Solver implements AppointmentConstraintSolver {
     private TimeFrame tf;
     private TimeFrame chosenTimeFrame;
     private List<ScheduleGroup> groups;
-    private GetCampusConstraint tfConstraints;
+    private TimeFrameConstraint tfConstraints;
     private List<Schedulable> out;
     private Campus campus;
 
@@ -40,7 +40,7 @@ public class Solver implements AppointmentConstraintSolver {
         groups = list;
     }
 
-    public void setConstaints(GetCampusConstraint tfConstraints) {
+    public void setConstaints(TimeFrameConstraint tfConstraints) {
         reset();
         this.tfConstraints = tfConstraints;
     }
@@ -72,7 +72,7 @@ public class Solver implements AppointmentConstraintSolver {
         }
         Boolean accepted = allConstraints.acceptAll();
         if (accepted != null && accepted) {
-            this.campus = tfConstraints.getCampus();
+            this.campus = ((GetCampusConstraint) tfConstraints).getCampus();
             return true;
         } else {
             return false;

@@ -13,6 +13,7 @@ import Hospital.Machine.Machine;
 import Hospital.Machine.XRayMachine;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.Implementation.XRayConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Utils;
 
 /**
@@ -208,9 +209,9 @@ public class XRayScan extends MedicalTest {
      * @return a new XRayConstraint to satisfy the Appointment.
      */
     @Override
-    public GetCampusConstraint getConstraints() {
+    public TimeFrameConstraint getConstraints() {
         try {
-            GetCampusConstraint temp = super.getConstraints();
+            TimeFrameConstraint temp = super.getConstraints();
             temp.addConstraintList(new XRayConstraint(numberOfImagesToTake));
             return temp;
         } catch (ArgumentConstraintException ex) {

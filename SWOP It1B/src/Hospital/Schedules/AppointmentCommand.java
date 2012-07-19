@@ -12,10 +12,10 @@ import Hospital.Exception.Scheduling.ScheduleGroupUnavailable;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Factory.Command;
 import Hospital.Factory.NullCommand;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.Implementation.WorkingHoursTimeConstraint;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.World.World;
 import Hospital.World.WorldTime;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class AppointmentCommand implements Command {
     /**
      * The constraints to be placed on the appointment
      */
-    private GetCampusConstraint tfConstraints;
+    private TimeFrameConstraint tfConstraints;
     /**
      * The priority to create the appointment with
      */

@@ -1,7 +1,7 @@
 package Hospital.Schedules.ConstraintSolver;
 
 import Hospital.Exception.Scheduling.SchedulingException;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.TimeFrame;
@@ -18,7 +18,7 @@ public interface AppointmentConstraintSolver {
      * Linked list of all constraints.
      * @param tfConstraints
      */
-    void setConstaints(GetCampusConstraint tfConstraints);
+    void setConstaints(TimeFrameConstraint tfConstraints);
 
     AppointmentConstraintSolver solve() throws SchedulingException;
 
