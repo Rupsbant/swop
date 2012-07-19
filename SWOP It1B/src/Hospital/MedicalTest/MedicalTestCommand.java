@@ -13,6 +13,7 @@ import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Patient.Patient;
 import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.Priority.Priority;
+import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
 import Hospital.Utils;
 import Hospital.World.World;
@@ -60,7 +61,7 @@ public class MedicalTestCommand implements Command {
             throw new ArgumentIsNullException("ArgumentList is null");
         }
         made = factory.make(Arrays.copyOf(args, args.length-1));
-        SingleSchedulableGroup pat = new SingleSchedulableGroup(openedPatient);
+        ScheduleGroup pat = new SingleSchedulableGroup(openedPatient);
         
         Priority p = Utils.getAnswer(PriorityArgument.class, "the priority", args[args.length-1]);
         appC = new AppointmentCommand(world, made, Collections.singletonList(pat), p);
@@ -113,6 +114,7 @@ public class MedicalTestCommand implements Command {
      * @return the details of the medical test and the patient it was made for
      * @see java.lang.Object#toString()
      */
+    @Override
     public String toString() {
         return made.toString() + "\nPatient: " + toAdd.toString();
     }

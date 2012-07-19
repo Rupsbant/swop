@@ -1,5 +1,6 @@
 package Hospital.Schedules.Constraints.Implementation;
 
+import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.WareHouse.ItemInfo;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.World.Time;
@@ -46,7 +47,7 @@ public class NurseAppointmentBackToBackConstraintTest {
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException {
         Treatment t = new Medication("Medication1", Boolean.TRUE, new ItemInfo[0]);
-        SingleSchedulableGroup scheduleGroup = new SingleSchedulableGroup(p);
+        ScheduleGroup scheduleGroup = new SingleSchedulableGroup(p);
         AppointmentCommand appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
         System.out.println(appC.execute());
 

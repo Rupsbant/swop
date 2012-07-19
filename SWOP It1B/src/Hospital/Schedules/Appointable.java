@@ -1,6 +1,5 @@
 package Hospital.Schedules;
 
-import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import java.util.List;

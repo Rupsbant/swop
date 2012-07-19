@@ -19,6 +19,7 @@ import Hospital.People.Nurse;
 import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.DoctorPatientAppointment;
 import Hospital.Schedules.Constraints.Priority.Priority;
+import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
 
 import java.util.logging.Level;
@@ -35,9 +36,9 @@ public class NurseController extends LoginController<Nurse> {
      * @param n the nurse which this controller will represent
      * @param cc the Campus from where is logged in
      */
-	@SystemAPI
+    @SystemAPI
     public NurseController(Nurse n, CampusController cc) {
-        super(n,cc);
+        super(n, cc);
     }
 
     /**
@@ -45,7 +46,7 @@ public class NurseController extends LoginController<Nurse> {
      * @param wc the world in which to search
      * @return an array of strings containing the names of doctors
      */
-	@SystemAPI
+    @SystemAPI
     public String[] getDoctors(WorldController wc) {
         List<Doctor> temp = wc.getWorld().getResourceOfClass(Doctor.class);
         String[] out = new String[temp.size()];
@@ -71,7 +72,7 @@ public class NurseController extends LoginController<Nurse> {
      * @throws NotLoggedInException the nurse is not logged in
      * @throws NotEnoughItemsAvailableException Not enough food for 2 days.
      */
-	@SystemAPI
+    @SystemAPI
     public String checkIn(String chosenPatient, String doctor, WorldController wc)
             throws NoPersonWithNameAndRoleException,
             ArgumentIsNullException,
@@ -84,8 +85,8 @@ public class NurseController extends LoginController<Nurse> {
             throw new ArgumentIsNullException("The world Controller is null");
         }
         Patient patient = wc.getWorld().getPersonByName(Patient.class, chosenPatient);
-        if( this.getCampusController().getFoodCapacityForPatients()<1){
-        	throw new NotEnoughItemsAvailableException();
+        if (this.getCampusController().getFoodCapacityForPatients() < 1) {
+            throw new NotEnoughItemsAvailableException();
         }
         try {
             patient.checkIn(this.getCampusController().getCampus());
@@ -94,7 +95,7 @@ public class NurseController extends LoginController<Nurse> {
         }
         Doctor doc = wc.getWorld().getPersonByName(Doctor.class, doctor);
         DoctorPatientAppointment app = new DoctorPatientAppointment();
-        List<SingleSchedulableGroup> docPat = new ArrayList<SingleSchedulableGroup>();
+        List<ScheduleGroup> docPat = new ArrayList<ScheduleGroup>();
         docPat.add(new SingleSchedulableGroup(patient));
         docPat.add(new SingleSchedulableGroup(doc));
 
@@ -103,7 +104,7 @@ public class NurseController extends LoginController<Nurse> {
         try {
             return appC.execute();
         } catch (CannotDoException ex) {
-            throw new RuntimeException("This is the first time it is executed, it should be done");
+            throw new RuntimeException("This is the first time it is executed, it should be done...");
         }
     }
 }

@@ -18,10 +18,10 @@ import Hospital.Patient.Diagnosis;
 import Hospital.Patient.Patient;
 import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.Priority.Priority;
+import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
 import Hospital.Utils;
 import Hospital.WareHouse.ItemReservationCommand;
-import Hospital.World.Campus;
 import Hospital.World.World;
 import java.util.Arrays;
 import java.util.Collections;
@@ -67,7 +67,7 @@ public class TreatmentCommand implements Command {
         }
         this.diagnosis = patient.isValidDiagnosisInfo(diagnosis);
         this.treatment = factory.make(Arrays.copyOf(args, args.length - 1));
-        SingleSchedulableGroup core = new SingleSchedulableGroup(patient);
+        ScheduleGroup core = new SingleSchedulableGroup(patient);
 
         Priority p = Utils.getAnswer(PriorityArgument.class, "the priority", args[args.length - 1]);
 

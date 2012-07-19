@@ -1,5 +1,6 @@
 package Hospital.Schedules.Constraints.Implementation;
 
+import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.World.Time;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Schedules.AppointmentCommand;
@@ -52,7 +53,7 @@ public class UnmovableConstraintTest {
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException {
         Treatment t = new Medication("Medication1", Boolean.TRUE, new ItemInfo[0]);
-        SingleSchedulableGroup scheduleGroup = new SingleSchedulableGroup(ruben);
+        ScheduleGroup scheduleGroup = new SingleSchedulableGroup(ruben);
         AppointmentCommand appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
         appC.execute();
 
