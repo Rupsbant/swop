@@ -14,6 +14,7 @@ import Hospital.Factory.NullCommand;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Utils;
 import Hospital.World.World;
 import Hospital.World.WorldTime;
 import java.util.ArrayList;
@@ -66,15 +67,17 @@ public class AppointmentCommand implements Command {
      */
     public AppointmentCommand(World world, Appointable app, List<ScheduleGroup> coreSchedules, Priority priority) throws ArgumentIsNullException {
         setAppointable(app);
-        addScheduleGroups(app, world, coreSchedules);
+        this.groups.addAll(app.getScheduleGroups());
+        this.groups.addAll(coreSchedules);
         this.tfConstraints = app.getConstraints();
         this.tfConstraints.addConstraintList(new PriorityConstraint(priority));
         this.priority = priority;
+        populateScheduleGroups(world);
         setTimeFrameDelay(app, world.getWorldTime());
     }
 
-    private void addScheduleGroups(Appointable app, World world, List<ScheduleGroup> coreSchedules) throws ArgumentIsNullException, Error {
-        List<MultiScheduleGroup> groups = app.getScheduleGroups();
+    private void populateScheduleGroups(World world) throws ArgumentIsNullException, Error {
+        List<MultiScheduleGroup> groups = Utils.filter(this.groups, MultiScheduleGroup.class);
         for (MultiScheduleGroup m : groups) {
             try {
                 m.setWorld(world);
@@ -82,8 +85,6 @@ public class AppointmentCommand implements Command {
                 throw new Error("This is the first time the world is set!");
             }
         }
-        this.groups.addAll(groups);
-        this.groups.addAll(coreSchedules);
     }
 
     private void setAppointable(Appointable app) throws ArgumentIsNullException {
@@ -122,7 +123,7 @@ public class AppointmentCommand implements Command {
             s += next.execute();
             return s + appointment.toString();
         } catch (ScheduleGroupUnavailable ex) {
-            throw new CannotDoException("Some scheduleGroup had no available resources: " + ex.getMessage());
+            throw new CannotDoException("Some ScheduleGroup had no available resources: " + ex.getMessage());
         } catch (SchedulingException ex) {
             throw new CannotDoException("All possible free resource-combinations throw schedulingException: " + ex.getMessage());
         }
