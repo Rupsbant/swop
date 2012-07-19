@@ -1,9 +1,0 @@
-\BOOKMARK [1][-]{section.1}{Exceptions}{}
-\BOOKMARK [2][-]{subsection.1.1}{Groepering}{section.1}
-\BOOKMARK [2][-]{subsection.1.2}{Afhandelen}{section.1}
-\BOOKMARK [1][-]{section.2}{Arguments}{}
-\BOOKMARK [1][-]{section.3}{MachineFactory}{}
-\BOOKMARK [1][-]{section.4}{Dubbele link Appointment en AppointmentCommand}{}
-\BOOKMARK [1][-]{section.5}{WorldTime}{}
-\BOOKMARK [1][-]{section.6}{Andere refactorings}{}
-\BOOKMARK [1][-]{section.7}{Testen tijdens refactoring}{}
