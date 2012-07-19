@@ -52,7 +52,7 @@ public class MachineController {
         try {
             return wc.getFactoryArguments(MachineFactory.class, machine);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 
@@ -83,7 +83,7 @@ public class MachineController {
         try {
             factory = wc.getWorld().getFactory(MachineFactory.class, machine);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
         Machine newTest = factory.make(argv.getAllArguments());
         wc.getWorld().addSchedulable(newTest);
@@ -99,7 +99,7 @@ public class MachineController {
         try {
             return wc.getAvailableFactories(MachineFactory.class).toArray(new String[0]);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 

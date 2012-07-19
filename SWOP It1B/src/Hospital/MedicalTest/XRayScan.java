@@ -215,7 +215,7 @@ public class XRayScan extends MedicalTest {
             temp.addConstraintList(new XRayConstraint(numberOfImagesToTake));
             return temp;
         } catch (ArgumentConstraintException ex) {
-            throw new RuntimeException("Number of images to take is never negative");
+            throw new Error("Number of images to take is never negative");
         }
     }
 }

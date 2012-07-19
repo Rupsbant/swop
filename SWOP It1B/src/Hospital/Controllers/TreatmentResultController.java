@@ -94,7 +94,7 @@ public class TreatmentResultController {
             return new ArgumentList(t.getEmptyResultArgumentList());
         } catch (ArgumentIsNullException ex) {
             Logger.getLogger(TreatmentResultController.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException("ResultArgumentList should never be null");
+            throw new Error("ResultArgumentList should never be null");
         }
     }
 

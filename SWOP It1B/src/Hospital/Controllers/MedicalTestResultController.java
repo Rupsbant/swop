@@ -73,7 +73,7 @@ public class MedicalTestResultController {
             return new ArgumentList(med.getEmptyResultArgumentList());
         } catch (ArgumentIsNullException ex) {
             Logger.getLogger(MedicalTestResultController.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException("ArgumentList should not give null");
+            throw new Error("ArgumentList should not give null");
         }
     }
 

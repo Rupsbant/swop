@@ -62,9 +62,9 @@ public class TimeFrameDelay {
         try {
             return new TimeFrame(worldTime.getTime().getLaterTime(delay), length);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("getLaterTime is not null");
+            throw new Error("getLaterTime is not null");
         } catch (ArgumentConstraintException ex) {
-            throw new RuntimeException("length is greater than zero");
+            throw new Error("length is greater than zero");
         }
     }
 }

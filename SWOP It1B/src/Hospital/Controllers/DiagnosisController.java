@@ -167,7 +167,7 @@ public class DiagnosisController {
             InvalidArgumentException {
         dc.checkLoggedIn();
         if (dc.getUser().getOpenedPatient().isDischarged()) {
-            throw new RuntimeException("Patient can't be discharged with unaproved diagnosis");
+            throw new Error("Patient can't be discharged with unaproved diagnosis");
             //throw new PatientIsDischargedException();
         }
         Diagnosis diagnosis = dc.getUser().getOpenedPatient().isValidDiagnosisInfo(diag);
@@ -185,9 +185,9 @@ public class DiagnosisController {
             diagsec.setApproved(false);
             return diaC.execute();
         } catch (PatientIsDischargedException ex) {
-            throw new RuntimeException("Patient can't be discharged with unaproved diagnosis");
+            throw new Error("Patient can't be discharged with unaproved diagnosis");
         } catch (CannotDoException ex) {
-            throw new RuntimeException("First time should always succeed");
+            throw new Error("First time should always succeed");
         }
     }
 
@@ -221,7 +221,7 @@ public class DiagnosisController {
         try {
             return wc.getAvailableFactories(DiagnosisFactory.class).toArray(new String[0]);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 
@@ -238,7 +238,7 @@ public class DiagnosisController {
         try {
             return wc.getFactoryArguments(DiagnosisFactory.class, factoryName);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 }

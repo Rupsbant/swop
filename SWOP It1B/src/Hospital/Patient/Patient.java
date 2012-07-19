@@ -178,7 +178,7 @@ public class Patient extends Person {
         try {
             return new PatientFile(this);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("This is not null!!!");
+            throw new Error("This is not null!!!");
         }
     }
 

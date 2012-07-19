@@ -54,9 +54,9 @@ public class WarehouseMaker {
             }
 
         } catch (ArgumentConstraintException e) {
-            throw new RuntimeException("argumentcontraint exception shouldnt be thrown here!");
+            throw new Error("argumentcontraint exception shouldnt be thrown here!");
         } catch (ArgumentIsNullException e) {
-            throw new RuntimeException("argumentisnull exception shouldnt be thrown here!");
+            throw new Error("argumentisnull exception shouldnt be thrown here!");
         }
         return warehouse;
     }

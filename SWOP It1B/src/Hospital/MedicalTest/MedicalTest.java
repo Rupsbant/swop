@@ -128,7 +128,7 @@ public abstract class MedicalTest implements Result, Appointable {
             }
             return out;
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Classes can't be null");
+            throw new Error("Classes can't be null");
         }
     }
 
@@ -146,7 +146,7 @@ public abstract class MedicalTest implements Result, Appointable {
         try {
             return new TimeFrameDelay(getTimeDiff(), getLength());
         } catch (ArgumentConstraintException ex) {
-            throw new RuntimeException("Length of medicalTest was not valid somewhere, check code");
+            throw new Error("Length of medicalTest was not valid somewhere, check code");
         }
     }
 

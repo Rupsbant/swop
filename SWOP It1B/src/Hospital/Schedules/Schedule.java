@@ -65,9 +65,9 @@ public class Schedule {
                     try {
                         tf = new TimeFrame(app.getTimeFrame().getEndTime(), tf.getLength());
                     } catch (ArgumentConstraintException ex) {
-                        throw new RuntimeException("app.getLength() was negative, should not happen");
+                        throw new Error("app.getLength() was negative, should not happen");
                     } catch (ArgumentIsNullException ex) {
-                        throw new RuntimeException("app.getEndTime() was null, should not happen");
+                        throw new Error("app.getEndTime() was null, should not happen");
                     }
                 }
             }

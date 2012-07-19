@@ -307,7 +307,7 @@ public class Stock<I extends Item> implements TimeObserver {
                 addItem(newItem);
             }
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Clone was null!");
+            throw new Error("Clone was null!");
         }
     }
 

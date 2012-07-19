@@ -94,7 +94,7 @@ public class TreatmentCommand implements Command {
             done = true;
             return treatment.toString() + "\n" + s;
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Treatment was made, thus not null");
+            throw new Error("Treatment was made, thus not null");
         } catch (CannotChangeException ex) {
             throw new CannotDoException("A Treatment was already made for the Diagnosis");
         }
@@ -116,7 +116,7 @@ public class TreatmentCommand implements Command {
             done = false;
             return "Undone:\n" + this.toString() + "\n" + s;
         } catch (WrongTreatmentException ex) {
-            throw new RuntimeException("If this was executed, diagnosis should have same treatment");
+            throw new Error("If this was executed, diagnosis should have same treatment");
         }
     }
 

@@ -79,7 +79,7 @@ public class TreatmentController {
             out.addArguments(args);
             return out;
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 
@@ -119,7 +119,7 @@ public class TreatmentController {
             return execTreatment.execute();
         } catch (CannotDoException ex) {
             Logger.getLogger(TreatmentController.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException();
+            throw new Error();
         }
     }
 
@@ -132,7 +132,7 @@ public class TreatmentController {
         try {
             return wc.getAvailableFactories(TreatmentFactory.class).toArray(new String[0]);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class can't be null");
+            throw new Error("Class can't be null");
         }
     }
 

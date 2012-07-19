@@ -97,7 +97,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
         try {
             return Collections.singletonList(new MultiScheduleGroup(Nurse.class));
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Classes can't be null");
+            throw new Error("Classes can't be null");
         }
     }
 
@@ -109,7 +109,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
         try {
             return new TimeFrameDelay(60, getLength());
         } catch (ArgumentConstraintException ex) {
-            throw new RuntimeException("Illegal length in code");
+            throw new Error("Illegal length in code");
         }
     }
 
@@ -136,9 +136,9 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
             itemReservationCommand.use();
         } catch (NotDoneException ex) {
             Logger.getLogger(Treatment.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException(ex);
+            throw new Error(ex);
         } catch (CannotDoException ex) {
-            throw new RuntimeException("Command can only be done if appointment was scheduled!!!");
+            throw new Error("Command can only be done if appointment was scheduled!!!");
         }
         resultEntered = true;
     }

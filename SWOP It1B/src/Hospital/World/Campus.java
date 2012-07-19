@@ -75,7 +75,7 @@ public class Campus {
         } catch (ArgumentIsNullException e) {
             Logger.getLogger(Campus.class.getName()).log(Level.SEVERE, null, e);
         }
-        throw new RuntimeException("Java is broken.");
+        throw new Error("Java is broken.");
     }
 
     /**

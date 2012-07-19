@@ -52,7 +52,7 @@ public class ApproveDiagnosisUI {
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.err.println(ex.getMessage());
-                throw new RuntimeException("Don't break the system!");
+                throw new Error("Don't break the system!");
             }
         } else if (chosenopt == 2) {
             try {
@@ -63,7 +63,7 @@ public class ApproveDiagnosisUI {
                 System.out.println("Diagnosis disapproved. \nNew diagnosis created: " + y);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                throw new RuntimeException("Don't break the system!");
+                throw new Error("Don't break the system!");
             }
         }
     }

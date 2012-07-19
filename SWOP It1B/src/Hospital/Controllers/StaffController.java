@@ -51,7 +51,7 @@ public class StaffController {
         try {
             return wc.getFactoryArguments(StaffFactory.class, staff);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 
@@ -77,7 +77,7 @@ public class StaffController {
         try {
             factory = wc.getWorld().getFactory(StaffFactory.class, staff);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
         Staff newTest = (Staff) factory.make(argv.getAllArguments());
         wc.getWorld().addSchedulable(newTest);
@@ -93,7 +93,7 @@ public class StaffController {
         try {
             return wc.getAvailableFactories(StaffFactory.class).toArray(new String[0]);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 

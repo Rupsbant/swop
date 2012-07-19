@@ -31,7 +31,7 @@ public class DiagnosisSecondOpinion extends Diagnosis {
         try {
             this.setApproved(false);
         } catch (CannotDoException ex) {
-            throw new RuntimeException("This should not happen");
+            throw new Error("This should not happen");
         }
     }
 

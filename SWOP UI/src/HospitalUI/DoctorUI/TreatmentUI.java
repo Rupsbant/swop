@@ -60,7 +60,7 @@ public class TreatmentUI {
             System.out.println("The test was made and scheduled:");
             System.out.println(newTest);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Nothing was changed in the argumentlist");
+            throw new Error("Nothing was changed in the argumentlist");
         } catch (InvalidArgumentException ex) {
             Logger.getLogger(OrderMedicalUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotAFactoryException ex) {

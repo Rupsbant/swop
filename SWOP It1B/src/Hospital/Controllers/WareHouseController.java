@@ -72,7 +72,7 @@ public class WareHouseController extends LoginController<WarehouseManager> {
             return new ArgumentList(this.getCampusController().getCampus().getWarehouse().getOrderArguments(o));
         } catch (ArgumentIsNullException ex) {
             Logger.getLogger(WareHouseController.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException("getOrderArguments should not be null");
+            throw new Error("getOrderArguments should not be null");
         }
     }
 

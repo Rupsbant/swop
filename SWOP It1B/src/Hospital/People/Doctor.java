@@ -206,7 +206,7 @@ public class Doctor extends Staff implements HasPreference {
             undone.add(commInfo);
             return string;
         } catch (NotDoneException ex) {
-            throw new RuntimeException("Command was done");
+            throw new Error("Command was done");
         }
     }
 

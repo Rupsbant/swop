@@ -55,7 +55,7 @@ public class DoctorUI {
                     try {
                         new OpenPatientFileUI(dc, wc).run(sc);
                     } catch (NoOpenedPatientFileException ex) {
-                        throw new RuntimeException("Patientfile should be open, check UI");
+                        throw new Error("Patientfile should be open, check UI");
                     }
                     break;
                 case 3:
@@ -74,7 +74,7 @@ public class DoctorUI {
                     try {
                         temp.run(sc);
                     } catch (NoOpenedPatientFileException ex) {
-                        throw new RuntimeException("Patientfile should be open, check UI");
+                        throw new Error("Patientfile should be open, check UI");
                     }
                     break;
                 case 7:
@@ -82,16 +82,16 @@ public class DoctorUI {
                     try {
                         diagnosisUI.run(sc);
                     } catch (NoOpenedPatientFileException e) {
-                        throw new RuntimeException("Patientfile should be open, check UI");
+                        throw new Error("Patientfile should be open, check UI");
                     } catch (PatientIsDischargedException e) {
-                        throw new RuntimeException("Patient should be discharged, check UI");
+                        throw new Error("Patient should be discharged, check UI");
                     }
                     break;
                 case 8:
                     try {
                         dc.dischargePatient();
                     } catch (NoOpenedPatientFileException ex) {
-                        throw new RuntimeException("No patientfile was opened, check UI and concurrency");
+                        throw new Error("No patientfile was opened, check UI and concurrency");
                     } catch (CannotDischargeException ex) {
                         System.out.println("The patient has unfinished tests or treatments or an unapproved diagnosis");
                     }
@@ -101,7 +101,7 @@ public class DoctorUI {
                     try {
                         treatmentUI.run(sc);
                     } catch (NoOpenedPatientFileException ex) {
-                        throw new RuntimeException("Patientfile should be open, check UI");
+                        throw new Error("Patientfile should be open, check UI");
                     }
                     break;
             }

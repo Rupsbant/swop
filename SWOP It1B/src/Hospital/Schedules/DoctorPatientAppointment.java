@@ -57,7 +57,7 @@ public class DoctorPatientAppointment implements Appointable {
         try {
             return new TimeFrameDelay(60, 30);
         } catch (ArgumentConstraintException ex) {
-            throw new RuntimeException("30 was illegal appointmentLength, check code");
+            throw new Error("30 was illegal appointmentLength, check code");
         }
     }
 

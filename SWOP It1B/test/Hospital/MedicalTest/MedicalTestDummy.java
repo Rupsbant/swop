@@ -44,9 +44,9 @@ public class MedicalTestDummy extends MedicalTest {
         try {
             return new Appointment(new TimeFrame(new Time(), 10), Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null);
         } catch (ArgumentConstraintException e) {
-            throw new RuntimeException();
+            throw new Error();
         } catch (ArgumentIsNullException e) {
-            throw new RuntimeException();
+            throw new Error();
         }
     }
 

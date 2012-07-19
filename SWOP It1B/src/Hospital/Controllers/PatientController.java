@@ -109,7 +109,7 @@ public class PatientController {
         try {
             return wc.getAvailableFactories(PatientFactory.class).toArray(new String[0]);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 
@@ -128,7 +128,7 @@ public class PatientController {
             return new ArgumentList(args);
         } catch (ArgumentIsNullException ex) {
             Logger.getLogger(PatientController.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException("Invalid state, args should not be null, class is not null");
+            throw new Error("Invalid state, args should not be null, class is not null");
         }
     }
 }

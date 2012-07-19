@@ -73,13 +73,13 @@ public class AppointmentCommand implements Command {
         setTimeFrameDelay(app, world.getWorldTime());
     }
 
-    private void addScheduleGroups(Appointable app, World world, List<ScheduleGroup> coreSchedules) throws ArgumentIsNullException, RuntimeException {
+    private void addScheduleGroups(Appointable app, World world, List<ScheduleGroup> coreSchedules) throws ArgumentIsNullException, Error {
         List<MultiScheduleGroup> groups = app.getScheduleGroups();
         for (MultiScheduleGroup m : groups) {
             try {
                 m.setWorld(world);
             } catch (CannotChangeException ex) {
-                throw new RuntimeException("This is the first time the world is set!");
+                throw new Error("This is the first time the world is set!");
             }
         }
         this.groups.addAll(groups);
@@ -93,12 +93,12 @@ public class AppointmentCommand implements Command {
         appointable = app;
     }
 
-    private void setTimeFrameDelay(Appointable app, WorldTime wt) throws RuntimeException {
+    private void setTimeFrameDelay(Appointable app, WorldTime wt) throws Error {
         td = app.getTimeFrameDelay();
         try {
             td.setWorldTime(wt);
         } catch (CannotChangeException ex) {
-            throw new RuntimeException("This was the first time World was set after creation");
+            throw new Error("This was the first time World was set after creation");
         }
     }
 

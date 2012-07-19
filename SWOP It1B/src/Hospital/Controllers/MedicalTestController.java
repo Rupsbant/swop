@@ -58,7 +58,7 @@ public class MedicalTestController {
             out1.addArguments(out2);
             return out1;
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null");
+            throw new Error("Class is not null");
         }
     }
 
@@ -85,7 +85,7 @@ public class MedicalTestController {
         try {
             return medCom.execute();
         } catch (CannotDoException ex) {
-            throw new RuntimeException("New command was not done: " + ex);
+            throw new Error("New command was not done: " + ex);
         }
     }
 
@@ -98,7 +98,7 @@ public class MedicalTestController {
         try {
             return wc.getAvailableFactories(MedicalTestFactory.class).toArray(new String[0]);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null!");
+            throw new Error("Class is not null!");
         }
     }
 }

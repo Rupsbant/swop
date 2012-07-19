@@ -39,7 +39,7 @@ public abstract class Staff extends Person {
         try {
             return new LoginInfo(getName(), getRole());
         } catch (ArgumentIsNullException e) {
-            throw new RuntimeException("This is not null");
+            throw new Error("This is not null");
         }
     }
 

@@ -35,7 +35,7 @@ public class EnterMedicalTestResultUI {
         try {
             args = mc.getArguments(infos[chosen - 1]);
         } catch (IllegalInfo ex) {
-            throw new RuntimeException("This should not happen, UI should be build solid, check code:\n" + ex);
+            throw new Error("This should not happen, UI should be build solid, check code:\n" + ex);
         }
         UtilsUI.answerArguments(sc, args.getPublicArguments());
 
@@ -44,11 +44,11 @@ public class EnterMedicalTestResultUI {
             System.out.println(str);
         } catch (WrongArgumentListException ex) {
             ex.printStackTrace();
-            throw new RuntimeException("This should not happen, UI should be build solid, check code:\n" + ex);
+            throw new Error("This should not happen, UI should be build solid, check code:\n" + ex);
         } catch (InvalidArgumentException ex) {
-            throw new RuntimeException("This should not happen, UI should be build solid, check code:\n" + ex);
+            throw new Error("This should not happen, UI should be build solid, check code:\n" + ex);
         } catch (IllegalInfo ex) {
-            throw new RuntimeException("This should not happen, UI should be build solid, check code:\n" + ex);
+            throw new Error("This should not happen, UI should be build solid, check code:\n" + ex);
         }
     }
 }

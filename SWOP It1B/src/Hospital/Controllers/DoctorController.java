@@ -80,7 +80,7 @@ public class DoctorController extends LoginController<Doctor> {
         try {
             return super.getUser().getOpenedPatient().getPatientFile();
         } catch (NoOpenedPatientFileException ex) {
-            throw new RuntimeException("A patient was just opened, this can't happen");
+            throw new Error("A patient was just opened, this can't happen");
         }
     }
 

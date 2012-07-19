@@ -9,8 +9,6 @@ import Hospital.Factory.Command;
 import Hospital.Factory.NeedsItems;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ItemReservationCommand implements Command {
 
@@ -57,7 +55,7 @@ public class ItemReservationCommand implements Command {
                 r.removeReservation();
                 out += "Undone reservation of " + r.getStock().getName() + ", number of reserved items released: " + r.getItemsReserved() + "\n";
             } catch (ItemNotReservedException ex) {
-                Logger.getLogger(ItemReservationCommand.class.getName()).log(Level.SEVERE, null, ex);
+                throw new Error("This cannot happen, all items are reserved on execution.");
             }
         }
         reservations.clear();

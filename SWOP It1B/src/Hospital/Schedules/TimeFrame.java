@@ -98,9 +98,9 @@ public final class TimeFrame implements HasTime, Cloneable {
         try {
             return new TimeFrame(time, length);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("time was not null");
+            throw new Error("time was not null");
         } catch (ArgumentConstraintException ex) {
-            throw new RuntimeException("length was not null");
+            throw new Error("length was not null");
         }
     }
 

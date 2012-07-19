@@ -22,8 +22,6 @@ import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * LoginController for Nurses
@@ -91,7 +89,7 @@ public class NurseController extends LoginController<Nurse> {
         try {
             patient.checkIn(this.getCampusController().getCampus());
         } catch (InvalidArgumentException e) {
-            Logger.getLogger(NurseController.class.getName()).log(Level.SEVERE, "The nurse was not successfully logged in.", e);
+            throw new Error("This never happens, getCampus never returns null.");
         }
         Doctor doc = wc.getWorld().getPersonByName(Doctor.class, doctor);
         DoctorPatientAppointment app = new DoctorPatientAppointment();
@@ -104,7 +102,7 @@ public class NurseController extends LoginController<Nurse> {
         try {
             return appC.execute();
         } catch (CannotDoException ex) {
-            throw new RuntimeException("This is the first time it is executed, it should be done...");
+            throw new Error("This is the first time it is executed, it should be done...");
         }
     }
 }

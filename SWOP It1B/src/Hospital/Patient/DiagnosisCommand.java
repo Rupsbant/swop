@@ -72,7 +72,7 @@ public class DiagnosisCommand implements Command {
         try {
             factory = world.getFactory(DiagnosisFactory.class, factoryName);
         } catch (ArgumentIsNullException ex) {
-            throw new RuntimeException("Class is not null!");
+            throw new Error("Class is not null!");
         }
         try {
             Argument[] out = new Argument[2];
@@ -90,7 +90,7 @@ public class DiagnosisCommand implements Command {
 
             toAdd = doctor.getOpenedPatient();
         } catch (CannotChangeException e) {
-            throw new RuntimeException("Can't set the answer of a newly created argument!");
+            throw new Error("Can't set the answer of a newly created argument!");
         }
     }
 

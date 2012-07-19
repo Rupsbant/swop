@@ -142,7 +142,7 @@ public class WorldController {
         } catch (ArgumentIsNullException e) {
             if (e.getMessage().equals("The given Campus was null")) {
                 Logger.getLogger(WorldController.class.getName()).log(Level.SEVERE, null, e);
-                throw new RuntimeException("Login failed because of a null Campus.");
+                throw new Error("Login failed because of a null Campus.");
             } else {
                 throw e;
             }

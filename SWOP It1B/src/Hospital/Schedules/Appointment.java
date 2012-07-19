@@ -47,7 +47,7 @@ public class Appointment implements HasTime {
         try {
             this.addAttendees(attendees);
         } catch (SchedulingException ex) {
-            throw new RuntimeException("Appointment is not scheduled on creation, exception can't be thrown");
+            throw new Error("Appointment is not scheduled on creation, exception can't be thrown");
         }
     }
 
@@ -129,7 +129,7 @@ public class Appointment implements HasTime {
                 try {
                     sched.addAppointment(this);
                 } catch (ArgumentIsNullException ex) {
-                    throw new RuntimeException("This appointment is not null, java is WRONG!");
+                    throw new Error("This appointment is not null, java is WRONG!");
                 }
             }
             scheduled = true;
@@ -152,7 +152,7 @@ public class Appointment implements HasTime {
             try {
                 sched.removeAppointment(this);
             } catch (ArgumentIsNullException ex1) {
-                throw new RuntimeException("This appointment is not null, java is WRONG!");
+                throw new Error("This appointment is not null, java is WRONG!");
             }
         }
     }
@@ -171,7 +171,7 @@ public class Appointment implements HasTime {
                 remove();
                 throw ex;
             } catch (ArgumentIsNullException ex) {
-                throw new RuntimeException("this can't happen.");
+                throw new Error("this can't happen.");
             }
         }
     }
@@ -195,7 +195,7 @@ public class Appointment implements HasTime {
                     remove();
                     throw ex;
                 } catch (ArgumentIsNullException ex) {
-                    throw new RuntimeException("this can't happen.");
+                    throw new Error("this can't happen.");
                 }
             }
         }
