@@ -1,4 +1,0 @@
-swop
-====
-
-Herexamen SWOP
