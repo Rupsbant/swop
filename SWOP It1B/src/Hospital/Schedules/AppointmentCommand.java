@@ -3,7 +3,6 @@ package Hospital.Schedules;
 import Hospital.Argument.PriorityArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
-import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -12,7 +11,6 @@ import Hospital.Exception.Scheduling.ScheduleGroupUnavailable;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Factory.Command;
 import Hospital.Factory.NullCommand;
-import Hospital.Schedules.Constraints.Implementation.WorkingHoursTimeConstraint;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
@@ -66,17 +64,16 @@ public class AppointmentCommand implements Command {
      * @param app the Appointable-object associated with the Appointment that will be created
      * @throws ArgumentIsNullException world, coreSchedules and/or app was null
      */
-    public AppointmentCommand(World world, Appointable app, List<SingleSchedulableGroup> coreSchedules, Priority priority) throws ArgumentIsNullException {
+    public AppointmentCommand(World world, Appointable app, List<ScheduleGroup> coreSchedules, Priority priority) throws ArgumentIsNullException {
         setAppointable(app);
         addScheduleGroups(app, world, coreSchedules);
         this.tfConstraints = app.getConstraints();
-        this.tfConstraints.addConstraintList(new WorkingHoursTimeConstraint());
         this.tfConstraints.addConstraintList(new PriorityConstraint(priority));
         this.priority = priority;
         setTimeFrameDelay(app, world.getWorldTime());
     }
 
-    private void addScheduleGroups(Appointable app, World world, List<SingleSchedulableGroup> coreSchedules) throws ArgumentIsNullException, RuntimeException {
+    private void addScheduleGroups(Appointable app, World world, List<ScheduleGroup> coreSchedules) throws ArgumentIsNullException, RuntimeException {
         List<MultiScheduleGroup> groups = app.getScheduleGroups();
         for (MultiScheduleGroup m : groups) {
             try {

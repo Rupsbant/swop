@@ -17,7 +17,6 @@ import Hospital.World.Time;
 import Hospital.World.World;
 import Hospital.People.Doctor;
 import Hospital.Schedules.ConstraintSolver.GetC;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
@@ -109,7 +108,7 @@ public class AppointmentFactoryTest {
     @Test
     public void testRedoPreempted() throws ArgumentIsNullException {
         Appointable t = new Medication("op een grote paddostoel", true, new ItemInfo[]{});
-        AppointmentCommand appC = new AppointmentCommand(w, t, Arrays.asList(new SingleSchedulableGroup(ruben)), new HighLowPriority(false));
+        AppointmentCommand appC = new AppointmentCommand(w, t, Arrays.asList((ScheduleGroup)new SingleSchedulableGroup(ruben)), new HighLowPriority(false));
         Set<AppointmentCommand> preempted = Collections.singleton(appC);
         String s = AppointmentFactory.redoPreempted(preempted);
         assertEquals("String not correct.",
@@ -125,7 +124,7 @@ public class AppointmentFactoryTest {
     @Test
     public void testUndoPreempted() throws ArgumentIsNullException, CannotDoException {
         Appointable t = new Medication("Rood met witte stippen", true, new ItemInfo[]{});
-        AppointmentCommand appC = new AppointmentCommand(w, t, Arrays.asList(new SingleSchedulableGroup(ruben)), new HighLowPriority(false));
+        AppointmentCommand appC = new AppointmentCommand(w, t, Arrays.asList((ScheduleGroup) new SingleSchedulableGroup(ruben)), new HighLowPriority(false));
         appC.execute();
         Set<AppointmentCommand> preempted = Collections.singleton(appC);
         String s = AppointmentFactory.undoPreempted(preempted);

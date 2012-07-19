@@ -1,10 +1,10 @@
 package Hospital.Schedules.ConstraintSolver;
 
-import Hospital.Schedules.Constraints.BasicValidationTimeFrameConstraint;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.World.Campus;
 
-public class GetC extends BasicValidationTimeFrameConstraint implements GetCampusConstraint {
+public class GetC extends TimeFrameConstraintImplementation implements GetCampusConstraint {
 
     public GetC(Campus campus) {
         this.campus = campus;
@@ -22,5 +22,6 @@ public class GetC extends BasicValidationTimeFrameConstraint implements GetCampu
     public Campus getCampus() {
         return this.campus;
     }
+    
     private Campus campus;
 }

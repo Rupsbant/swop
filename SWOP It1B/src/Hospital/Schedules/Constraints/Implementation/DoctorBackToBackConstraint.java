@@ -3,13 +3,13 @@ package Hospital.Schedules.Constraints.Implementation;
 import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.Constraints.BasicValidationTimeFrameConstraint;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class DoctorBackToBackConstraint extends BasicValidationTimeFrameConstraint implements  GetCampusConstraint {
+public class DoctorBackToBackConstraint extends TimeFrameConstraintImplementation implements GetCampusConstraint {
 
     private Campus campusThisAppointment;
     private Schedule schedule;
@@ -24,7 +24,7 @@ public class DoctorBackToBackConstraint extends BasicValidationTimeFrameConstrai
 
     @Override
     public Boolean isAccepted() {
-        if(schedule == null || tf == null || campusThisAppointment == null){
+        if (schedule == null || tf == null || campusThisAppointment == null) {
             return null;
         }
         if (tf.getTime().getMinute() == 0) {

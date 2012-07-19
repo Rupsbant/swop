@@ -1,6 +1,6 @@
 package Hospital.Schedules.Constraints;
 
-public abstract class BasicTimeFrameConstraint extends BasicValidationTimeFrameConstraint {
+public abstract class BasicTimeFrameConstraint extends TimeFrameConstraintImplementation {
 
 
     public BasicTimeFrameConstraint(TimeFrameConstraint tfc) {

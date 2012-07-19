@@ -2,12 +2,12 @@ package Hospital.Schedules.Constraints.Preference;
 
 import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
-import Hospital.Schedules.Constraints.BasicValidationTimeFrameConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class PreferenceConstraint extends BasicValidationTimeFrameConstraint {
+public class PreferenceConstraint extends TimeFrameConstraintImplementation {
     
     public PreferenceConstraint(TimeFrameConstraint tfc) {
         super(tfc);

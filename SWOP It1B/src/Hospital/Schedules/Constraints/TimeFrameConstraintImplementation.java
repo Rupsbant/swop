@@ -164,33 +164,38 @@ public abstract class TimeFrameConstraintImplementation implements TimeFrameCons
      * @param tf the TimeFrame-object
      * @param s the Schedulable-object
      */
-    protected abstract void setValidSchedulable(TimeFrame tf, Schedulable s);
+    protected void setValidSchedulable(TimeFrame tf, Schedulable s) {
+    }
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Staffmember
      * @param tf the TimeFrame-object
      * @param n the Staffmember
      */
-    protected abstract void setValidStaff(TimeFrame tf, Staff n);
+    protected void setValidStaff(TimeFrame tf, Staff n) {
+    }
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Patient
      * @param tf the TimeFrame-object
      * @param p the Patient-object
      */
-    protected abstract void setValidPatient(TimeFrame tf, Patient p);
+    protected void setValidPatient(TimeFrame tf, Patient p) {
+    }
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Doctor
      * @param tf the TimeFrame-object
      * @param n the Doctor-object
      */
-    protected abstract void setValidDoctor(TimeFrame tf, Doctor d);
+    protected void setValidDoctor(TimeFrame tf, Doctor d) {
+    }
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Nurse
      * @param tf the TimeFrame-object
      * @param n the Nurse-object
      */
-    protected abstract void setValidNurse(TimeFrame tf, Nurse n);
+    protected void setValidNurse(TimeFrame tf, Nurse n) {
+    }
 }

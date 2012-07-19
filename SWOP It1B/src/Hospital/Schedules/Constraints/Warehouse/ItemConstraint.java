@@ -1,8 +1,8 @@
 package Hospital.Schedules.Constraints.Warehouse;
 
 import Hospital.Exception.Warehouse.StockException;
-import Hospital.Schedules.Constraints.BasicValidationTimeFrameConstraint;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
 import Hospital.Treatments.Treatment;
@@ -10,7 +10,7 @@ import Hospital.WareHouse.ItemInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ItemConstraint extends BasicValidationTimeFrameConstraint {
+public class ItemConstraint extends TimeFrameConstraintImplementation {
 
     private TimeFrame tf;
     private GetCampusConstraint constraint;
