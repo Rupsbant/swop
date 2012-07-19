@@ -19,8 +19,6 @@ import Hospital.Schedules.TimeFrame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 //TODO: DOCTOR INJECTION!
 /**

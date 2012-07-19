@@ -11,7 +11,6 @@ import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.AppointmentCommand;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;

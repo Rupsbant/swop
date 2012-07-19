@@ -3,7 +3,7 @@ package Hospital.Factory;
 import Hospital.Schedules.Appointable;
 import Hospital.WareHouse.ItemInfo;
 
-public interface NeedsItems extends Appointable {
+public interface NeedsItems {
 
     /**
      * Returns a list of all needed items for this treatment.
