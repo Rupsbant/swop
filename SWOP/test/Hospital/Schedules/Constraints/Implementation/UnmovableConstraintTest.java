@@ -18,10 +18,7 @@ import Hospital.World.BasicWorld;
 import Hospital.World.World;
 import Hospital.Schedules.TimeFrame;
 import Hospital.WareHouse.ItemInfo;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -40,14 +37,6 @@ public class UnmovableConstraintTest {
         this.ruben = new Patient("Ruben");
         this.jeroen = new Patient("Jeroen");
         this.nurse = w.getPersonByName(Nurse.class, "Nurse Joy");
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
     }
 
     @Before
@@ -71,10 +60,6 @@ public class UnmovableConstraintTest {
         t = new Medication("Medication4", Boolean.TRUE, new ItemInfo[0]);
         appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
         appC.execute();
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**

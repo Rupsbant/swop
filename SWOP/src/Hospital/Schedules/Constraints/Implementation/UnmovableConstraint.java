@@ -37,7 +37,7 @@ public class UnmovableConstraint extends TimeFrameConstraintImplementation {
 
     @Override
     protected void resetValid() {
-        schedules = null;
+        schedules.clear();
     }
 
     @Override
