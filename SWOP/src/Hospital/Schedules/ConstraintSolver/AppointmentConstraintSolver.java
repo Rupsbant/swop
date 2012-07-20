@@ -15,6 +15,8 @@ public interface AppointmentConstraintSolver {
 
     void setScheduleGroups(List<ScheduleGroup> list);
 
+    void setCampusDecider(CampusDecider campusDecider);
+
     /**
      * Linked list of all constraints.
      * @param tfConstraints
@@ -28,7 +30,5 @@ public interface AppointmentConstraintSolver {
     List<Schedulable> getAttendees();
 
     TimeFrame getChosenTimeFrame();
-
-    void setCampusDecider(CampusDecider campusDecider);
 
 }

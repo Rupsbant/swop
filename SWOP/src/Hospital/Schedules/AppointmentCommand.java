@@ -4,6 +4,8 @@ import Hospital.Argument.PriorityArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
+import Hospital.Schedules.Constraints.Priority.Priority;
+import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Command.CannotDoException;
@@ -11,12 +13,14 @@ import Hospital.Exception.Scheduling.ScheduleGroupUnavailable;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Factory.Command;
 import Hospital.Factory.NullCommand;
-import Hospital.Schedules.Constraints.Priority.Priority;
-import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
+import Hospital.Schedules.ConstraintSolver.AppointmentConstraintSolver;
+import Hospital.Schedules.ConstraintSolver.Solver;
 import Hospital.Utils;
+import Hospital.World.Campus;
 import Hospital.World.World;
 import Hospital.World.WorldTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,10 +32,8 @@ public class AppointmentCommand implements Command {
     public static PublicArgument[] getArguments() {
         return new PublicArgument[]{new PriorityArgument("Enter the priority of the appointment")};
     }
-    /**
-     * The groups from which to pick attendees for the appointment
-     */
-    private List<ScheduleGroup> groups = new ArrayList<ScheduleGroup>();
+
+    private AppointmentConstraintSolver solver = new Solver();
     /**
      * The minimal delay before the appointment can be scheduled
      */
@@ -44,10 +46,6 @@ public class AppointmentCommand implements Command {
      * The Appointable object associated with the created appointment
      */
     private Appointable appointable;
-    /**
-     * The constraints to be placed on the appointment
-     */
-    private List<TimeFrameConstraint> tfConstraints;
     /**
      * The priority to create the appointment with
      */
@@ -66,17 +64,24 @@ public class AppointmentCommand implements Command {
      */
     public AppointmentCommand(World world, Appointable app, List<ScheduleGroup> coreSchedules, Priority priority) throws ArgumentIsNullException {
         setAppointable(app);
-        this.groups.addAll(app.getScheduleGroups());
-        this.groups.addAll(coreSchedules);
-        this.tfConstraints = app.getConstraints();
-        this.tfConstraints.add(new PriorityConstraint(priority));
+        
+        List<ScheduleGroup> groups = new ArrayList<ScheduleGroup>();
+        groups.addAll(app.getScheduleGroups());
+        groups.addAll(coreSchedules);
+        populateScheduleGroups(world, groups);
+        solver.setScheduleGroups(groups);
+        
+        List<TimeFrameConstraint> temp  = app.getConstraints();
+        temp.add(new PriorityConstraint(priority));
+        solver.setConstaints(temp);
+        solver.setCampusDecider(appointable.getCampusDecider());
+        
         this.priority = priority;
-        populateScheduleGroups(world);
         setTimeFrameDelay(app, world.getWorldTime());
     }
 
-    private void populateScheduleGroups(World world) throws ArgumentIsNullException, Error {
-        List<MultiScheduleGroup> groups = Utils.filter(this.groups, MultiScheduleGroup.class);
+    private void populateScheduleGroups(World world, List<ScheduleGroup> g) throws ArgumentIsNullException, Error {
+        List<MultiScheduleGroup> groups = Utils.filter(g, MultiScheduleGroup.class);
         for (MultiScheduleGroup m : groups) {
             try {
                 m.setWorld(world);
@@ -111,12 +116,16 @@ public class AppointmentCommand implements Command {
             throw new CannotDoException("Appointment already planned");
         }
         try {
-            appointment = AppointmentFactory.makeAppointment(td.getDelayedTimeFrame(), tfConstraints, appointable.getCampusDecider(), groups, this);
-            Set<AppointmentCommand> preempted = AppointmentFactory.getPreempted(appointment.getAttendees(), appointment.getTimeFrame());
+            solver.setFirstTimeFrame(td.getDelayedTimeFrame());
+            solver.solve();
+            List<Schedule> chosenSchedules = Schedule.getSchedules(solver.getAttendees());
+            appointment = new Appointment(solver.getChosenTimeFrame(), chosenSchedules, this, solver.getCampus());
+            
+            Set<AppointmentCommand> preempted = getPreempted(appointment.getAttendees(), appointment.getTimeFrame());
 
-            String s = AppointmentFactory.undoPreempted(preempted);
+            String s = undoPreempted(preempted);
             appointment.schedule();
-            s += AppointmentFactory.redoPreempted(preempted);
+            s += redoPreempted(preempted);
 
             appointable.setAppointment(appointment);
             s += next.execute();
@@ -175,5 +184,49 @@ public class AppointmentCommand implements Command {
             next = NullCommand.singleton;
         }
         this.next = next;
+    }
+
+    static String redoPreempted(Set<AppointmentCommand> preempted) {
+        String s = "";
+        for (AppointmentCommand appC : preempted) {
+            //TODO: make this better!
+            try {
+                String temp = "";
+                temp += "Redo: " + appC + "\n";
+                temp += "\t" + appC.execute() + "\n";
+                s += temp;
+            } catch (CannotDoException ex) {
+                s += "Error redoing: " + appC + "\n";
+                s += "\t" + ex + "\n";
+            }
+        }
+        return s;
+    }
+
+    static String undoPreempted(Set<AppointmentCommand> preempted) {
+        String s = "";
+        for (AppointmentCommand appC : preempted) {
+            //TODO: make this better!
+            try {
+                String temp;
+                //temp = "Undo: " + appC + "\n";
+                temp = appC.undo() + "\n";
+                s += temp;
+            } catch (CannotDoException ex) {
+                s += "Error redoing: " + appC + "\n";
+                s += "\t" + ex + "\n";
+            }
+        }
+        return s;
+    }
+
+    static Set<AppointmentCommand> getPreempted(List<Schedule> chosenSchedules, TimeFrame chosenTimeFrame) {
+        Set<AppointmentCommand> preempted = new HashSet<AppointmentCommand>();
+        for (Schedule s : chosenSchedules) {
+            for (Appointment app : s.getCollidingAppointments(chosenTimeFrame)) {
+                preempted.add(app.getAppCommand());
+            }
+        }
+        return preempted;
     }
 }
