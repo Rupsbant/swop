@@ -1,57 +1,34 @@
 package Hospital.Schedules.Constraints.Implementation;
 
 import Hospital.People.Unmovable;
-import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
-import Hospital.Schedules.Schedulable;
-import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
-import java.util.HashSet;
-import java.util.Set;
+import Hospital.World.Campus;
 
 public class UnmovableConstraint extends TimeFrameConstraint {
 
     private Unmovable unmovable;
-    private Set<Schedule> schedules = new HashSet<Schedule>();
-    private TimeFrame tf;
+    private Campus campus;
 
     public UnmovableConstraint(Unmovable unmovable) {
         this.unmovable = unmovable;
     }
 
+    @Override
+    public void setCampus(Campus c) {
+        this.campus = c;
+    }
+
     public Boolean isAccepted() {
-        for (Schedule schedule : this.schedules) {
-            Appointment prev = schedule.getAppointmentBefore(tf.getTime());
-            if (prev != null) {
-                int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
-                int walkTime = prev.getCampus().getTravelTime(unmovable.getCampus());
-                if (timeDiff < walkTime) {
-                    return false;
-                }
-            }
-            Appointment next = schedule.getAppointmentAfter(tf.getEndTime());
-            if (next != null) {
-                int timeDiff = next.getTimeFrame().getTime().getMinutesDiff(tf.getEndTime());
-                int walkTime = next.getCampus().getTravelTime(unmovable.getCampus());
-                if (timeDiff < walkTime) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return unmovable.equals(campus);
     }
 
     public void reset() {
-        schedules.clear();
-    }
-
-    @Override
-    public void setSchedulable(Schedulable s) {
-        schedules.add(s.getSchedule());
+        campus = null;
     }
 
     @Override
     public void setTimeFrame(TimeFrame tf) {
-        this.tf = tf;
+        // does nothing
     }
 }

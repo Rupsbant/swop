@@ -9,14 +9,14 @@ import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class DoctorBackToBackConstraint extends TimeFrameConstraint implements GetCampusConstraint {
+public class DoctorBackToBackConstraint extends TimeFrameConstraint {
 
-    private Campus campusThisAppointment;
+    private Campus campus;
     private Schedule schedule;
     private TimeFrame tf;
 
     public Boolean isAccepted() {
-        if (schedule == null || tf == null || campusThisAppointment == null) {
+        if (schedule == null || tf == null || campus == null) {
             return null;
         }
         if (tf.getTime().getMinute() == 0) {
@@ -25,7 +25,7 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraint implements G
         Appointment next = schedule.getAppointmentAfter(tf.getEndTime());
         if (next != null) {
             int timeDiff = next.getTimeFrame().getTime().getMinutesDiff(tf.getEndTime());
-            int walkTime = next.getCampus().getTravelTime(campusThisAppointment);
+            int walkTime = next.getCampus().getTravelTime(campus);
             if (timeDiff < walkTime) {
                 return false;
             }
@@ -36,13 +36,13 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraint implements G
             return false;
         }
         int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
-        int walkTime = prev.getCampus().getTravelTime(campusThisAppointment);
+        int walkTime = prev.getCampus().getTravelTime(campus);
         return timeDiff == walkTime;
     }
 
     public void reset() {
         tf = null;
-        campusThisAppointment = null;
+        campus = null;
         schedule = null;
     }
 
@@ -52,16 +52,12 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraint implements G
     }
 
     @Override
-    public void setPatient(Patient p) {
-        this.campusThisAppointment = p.getCampus();
+    public void setCampus(Campus c) {
+        this.campus = c;
     }
 
     @Override
     public void setTimeFrame(TimeFrame tf) {
         this.tf = tf;
-    }
-
-    public Campus getCampus() {
-        return this.campusThisAppointment;
     }
 }

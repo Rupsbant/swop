@@ -6,6 +6,7 @@ import Hospital.People.Nurse;
 import Hospital.People.Staff;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
+import Hospital.World.Campus;
 
 /**
  * defines a constraint on the allowed times in a schedule
@@ -23,6 +24,12 @@ public abstract class TimeFrameConstraint {
      * Resets the Constraint.
      */
     public abstract void reset();
+
+    /**
+     * Sets the Campus the appointment is taking place at.
+     * @param c, The Campus where the appointment is.
+     */
+    public void setCampus(Campus c){}
 
     /**
      * Sets the TimeFrame of the appointment that is being made.

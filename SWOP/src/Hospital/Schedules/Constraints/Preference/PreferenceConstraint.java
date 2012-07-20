@@ -18,8 +18,8 @@ public class PreferenceConstraint extends TimeFrameConstraint {
     }
 
     @Override
-    public void setPatient(Patient p) {
-        this.campus = p.getCampus();
+    public void setCampus(Campus c) {
+        this.campus = c;
     }
 
     @Override

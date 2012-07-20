@@ -8,7 +8,7 @@ import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint implements GetCampusConstraint {
+public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint {
 
     private Nurse nurse;
     private TimeFrame tf;
@@ -43,12 +43,5 @@ public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint im
     @Override
     public void setNurse(Nurse nurse) {
         this.nurse = nurse;
-    }
-
-    public Campus getCampus() {
-        if(nurse == null){
-            return null;
-        }
-        return nurse.getCampus();
     }
 }
