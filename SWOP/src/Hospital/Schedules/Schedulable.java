@@ -19,7 +19,7 @@ public interface Schedulable {
      * @param tfContstraints The constraints that must be satisfied.
      * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).isAccepted();.
      */
-    void visitConstraint(TimeFrameConstraint tfContstraints);
+    void visitConstraint(SchedulableVisitor tfContstraints);
 
     /**
      * This returns the constraints this schedulable has for new appointments.

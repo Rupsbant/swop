@@ -1,5 +1,6 @@
 package Hospital.People;
 
+import Hospital.Schedules.SchedulableVisitor;
 import Hospital.Utils;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -94,7 +95,7 @@ public abstract class Person implements Schedulable {
      * @param tfContstraints The constraints that must be satisfied.
      * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).isAccepted();.
      */
-    public void visitConstraint(TimeFrameConstraint tfContstraints) {
+    public void visitConstraint(SchedulableVisitor tfContstraints) {
         tfContstraints.setSchedulable(this);
     }
 

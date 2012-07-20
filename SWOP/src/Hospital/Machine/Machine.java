@@ -11,6 +11,7 @@ import Hospital.Exception.CannotChangeException;
 import Hospital.People.Unmovable;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
+import Hospital.Schedules.SchedulableVisitor;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.Constraints.Implementation.UnmovableConstraint;
 import Hospital.Utils;
@@ -137,7 +138,7 @@ public abstract class Machine implements Schedulable, Unmovable {
      * @param tf The timeFrame during which the constraints need to be satisfied.
      * @param tfContstraints The constraints that must be satisfied.
      */
-    public void visitConstraint(TimeFrameConstraint tfContstraint) {
+    public void visitConstraint(SchedulableVisitor tfContstraint) {
         tfContstraint.setSchedulable(this);
     }
 

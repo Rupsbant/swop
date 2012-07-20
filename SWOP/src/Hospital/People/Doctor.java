@@ -15,6 +15,7 @@ import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Preference.HasPreference;
 import Hospital.Schedules.Constraints.Preference.Preference;
 import Hospital.Schedules.Constraints.Preference.PreferenceConstraint;
+import Hospital.Schedules.SchedulableVisitor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -232,7 +233,7 @@ public class Doctor extends Staff implements HasPreference {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
      */
     @Override
-    public void visitConstraint(TimeFrameConstraint tfConstraints){
+    public void visitConstraint(SchedulableVisitor tfConstraints){
         super.visitConstraint(tfConstraints);
         tfConstraints.setDoctor(this);
     }

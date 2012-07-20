@@ -7,6 +7,7 @@ import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Implementation.UnmovableConstraint;
+import Hospital.Schedules.SchedulableVisitor;
 import Hospital.World.Campus;
 import java.util.List;
 
@@ -83,7 +84,7 @@ public class Nurse extends Staff implements Unmovable {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
      */
     @Override
-    public void visitConstraint(TimeFrameConstraint tfContstraints){
+    public void visitConstraint(SchedulableVisitor tfContstraints){
         super.visitConstraint(tfContstraints);
         tfContstraints.setNurse(this);
     }

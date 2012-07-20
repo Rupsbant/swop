@@ -9,6 +9,7 @@ import Hospital.Exception.Patient.CannotDischargeException;
 import Hospital.Exception.Patient.InvalidDiagnosisException;
 import Hospital.Exception.Patient.PatientIsCheckedInException;
 import Hospital.MedicalTest.MedicalTest;
+import Hospital.Schedules.SchedulableVisitor;
 import java.util.ArrayList;
 import Hospital.People.Person;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
@@ -250,7 +251,7 @@ public class Patient extends Person {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
      */
     @Override
-    public void visitConstraint(TimeFrameConstraint tfContstraints) {
+    public void visitConstraint(SchedulableVisitor tfContstraints) {
         super.visitConstraint(tfContstraints);
         tfContstraints.setPatient(this);
     }

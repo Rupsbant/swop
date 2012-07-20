@@ -6,6 +6,7 @@ import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Implementation.WorkingHoursTimeConstraint;
+import Hospital.Schedules.SchedulableVisitor;
 import java.util.List;
 
 /**
@@ -89,7 +90,7 @@ public abstract class Staff extends Person {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
      */
     @Override
-    public void visitConstraint(TimeFrameConstraint tfContstraints){
+    public void visitConstraint(SchedulableVisitor tfContstraints){
         super.visitConstraint(tfContstraints);
         tfContstraints.setStaff(this);
     }
