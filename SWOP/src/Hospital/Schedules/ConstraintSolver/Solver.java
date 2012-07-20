@@ -62,7 +62,7 @@ public class Solver implements AppointmentConstraintSolver {
                 return false;
             }
         }
-        this.campus = ((GetCampusConstraint) tfConstraints).getCampus();
+        this.campus = ((GetCampusConstraint) tfConstraints.get(0)).getCampus();
         return true;
     }
 

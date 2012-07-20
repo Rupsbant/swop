@@ -88,13 +88,13 @@ public class PriorityConstraintTest {
         Schedulable s = ruben;
         instance.setSchedulable(s);
         instance.setTimeFrame(tf);
-        assertFalse("Appointments are same priority", instance.acceptAll());
+        assertFalse("Appointments are same priority", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 0), 20);
-        instance.resetAll();
+        instance.reset();
         instance.setSchedulable(s);
         instance.setTimeFrame(tf);
-        assertTrue("This appointment is more urgent", instance.acceptAll());
+        assertTrue("This appointment is more urgent", instance.isAccepted());
     }
 
     @Test
@@ -104,13 +104,13 @@ public class PriorityConstraintTest {
         PriorityConstraint instance = new PriorityConstraint(new HighLowPriority(false));
         instance.setSchedulable(s);
         instance.setTimeFrame(tf);
-        assertFalse("Appointments is of lower priority", instance.acceptAll());
+        assertFalse("Appointments is of lower priority", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 0), 20);
-        instance.resetAll();
-        assertEquals(null, instance.acceptAll());
+        instance.reset();
+        assertEquals(null, instance.isAccepted());
         instance.setSchedulable(s);
         instance.setTimeFrame(tf);
-        assertFalse("Appointments are of the same priority", instance.acceptAll());
+        assertFalse("Appointments are of the same priority", instance.isAccepted());
     }
 }

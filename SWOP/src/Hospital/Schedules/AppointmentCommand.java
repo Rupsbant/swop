@@ -70,6 +70,7 @@ public class AppointmentCommand implements Command {
         this.groups.addAll(app.getScheduleGroups());
         this.groups.addAll(coreSchedules);
         this.tfConstraints = app.getConstraints();
+        System.out.println(app);
         this.tfConstraints.add(new PriorityConstraint(priority));
         this.priority = priority;
         populateScheduleGroups(world);

@@ -71,36 +71,36 @@ public class NurseAppointmentBackToBackConstraintTest {
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertTrue("Time starts at the hour.", instance.acceptAll());
+        assertTrue("Time starts at the hour.", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertFalse("Time doesn't start at the hour.", instance.acceptAll());
+        assertFalse("Time doesn't start at the hour.", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertTrue("Time is backtoback with appointment", instance.acceptAll());
+        assertTrue("Time is backtoback with appointment", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertFalse("Time is not backtoback with appointment", instance.acceptAll());
+        assertFalse("Time is not backtoback with appointment", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 40), 20);
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertTrue("Time is backtoback with appointment", instance.acceptAll());
+        assertTrue("Time is backtoback with appointment", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 41), 20);
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertFalse("Time is not backtoback with appointment", instance.acceptAll());
+        assertFalse("Time is not backtoback with appointment", instance.isAccepted());
     }
 }
