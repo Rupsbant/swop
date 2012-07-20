@@ -12,8 +12,6 @@ import Hospital.MedicalTest.MedicalTest;
 import java.util.ArrayList;
 import Hospital.People.Person;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
 import java.util.List;
@@ -252,9 +250,9 @@ public class Patient extends Person {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).acceptAll();.
      */
     @Override
-    public TimeFrameConstraint setValidTimeFrame(TimeFrame tf, TimeFrameConstraint tfContstraints) {
-        super.setValidTimeFrame(tf, tfContstraints);
-        tfContstraints.setValidTimeFramePatient(tf, this);
+    public TimeFrameConstraint setValidTimeFrame(TimeFrameConstraint tfContstraints) {
+        super.setValidTimeFrame(tfContstraints);
+        tfContstraints.setValidTimeFramePatient(this);
         return tfContstraints;
     }
 

@@ -49,14 +49,17 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraintImplementatio
     }
 
     @Override
-    protected void setValidDoctor(TimeFrame tf, Doctor d) {
+    protected void setValidDoctor(Doctor d) {
         this.schedule = d.getSchedule();
-        this.tf = tf;
     }
 
     @Override
-    protected void setValidPatient(TimeFrame tf, Patient p) {
+    protected void setValidPatient(Patient p) {
         this.campusThisAppointment = p.getCampus();
+    }
+
+    @Override
+    protected void setValidTimeFrame(TimeFrame tf) {
         this.tf = tf;
     }
 

@@ -48,32 +48,38 @@ public class WorkingHoursTimeConstraintTest {
 
         TimeFrame tf = new TimeFrame(new Time(9, 9, 9, 8, 0), 15);
         instance.resetAll();
-        instance.setValidStaff(tf, n);
+        instance.setValidStaff(n);
+        instance.setValidTimeFrame(tf);
         assertFalse("TimeFrame is not a working hour.", instance.acceptAll());
 
         tf = new TimeFrame(new Time(9, 9, 9, 9, 00), 15);
         instance.resetAll();
-        instance.setValidStaff(tf, n);
+        instance.setValidStaff(n);
+        instance.setValidTimeFrame(tf);
         assertTrue("TimeFrame is a working hour.", instance.acceptAll());
 
         tf = new TimeFrame(new Time(9, 9, 9, 0, 59), 15);
         instance.resetAll();
-        instance.setValidStaff(tf, n);
+        instance.setValidStaff(n);
+        instance.setValidTimeFrame(tf);
         assertFalse("TimeFrame is not a working hour.", instance.acceptAll());
 
         tf = new TimeFrame(new Time(9, 9, 9, 17, 00), 15);
         instance.resetAll();
-        instance.setValidStaff(tf, n);
+        instance.setValidStaff(n);
+        instance.setValidTimeFrame(tf);
         assertFalse("TimeFrame is not a working hour.", instance.acceptAll());
 
         tf = new TimeFrame(new Time(9, 9, 9, 16, 46), 15);
         instance.resetAll();
-        instance.setValidStaff(tf, n);
+        instance.setValidStaff(n);
+        instance.setValidTimeFrame(tf);
         assertFalse("TimeFrame is not a working hour.", instance.acceptAll());
 
         tf = new TimeFrame(new Time(9, 9, 9, 16, 45), 15);
         instance.resetAll();
-        instance.setValidStaff(tf, n);
+        instance.setValidStaff(n);
+        instance.setValidTimeFrame(tf);
         assertTrue("TimeFrame is a working hour.", instance.acceptAll());
     }
 }

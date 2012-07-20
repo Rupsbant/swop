@@ -47,72 +47,50 @@ public abstract class TimeFrameConstraintImplementation implements TimeFrameCons
         return this;
     }
 
-    /**
-     * Tries to accept all Constraints with a TimeFrame and a Patient.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param p Patient to check with.
-     * @return this, for chaining.
-     */
-    public final TimeFrameConstraintImplementation setValidTimeFramePatient(TimeFrame tf, Patient p) {
-        setValidPatient(tf, p);
+    public final TimeFrameConstraint setTimeFrame(TimeFrame tf) {
+        setValidTimeFrame(tf);
         if (next != null) {
-            next.setValidTimeFramePatient(tf, p);
+            next.setTimeFrame(tf);
         }
         return this;
     }
 
-    /**
-     * Tries to accept all Constraints with a TimeFrame and a Staffmember.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param n Staffmember to check with.
-     * @return this, for chaining.
-     */
-    public final TimeFrameConstraintImplementation setValidTimeFrameStaff(TimeFrame tf, Staff n) {
-        setValidStaff(tf, n);
+    public final TimeFrameConstraintImplementation setValidTimeFramePatient(Patient p) {
+        setValidPatient(p);
         if (next != null) {
-            next.setValidTimeFrameStaff(tf, n);
+            next.setValidTimeFramePatient(p);
         }
         return this;
     }
 
-    /**
-     * Tries to accept all Constraints with a TimeFrame and a Doctor.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param d Doctor to check with.
-     * @return this, for chaining.
-     */
-    public final TimeFrameConstraintImplementation setValidTimeFrameDoctor(TimeFrame tf, Doctor d) {
-        setValidDoctor(tf, d);
+    public final TimeFrameConstraintImplementation setValidTimeFrameStaff(Staff n) {
+        setValidStaff(n);
         if (next != null) {
-            next.setValidTimeFrameDoctor(tf, d);
+            next.setValidTimeFrameStaff(n);
         }
         return this;
     }
 
-    /**
-     * Tries to accept all Constraints with a TimeFrame and a Doctor.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param n Doctor to check with.
-     * @return this, for chaining.
-     */
-    public final TimeFrameConstraintImplementation setValidTimeFrameNurse(TimeFrame tf, Nurse n) {
-        setValidNurse(tf, n);
+    public final TimeFrameConstraintImplementation setValidTimeFrameDoctor(Doctor d) {
+        setValidDoctor(d);
         if (next != null) {
-            next.setValidTimeFrameNurse(tf, n);
+            next.setValidTimeFrameDoctor(d);
         }
         return this;
     }
 
-    /**
-     * Tries to accept all Constraints with a TimeFrame and a Schedulable.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param p Schedulable to check with.
-     * @return this, for chaining.
-     */
-    public final TimeFrameConstraintImplementation setValidTimeFrameSchedulable(TimeFrame tf, Schedulable p) {
-        setValidSchedulable(tf, p);
+    public final TimeFrameConstraintImplementation setValidTimeFrameNurse(Nurse n) {
+        setValidNurse(n);
         if (next != null) {
-            next.setValidTimeFrameSchedulable(tf, p);
+            next.setValidTimeFrameNurse(n);
+        }
+        return this;
+    }
+
+    public final TimeFrameConstraintImplementation setValidTimeFrameSchedulable(Schedulable p) {
+        setValidSchedulable(p);
+        if (next != null) {
+            next.setValidTimeFrameSchedulable(p);
         }
         return this;
     }
@@ -123,7 +101,6 @@ public abstract class TimeFrameConstraintImplementation implements TimeFrameCons
      */
     public final Boolean acceptAll() {
         if (isAccepted() == null) {
-            //System.out.println("Unknown:" + this);
             return null;
         }
         if (!isAccepted()) {
@@ -160,42 +137,44 @@ public abstract class TimeFrameConstraintImplementation implements TimeFrameCons
     protected abstract void resetValid();
 
     /**
+     * Sets the TimeFrame during which the appointment happens.
+     * Always needs to be implemented.
+     * @param tf the TimeFrame of the Appointment
+     */
+    protected abstract void setValidTimeFrame(TimeFrame tf);
+
+    /**
      * (in)validates the constraint based on a given TimeFrame for a Schedulable
-     * @param tf the TimeFrame-object
      * @param s the Schedulable-object
      */
-    protected void setValidSchedulable(TimeFrame tf, Schedulable s) {
+    protected void setValidSchedulable(Schedulable s) {
     }
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Staffmember
-     * @param tf the TimeFrame-object
-     * @param n the Staffmember
+     * @param s the Staffmember
      */
-    protected void setValidStaff(TimeFrame tf, Staff n) {
+    protected void setValidStaff(Staff s) {
     }
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Patient
-     * @param tf the TimeFrame-object
      * @param p the Patient-object
      */
-    protected void setValidPatient(TimeFrame tf, Patient p) {
+    protected void setValidPatient(Patient p) {
     }
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Doctor
-     * @param tf the TimeFrame-object
      * @param n the Doctor-object
      */
-    protected void setValidDoctor(TimeFrame tf, Doctor d) {
+    protected void setValidDoctor(Doctor d) {
     }
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Nurse
-     * @param tf the TimeFrame-object
      * @param n the Nurse-object
      */
-    protected void setValidNurse(TimeFrame tf, Nurse n) {
+    protected void setValidNurse(Nurse n) {
     }
 }

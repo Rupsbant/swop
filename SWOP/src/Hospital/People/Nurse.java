@@ -81,9 +81,9 @@ public class Nurse extends Staff implements Unmovable {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).acceptAll();.
      */
     @Override
-    public TimeFrameConstraint setValidTimeFrame(TimeFrame tf, TimeFrameConstraint tfContstraints){
-        super.setValidTimeFrame(tf, tfContstraints);
-        tfContstraints.setValidTimeFrameNurse(tf, this);
+    public TimeFrameConstraint setValidTimeFrame(TimeFrameConstraint tfContstraints){
+        super.setValidTimeFrame(tfContstraints);
+        tfContstraints.setValidTimeFrameNurse(this);
         return tfContstraints;
     }
 }

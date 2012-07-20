@@ -233,9 +233,9 @@ public class Doctor extends Staff implements HasPreference {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).acceptAll();.
      */
     @Override
-    public TimeFrameConstraint setValidTimeFrame(TimeFrame tf, TimeFrameConstraint tfConstraints){
-        super.setValidTimeFrame(tf, tfConstraints);
-        tfConstraints.setValidTimeFrameDoctor(tf, this);
+    public TimeFrameConstraint setValidTimeFrame(TimeFrameConstraint tfConstraints){
+        super.setValidTimeFrame(tfConstraints);
+        tfConstraints.setValidTimeFrameDoctor(this);
         return tfConstraints;
     }
 

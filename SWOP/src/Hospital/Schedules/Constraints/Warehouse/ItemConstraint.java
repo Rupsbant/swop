@@ -7,8 +7,6 @@ import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
 import Hospital.Treatments.Treatment;
 import Hospital.WareHouse.ItemInfo;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ItemConstraint extends TimeFrameConstraintImplementation {
 
@@ -23,17 +21,17 @@ public class ItemConstraint extends TimeFrameConstraintImplementation {
 
     @Override
     protected Boolean isAccepted() {
-        if(tf == null || constraint.getCampus() == null){
+        if (tf == null || constraint.getCampus() == null) {
             return null;
         }
         ItemInfo[] infos = this.app.getNeededItems();
-        for(ItemInfo i : infos){
+        for (ItemInfo i : infos) {
             try {
-                if(!constraint.getCampus().getWarehouse().getStock(i.getName()).testReservation(i.getCount(), tf.getTime())){
+                if (!constraint.getCampus().getWarehouse().getStock(i.getName()).testReservation(i.getCount(), tf.getTime())) {
                     return false;
                 }
             } catch (StockException ex) {
-                Logger.getLogger(ItemConstraint.class.getName()).log(Level.SEVERE, null, ex);
+                throw new Error(ex);
             }
         }
         return true;
@@ -45,7 +43,11 @@ public class ItemConstraint extends TimeFrameConstraintImplementation {
     }
 
     @Override
-    protected void setValidSchedulable(TimeFrame tf, Schedulable s) {
+    protected void setValidSchedulable(Schedulable s) {
+    }
+
+    @Override
+    protected void setValidTimeFrame(TimeFrame tf) {
         this.tf = tf;
     }
 }

@@ -3,7 +3,7 @@ package Hospital.Schedules.Constraints.Implementation;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.MedicalTest.XRayScan;
 import Hospital.Patient.Patient;
-import Hospital.Schedules.Constraints.BasicTimeFrameConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.Schedules.TimeFrame;
 import Hospital.Utils;
 import Hospital.World.Time;
@@ -14,12 +14,14 @@ import java.util.PriorityQueue;
 /**
  * The constraint imposed on scheduling by X-ray scans
  */
-public class XRayConstraint extends BasicTimeFrameConstraint {
+public class XRayConstraint extends TimeFrameConstraintImplementation {
 
     /**
      * How many X-ray scans are planned to be done
      */
     private final int wantToDo;
+    private Patient patient;
+    private TimeFrame tf;
 
     /**
      * Constructor
@@ -40,8 +42,27 @@ public class XRayConstraint extends BasicTimeFrameConstraint {
      * @see Hospital.Schedules.Constraints.TimeFrameConstraint#setValidPatient(Hospital.Schedules.TimeFrame, Hospital.Patient.Patient)
      */
     @Override
-    protected void setValidPatient(TimeFrame tf, Patient p) {
-        List<XRayScan> filter = Utils.filter(p.getMedicalTests(), XRayScan.class);
+    protected void setValidPatient(Patient p) {
+        this.patient = p;
+    }
+
+    @Override
+    protected void setValidTimeFrame(TimeFrame tf) {
+        this.tf = tf;
+    }
+
+    @Override
+    protected void resetValid() {
+        this.patient = null;
+        this.tf = null;
+    }
+
+    @Override
+    protected Boolean isAccepted() {
+        if (tf == null || patient == null) {
+            return null;
+        }
+        List<XRayScan> filter = Utils.filter(patient.getMedicalTests(), XRayScan.class);
         Time start = TimeUtils.getStartOfDay(tf.getTime());
         Time end = TimeUtils.getNextYear(start).getDiffTime(0, 0, 0, 0, -1);
         start = TimeUtils.getLastYear(start);
@@ -71,11 +92,10 @@ public class XRayConstraint extends BasicTimeFrameConstraint {
             Event e = events.poll();
             count = e.newValue(count);
             if (count > XRayScan.MAX_XRAY_COUNT) {
-                super.setValid(false);
-                return;
+                return false;
             }
         }
-        super.setValid(true);
+        return true;
     }
 
     private class Event implements Comparable<Event> {

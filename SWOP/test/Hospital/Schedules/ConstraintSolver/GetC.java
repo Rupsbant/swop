@@ -2,6 +2,7 @@ package Hospital.Schedules.ConstraintSolver;
 
 import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
 public class GetC extends TimeFrameConstraintImplementation implements GetCampusConstraint {
@@ -24,4 +25,8 @@ public class GetC extends TimeFrameConstraintImplementation implements GetCampus
     }
     
     private Campus campus;
+
+    @Override
+    protected void setValidTimeFrame(TimeFrame tf) {
+    }
 }

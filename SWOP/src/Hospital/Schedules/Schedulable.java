@@ -15,11 +15,10 @@ public interface Schedulable {
 
     /**
      * This makes this object visit the TimeFrameConstraints during scheduling.
-     * @param tf The timeFrame during which the constraints need to be satisfied.
      * @param tfContstraints The constraints that must be satisfied.
      * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).acceptAll();.
      */
-    TimeFrameConstraint setValidTimeFrame(TimeFrame tf, TimeFrameConstraint tfContstraints);
+    TimeFrameConstraint setValidTimeFrame(TimeFrameConstraint tfContstraints);
 
     /**
      * This returns the constraints this schedulable has for new appointments.

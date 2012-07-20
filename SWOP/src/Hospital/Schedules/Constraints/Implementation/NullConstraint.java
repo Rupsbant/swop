@@ -1,6 +1,7 @@
 package Hospital.Schedules.Constraints.Implementation;
 
 import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.TimeFrame;
 
 /**
  * This creates a fake Constraint that is always accepted.
@@ -18,5 +19,9 @@ public class NullConstraint extends TimeFrameConstraintImplementation {
 
     @Override
     protected void resetValid() {
+    }
+
+    @Override
+    protected void setValidTimeFrame(TimeFrame tf) {
     }
 }

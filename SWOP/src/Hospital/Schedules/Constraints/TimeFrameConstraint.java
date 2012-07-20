@@ -28,43 +28,45 @@ public interface TimeFrameConstraint {
     TimeFrameConstraint addConstraintList(TimeFrameConstraint toAdd);
 
     /**
-     * Tries to accept all Constraints with a TimeFrame and a Doctor.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param d Doctor to check with.
-     * @return this, for chaining.
+     * Sets the TimeFrame of the appointment that is being made.
+     * @param tf, The TimeFrame during which the appointment happens.
+     * @return this
      */
-    TimeFrameConstraint setValidTimeFrameDoctor(TimeFrame tf, Doctor d);
+    TimeFrameConstraint setTimeFrame(TimeFrame tf);
 
     /**
-     * Tries to accept all Constraints with a TimeFrame and a Doctor.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param n Doctor to check with.
+     * Sets the Doctor d that is present during the appointment.
+     * @param d Doctor that will be present.
      * @return this, for chaining.
      */
-    TimeFrameConstraint setValidTimeFrameNurse(TimeFrame tf, Nurse n);
+    TimeFrameConstraint setValidTimeFrameDoctor(Doctor d);
 
     /**
-     * Tries to accept all Constraints with a TimeFrame and a Patient.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param p Patient to check with.
+     * Sets the Nurse n that is present during the appointment.
+     * @param n Nurse that will be present.
      * @return this, for chaining.
      */
-    TimeFrameConstraint setValidTimeFramePatient(TimeFrame tf, Patient p);
+    TimeFrameConstraint setValidTimeFrameNurse(Nurse n);
 
     /**
-     * Tries to accept all Constraints with a TimeFrame and a Schedulable.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param p Schedulable to check with.
+     * Sets the Patient p that is present during the appointment.
+     * @param p Patient that will be present.
      * @return this, for chaining.
      */
-    TimeFrameConstraint setValidTimeFrameSchedulable(TimeFrame tf, Schedulable p);
+    TimeFrameConstraint setValidTimeFramePatient(Patient p);
 
     /**
-     * Tries to accept all Constraints with a TimeFrame and a Staffmember.
-     * @param tf TimeFrame during which the constraint must be valid.
-     * @param n Staffmember to check with.
+     * Sets the Schedulable s that is present during the appointment.
+     * @param s Schedulable that will be present.
      * @return this, for chaining.
      */
-    TimeFrameConstraint setValidTimeFrameStaff(TimeFrame tf, Staff n);
+    TimeFrameConstraint setValidTimeFrameSchedulable(Schedulable s);
+
+    /**
+     * Sets the Staff s that is present during the appointment.
+     * @param s Staff that will be present.
+     * @return this, for chaining.
+     */
+    TimeFrameConstraint setValidTimeFrameStaff(Staff s);
 
 }

@@ -89,15 +89,17 @@ public class PreferenceConstraintTest {
 
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
         instance.resetValid();
-        instance.setValidDoctor(tf, d);
-        instance.setValidPatient(tf, jeroen);
+        instance.setValidDoctor(d);
+        instance.setValidPatient(jeroen);
+        instance.setValidTimeFrame(tf);
         System.out.println("Jeroen: " + jeroen.getCampus());
         assertTrue(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
         instance.resetValid();
-        instance.setValidDoctor(tf, d);
-        instance.setValidPatient(tf, ruben);
+        instance.setValidDoctor(d);
+        instance.setValidPatient(ruben);
+        instance.setValidTimeFrame(tf);
         System.out.println("Ruben: " + ruben.getCampus());
         assertTrue(instance.isAccepted());
     }
@@ -106,15 +108,17 @@ public class PreferenceConstraintTest {
     public void testIsFail() throws ArgumentIsNullException, ArgumentConstraintException {
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
         PreferenceConstraint instance = new PreferenceConstraint();
-        instance.setValidDoctor(tf, d);
-        instance.setValidPatient(tf, ruben);
+        instance.setValidDoctor(d);
+        instance.setValidPatient(ruben);
+        instance.setValidTimeFrame(tf);
         System.out.println("Ruben: " + ruben.getCampus());
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
         instance.resetValid();
-        instance.setValidDoctor(tf, d);
-        instance.setValidPatient(tf, jeroen);
+        instance.setValidDoctor(d);
+        instance.setValidPatient(jeroen);
+        instance.setValidTimeFrame(tf);
         System.out.println("Jeroen: " + jeroen.getCampus());
         assertFalse(instance.isAccepted());
     }
@@ -123,29 +127,33 @@ public class PreferenceConstraintTest {
     public void testStayOnNoon() throws ArgumentIsNullException, ArgumentConstraintException {
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 11, 59), 15);
         PreferenceConstraint instance = new PreferenceConstraint();
-        instance.setValidDoctor(tf, d);
-        instance.setValidPatient(tf, ruben);
+        instance.setValidDoctor(d);
+        instance.setValidPatient(ruben);
+        instance.setValidTimeFrame(tf);
         System.out.println("Ruben: " + ruben.getCampus());
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 11, 59), 15);
         instance.resetValid();
-        instance.setValidDoctor(tf, d);
-        instance.setValidPatient(tf, jeroen);
+        instance.setValidDoctor(d);
+        instance.setValidPatient(jeroen);
+        instance.setValidTimeFrame(tf);
         System.out.println("Jeroen: " + jeroen.getCampus());
         assertFalse(instance.isAccepted());
         
         tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
         instance.resetValid();
-        instance.setValidDoctor(tf, d);
-        instance.setValidPatient(tf, jeroen);
+        instance.setValidDoctor(d);
+        instance.setValidPatient(jeroen);
+        instance.setValidTimeFrame(tf);
         System.out.println("Jeroen: " + jeroen.getCampus());
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
         instance.resetValid();
-        instance.setValidDoctor(tf, d);
-        instance.setValidPatient(tf, ruben);
+        instance.setValidDoctor(d);
+        instance.setValidPatient(ruben);
+        instance.setValidTimeFrame(tf);
         System.out.println("Ruben: " + ruben.getCampus());
         assertTrue(instance.isAccepted());
 

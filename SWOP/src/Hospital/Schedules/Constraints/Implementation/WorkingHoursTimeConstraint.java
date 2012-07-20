@@ -1,7 +1,7 @@
 package Hospital.Schedules.Constraints.Implementation;
 
 import Hospital.People.Staff;
-import Hospital.Schedules.Constraints.BasicTimeFrameConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Time;
 import Hospital.World.TimeUtils;
@@ -9,9 +9,12 @@ import Hospital.World.TimeUtils;
 /**
  * Defines the constraint on the availability of nurses
  */
-public class WorkingHoursTimeConstraint extends BasicTimeFrameConstraint {
+public class WorkingHoursTimeConstraint extends TimeFrameConstraintImplementation {
+
     private static final Time dayStart = new Time(0, 0, 0, 9, 0);
     private static final Time dayEnd = new Time(0, 0, 0, 17, 0);
+    private Staff n;
+    private TimeFrame tf;
 
     /**
      * Constructor
@@ -19,21 +22,39 @@ public class WorkingHoursTimeConstraint extends BasicTimeFrameConstraint {
     public WorkingHoursTimeConstraint() {
     }
 
+    @Override
+    protected void setValidTimeFrame(TimeFrame tf) {
+        this.tf = tf;
+    }
+
     /**
      * @see Hospital.Schedules.Constraints.TimeFrameConstraint#setValidNurse(Hospital.Schedules.TimeFrame, Hospital.People.Nurse)
      */
     @Override
-    protected void setValidStaff(TimeFrame tf, Staff n) {
+    protected void setValidStaff(Staff n) {
+        this.n = n;
+    }
+
+    //TODO: Test this!!!!
+    @Override
+    protected Boolean isAccepted() {
+        if (tf == null || n == null) {
+            return null;
+        }
         Time start = TimeUtils.copyDay(tf.getTime(), dayStart);
         Time end = TimeUtils.copyDay(tf.getTime(), dayEnd);
-        if(tf.compareTo(start)<0){
-            setValid(false);
-        } else if(end.compareTo(tf.getEndTime())<0){
-            setValid(false);
+        if (tf.compareTo(start) < 0) {
+            return false;
+        } else if (end.compareTo(tf.getEndTime()) < 0) {
+            return false;
         } else {
-            if(isAccepted() == null){
-                setValid(true);
-            }
+            return true;
         }
+    }
+
+    @Override
+    protected void resetValid() {
+        n = null;
+        tf = null;
     }
 }

@@ -2,44 +2,55 @@ package Hospital.Schedules.Constraints.Implementation;
 
 import Hospital.People.Nurse;
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.Constraints.BasicTimeFrameConstraint;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class NurseAppointmentBackToBackConstraint extends BasicTimeFrameConstraint implements GetCampusConstraint {
+public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraintImplementation implements GetCampusConstraint {
 
-    private Campus campus;
+    private Nurse nurse;
+    private TimeFrame tf;
 
     @Override
-    protected void setValidNurse(TimeFrame tf, Nurse nurse) {
-        this.campus = nurse.getCampus();
+    protected void setValidTimeFrame(TimeFrame tf) {
+        this.tf = tf;
+    }
+
+    @Override
+    protected void setValidNurse(Nurse nurse) {
+        this.nurse = nurse;
+    }
+
+    @Override
+    protected Boolean isAccepted() {
+        if(tf == null || nurse == null){
+            return false;
+        }
         if (tf.getTime().getMinute() == 0) {
-            setValid(true);
-            return;
+            return true;
         }
         Schedule schedule = nurse.getSchedule();
         Appointment prev = schedule.getAppointmentBefore(tf.getTime());
         if (prev == null) {
-            setValid(false);
-            return;
+            return false;
         }
         int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
-        if (timeDiff == 0) {
-            setValid(true);
-        } else {
-            setValid(false);
-        }
+        return timeDiff == 0;
+
     }
 
     @Override
     protected void resetValid() {
-        super.resetValid();
-        this.campus = null;
+        this.nurse = null;
+        this.tf = null;
     }
 
     public Campus getCampus() {
-        return this.campus;
+        if(nurse == null){
+            return null;
+        }
+        return nurse.getCampus();
     }
 }

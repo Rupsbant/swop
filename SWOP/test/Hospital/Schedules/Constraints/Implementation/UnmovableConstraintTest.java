@@ -86,27 +86,32 @@ public class UnmovableConstraintTest {
 
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, nurse);
+        instance.setValidSchedulable(nurse);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, nurse);
+        instance.setValidSchedulable(nurse);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 19), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, nurse);
+        instance.setValidSchedulable(nurse);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, nurse);
+        instance.setValidSchedulable(nurse);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, nurse);
+        instance.setValidSchedulable(nurse);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
     }
 
@@ -115,27 +120,32 @@ public class UnmovableConstraintTest {
         UnmovableConstraint instance = new UnmovableConstraint(nurse);
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, ruben);
+        instance.setValidSchedulable(ruben);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, ruben);
+        instance.setValidSchedulable(ruben);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 19), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, ruben);
+        instance.setValidSchedulable(ruben);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, ruben);
+        instance.setValidSchedulable(ruben);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, ruben);
+        instance.setValidSchedulable(ruben);
+        instance.setValidTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.acceptAll());
     }
 
@@ -144,17 +154,20 @@ public class UnmovableConstraintTest {
         UnmovableConstraint instance = new UnmovableConstraint(nurse);
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, jeroen);
+        instance.setValidSchedulable(jeroen);
+        instance.setValidTimeFrame(tf);
         assertFalse("Can not move instantly between campuses", instance.acceptAll());
         
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 55), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, jeroen);
+        instance.setValidSchedulable(jeroen);
+        instance.setValidTimeFrame(tf);
         assertTrue("Enough time...", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 54), 20);
         instance.resetValid();
-        instance.setValidSchedulable(tf, jeroen);
+        instance.setValidSchedulable(jeroen);
+        instance.setValidTimeFrame(tf);
         assertFalse("Not enough time...", instance.acceptAll());
     }
 
@@ -165,6 +178,6 @@ public class UnmovableConstraintTest {
     public void testResetValid() {
         UnmovableConstraint instance = new UnmovableConstraint(null);
         instance.resetValid();
-        assertTrue(instance.acceptAll());
+        assertEquals(true, instance.acceptAll());
     }
 }

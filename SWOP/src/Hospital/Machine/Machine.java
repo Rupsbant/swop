@@ -137,8 +137,8 @@ public abstract class Machine implements Schedulable, Unmovable {
      * @param tfContstraints The constraints that must be satisfied.
      * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).acceptAll();.
      */
-    public TimeFrameConstraint setValidTimeFrame(TimeFrame tf, TimeFrameConstraint tfContstraints) {
-        return tfContstraints.setValidTimeFrameSchedulable(tf, this);
+    public TimeFrameConstraint setValidTimeFrame(TimeFrameConstraint tfContstraints) {
+        return tfContstraints.setValidTimeFrameSchedulable(this);
     }
 
     /**
