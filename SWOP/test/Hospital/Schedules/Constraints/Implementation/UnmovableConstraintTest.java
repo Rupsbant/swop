@@ -50,16 +50,6 @@ public class UnmovableConstraintTest {
         t = new Medication("Medication2", Boolean.TRUE, new ItemInfo[0]);
         appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
         appC.execute();
-
-        scheduleGroup = new SingleSchedulableGroup(jeroen);
-        t = new Medication("Medication3", Boolean.TRUE, new ItemInfo[0]);
-        appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
-        appC.execute();
-
-        scheduleGroup = new SingleSchedulableGroup(jeroen);
-        t = new Medication("Medication4", Boolean.TRUE, new ItemInfo[0]);
-        appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
-        appC.execute();
     }
 
     /**
@@ -71,89 +61,33 @@ public class UnmovableConstraintTest {
 
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
         instance.reset();
-        instance.setSchedulable(nurse);
+        instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
         instance.reset();
-        instance.setSchedulable(nurse);
+        instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 19), 20);
         instance.reset();
-        instance.setSchedulable(nurse);
+        instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
         instance.reset();
-        instance.setSchedulable(nurse);
+        instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.reset();
-        instance.setSchedulable(nurse);
+        instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
         assertTrue("Can always move instantly on campus", instance.isAccepted());
-    }
-
-    @Test
-    public void testSetValidSchedulableRuben() throws ArgumentIsNullException, ArgumentConstraintException {
-        UnmovableConstraint instance = new UnmovableConstraint(nurse);
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
-        instance.reset();
-        instance.setSchedulable(ruben);
-        instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
-        instance.reset();
-        instance.setSchedulable(ruben);
-        instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 19), 20);
-        instance.reset();
-        instance.setSchedulable(ruben);
-        instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
-        instance.reset();
-        instance.setSchedulable(ruben);
-        instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
-        instance.reset();
-        instance.setSchedulable(ruben);
-        instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
-    }
-
-    @Test
-    public void testSetValidSchedulableJeroen() throws ArgumentIsNullException, ArgumentConstraintException {
-        UnmovableConstraint instance = new UnmovableConstraint(nurse);
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
-        instance.reset();
-        instance.setSchedulable(jeroen);
-        instance.setTimeFrame(tf);
-        assertFalse("Can not move instantly between campuses", instance.isAccepted());
-        
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 55), 20);
-        instance.reset();
-        instance.setSchedulable(jeroen);
-        instance.setTimeFrame(tf);
-        assertTrue("Enough time...", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 54), 20);
-        instance.reset();
-        instance.setSchedulable(jeroen);
-        instance.setTimeFrame(tf);
-        assertFalse("Not enough time...", instance.isAccepted());
     }
 
     /**

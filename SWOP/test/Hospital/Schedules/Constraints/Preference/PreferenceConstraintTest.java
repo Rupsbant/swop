@@ -1,6 +1,5 @@
 package Hospital.Schedules.Constraints.Preference;
 
-import Hospital.Schedules.Constraints.Preference.PreferenceConstraint;
 import Hospital.Exception.Scheduling.SchedulingException;
 import java.util.Arrays;
 import Hospital.Schedules.Schedule;
@@ -90,17 +89,15 @@ public class PreferenceConstraintTest {
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
         instance.reset();
         instance.setDoctor(d);
-        instance.setPatient(jeroen);
+        instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        System.out.println("Jeroen: " + jeroen.getCampus());
         assertTrue(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
         instance.reset();
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        System.out.println("Ruben: " + ruben.getCampus());
         assertTrue(instance.isAccepted());
     }
 
@@ -109,17 +106,15 @@ public class PreferenceConstraintTest {
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
         PreferenceConstraint instance = new PreferenceConstraint();
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        System.out.println("Ruben: " + ruben.getCampus());
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
         instance.reset();
         instance.setDoctor(d);
-        instance.setPatient(jeroen);
+        instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        System.out.println("Jeroen: " + jeroen.getCampus());
         assertFalse(instance.isAccepted());
     }
 
@@ -128,33 +123,29 @@ public class PreferenceConstraintTest {
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 11, 59), 15);
         PreferenceConstraint instance = new PreferenceConstraint();
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        System.out.println("Ruben: " + ruben.getCampus());
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 11, 59), 15);
         instance.reset();
         instance.setDoctor(d);
-        instance.setPatient(jeroen);
+        instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        System.out.println("Jeroen: " + jeroen.getCampus());
         assertFalse(instance.isAccepted());
         
         tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
         instance.reset();
         instance.setDoctor(d);
-        instance.setPatient(jeroen);
+        instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        System.out.println("Jeroen: " + jeroen.getCampus());
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
         instance.reset();
         instance.setDoctor(d);
-        instance.setPatient(ruben);
         instance.setTimeFrame(tf);
-        System.out.println("Ruben: " + ruben.getCampus());
+        instance.setCampus(ruben.getCampus());
         assertTrue(instance.isAccepted());
 
     }

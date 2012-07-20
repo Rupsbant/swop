@@ -1,10 +1,10 @@
 package Hospital.Schedules.Constraints.GetCampus;
 
 import Hospital.Patient.Patient;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.CampusDecider;
 import Hospital.World.Campus;
 
-public class PatientDecides extends GetCampusConstraint {
+public class PatientDecides extends CampusDecider {
 
     private Campus campus;
 
@@ -15,6 +15,6 @@ public class PatientDecides extends GetCampusConstraint {
 
     @Override
     public void setPatient(Patient p) {
-        p.getCampus();
+        this.campus = p.getCampus();
     }
 }

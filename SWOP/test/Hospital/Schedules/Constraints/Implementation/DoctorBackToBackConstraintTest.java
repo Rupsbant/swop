@@ -78,7 +78,7 @@ public class DoctorBackToBackConstraintTest {
         assertTrue(instance.isAccepted() == null);
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
 
         assertTrue(instance.isAccepted() != null);
@@ -94,69 +94,56 @@ public class DoctorBackToBackConstraintTest {
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 15);
         DoctorBackToBackConstraint instance = new DoctorBackToBackConstraint();
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
         assertTrue(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 15);
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 50), 15);
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
         assertTrue(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 51), 15);
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 30), 15);
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 45), 15);
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
         assertTrue(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 46), 15);
         instance.setDoctor(d);
-        instance.setPatient(ruben);
+        instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 45), 15);
         instance.setDoctor(d);
-        instance.setPatient(jeroen);
+        instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 30), 15);
         instance.setDoctor(d);
-        instance.setPatient(jeroen);
+        instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
         assertTrue(instance.isAccepted());
-    }
-
-    /**
-     * Test of getCampus method, of class DoctorBackToBackConstraint.
-     */
-    @Test
-    public void testGetCampus() throws ArgumentIsNullException, ArgumentConstraintException {
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
-        DoctorBackToBackConstraint instance = new DoctorBackToBackConstraint();
-        instance.setDoctor(d);
-        instance.setPatient(ruben);
-        instance.setTimeFrame(tf);
-        assertEquals(ruben.getCampus(), instance.getCampus());
     }
 }

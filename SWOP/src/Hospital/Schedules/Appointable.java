@@ -1,5 +1,6 @@
 package Hospital.Schedules;
 
+import Hospital.Schedules.Constraints.CampusDecider;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import java.util.List;
@@ -19,7 +20,7 @@ public interface Appointable {
      * Sets the Appointment of this Appointable.
      * @param appointment Appointment to set.
      */
-    void setAppointment(Appointment appointment);
+    public void setAppointment(Appointment appointment);
 
     /**
      * Returns the constraints this Appointable must satisfy for the Patient.
@@ -32,7 +33,13 @@ public interface Appointable {
      * These include normally: a nurse and a machine.
      * @return A list of Groups to search from the world.
      */
-    List<MultiScheduleGroup> getScheduleGroups();
+    public List<MultiScheduleGroup> getScheduleGroups();
+
+    /**
+     * Returns the Decider of the Campus
+     * @return A CampusDecider
+     */
+    public CampusDecider getCampusDecider();
 
     /**
      * Returns a TimeFrameDelay object that waits the needed time during scheduling based on the current time.

@@ -93,11 +93,10 @@ public class AppointmentFactoryTest {
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
         Campus tempCampus = new Campus("abc", w);
         List<TimeFrameConstraint> tfConstraints = new ArrayList<TimeFrameConstraint>();
-        tfConstraints.add(new GetC(tempCampus));
         List<ScheduleGroup> groups = Arrays.asList((ScheduleGroup) new SingleSchedulableGroup(ruben));
         Appointable t = new XRayScan(3, 3, "topje van m'n neus");
         AppointmentCommand appC = new AppointmentCommand(w, t, Collections.EMPTY_LIST, new HighLowPriority(true));
-        Appointment result = AppointmentFactory.makeAppointment(tf, tfConstraints, groups, appC);
+        Appointment result = AppointmentFactory.makeAppointment(tf, tfConstraints, new GetC(tempCampus), groups, appC);
         assertEquals("Campuses are different", tempCampus, result.getCampus());
         assertEquals("Appcommand is different", appC, result.getAppCommand());
         assertEquals("TimeFrame is wrong, check solver first", tf, result.getTimeFrame());

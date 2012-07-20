@@ -1,10 +1,10 @@
 package Hospital.Schedules.Constraints.GetCampus;
 
 import Hospital.People.Nurse;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
+import Hospital.Schedules.Constraints.CampusDecider;
 import Hospital.World.Campus;
 
-public class NurseDecides extends GetCampusConstraint {
+public class NurseDecides extends CampusDecider {
     private Campus campus;
 
     @Override

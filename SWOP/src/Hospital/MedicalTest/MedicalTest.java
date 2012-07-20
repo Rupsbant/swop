@@ -8,6 +8,8 @@ import Hospital.Machine.Machine;
 import Hospital.People.Nurse;
 import Hospital.Schedules.Appointable;
 import Hospital.Schedules.Appointment;
+import Hospital.Schedules.Constraints.CampusDecider;
+import Hospital.Schedules.Constraints.GetCampus.NurseDecides;
 import Hospital.Schedules.Constraints.Implementation.NurseAppointmentBackToBackConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
@@ -100,6 +102,14 @@ public abstract class MedicalTest implements Result, Appointable {
         List<TimeFrameConstraint> constraints = new ArrayList<TimeFrameConstraint>();
         constraints.add(new NurseAppointmentBackToBackConstraint());
         return constraints;
+    }
+
+    /**
+     * The nurse is unmovable and decides where the appointment is.
+     * @return new NurseDecider();
+     */
+    public CampusDecider getCampusDecider() {
+        return new NurseDecides();
     }
 
     /**

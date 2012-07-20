@@ -6,6 +6,7 @@ import Hospital.Exception.Scheduling.ScheduleGroupUnavailable;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Schedules.ConstraintSolver.AppointmentConstraintSolver;
 import Hospital.Schedules.ConstraintSolver.Solver;
+import Hospital.Schedules.Constraints.CampusDecider;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.World.Campus;
 import java.util.HashSet;
@@ -26,11 +27,13 @@ public class AppointmentFactory {
      * @throws SchedulingException one of the given schedules changed during the execution of this function
      * @throws ScheduleGroupUnavailable a ScheduleGroup a free schedule at the given TimeFrame was given to the function
      */
-    static Appointment makeAppointment(TimeFrame tf, List<TimeFrameConstraint> tfConstraints, List<ScheduleGroup> groups, AppointmentCommand appC) throws SchedulingException, ScheduleGroupUnavailable {
+    static Appointment makeAppointment(TimeFrame tf, List<TimeFrameConstraint> tfConstraints, CampusDecider campusDecider, List<ScheduleGroup> groups, AppointmentCommand appC)
+            throws SchedulingException, ScheduleGroupUnavailable {
         AppointmentConstraintSolver solver = new Solver();
         solver.setConstaints(tfConstraints);
         solver.setFirstTimeFrame(tf);
         solver.setScheduleGroups(groups);
+        solver.setCampusDecider(campusDecider);
         solver.solve();
         Campus campus = solver.getCampus();
         List<Schedulable> chosen = solver.getAttendees();

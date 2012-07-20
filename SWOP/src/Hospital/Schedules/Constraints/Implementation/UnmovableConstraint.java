@@ -20,7 +20,7 @@ public class UnmovableConstraint extends TimeFrameConstraint {
     }
 
     public Boolean isAccepted() {
-        return unmovable.equals(campus);
+        return unmovable.getCampus().equals(campus);
     }
 
     public void reset() {

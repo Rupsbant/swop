@@ -1,13 +1,14 @@
 package Hospital.Schedules;
 
+import Hospital.Schedules.Constraints.CampusDecider;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
+import Hospital.Schedules.Constraints.GetCampus.PatientDecides;
 import Hospital.Schedules.Constraints.Implementation.DoctorBackToBackConstraint;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,6 +45,14 @@ public class DoctorPatientAppointment implements Appointable {
         List<TimeFrameConstraint> constraints = new ArrayList<TimeFrameConstraint>();
         constraints.add(doctorConstraint);
         return constraints;
+    }
+
+    /**
+     * The Patient decides where the appointment is, the doctor moves to the patient
+     * @return new PatientDecides();
+     */
+    public CampusDecider getCampusDecider() {
+        return new PatientDecides();
     }
 
     /**

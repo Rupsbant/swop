@@ -102,7 +102,8 @@ public class NurseController extends LoginController<Nurse> {
         try {
             return appC.execute();
         } catch (CannotDoException ex) {
-            throw new Error("This is the first time it is executed, it should be done...");
+            throw new Error(ex);
+            //throw new Error("This is the first time it is executed, it should be done...");
         }
     }
 }

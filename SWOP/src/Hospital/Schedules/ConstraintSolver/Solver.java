@@ -3,8 +3,7 @@ package Hospital.Schedules.ConstraintSolver;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Scheduling.SchedulingException;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
-import Hospital.Schedules.Constraints.Implementation.NullConstraint;
+import Hospital.Schedules.Constraints.CampusDecider;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
@@ -13,8 +12,6 @@ import Hospital.World.Campus;
 import Hospital.World.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Solver implements AppointmentConstraintSolver {
 
@@ -25,10 +22,15 @@ public class Solver implements AppointmentConstraintSolver {
     //TODO: Make Constraints return the first possible time.
     //Contract of workings of the Constraints
     private TimeFrame tf;
-    private TimeFrame chosenTimeFrame;
+    private CampusDecider campusDecider;
     private List<ScheduleGroup> groups;
     private List<TimeFrameConstraint> tfConstraints;
+
+    /*--------*\
+    |* Output *|
+    \*--------*/
     private List<Schedulable> out;
+    private TimeFrame chosenTimeFrame;
     private Campus campus;
 
     public Solver solve() throws SchedulingException {
@@ -42,27 +44,34 @@ public class Solver implements AppointmentConstraintSolver {
     }
 
     private boolean stopConditions(TimeFrame tf) throws SchedulingException {
+        //reset previous
         for(TimeFrameConstraint tfC : tfConstraints){
             tfC.reset();
         }
+        //get constraints
         List<TimeFrameConstraint> allConstraints = new ArrayList<TimeFrameConstraint>();
         for (Schedulable sched : out) {
             allConstraints.addAll(sched.getConstraints());
+            sched.visitConstraint(campusDecider);
         }
         allConstraints.addAll(tfConstraints);
+
+        //decide campus
+        this.campus = campusDecider.getCampus();
+        //visit constraints
         for(TimeFrameConstraint tfC : allConstraints){
+            tfC.setTimeFrame(tf);
+            tfC.setCampus(campus);
             for (Schedulable sched : out) {
                 sched.visitConstraint(tfC);
             }
-            tfC.setTimeFrame(tf);
             Boolean accepted = tfC.isAccepted();
             if(accepted == null){
-                throw new SchedulingException("Something went very wrong, information was missing");
+                throw new SchedulingException("Something went very wrong, information was missing"+tfC);
             } else if(!accepted){
                 return false;
             }
         }
-        this.campus = ((GetCampusConstraint) tfConstraints.get(0)).getCampus();
         return true;
     }
 
@@ -94,7 +103,6 @@ public class Solver implements AppointmentConstraintSolver {
     }
 
     public Campus getCampus() {
-        System.out.println("Appointment at: "+this.campus);
         return this.campus;
     }
 
@@ -119,6 +127,10 @@ public class Solver implements AppointmentConstraintSolver {
     public void setConstaints(List<TimeFrameConstraint> tfConstraints) {
         reset();
         this.tfConstraints = tfConstraints;
+    }
+
+    public void setCampusDecider(CampusDecider campusDecider) {
+        this.campusDecider = campusDecider;
     }
 
     public void reset() {

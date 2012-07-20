@@ -1,6 +1,5 @@
 package Hospital.Schedules.Constraints.Preference;
 
-import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.TimeFrame;
@@ -29,6 +28,7 @@ public class PreferenceConstraint extends TimeFrameConstraint {
 
     public Boolean isAccepted() {
         if (preference == null || tf == null || campus == null) {
+            System.out.println(preference+""+tf+campus);
             return null;
         }
         return preference.canAddAppointment(tf, campus);

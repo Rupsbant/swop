@@ -11,6 +11,8 @@ import Hospital.Factory.Result;
 import Hospital.People.Nurse;
 import Hospital.Schedules.Appointable;
 import Hospital.Schedules.Appointment;
+import Hospital.Schedules.Constraints.CampusDecider;
+import Hospital.Schedules.Constraints.GetCampus.NurseDecides;
 import Hospital.Schedules.Constraints.Implementation.NurseAppointmentBackToBackConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Warehouse.ItemConstraint;
@@ -90,6 +92,14 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
         out.add(nurseConstraint);
         out.add(new ItemConstraint(this));
         return out;
+    }
+
+    /**
+     * The Nurse is unmovable and decides where the appointment is.
+     * @return new NurseDecides();
+     */
+    public CampusDecider getCampusDecider() {
+        return new NurseDecides();
     }
 
     /**

@@ -70,7 +70,6 @@ public class AppointmentCommand implements Command {
         this.groups.addAll(app.getScheduleGroups());
         this.groups.addAll(coreSchedules);
         this.tfConstraints = app.getConstraints();
-        System.out.println(app);
         this.tfConstraints.add(new PriorityConstraint(priority));
         this.priority = priority;
         populateScheduleGroups(world);
@@ -113,7 +112,7 @@ public class AppointmentCommand implements Command {
             throw new CannotDoException("Appointment already planned");
         }
         try {
-            appointment = AppointmentFactory.makeAppointment(td.getDelayedTimeFrame(), tfConstraints, groups, this);
+            appointment = AppointmentFactory.makeAppointment(td.getDelayedTimeFrame(), tfConstraints, appointable.getCampusDecider(), groups, this);
             Set<AppointmentCommand> preempted = AppointmentFactory.getPreempted(appointment.getAttendees(), appointment.getTimeFrame());
 
             String s = AppointmentFactory.undoPreempted(preempted);
@@ -126,7 +125,8 @@ public class AppointmentCommand implements Command {
         } catch (ScheduleGroupUnavailable ex) {
             throw new CannotDoException("Some ScheduleGroup had no available resources: " + ex.getMessage());
         } catch (SchedulingException ex) {
-            throw new CannotDoException("All possible free resource-combinations throw schedulingException: " + ex.getMessage());
+            throw new Error(ex);
+            //throw new CannotDoException("All possible free resource-combinations throw schedulingException: " + ex.getMessage());
         }
     }
 
