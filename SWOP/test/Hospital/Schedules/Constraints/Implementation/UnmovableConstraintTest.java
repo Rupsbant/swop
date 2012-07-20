@@ -95,8 +95,10 @@ public class UnmovableConstraintTest {
      */
     @Test
     public void testResetValid() {
-        UnmovableConstraint instance = new UnmovableConstraint(null);
+        UnmovableConstraint instance = new UnmovableConstraint(nurse);
+        instance.setCampus(nurse.getCampus());
+        assertTrue(instance.isAccepted());
         instance.reset();
-        assertEquals(true, instance.isAccepted());
+        assertEquals(null, instance.isAccepted());
     }
 }

@@ -20,6 +20,9 @@ public class UnmovableConstraint extends TimeFrameConstraint {
     }
 
     public Boolean isAccepted() {
+        if(campus == null){
+            return null;
+        }
         return unmovable.getCampus().equals(campus);
     }
 
