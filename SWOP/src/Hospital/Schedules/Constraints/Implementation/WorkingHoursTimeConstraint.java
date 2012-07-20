@@ -13,12 +13,11 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
 
     private static final Time dayStart = new Time(0, 0, 0, 9, 0);
     private static final Time dayEnd = new Time(0, 0, 0, 17, 0);
-    private Staff n;
     private TimeFrame tf;
 
     //TODO: Test this!!!!
     public Boolean isAccepted() {
-        if (tf == null || n == null) {
+        if (tf == null) {
             return null;
         }
         Time start = TimeUtils.copyDay(tf.getTime(), dayStart);
@@ -37,13 +36,7 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
         this.tf = tf;
     }
 
-    @Override
-    public void setStaff(Staff n) {
-        this.n = n;
-    }
-
     public void reset() {
-        n = null;
         tf = null;
     }
 }

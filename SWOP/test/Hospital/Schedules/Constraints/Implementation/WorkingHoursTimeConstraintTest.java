@@ -28,37 +28,31 @@ public class WorkingHoursTimeConstraintTest {
 
         TimeFrame tf = new TimeFrame(new Time(9, 9, 9, 8, 0), 15);
         instance.reset();
-        instance.setStaff(n);
         instance.setTimeFrame(tf);
         assertFalse("TimeFrame is not a working hour.", instance.isAccepted());
 
         tf = new TimeFrame(new Time(9, 9, 9, 9, 00), 15);
         instance.reset();
-        instance.setStaff(n);
         instance.setTimeFrame(tf);
         assertTrue("TimeFrame is a working hour.", instance.isAccepted());
 
         tf = new TimeFrame(new Time(9, 9, 9, 0, 59), 15);
         instance.reset();
-        instance.setStaff(n);
         instance.setTimeFrame(tf);
         assertFalse("TimeFrame is not a working hour.", instance.isAccepted());
 
         tf = new TimeFrame(new Time(9, 9, 9, 17, 00), 15);
         instance.reset();
-        instance.setStaff(n);
         instance.setTimeFrame(tf);
         assertFalse("TimeFrame is not a working hour.", instance.isAccepted());
 
         tf = new TimeFrame(new Time(9, 9, 9, 16, 46), 15);
         instance.reset();
-        instance.setStaff(n);
         instance.setTimeFrame(tf);
         assertFalse("TimeFrame is not a working hour.", instance.isAccepted());
 
         tf = new TimeFrame(new Time(9, 9, 9, 16, 45), 15);
         instance.reset();
-        instance.setStaff(n);
         instance.setTimeFrame(tf);
         assertTrue("TimeFrame is a working hour.", instance.isAccepted());
     }

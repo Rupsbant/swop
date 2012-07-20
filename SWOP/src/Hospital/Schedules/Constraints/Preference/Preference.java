@@ -9,7 +9,7 @@ import Hospital.World.Campus;
  * @author SWOP-12
  */
 public interface Preference {
-    //Oplossing gekozen
+    
     boolean canAddAppointment(TimeFrame tf, Campus campus);
     
     void makeThisAsPreference(HasPreference d);
