@@ -53,7 +53,7 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraintImplementatio
     }
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
         n = null;
         tf = null;
     }

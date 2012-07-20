@@ -16,7 +16,7 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraintImplementatio
     private TimeFrame tf;
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
         tf = null;
         campusThisAppointment = null;
         schedule = null;

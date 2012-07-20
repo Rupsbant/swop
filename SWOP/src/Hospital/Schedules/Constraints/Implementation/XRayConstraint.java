@@ -52,7 +52,7 @@ public class XRayConstraint extends TimeFrameConstraintImplementation {
     }
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
         this.patient = null;
         this.tf = null;
     }

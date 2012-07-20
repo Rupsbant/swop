@@ -69,7 +69,7 @@ public class Solver implements AppointmentConstraintSolver {
         allConstraints.addConstraintList(tfConstraints);
         for (Schedulable sched : out) {
             allConstraints.setTimeFrame(tf);
-            sched.setValidTimeFrame(allConstraints);
+            sched.visitConstraint(allConstraints);
         }
         Boolean accepted = allConstraints.acceptAll();
         if (accepted != null && accepted) {

@@ -93,8 +93,8 @@ public abstract class Person implements Schedulable {
      * @param tfContstraints The constraints that must be satisfied.
      * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).acceptAll();.
      */
-    public TimeFrameConstraint setValidTimeFrame(TimeFrameConstraint tfContstraints) {
-        tfContstraints.setValidTimeFrameSchedulable(this);
+    public TimeFrameConstraint visitConstraint(TimeFrameConstraint tfContstraints) {
+        tfContstraints.setSchedulable(this);
         return tfContstraints;
     }
 

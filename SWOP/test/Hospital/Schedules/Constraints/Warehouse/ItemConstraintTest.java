@@ -72,7 +72,7 @@ public class ItemConstraintTest {
         assertFalse(instance.isAccepted());
 
         toOrder.addCount(-1);
-        instance.resetValid();
+        instance.reset();
         instance.setValidTimeFrame(new TimeFrame(new Time(2011, 11, 9, 13, 0), 20));
         assertTrue(instance.isAccepted());
     }

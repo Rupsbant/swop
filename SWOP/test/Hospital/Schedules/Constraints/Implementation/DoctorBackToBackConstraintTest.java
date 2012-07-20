@@ -74,7 +74,7 @@ public class DoctorBackToBackConstraintTest {
     @Test
     public void testResetValid() throws ArgumentIsNullException, ArgumentConstraintException {
         DoctorBackToBackConstraint instance = new DoctorBackToBackConstraint();
-        instance.resetValid();
+        instance.reset();
         assertTrue(instance.isAccepted() == null);
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
         instance.setValidDoctor(d);
@@ -82,7 +82,7 @@ public class DoctorBackToBackConstraintTest {
         instance.setValidTimeFrame(tf);
 
         assertTrue(instance.isAccepted() != null);
-        instance.resetValid();
+        instance.reset();
         assertTrue(instance.isAccepted() == null);
     }
 

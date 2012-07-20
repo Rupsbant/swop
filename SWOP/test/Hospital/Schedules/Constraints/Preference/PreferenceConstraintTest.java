@@ -88,7 +88,7 @@ public class PreferenceConstraintTest {
         PreferenceConstraint instance = new PreferenceConstraint();
 
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
-        instance.resetValid();
+        instance.reset();
         instance.setValidDoctor(d);
         instance.setValidPatient(jeroen);
         instance.setValidTimeFrame(tf);
@@ -96,7 +96,7 @@ public class PreferenceConstraintTest {
         assertTrue(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
-        instance.resetValid();
+        instance.reset();
         instance.setValidDoctor(d);
         instance.setValidPatient(ruben);
         instance.setValidTimeFrame(tf);
@@ -115,7 +115,7 @@ public class PreferenceConstraintTest {
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
-        instance.resetValid();
+        instance.reset();
         instance.setValidDoctor(d);
         instance.setValidPatient(jeroen);
         instance.setValidTimeFrame(tf);
@@ -134,7 +134,7 @@ public class PreferenceConstraintTest {
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 11, 59), 15);
-        instance.resetValid();
+        instance.reset();
         instance.setValidDoctor(d);
         instance.setValidPatient(jeroen);
         instance.setValidTimeFrame(tf);
@@ -142,7 +142,7 @@ public class PreferenceConstraintTest {
         assertFalse(instance.isAccepted());
         
         tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
-        instance.resetValid();
+        instance.reset();
         instance.setValidDoctor(d);
         instance.setValidPatient(jeroen);
         instance.setValidTimeFrame(tf);
@@ -150,7 +150,7 @@ public class PreferenceConstraintTest {
         assertFalse(instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
-        instance.resetValid();
+        instance.reset();
         instance.setValidDoctor(d);
         instance.setValidPatient(ruben);
         instance.setValidTimeFrame(tf);

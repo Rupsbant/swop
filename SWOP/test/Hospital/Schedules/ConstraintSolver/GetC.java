@@ -17,7 +17,7 @@ public class GetC extends TimeFrameConstraintImplementation implements GetCampus
     }
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
     }
 
     public Campus getCampus() {

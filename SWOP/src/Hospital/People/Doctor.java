@@ -15,12 +15,10 @@ import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Preference.HasPreference;
 import Hospital.Schedules.Constraints.Preference.Preference;
 import Hospital.Schedules.Constraints.Preference.PreferenceConstraint;
-import Hospital.Schedules.TimeFrame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//TODO: DOCTOR INJECTION!
 /**
  * A doctor, creates diagnoses, prescribes treatments and medical tests
  */
@@ -233,9 +231,9 @@ public class Doctor extends Staff implements HasPreference {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).acceptAll();.
      */
     @Override
-    public TimeFrameConstraint setValidTimeFrame(TimeFrameConstraint tfConstraints){
-        super.setValidTimeFrame(tfConstraints);
-        tfConstraints.setValidTimeFrameDoctor(this);
+    public TimeFrameConstraint visitConstraint(TimeFrameConstraint tfConstraints){
+        super.visitConstraint(tfConstraints);
+        tfConstraints.setDoctor(this);
         return tfConstraints;
     }
 

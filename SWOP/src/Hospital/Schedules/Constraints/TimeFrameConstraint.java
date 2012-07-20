@@ -35,38 +35,38 @@ public interface TimeFrameConstraint {
     TimeFrameConstraint setTimeFrame(TimeFrame tf);
 
     /**
-     * Sets the Doctor d that is present during the appointment.
-     * @param d Doctor that will be present.
-     * @return this, for chaining.
-     */
-    TimeFrameConstraint setValidTimeFrameDoctor(Doctor d);
-
-    /**
-     * Sets the Nurse n that is present during the appointment.
-     * @param n Nurse that will be present.
-     * @return this, for chaining.
-     */
-    TimeFrameConstraint setValidTimeFrameNurse(Nurse n);
-
-    /**
-     * Sets the Patient p that is present during the appointment.
-     * @param p Patient that will be present.
-     * @return this, for chaining.
-     */
-    TimeFrameConstraint setValidTimeFramePatient(Patient p);
-
-    /**
-     * Sets the Schedulable s that is present during the appointment.
+     * Sets the Schedulable s that will be present during the appointment.
      * @param s Schedulable that will be present.
      * @return this, for chaining.
      */
-    TimeFrameConstraint setValidTimeFrameSchedulable(Schedulable s);
+    TimeFrameConstraint setSchedulable(Schedulable s);
 
     /**
-     * Sets the Staff s that is present during the appointment.
+     * Sets the Staff s that will be present during the appointment.
      * @param s Staff that will be present.
      * @return this, for chaining.
      */
-    TimeFrameConstraint setValidTimeFrameStaff(Staff s);
+    TimeFrameConstraint setStaff(Staff s);
+
+    /**
+     * Sets the Doctor d that will be present during the appointment.
+     * @param d Doctor that will be present.
+     * @return this, for chaining.
+     */
+    TimeFrameConstraint setDoctor(Doctor d);
+
+    /**
+     * Sets the Nurse n that will be present during the appointment.
+     * @param n Nurse that will be present.
+     * @return this, for chaining.
+     */
+    TimeFrameConstraint setNurse(Nurse n);
+
+    /**
+     * Sets the Patient p that will be present during the appointment.
+     * @param p Patient that will be present.
+     * @return this, for chaining.
+     */
+    TimeFrameConstraint setPatient(Patient p);
 
 }

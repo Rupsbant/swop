@@ -46,7 +46,7 @@ public class PriorityConstraint extends TimeFrameConstraintImplementation {
     }
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
         this.tf = null;
         attendeeSchedules.clear();
     }

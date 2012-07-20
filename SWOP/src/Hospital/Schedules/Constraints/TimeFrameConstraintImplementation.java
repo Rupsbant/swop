@@ -55,42 +55,42 @@ public abstract class TimeFrameConstraintImplementation implements TimeFrameCons
         return this;
     }
 
-    public final TimeFrameConstraintImplementation setValidTimeFramePatient(Patient p) {
+    public final TimeFrameConstraintImplementation setPatient(Patient p) {
         setValidPatient(p);
         if (next != null) {
-            next.setValidTimeFramePatient(p);
+            next.setPatient(p);
         }
         return this;
     }
 
-    public final TimeFrameConstraintImplementation setValidTimeFrameStaff(Staff n) {
+    public final TimeFrameConstraintImplementation setStaff(Staff n) {
         setValidStaff(n);
         if (next != null) {
-            next.setValidTimeFrameStaff(n);
+            next.setStaff(n);
         }
         return this;
     }
 
-    public final TimeFrameConstraintImplementation setValidTimeFrameDoctor(Doctor d) {
+    public final TimeFrameConstraintImplementation setDoctor(Doctor d) {
         setValidDoctor(d);
         if (next != null) {
-            next.setValidTimeFrameDoctor(d);
+            next.setDoctor(d);
         }
         return this;
     }
 
-    public final TimeFrameConstraintImplementation setValidTimeFrameNurse(Nurse n) {
+    public final TimeFrameConstraintImplementation setNurse(Nurse n) {
         setValidNurse(n);
         if (next != null) {
-            next.setValidTimeFrameNurse(n);
+            next.setNurse(n);
         }
         return this;
     }
 
-    public final TimeFrameConstraintImplementation setValidTimeFrameSchedulable(Schedulable p) {
+    public final TimeFrameConstraintImplementation setSchedulable(Schedulable p) {
         setValidSchedulable(p);
         if (next != null) {
-            next.setValidTimeFrameSchedulable(p);
+            next.setSchedulable(p);
         }
         return this;
     }
@@ -116,7 +116,7 @@ public abstract class TimeFrameConstraintImplementation implements TimeFrameCons
      * Unsets all Constraints.
      */
     public final void resetAll() {
-        resetValid();
+        reset();
         if (next != null) {
             next.resetAll();
         }
@@ -134,7 +134,7 @@ public abstract class TimeFrameConstraintImplementation implements TimeFrameCons
     /**
      * Resets this constraint to the default value.
      */
-    protected abstract void resetValid();
+    protected abstract void reset();
 
     /**
      * Sets the TimeFrame during which the appointment happens.

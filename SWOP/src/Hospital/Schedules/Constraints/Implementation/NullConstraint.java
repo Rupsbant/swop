@@ -18,7 +18,7 @@ public class NullConstraint extends TimeFrameConstraintImplementation {
     }
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
     }
 
     @Override

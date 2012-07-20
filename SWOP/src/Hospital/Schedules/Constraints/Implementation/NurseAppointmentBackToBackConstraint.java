@@ -42,7 +42,7 @@ public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraintImp
     }
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
         this.nurse = null;
         this.tf = null;
     }

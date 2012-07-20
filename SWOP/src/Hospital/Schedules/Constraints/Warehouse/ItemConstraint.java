@@ -38,7 +38,7 @@ public class ItemConstraint extends TimeFrameConstraintImplementation {
     }
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
         tf = null;
     }
 

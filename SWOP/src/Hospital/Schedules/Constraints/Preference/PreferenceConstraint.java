@@ -43,7 +43,7 @@ public class PreferenceConstraint extends TimeFrameConstraintImplementation {
     }
 
     @Override
-    protected void resetValid() {
+    protected void reset() {
         campus = null;
         preference = null;
         tf = null;
