@@ -1,7 +1,7 @@
 package Hospital.Schedules.Constraints.Warehouse;
 
 import Hospital.Exception.Warehouse.StockException;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
 import Hospital.Treatments.Treatment;

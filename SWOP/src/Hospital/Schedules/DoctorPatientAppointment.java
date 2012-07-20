@@ -1,13 +1,11 @@
 package Hospital.Schedules;
 
-import Hospital.Schedules.Constraints.CampusDecider;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Schedules.Constraints.GetCampus.PatientDecides;
 import Hospital.Schedules.Constraints.Implementation.DoctorBackToBackConstraint;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

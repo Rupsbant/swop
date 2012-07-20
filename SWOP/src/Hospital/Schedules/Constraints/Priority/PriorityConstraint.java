@@ -1,7 +1,7 @@
 package Hospital.Schedules.Constraints.Priority;
 
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;

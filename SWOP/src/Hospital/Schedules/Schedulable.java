@@ -1,6 +1,5 @@
 package Hospital.Schedules;
 
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import java.util.List;
 
 /**

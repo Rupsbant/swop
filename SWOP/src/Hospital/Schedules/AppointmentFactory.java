@@ -6,8 +6,6 @@ import Hospital.Exception.Scheduling.ScheduleGroupUnavailable;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Schedules.ConstraintSolver.AppointmentConstraintSolver;
 import Hospital.Schedules.ConstraintSolver.Solver;
-import Hospital.Schedules.Constraints.CampusDecider;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.World.Campus;
 import java.util.HashSet;
 

@@ -1,6 +1,6 @@
 package Hospital.Schedules.Constraints.Implementation;
 
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.TimeFrame;
 
 /**

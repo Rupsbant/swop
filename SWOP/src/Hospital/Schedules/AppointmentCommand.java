@@ -13,7 +13,6 @@ import Hospital.Factory.Command;
 import Hospital.Factory.NullCommand;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Utils;
 import Hospital.World.World;
 import Hospital.World.WorldTime;

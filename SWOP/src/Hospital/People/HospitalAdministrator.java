@@ -5,7 +5,7 @@ import Hospital.Controllers.CampusController;
 import Hospital.Controllers.LoginController;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import java.util.List;
 
 /**

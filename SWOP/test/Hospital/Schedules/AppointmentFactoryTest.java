@@ -17,7 +17,6 @@ import Hospital.World.Time;
 import Hospital.World.World;
 import Hospital.People.Doctor;
 import Hospital.Schedules.ConstraintSolver.GetC;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
 import Hospital.Treatments.Medication;

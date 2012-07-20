@@ -7,7 +7,7 @@ import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.People.Staff;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
 import java.util.List;
 

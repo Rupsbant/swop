@@ -1,4 +1,4 @@
-package Hospital.Schedules.Constraints;
+package Hospital.Schedules;
 
 import Hospital.Schedules.SchedulableVisitor;
 import Hospital.World.Campus;

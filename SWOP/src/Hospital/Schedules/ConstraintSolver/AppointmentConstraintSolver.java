@@ -1,8 +1,8 @@
 package Hospital.Schedules.ConstraintSolver;
 
 import Hospital.Exception.Scheduling.SchedulingException;
-import Hospital.Schedules.Constraints.CampusDecider;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.CampusDecider;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.TimeFrame;

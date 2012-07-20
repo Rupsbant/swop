@@ -13,7 +13,7 @@ import Hospital.Schedules.Appointment;
 import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.ScheduleTestUtil;
 import Hospital.Schedules.TimeFrame;

@@ -1,7 +1,7 @@
 package Hospital.Schedules.Constraints.Preference;
 
 import Hospital.People.Doctor;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 

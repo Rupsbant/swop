@@ -5,7 +5,7 @@ import Hospital.Controllers.NurseController;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.CannotChangeException;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Implementation.UnmovableConstraint;
 import Hospital.Schedules.SchedulableVisitor;
 import Hospital.World.Campus;

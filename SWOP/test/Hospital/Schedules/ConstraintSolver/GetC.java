@@ -1,6 +1,6 @@
 package Hospital.Schedules.ConstraintSolver;
 
-import Hospital.Schedules.Constraints.CampusDecider;
+import Hospital.Schedules.CampusDecider;
 import Hospital.World.Campus;
 
 public class GetC extends CampusDecider {

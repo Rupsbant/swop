@@ -1,10 +1,8 @@
 package Hospital.Schedules.Constraints.Implementation;
 
-import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.Constraints.CampusDecider;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;

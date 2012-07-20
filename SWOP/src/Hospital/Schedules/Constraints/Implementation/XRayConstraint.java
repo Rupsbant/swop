@@ -3,7 +3,7 @@ package Hospital.Schedules.Constraints.Implementation;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.MedicalTest.XRayScan;
 import Hospital.Patient.Patient;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.TimeFrame;
 import Hospital.Utils;
 import Hospital.World.Time;
@@ -41,6 +41,7 @@ public class XRayConstraint extends TimeFrameConstraint {
      * result in the patient getting more than MAX_XRAY_COUNT scans in the span of a year
      * @see Hospital.Schedules.Constraints.TimeFrameConstraint#setValidPatient(Hospital.Schedules.TimeFrame, Hospital.Patient.Patient)
      */
+    @Override
     public void setPatient(Patient p) {
         this.patient = p;
     }

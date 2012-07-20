@@ -11,7 +11,7 @@ import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Factory.Command;
 import Hospital.Patient.DiagnosisSecondOpinion;
 import Hospital.Patient.Patient;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Preference.HasPreference;
 import Hospital.Schedules.Constraints.Preference.Preference;
 import Hospital.Schedules.Constraints.Preference.PreferenceConstraint;

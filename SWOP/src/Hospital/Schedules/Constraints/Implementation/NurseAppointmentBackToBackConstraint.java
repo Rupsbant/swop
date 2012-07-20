@@ -2,7 +2,7 @@ package Hospital.Schedules.Constraints.Implementation;
 
 import Hospital.People.Nurse;
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 

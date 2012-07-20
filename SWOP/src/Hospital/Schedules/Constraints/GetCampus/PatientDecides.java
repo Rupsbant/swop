@@ -1,7 +1,7 @@
 package Hospital.Schedules.Constraints.GetCampus;
 
 import Hospital.Patient.Patient;
-import Hospital.Schedules.Constraints.CampusDecider;
+import Hospital.Schedules.CampusDecider;
 import Hospital.World.Campus;
 
 public class PatientDecides extends CampusDecider {

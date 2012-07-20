@@ -9,7 +9,7 @@ import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.People.Unmovable;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.SchedulableVisitor;
 import Hospital.Schedules.Schedule;

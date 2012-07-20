@@ -12,7 +12,7 @@ import Hospital.MedicalTest.MedicalTest;
 import Hospital.Schedules.SchedulableVisitor;
 import java.util.ArrayList;
 import Hospital.People.Person;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
 
 import java.util.List;

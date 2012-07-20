@@ -4,7 +4,7 @@ import Hospital.Schedules.SchedulableVisitor;
 import Hospital.Utils;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
 import java.util.ArrayList;

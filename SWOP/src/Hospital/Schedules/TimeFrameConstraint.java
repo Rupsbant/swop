@@ -1,4 +1,4 @@
-package Hospital.Schedules.Constraints;
+package Hospital.Schedules;
 
 import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
