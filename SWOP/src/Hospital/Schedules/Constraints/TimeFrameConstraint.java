@@ -5,6 +5,7 @@ import Hospital.People.Doctor;
 import Hospital.People.Nurse;
 import Hospital.People.Staff;
 import Hospital.Schedules.Schedulable;
+import Hospital.Schedules.SchedulableVisitor;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
@@ -12,7 +13,7 @@ import Hospital.World.Campus;
  * defines a constraint on the allowed times in a schedule
  * multiple constraints can be combined in a linked-list fashion
  */
-public abstract class TimeFrameConstraint {
+public abstract class TimeFrameConstraint extends SchedulableVisitor {
 
     /**
      * Check whether the Constraint is accepted.
@@ -36,39 +37,4 @@ public abstract class TimeFrameConstraint {
      * @param tf, The TimeFrame during which the appointment happens.
      */
     public abstract void setTimeFrame(TimeFrame tf);
-
-    /**
-     * (in)validates the constraint based on a given TimeFrame for a Schedulable
-     * @param s the Schedulable-object
-     */
-    public void setSchedulable(Schedulable s) {
-    }
-
-    /**
-     * (in)validates the constraint based on a given TimeFrame for a Staffmember
-     * @param s the Staffmember
-     */
-    public void setStaff(Staff s) {
-    }
-
-    /**
-     * (in)validates the constraint based on a given TimeFrame for a Patient
-     * @param p the Patient-object
-     */
-    public void setPatient(Patient p) {
-    }
-
-    /**
-     * (in)validates the constraint based on a given TimeFrame for a Doctor
-     * @param n the Doctor-object
-     */
-    public void setDoctor(Doctor d) {
-    }
-
-    /**
-     * (in)validates the constraint based on a given TimeFrame for a Nurse
-     * @param n the Nurse-object
-     */
-    public void setNurse(Nurse n) {
-    }
 }

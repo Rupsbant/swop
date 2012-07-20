@@ -2,11 +2,9 @@ package Hospital.Schedules.Constraints.Implementation;
 
 import Hospital.People.Nurse;
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
-import Hospital.World.Campus;
 
 public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint {
 
