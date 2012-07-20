@@ -6,6 +6,7 @@ import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Schedules.Constraints.Implementation.DoctorBackToBackConstraint;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,8 +38,8 @@ public class DoctorPatientAppointment implements Appointable {
     /**
      * @see Hospital.Schedules.Appointable#getConstraints()
      */
-    public TimeFrameConstraint getConstraints() {
-        return new DoctorBackToBackConstraint();
+    public List<TimeFrameConstraint> getConstraints() {
+        return Arrays.asList((TimeFrameConstraint) new DoctorBackToBackConstraint());
     }
 
     /**

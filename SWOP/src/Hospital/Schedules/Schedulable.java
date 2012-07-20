@@ -1,6 +1,7 @@
 package Hospital.Schedules;
 
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import java.util.List;
 
 /**
  * An interface for objects that can be scheduled, in other words, that can attend an appointment
@@ -18,7 +19,7 @@ public interface Schedulable {
      * @param tfContstraints The constraints that must be satisfied.
      * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).acceptAll();.
      */
-    TimeFrameConstraint visitConstraint(TimeFrameConstraint tfContstraints);
+    void visitConstraint(TimeFrameConstraint tfContstraints);
 
     /**
      * This returns the constraints this schedulable has for new appointments.
@@ -26,5 +27,5 @@ public interface Schedulable {
      *
      * Warning: Always create new list, otherwise not thread safe.
      */
-    TimeFrameConstraint getConstraints();
+    List<TimeFrameConstraint> getConstraints();
 }

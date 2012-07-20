@@ -26,7 +26,7 @@ public class AppointmentFactory {
      * @throws SchedulingException one of the given schedules changed during the execution of this function
      * @throws ScheduleGroupUnavailable a ScheduleGroup a free schedule at the given TimeFrame was given to the function
      */
-    static Appointment makeAppointment(TimeFrame tf, TimeFrameConstraint tfConstraints, List<ScheduleGroup> groups, AppointmentCommand appC) throws SchedulingException, ScheduleGroupUnavailable {
+    static Appointment makeAppointment(TimeFrame tf, List<TimeFrameConstraint> tfConstraints, List<ScheduleGroup> groups, AppointmentCommand appC) throws SchedulingException, ScheduleGroupUnavailable {
         AppointmentConstraintSolver solver = new Solver();
         solver.setConstaints(tfConstraints);
         solver.setFirstTimeFrame(tf);

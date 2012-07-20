@@ -4,25 +4,17 @@ import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class DoctorBackToBackConstraint extends TimeFrameConstraintImplementation implements GetCampusConstraint {
+public class DoctorBackToBackConstraint extends TimeFrameConstraint implements GetCampusConstraint {
 
     private Campus campusThisAppointment;
     private Schedule schedule;
     private TimeFrame tf;
 
-    @Override
-    protected void reset() {
-        tf = null;
-        campusThisAppointment = null;
-        schedule = null;
-    }
-
-    @Override
     public Boolean isAccepted() {
         if (schedule == null || tf == null || campusThisAppointment == null) {
             return null;
@@ -48,18 +40,24 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraintImplementatio
         return timeDiff == walkTime;
     }
 
+    public void reset() {
+        tf = null;
+        campusThisAppointment = null;
+        schedule = null;
+    }
+
     @Override
-    protected void setValidDoctor(Doctor d) {
+    public void setDoctor(Doctor d) {
         this.schedule = d.getSchedule();
     }
 
     @Override
-    protected void setValidPatient(Patient p) {
+    public void setPatient(Patient p) {
         this.campusThisAppointment = p.getCampus();
     }
 
     @Override
-    protected void setValidTimeFrame(TimeFrame tf) {
+    public void setTimeFrame(TimeFrame tf) {
         this.tf = tf;
     }
 

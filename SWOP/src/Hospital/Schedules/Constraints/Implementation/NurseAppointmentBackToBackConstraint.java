@@ -3,28 +3,17 @@ package Hospital.Schedules.Constraints.Implementation;
 import Hospital.People.Nurse;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraintImplementation implements GetCampusConstraint {
+public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint implements GetCampusConstraint {
 
     private Nurse nurse;
     private TimeFrame tf;
 
-    @Override
-    protected void setValidTimeFrame(TimeFrame tf) {
-        this.tf = tf;
-    }
-
-    @Override
-    protected void setValidNurse(Nurse nurse) {
-        this.nurse = nurse;
-    }
-
-    @Override
-    protected Boolean isAccepted() {
+    public Boolean isAccepted() {
         if(tf == null || nurse == null){
             return false;
         }
@@ -41,10 +30,19 @@ public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraintImp
 
     }
 
-    @Override
-    protected void reset() {
+    public void reset() {
         this.nurse = null;
         this.tf = null;
+    }
+
+    @Override
+    public void setTimeFrame(TimeFrame tf) {
+        this.tf = tf;
+    }
+
+    @Override
+    public void setNurse(Nurse nurse) {
+        this.nurse = nurse;
     }
 
     public Campus getCampus() {

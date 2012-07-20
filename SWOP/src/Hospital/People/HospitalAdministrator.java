@@ -3,11 +3,10 @@ package Hospital.People;
 import Hospital.Controllers.AdministratorController;
 import Hospital.Controllers.CampusController;
 import Hospital.Controllers.LoginController;
-import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
-import Hospital.World.Campus;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
+import java.util.List;
 
 /**
  * The hospitals administrator, responsible for adding machines and staff, and forwarding the time of the system
@@ -42,7 +41,7 @@ public class HospitalAdministrator extends Staff {
         return "HospitalAdministrator";
     }
 
-    public TimeFrameConstraintImplementation getConstraints() {
+    public List<TimeFrameConstraint> getConstraints() {
         throw new UnsupportedOperationException("HospitalAdministrator has no appointments");
     }
 }

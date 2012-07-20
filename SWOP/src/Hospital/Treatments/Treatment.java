@@ -18,6 +18,7 @@ import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import Hospital.Schedules.TimeFrameDelay;
 import Hospital.WareHouse.ItemReservationCommand;
 import Hospital.WareHouse.ItemInfo;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
@@ -83,10 +84,11 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
     /**
      * @see Hospital.Schedules.Appointable#getConstraints()
      */
-    public TimeFrameConstraint getConstraints() {
-        NurseAppointmentBackToBackConstraint getC = new NurseAppointmentBackToBackConstraint();
-        getC.addConstraintList(new ItemConstraint(getC, this));
-        return getC;
+    public List<TimeFrameConstraint> getConstraints() {
+        final NurseAppointmentBackToBackConstraint nurseConstraint = new NurseAppointmentBackToBackConstraint();
+        List<TimeFrameConstraint> out = Arrays.asList((TimeFrameConstraint)nurseConstraint);
+        out.add(new ItemConstraint(nurseConstraint, this));
+        return out;
     }
 
     /**

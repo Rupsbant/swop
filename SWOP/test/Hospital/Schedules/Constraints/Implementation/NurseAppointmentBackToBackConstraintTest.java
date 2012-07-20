@@ -69,38 +69,38 @@ public class NurseAppointmentBackToBackConstraintTest {
         NurseAppointmentBackToBackConstraint instance = new NurseAppointmentBackToBackConstraint();
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
         instance.reset();
-        instance.setValidNurse(nurse);
-        instance.setValidTimeFrame(tf);
+        instance.setNurse(nurse);
+        instance.setTimeFrame(tf);
         assertTrue("Time starts at the hour.", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
         instance.reset();
-        instance.setValidNurse(nurse);
-        instance.setValidTimeFrame(tf);
+        instance.setNurse(nurse);
+        instance.setTimeFrame(tf);
         assertFalse("Time doesn't start at the hour.", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
         instance.reset();
-        instance.setValidNurse(nurse);
-        instance.setValidTimeFrame(tf);
+        instance.setNurse(nurse);
+        instance.setTimeFrame(tf);
         assertTrue("Time is backtoback with appointment", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.reset();
-        instance.setValidNurse(nurse);
-        instance.setValidTimeFrame(tf);
+        instance.setNurse(nurse);
+        instance.setTimeFrame(tf);
         assertFalse("Time is not backtoback with appointment", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 40), 20);
         instance.reset();
-        instance.setValidNurse(nurse);
-        instance.setValidTimeFrame(tf);
+        instance.setNurse(nurse);
+        instance.setTimeFrame(tf);
         assertTrue("Time is backtoback with appointment", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 41), 20);
         instance.reset();
-        instance.setValidNurse(nurse);
-        instance.setValidTimeFrame(tf);
+        instance.setNurse(nurse);
+        instance.setTimeFrame(tf);
         assertFalse("Time is not backtoback with appointment", instance.acceptAll());
     }
 }

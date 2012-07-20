@@ -2,13 +2,13 @@ package Hospital.Schedules.Constraints.Warehouse;
 
 import Hospital.Exception.Warehouse.StockException;
 import Hospital.Schedules.Constraints.GetCampusConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
 import Hospital.Treatments.Treatment;
 import Hospital.WareHouse.ItemInfo;
 
-public class ItemConstraint extends TimeFrameConstraintImplementation {
+public class ItemConstraint extends TimeFrameConstraint {
 
     private TimeFrame tf;
     private GetCampusConstraint constraint;
@@ -19,8 +19,7 @@ public class ItemConstraint extends TimeFrameConstraintImplementation {
         this.app = app;
     }
 
-    @Override
-    protected Boolean isAccepted() {
+    public Boolean isAccepted() {
         if (tf == null || constraint.getCampus() == null) {
             return null;
         }
@@ -37,17 +36,15 @@ public class ItemConstraint extends TimeFrameConstraintImplementation {
         return true;
     }
 
-    @Override
-    protected void reset() {
+    public void reset() {
         tf = null;
     }
 
     @Override
-    protected void setValidSchedulable(Schedulable s) {
+    public void setSchedulable(Schedulable s) {
     }
 
-    @Override
-    protected void setValidTimeFrame(TimeFrame tf) {
+    public void setTimeFrame(TimeFrame tf) {
         this.tf = tf;
     }
 }

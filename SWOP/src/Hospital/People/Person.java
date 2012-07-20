@@ -3,10 +3,11 @@ package Hospital.People;
 import Hospital.Utils;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Schedules.Constraints.Implementation.NullConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A person with a name and role, who can be scheduled for activities
@@ -93,12 +94,11 @@ public abstract class Person implements Schedulable {
      * @param tfContstraints The constraints that must be satisfied.
      * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).acceptAll();.
      */
-    public TimeFrameConstraint visitConstraint(TimeFrameConstraint tfContstraints) {
+    public void visitConstraint(TimeFrameConstraint tfContstraints) {
         tfContstraints.setSchedulable(this);
-        return tfContstraints;
     }
 
-    public TimeFrameConstraint getConstraints() {
-        return new NullConstraint();
+    public List<TimeFrameConstraint> getConstraints() {
+        return new ArrayList<TimeFrameConstraint>();
     }
 }

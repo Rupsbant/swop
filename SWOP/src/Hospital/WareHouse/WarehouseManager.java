@@ -7,8 +7,9 @@ import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.People.Staff;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.World.Campus;
+import java.util.List;
 
 /**
  * The staff member who manages the warehouse
@@ -64,7 +65,7 @@ public class WarehouseManager extends Staff {
         return this;
     }
 
-    public TimeFrameConstraintImplementation getConstraints() {
+    public List<TimeFrameConstraint> getConstraints() {
         throw new UnsupportedOperationException("Warehousemanager has no appointments");
     }
 }

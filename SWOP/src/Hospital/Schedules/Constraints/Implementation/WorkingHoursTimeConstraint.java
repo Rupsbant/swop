@@ -1,7 +1,7 @@
 package Hospital.Schedules.Constraints.Implementation;
 
 import Hospital.People.Staff;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Time;
 import Hospital.World.TimeUtils;
@@ -9,35 +9,15 @@ import Hospital.World.TimeUtils;
 /**
  * Defines the constraint on the availability of nurses
  */
-public class WorkingHoursTimeConstraint extends TimeFrameConstraintImplementation {
+public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
 
     private static final Time dayStart = new Time(0, 0, 0, 9, 0);
     private static final Time dayEnd = new Time(0, 0, 0, 17, 0);
     private Staff n;
     private TimeFrame tf;
 
-    /**
-     * Constructor
-     */
-    public WorkingHoursTimeConstraint() {
-    }
-
-    @Override
-    protected void setValidTimeFrame(TimeFrame tf) {
-        this.tf = tf;
-    }
-
-    /**
-     * @see Hospital.Schedules.Constraints.TimeFrameConstraint#setValidNurse(Hospital.Schedules.TimeFrame, Hospital.People.Nurse)
-     */
-    @Override
-    protected void setValidStaff(Staff n) {
-        this.n = n;
-    }
-
     //TODO: Test this!!!!
-    @Override
-    protected Boolean isAccepted() {
+    public Boolean isAccepted() {
         if (tf == null || n == null) {
             return null;
         }
@@ -53,7 +33,16 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraintImplementatio
     }
 
     @Override
-    protected void reset() {
+    public void setTimeFrame(TimeFrame tf) {
+        this.tf = tf;
+    }
+
+    @Override
+    public void setStaff(Staff n) {
+        this.n = n;
+    }
+
+    public void reset() {
         n = null;
         tf = null;
     }

@@ -3,45 +3,23 @@ package Hospital.Schedules.Constraints.Implementation;
 import Hospital.People.Unmovable;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UnmovableConstraint extends TimeFrameConstraintImplementation {
+public class UnmovableConstraint extends TimeFrameConstraint {
 
     private Unmovable unmovable;
     private Set<Schedule> schedules = new HashSet<Schedule>();
     private TimeFrame tf;
 
-    public UnmovableConstraint(TimeFrameConstraint next, Unmovable unmovable) {
-        super(next);
+    public UnmovableConstraint(Unmovable unmovable) {
         this.unmovable = unmovable;
     }
 
-    public UnmovableConstraint(Unmovable unmovable) {
-        this(null, unmovable);
-    }
-
-    @Override
-    protected void setValidSchedulable(Schedulable s) {
-        schedules.add(s.getSchedule());
-    }
-
-    @Override
-    protected void setValidTimeFrame(TimeFrame tf) {
-        this.tf = tf;
-    }
-
-    @Override
-    protected void reset() {
-        schedules.clear();
-    }
-
-    @Override
-    protected Boolean isAccepted() {
+    public Boolean isAccepted() {
         for (Schedule schedule : this.schedules) {
             Appointment prev = schedule.getAppointmentBefore(tf.getTime());
             if (prev != null) {
@@ -61,5 +39,19 @@ public class UnmovableConstraint extends TimeFrameConstraintImplementation {
             }
         }
         return true;
+    }
+
+    public void reset() {
+        schedules.clear();
+    }
+
+    @Override
+    public void setSchedulable(Schedulable s) {
+        schedules.add(s.getSchedule());
+    }
+
+    @Override
+    public void setTimeFrame(TimeFrame tf) {
+        this.tf = tf;
     }
 }

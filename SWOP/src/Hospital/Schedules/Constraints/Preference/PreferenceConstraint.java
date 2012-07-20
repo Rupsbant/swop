@@ -3,47 +3,38 @@ package Hospital.Schedules.Constraints.Preference;
 import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class PreferenceConstraint extends TimeFrameConstraintImplementation {
+public class PreferenceConstraint extends TimeFrameConstraint {
 
-    public PreferenceConstraint(TimeFrameConstraint tfc) {
-        super(tfc);
-    }
-
-    public PreferenceConstraint() {
-    }
     private Preference preference;
     private Campus campus;
     private TimeFrame tf;
 
     @Override
-    protected void setValidDoctor(Doctor d) {
+    public void setDoctor(Doctor d) {
         this.preference = d.getPreference();
     }
 
     @Override
-    protected void setValidPatient(Patient p) {
+    public void setPatient(Patient p) {
         this.campus = p.getCampus();
     }
 
     @Override
-    protected void setValidTimeFrame(TimeFrame tf) {
+    public void setTimeFrame(TimeFrame tf) {
         this.tf = tf;
     }
 
-    @Override
-    protected Boolean isAccepted() {
+    public Boolean isAccepted() {
         if (preference == null || tf == null || campus == null) {
             return null;
         }
         return preference.canAddAppointment(tf, campus);
     }
 
-    @Override
-    protected void reset() {
+    public void reset() {
         campus = null;
         preference = null;
         tf = null;

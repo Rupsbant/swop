@@ -25,7 +25,7 @@ public interface Appointable {
      * Returns the constraints this Appointable must satisfy for the Patient.
      * @return Normally no constraints must be satisfied.
      */
-    public TimeFrameConstraint getConstraints();
+    public List<TimeFrameConstraint> getConstraints();
 
     /**
      * Returns the resources of the hospital that are needed for this Appointable.

@@ -250,10 +250,9 @@ public class Patient extends Person {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).acceptAll();.
      */
     @Override
-    public TimeFrameConstraint visitConstraint(TimeFrameConstraint tfContstraints) {
+    public void visitConstraint(TimeFrameConstraint tfContstraints) {
         super.visitConstraint(tfContstraints);
         tfContstraints.setPatient(this);
-        return tfContstraints;
     }
 
     /**

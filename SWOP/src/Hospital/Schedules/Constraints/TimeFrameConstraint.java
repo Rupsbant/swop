@@ -7,66 +7,61 @@ import Hospital.People.Staff;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
 
-public interface TimeFrameConstraint {
+/**
+ * defines a constraint on the allowed times in a schedule
+ * multiple constraints can be combined in a linked-list fashion
+ */
+public abstract class TimeFrameConstraint {
 
     /**
-     * Check whether all Constraints in the list are accepted.
+     * Check whether the Constraint is accepted.
      * @return true if valid.
      */
-    Boolean acceptAll();
+    public abstract Boolean isAccepted();
 
     /**
-     * Unsets all Constraints.
+     * Resets the Constraint.
      */
-    void resetAll();
-
-    /**
-     * Adds a constraintList to the end of this list.
-     * @param toAdd constraintlist to add.
-     * @return this, for chaining.
-     */
-    TimeFrameConstraint addConstraintList(TimeFrameConstraint toAdd);
+    public abstract void reset();
 
     /**
      * Sets the TimeFrame of the appointment that is being made.
      * @param tf, The TimeFrame during which the appointment happens.
-     * @return this
      */
-    TimeFrameConstraint setTimeFrame(TimeFrame tf);
+    public abstract void setTimeFrame(TimeFrame tf);
 
     /**
-     * Sets the Schedulable s that will be present during the appointment.
-     * @param s Schedulable that will be present.
-     * @return this, for chaining.
+     * (in)validates the constraint based on a given TimeFrame for a Schedulable
+     * @param s the Schedulable-object
      */
-    TimeFrameConstraint setSchedulable(Schedulable s);
+    public void setSchedulable(Schedulable s) {
+    }
 
     /**
-     * Sets the Staff s that will be present during the appointment.
-     * @param s Staff that will be present.
-     * @return this, for chaining.
+     * (in)validates the constraint based on a given TimeFrame for a Staffmember
+     * @param s the Staffmember
      */
-    TimeFrameConstraint setStaff(Staff s);
+    public void setStaff(Staff s) {
+    }
 
     /**
-     * Sets the Doctor d that will be present during the appointment.
-     * @param d Doctor that will be present.
-     * @return this, for chaining.
+     * (in)validates the constraint based on a given TimeFrame for a Patient
+     * @param p the Patient-object
      */
-    TimeFrameConstraint setDoctor(Doctor d);
+    public void setPatient(Patient p) {
+    }
 
     /**
-     * Sets the Nurse n that will be present during the appointment.
-     * @param n Nurse that will be present.
-     * @return this, for chaining.
+     * (in)validates the constraint based on a given TimeFrame for a Doctor
+     * @param n the Doctor-object
      */
-    TimeFrameConstraint setNurse(Nurse n);
+    public void setDoctor(Doctor d) {
+    }
 
     /**
-     * Sets the Patient p that will be present during the appointment.
-     * @param p Patient that will be present.
-     * @return this, for chaining.
+     * (in)validates the constraint based on a given TimeFrame for a Nurse
+     * @param n the Nurse-object
      */
-    TimeFrameConstraint setPatient(Patient p);
-
+    public void setNurse(Nurse n) {
+    }
 }

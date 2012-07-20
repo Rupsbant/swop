@@ -6,6 +6,7 @@ import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Implementation.WorkingHoursTimeConstraint;
+import java.util.List;
 
 /**
  * Staff represents hospital staff that can log into the system.
@@ -88,14 +89,15 @@ public abstract class Staff extends Person {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).acceptAll();.
      */
     @Override
-    public TimeFrameConstraint visitConstraint(TimeFrameConstraint tfContstraints){
+    public void visitConstraint(TimeFrameConstraint tfContstraints){
         super.visitConstraint(tfContstraints);
         tfContstraints.setStaff(this);
-        return tfContstraints;
     }
 
     @Override
-    public TimeFrameConstraint getConstraints() {
-        return super.getConstraints().addConstraintList(new WorkingHoursTimeConstraint());
+    public List<TimeFrameConstraint> getConstraints() {
+        List<TimeFrameConstraint> temp = super.getConstraints();
+        temp.add(new WorkingHoursTimeConstraint());
+        return temp;
     }
 }

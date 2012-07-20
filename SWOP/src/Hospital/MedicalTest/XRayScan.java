@@ -11,10 +11,10 @@ import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Machine.Machine;
 import Hospital.Machine.XRayMachine;
-import Hospital.Schedules.Constraints.GetCampusConstraint;
 import Hospital.Schedules.Constraints.Implementation.XRayConstraint;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Utils;
+import java.util.List;
 
 /**
  * X-ray scan medical test
@@ -209,10 +209,10 @@ public class XRayScan extends MedicalTest {
      * @return a new XRayConstraint to satisfy the Appointment.
      */
     @Override
-    public TimeFrameConstraint getConstraints() {
+    public List<TimeFrameConstraint> getConstraints() {
         try {
-            TimeFrameConstraint temp = super.getConstraints();
-            temp.addConstraintList(new XRayConstraint(numberOfImagesToTake));
+            List<TimeFrameConstraint> temp = super.getConstraints();
+            temp.add(new XRayConstraint(numberOfImagesToTake));
             return temp;
         } catch (ArgumentConstraintException ex) {
             throw new Error("Number of images to take is never negative");

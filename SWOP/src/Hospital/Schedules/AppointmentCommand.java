@@ -48,7 +48,7 @@ public class AppointmentCommand implements Command {
     /**
      * The constraints to be placed on the appointment
      */
-    private TimeFrameConstraint tfConstraints;
+    private List<TimeFrameConstraint> tfConstraints;
     /**
      * The priority to create the appointment with
      */
@@ -70,7 +70,7 @@ public class AppointmentCommand implements Command {
         this.groups.addAll(app.getScheduleGroups());
         this.groups.addAll(coreSchedules);
         this.tfConstraints = app.getConstraints();
-        this.tfConstraints.addConstraintList(new PriorityConstraint(priority));
+        this.tfConstraints.add(new PriorityConstraint(priority));
         this.priority = priority;
         populateScheduleGroups(world);
         setTimeFrameDelay(app, world.getWorldTime());

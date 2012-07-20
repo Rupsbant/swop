@@ -58,8 +58,8 @@ public class XRayConstraintTest {
         System.out.println("AddEnough");
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 9, 9, 0), 15);
         XRayConstraint instance = new XRayConstraint(1);
-        instance.setValidPatient(p);
-        instance.setValidTimeFrame(tf);
+        instance.setPatient(p);
+        instance.setTimeFrame(tf);
         assertTrue("Can fit another XRay", instance.acceptAll());
     }
 
@@ -71,20 +71,20 @@ public class XRayConstraintTest {
         System.out.println("waitYear");
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 9, 9, 0), 15);
         XRayConstraint instance = new XRayConstraint(3);
-        instance.setValidPatient(p);
-        instance.setValidTimeFrame(tf);
+        instance.setPatient(p);
+        instance.setTimeFrame(tf);
         assertFalse("Can't fit another XRay", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2012, 11, 8, 9, 0), 15);
         instance.resetAll();
-        instance.setValidPatient(p);
-        instance.setValidTimeFrame(tf);
+        instance.setPatient(p);
+        instance.setTimeFrame(tf);
         assertFalse("Can't fit another XRay", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2012, 11, 9, 9, 0), 15);
         instance.resetAll();
-        instance.setValidPatient(p);
-        instance.setValidTimeFrame(tf);
+        instance.setPatient(p);
+        instance.setTimeFrame(tf);
         assertTrue("Can fit another XRay", instance.acceptAll());
     }
 
@@ -93,26 +93,26 @@ public class XRayConstraintTest {
         System.out.println("waitYearHalf");
         TimeFrame tf = new TimeFrame(new Time(2012, 11, 8, 9, 0), 15);
         XRayConstraint instance = new XRayConstraint(7);
-        instance.setValidPatient(p);
-        instance.setValidTimeFrame(tf);
+        instance.setPatient(p);
+        instance.setTimeFrame(tf);
         assertFalse("Can't fit another XRay", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2012, 11, 9, 9, 0), 15);
         instance.resetAll();
-        instance.setValidPatient(p);
-        instance.setValidTimeFrame(tf);
+        instance.setPatient(p);
+        instance.setTimeFrame(tf);
         assertFalse("Can't fit another XRay", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2013, 5, 8, 9, 0), 15);
         instance.resetAll();
-        instance.setValidPatient(p);
-        instance.setValidTimeFrame(tf);
+        instance.setPatient(p);
+        instance.setTimeFrame(tf);
         assertFalse("Can't fit another XRay", instance.acceptAll());
 
         tf = new TimeFrame(new Time(2013, 5, 9, 9, 0), 15);
         instance.resetAll();
-        instance.setValidPatient(p);
-        instance.setValidTimeFrame(tf);
+        instance.setPatient(p);
+        instance.setTimeFrame(tf);
         assertTrue("Can fit another XRay", instance.acceptAll());
     }
 }

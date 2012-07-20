@@ -22,33 +22,14 @@ public class Solver implements AppointmentConstraintSolver {
     //Will require serious rewrite of Constraints
     //TODO: make solver faster with failfast.
     //Needs constraints on the constraints ;)
+    //TODO: Make Constraints return the first possible time.
     //Contract of workings of the Constraints
     private TimeFrame tf;
     private TimeFrame chosenTimeFrame;
     private List<ScheduleGroup> groups;
-    private TimeFrameConstraint tfConstraints;
+    private List<TimeFrameConstraint> tfConstraints;
     private List<Schedulable> out;
     private Campus campus;
-
-    public void setFirstTimeFrame(TimeFrame tf) {
-        reset();
-        this.tf = tf;
-    }
-
-    public void setScheduleGroups(List<ScheduleGroup> list) {
-        reset();
-        groups = list;
-    }
-
-    public void setConstaints(TimeFrameConstraint tfConstraints) {
-        reset();
-        this.tfConstraints = tfConstraints;
-    }
-
-    public void reset() {
-        this.out = new ArrayList<Schedulable>();
-        this.campus = null;
-    }
 
     public Solver solve() throws SchedulingException {
         if (out.isEmpty()) {
@@ -60,27 +41,32 @@ public class Solver implements AppointmentConstraintSolver {
         return this;
     }
 
-    private boolean stopConditions(TimeFrame tf) {
-        tfConstraints.resetAll();
-        TimeFrameConstraint allConstraints = new NullConstraint();
+    private boolean stopConditions(TimeFrame tf) throws SchedulingException {
+        for(TimeFrameConstraint tfC : tfConstraints){
+            tfC.reset();
+        }
+        List<TimeFrameConstraint> allConstraints = new ArrayList<TimeFrameConstraint>();
         for (Schedulable sched : out) {
-            allConstraints.addConstraintList(sched.getConstraints());
+            allConstraints.addAll(sched.getConstraints());
         }
-        allConstraints.addConstraintList(tfConstraints);
-        for (Schedulable sched : out) {
-            allConstraints.setTimeFrame(tf);
-            sched.visitConstraint(allConstraints);
+        allConstraints.addAll(tfConstraints);
+        for(TimeFrameConstraint tfC : allConstraints){
+            for (Schedulable sched : out) {
+                sched.visitConstraint(tfC);
+            }
+            tfC.setTimeFrame(tf);
+            Boolean accepted = tfC.isAccepted();
+            if(accepted == null){
+                throw new SchedulingException("Something went very wrong, information was missing");
+            } else if(!accepted){
+                return false;
+            }
         }
-        Boolean accepted = allConstraints.acceptAll();
-        if (accepted != null && accepted) {
-            this.campus = ((GetCampusConstraint) tfConstraints).getCampus();
-            return true;
-        } else {
-            return false;
-        }
+        this.campus = ((GetCampusConstraint) tfConstraints).getCampus();
+        return true;
     }
 
-    private boolean recursive(int pos, TimeFrame tf) {
+    private boolean recursive(int pos, TimeFrame tf) throws SchedulingException {
         if (pos == groups.size()) {
             return stopConditions(tf);
         }
@@ -100,9 +86,9 @@ public class Solver implements AppointmentConstraintSolver {
             Time nextTime = tf.getTime().getLaterTime(1);
             tf = new TimeFrame(nextTime, tf.getLength());
         } catch (ArgumentIsNullException ex) {
-            Logger.getLogger(Solver.class.getName()).log(Level.SEVERE, null, ex);
+            throw new Error(ex);
         } catch (ArgumentConstraintException ex) {
-            Logger.getLogger(Solver.class.getName()).log(Level.SEVERE, null, ex);
+            throw new Error(ex);
         }
         return tf;
     }
@@ -118,5 +104,25 @@ public class Solver implements AppointmentConstraintSolver {
 
     public TimeFrame getChosenTimeFrame() {
         return chosenTimeFrame;
+    }
+
+    public void setFirstTimeFrame(TimeFrame tf) {
+        reset();
+        this.tf = tf;
+    }
+
+    public void setScheduleGroups(List<ScheduleGroup> list) {
+        reset();
+        groups = list;
+    }
+
+    public void setConstaints(List<TimeFrameConstraint> tfConstraints) {
+        reset();
+        this.tfConstraints = tfConstraints;
+    }
+
+    public void reset() {
+        this.out = new ArrayList<Schedulable>();
+        this.campus = null;
     }
 }

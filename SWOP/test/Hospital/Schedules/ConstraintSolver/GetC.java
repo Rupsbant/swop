@@ -1,23 +1,21 @@
 package Hospital.Schedules.ConstraintSolver;
 
 import Hospital.Schedules.Constraints.GetCampusConstraint;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
-public class GetC extends TimeFrameConstraintImplementation implements GetCampusConstraint {
+public class GetC extends TimeFrameConstraint implements GetCampusConstraint {
 
     public GetC(Campus campus) {
         this.campus = campus;
     }
 
-    @Override
-    protected Boolean isAccepted() {
+    public Boolean isAccepted() {
         return true;
     }
 
-    @Override
-    protected void reset() {
+    public void reset() {
     }
 
     public Campus getCampus() {
@@ -26,7 +24,6 @@ public class GetC extends TimeFrameConstraintImplementation implements GetCampus
     
     private Campus campus;
 
-    @Override
-    protected void setValidTimeFrame(TimeFrame tf) {
+    public void setTimeFrame(TimeFrame tf) {
     }
 }

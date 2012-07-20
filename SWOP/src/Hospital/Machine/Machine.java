@@ -12,10 +12,11 @@ import Hospital.People.Unmovable;
 import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
-import Hospital.Schedules.TimeFrame;
 import Hospital.Schedules.Constraints.Implementation.UnmovableConstraint;
 import Hospital.Utils;
 import Hospital.World.Campus;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Machines are used in medical tests and treatments
@@ -135,18 +136,17 @@ public abstract class Machine implements Schedulable, Unmovable {
      * This makes this object visit the TimeFrameConstraints during scheduling.
      * @param tf The timeFrame during which the constraints need to be satisfied.
      * @param tfContstraints The constraints that must be satisfied.
-     * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).acceptAll();.
      */
-    public TimeFrameConstraint visitConstraint(TimeFrameConstraint tfContstraints) {
-        return tfContstraints.setSchedulable(this);
+    public void visitConstraint(TimeFrameConstraint tfContstraint) {
+        tfContstraint.setSchedulable(this);
     }
 
     /**
      * Returns the constraints apppointments needs to satifsfy.
      * @return
      */
-    public TimeFrameConstraint getConstraints() {
-        return new UnmovableConstraint(this);
+    public List<TimeFrameConstraint> getConstraints() {
+        return Arrays.asList((TimeFrameConstraint)new UnmovableConstraint(this));
     }
 
     /**

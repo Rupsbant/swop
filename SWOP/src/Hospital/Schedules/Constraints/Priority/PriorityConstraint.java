@@ -1,7 +1,7 @@
 package Hospital.Schedules.Constraints.Priority;
 
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.Constraints.TimeFrameConstraintImplementation;
+import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PriorityConstraint extends TimeFrameConstraintImplementation {
+public class PriorityConstraint extends TimeFrameConstraint {
 
     private Priority priority;
     private TimeFrame tf;
@@ -19,18 +19,7 @@ public class PriorityConstraint extends TimeFrameConstraintImplementation {
         this.priority = priority;
     }
 
-    @Override
-    protected void setValidSchedulable(Schedulable s) {
-        attendeeSchedules.add(s.getSchedule());
-    }
-
-    @Override
-    protected void setValidTimeFrame(TimeFrame tf) {
-        this.tf = tf;
-    }
-
-    @Override
-    protected Boolean isAccepted() {
+    public Boolean isAccepted() {
         if(tf == null){
             return null;
         }
@@ -46,7 +35,16 @@ public class PriorityConstraint extends TimeFrameConstraintImplementation {
     }
 
     @Override
-    protected void reset() {
+    public void setSchedulable(Schedulable s) {
+        attendeeSchedules.add(s.getSchedule());
+    }
+
+    @Override
+    public void setTimeFrame(TimeFrame tf) {
+        this.tf = tf;
+    }
+
+    public void reset() {
         this.tf = null;
         attendeeSchedules.clear();
     }

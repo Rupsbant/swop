@@ -68,12 +68,12 @@ public class ItemConstraintTest {
         ItemInfo toOrder = new ItemInfo(MEDICATION_NAME, 3);
         Treatment t = new Medication("MedicationTest", Boolean.TRUE, new ItemInfo[]{toOrder});
         ItemConstraint instance = new ItemConstraint(new GetC(campusNorth), t);
-        instance.setValidTimeFrame(new TimeFrame(new Time(2011, 11, 9, 13, 0), 20));
+        instance.setTimeFrame(new TimeFrame(new Time(2011, 11, 9, 13, 0), 20));
         assertFalse(instance.isAccepted());
 
         toOrder.addCount(-1);
         instance.reset();
-        instance.setValidTimeFrame(new TimeFrame(new Time(2011, 11, 9, 13, 0), 20));
+        instance.setTimeFrame(new TimeFrame(new Time(2011, 11, 9, 13, 0), 20));
         assertTrue(instance.isAccepted());
     }
 }

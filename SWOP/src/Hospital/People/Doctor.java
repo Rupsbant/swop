@@ -18,6 +18,7 @@ import Hospital.Schedules.Constraints.Preference.PreferenceConstraint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * A doctor, creates diagnoses, prescribes treatments and medical tests
@@ -231,10 +232,9 @@ public class Doctor extends Staff implements HasPreference {
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).acceptAll();.
      */
     @Override
-    public TimeFrameConstraint visitConstraint(TimeFrameConstraint tfConstraints){
+    public void visitConstraint(TimeFrameConstraint tfConstraints){
         super.visitConstraint(tfConstraints);
         tfConstraints.setDoctor(this);
-        return tfConstraints;
     }
 
     /**
@@ -242,8 +242,10 @@ public class Doctor extends Staff implements HasPreference {
      * @return a new PreferenceConstraint.
      */
     @Override
-    public TimeFrameConstraint getConstraints() {
-        return super.getConstraints().addConstraintList(new PreferenceConstraint());
+    public List<TimeFrameConstraint> getConstraints() {
+        List<TimeFrameConstraint> constraints = super.getConstraints();
+        constraints.add(new PreferenceConstraint());
+        return constraints;
     }
 
     /**

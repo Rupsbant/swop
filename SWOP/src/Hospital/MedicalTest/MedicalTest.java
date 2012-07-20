@@ -13,6 +13,7 @@ import Hospital.Schedules.Constraints.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import Hospital.Schedules.TimeFrameDelay;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -96,8 +97,8 @@ public abstract class MedicalTest implements Result, Appointable {
      * Returns the constraints this MedicalTest must satisfy for the Patient.
      * @return new NurseAppointmentBackTobackConstraint, the nurse determines the location.
      */
-    public TimeFrameConstraint getConstraints() {
-        return new NurseAppointmentBackToBackConstraint();
+    public List<TimeFrameConstraint> getConstraints() {
+        return Arrays.asList((TimeFrameConstraint)new NurseAppointmentBackToBackConstraint());
     }
 
     /**
