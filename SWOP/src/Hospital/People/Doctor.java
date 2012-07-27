@@ -2,13 +2,9 @@ package Hospital.People;
 
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Command.CannotDoException;
-import Hospital.Exception.Command.NotDoneException;
 import Hospital.Controllers.CampusController;
-import Hospital.Controllers.CommandInfo;
 import Hospital.Controllers.DoctorController;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
-import Hospital.Factory.Command;
 import Hospital.Patient.DiagnosisSecondOpinion;
 import Hospital.Patient.Patient;
 import Hospital.Schedules.TimeFrameConstraint;
@@ -18,7 +14,6 @@ import Hospital.Schedules.Constraints.Preference.PreferenceConstraint;
 import Hospital.Schedules.SchedulableVisitor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,17 +30,13 @@ public class Doctor extends Staff implements HasPreference {
      */
     private ArrayList<DiagnosisSecondOpinion> secondOpinions;
     /**
-     * commandinfos from recent done commands
-     */
-    private ArrayList<CommandInfo> recent = new ArrayList<CommandInfo>();
-    /**
-     * commandinfos from recent undone commands
-     */
-    private ArrayList<CommandInfo> undone = new ArrayList<CommandInfo>();
-    /**
      * the preference-pattern of moving between campuses
      */
     private Preference preference;
+    /**
+     * the command-history of the doctor
+     */
+    private CommandHistory history;
 
     /**
      * Constructor
@@ -151,89 +142,13 @@ public class Doctor extends Staff implements HasPreference {
     }
 
     /**
-     * getrecent
-     * @return recent commands
-     */
-    public ArrayList<CommandInfo> getRecent() {
-        return recent;
-    }
-
-    /**
-     * getundone
-     * @return undone commands
-     */
-    public ArrayList<CommandInfo> getUndone() {
-        return undone;
-    }
-
-    /**
-     * get recent commands
-     * @return latest 20 recent commands
-     */
-    public CommandInfo[] getRecentCommands() {
-        return Arrays.copyOf(recent.toArray(new CommandInfo[0]), Math.min(recent.size(), 20));
-    }
-
-    /**
-     * getundonecommands
-     * @return latest 5 undone commands
-     */
-    public CommandInfo[] getUndoneCommands() {
-        return Arrays.copyOf(undone.toArray(new CommandInfo[0]), Math.min(undone.size(), 5));
-    }
-
-    /**
-     * adds a command to recent commands
-     * @param comm command to be added
-     */
-    public void addCommand(Command comm) {
-        recent.add(new CommandInfo(comm));
-    }
-
-    /**
-     * undo's a command
-     * @param commInfo commandinfo to undo
-     * @param command command to undo
-     * @throws CannotDoException when command cannot be undone
-     * @return the details of undoing the command
-     */
-    public String undoCommand(CommandInfo commInfo, Command command) throws CannotDoException {
-        if (!recent.remove(commInfo)) {
-            throw new IllegalArgumentException("CommandInfo not found");
-        }
-        try {
-            String string = command.undo();
-            undone.add(commInfo);
-            return string;
-        } catch (NotDoneException ex) {
-            throw new Error("Command was done");
-        }
-    }
-
-    /**
-     * redo's a command
-     * @param commInfo commandinfo to redo
-     * @param command command to redo
-     * @throws CannotDoException when command cannot be redone
-     * @return the details of redoing the command
-     */
-    public String redoCommand(CommandInfo commInfo, Command command) throws CannotDoException {
-        if (!undone.remove(commInfo)) {
-            throw new IllegalArgumentException("CommandInfo not found");
-        }
-        String string = command.execute();
-        recent.add(commInfo);
-        return string;
-    }
-    
-    /**
      * This method makes this object visit the constraints to approve them as a Schedulable and as a Doctor.
      * @param tf The TimeFrame during which the constraints must be checked.
      * @param tfContstraints The list of constraints.
      * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
      */
     @Override
-    public void visitConstraint(SchedulableVisitor tfConstraints){
+    public void visitConstraint(SchedulableVisitor tfConstraints) {
         super.visitConstraint(tfConstraints);
         tfConstraints.setDoctor(this);
     }
@@ -252,16 +167,24 @@ public class Doctor extends Staff implements HasPreference {
     /**
      * sets the preference of this doctor
      */
-    public Doctor setPreference(Preference preference){
+    public Doctor setPreference(Preference preference) {
         this.preference = preference;
         return this;
     }
- 
+
     /**
      * returns the preference of this doctor.
-     * @return
+     * @return Prefecence, the current preference for handling moving between campuses
      */
-    public Preference getPreference() { 
+    public Preference getPreference() {
         return preference;
+    }
+
+    /**
+     * returns the history of the doctor's actions
+     * @return CommandHistory, the full history of this doctor's handling
+     */
+    public CommandHistory getHistory() {
+        return history;
     }
 }

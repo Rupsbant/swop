@@ -1,8 +1,6 @@
 package Hospital.Controllers;
 
-import Hospital.Argument.Argument;
 import Hospital.Argument.ListArgument;
-import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Warehouse.StockException;
@@ -15,8 +13,8 @@ import Hospital.People.LoginInfo;
 import Hospital.Schedules.Constraints.Preference.Preference;
 import Hospital.Treatments.TreatmentFactory;
 import Hospital.SystemAPI;
-import Hospital.Utils;
 import Hospital.WareHouse.FoodStock.FoodStock;
+import Hospital.WareHouse.Items.Meal;
 import Hospital.World.BasicWorld;
 import Hospital.World.Campus;
 import Hospital.World.CampusInfo;
@@ -202,38 +200,45 @@ public class WorldController {
         try {
             return new ListArgument<String>("Enter the number of your preference", prefString);
         } catch (ArgumentIsNullException ex) {
-            return null;
+            throw new Error("Argument was not null");
         }
     }
-    
+
     /**
      * Constructs the standard world.
      * @return the WorldController associated with the created world
      */
     @SystemAPI
     public static WorldController getBasicWorld() {
-       return BasicWorld.getBasicWorld();
+        return BasicWorld.getBasicWorld();
     }
-    
+
     /**
      * returns the campuses with enough food for new checkins
      * @return
      */
     @SystemAPI
-    public List<CampusInfo> getCampusesWithFood(){
-		List<CampusInfo> campusInfo= getCampuses();
-		List<CampusInfo> result=new ArrayList<CampusInfo>();
-		for (CampusInfo campusInfo2 : campusInfo) {
-			try {
-				if(((FoodStock) world.getCampusFromInfo(campusInfo2).getWarehouse().getStock("Meal")).getPatientCapacity()>=1){
-					result.add(campusInfo2);
-				}
-			} catch (ArgumentConstraintException e) {
-			} catch (StockException e) {
-			}
-		}
-    	
-    	return result;
-    	
+    public List<CampusInfo> getCampusesWithFood() {
+        List<CampusInfo> campusInfo = getCampuses();
+        List<CampusInfo> result = new ArrayList<CampusInfo>();
+        for (CampusInfo campusInfo2 : campusInfo) {
+            Campus campusFromInfo = null;
+            try {
+                campusFromInfo = world.getCampusFromInfo(campusInfo2);
+            } catch (ArgumentConstraintException e) {
+                continue;
+            }
+            try {
+                final FoodStock foodStockOfCampus = (FoodStock) campusFromInfo
+                        .getWarehouse().getStock(Meal.MEAL);
+                if (foodStockOfCampus.getPatientCapacity() >= 1) {
+                    result.add(campusInfo2);
+                }
+            } catch (StockException e) {
+            }
+        }
+
+        return result;
+
     }
 }

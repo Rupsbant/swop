@@ -1,22 +1,15 @@
 package Hospital.Controllers;
 
 import Hospital.Argument.Argument;
-import Hospital.Argument.PublicArgument;
-import Hospital.Argument.StringArgument;
-import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Patient.Patient;
 import Hospital.Patient.PatientFactory;
 import Hospital.SystemAPI;
-import Hospital.Utils;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,11 +21,11 @@ public class PatientController {
 	/**
 	 * the world in which these actions take place
 	 */
-    WorldController wc;
+    private WorldController wc;
     /**
      * the nurse performing these actions
      */
-    NurseController nc;
+    private NurseController nc;
 
     /**
      * Creates a patientController to register a new Patient.
@@ -127,7 +120,6 @@ public class PatientController {
             Argument[] args = wc.getWorld().getFactory(PatientFactory.class, factoryName).getEmptyArgumentList();
             return new ArgumentList(args);
         } catch (ArgumentIsNullException ex) {
-            Logger.getLogger(PatientController.class.getName()).log(Level.SEVERE, null, ex);
             throw new Error("Invalid state, args should not be null, class is not null");
         }
     }

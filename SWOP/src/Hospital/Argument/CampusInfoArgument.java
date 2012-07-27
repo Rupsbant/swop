@@ -1,9 +1,7 @@
 package Hospital.Argument;
 
-import Hospital.Exception.CannotChangeException;
 import Hospital.World.CampusInfo;
 import Hospital.World.World;
-import java.util.List;
 
 /**
  * Campus version of an Argument, selectes a Campus from a list.

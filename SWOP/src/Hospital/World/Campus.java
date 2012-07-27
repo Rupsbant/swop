@@ -1,8 +1,5 @@
 package Hospital.World;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.WareHouse.Warehouse;
 import Hospital.WareHouse.WarehouseMaker;
@@ -15,11 +12,11 @@ public class Campus {
     /**
      * the name this campus goes by
      */
-    String name;
+    private String name;
     /**
      * the warehouse this campus uses
      */
-    Warehouse warehouse;
+    private Warehouse warehouse;
 
     public Campus(String name, World w) {
         this.name = name;
@@ -73,9 +70,8 @@ public class Campus {
         try {
             return new CampusInfo(this.getName());
         } catch (ArgumentIsNullException e) {
-            Logger.getLogger(Campus.class.getName()).log(Level.SEVERE, null, e);
+            throw new Error("Java is broken.");
         }
-        throw new Error("Java is broken.");
     }
 
     /**

@@ -52,14 +52,14 @@ public final class PatientFile {
      */
     @SystemAPI
     public String[] getPatientFileList() {
-        String[] out1 = new String[patient.getDiagnoses().size()+patient.getMedicalTests().size()];
+        String[] output = new String[patient.getDiagnoses().size()+patient.getMedicalTests().size()];
         for(int i = 0; i<patient.getDiagnoses().size(); i++){
-            out1[i] = patient.getDiagnoses().get(i).toString();
+            output[i] = patient.getDiagnoses().get(i).toString();
         }
         for(int i = 0; i<patient.getMedicalTests().size(); i++){
-            out1[patient.getDiagnoses().size()+i] = patient.getMedicalTests().get(i).toString();
+            output[patient.getDiagnoses().size()+i] = patient.getMedicalTests().get(i).toString();
         }
-        return out1;
+        return output;
     }
 
     /**

@@ -10,6 +10,7 @@ import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.People.Staff;
 import Hospital.People.PeopleFactories.StaffFactory;
+import Hospital.Schedules.Schedulable;
 
 /**
  * Used for staff-related actions.
@@ -79,7 +80,7 @@ public class StaffController {
         } catch (ArgumentIsNullException ex) {
             throw new Error("Class is not null");
         }
-        Staff newTest = (Staff) factory.make(argv.getAllArguments());
+        Schedulable newTest = factory.make(argv.getAllArguments());
         wc.getWorld().addSchedulable(newTest);
         return newTest.toString();
     }

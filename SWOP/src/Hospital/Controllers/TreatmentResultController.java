@@ -5,7 +5,6 @@ import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.IllegalInfo;
 import Hospital.Exception.NotLoggedInException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Patient.Diagnosis;
 import Hospital.Patient.Patient;
 import Hospital.Treatments.Treatment;

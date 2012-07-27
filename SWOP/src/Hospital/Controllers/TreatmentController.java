@@ -2,9 +2,7 @@ package Hospital.Controllers;
 
 import Hospital.SystemAPI;
 import Hospital.Argument.Argument;
-import Hospital.Exception.Command.CannotDoException;
 import Hospital.Patient.DiagnosisInfo;
-import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Patient.InvalidDiagnosisException;
@@ -15,15 +13,14 @@ import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Warehouse.StockException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
+import Hospital.Exception.Command.CannotDoException;
 import Hospital.Patient.Patient;
 import Hospital.Schedules.AppointmentCommand;
 import Hospital.Treatments.TreatmentCommand;
 import Hospital.Treatments.TreatmentFactory;
-import Hospital.WareHouse.Items.MedicationItem;
 import Hospital.World.World;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  * Used for treatment-related actions
@@ -34,11 +31,11 @@ public class TreatmentController {
     /**
      * The doctor which performs these actions
      */
-    DoctorController dc;
+    private DoctorController dc;
     /**
      * The world in which these actions are performed
      */
-    WorldController wc;
+    private WorldController wc;
 
     /**
      * Constructor
@@ -108,7 +105,7 @@ public class TreatmentController {
             NoOpenedPatientFileException,
             StockException,
             ItemNotReservedException,
-            ItemNotFoundException, 
+            ItemNotFoundException,
             InvalidArgumentException {
         dc.checkLoggedIn();
         Patient openedPatient = dc.getUser().getOpenedPatient();

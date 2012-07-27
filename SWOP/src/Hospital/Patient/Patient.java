@@ -12,7 +12,6 @@ import Hospital.MedicalTest.MedicalTest;
 import Hospital.Schedules.SchedulableVisitor;
 import java.util.ArrayList;
 import Hospital.People.Person;
-import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
 
 import java.util.List;
@@ -67,7 +66,7 @@ public class Patient extends Person {
      * Sets whether the patient is discharged or not.
      * @param isDischarged true if the patient is discharged
      */
-    private final void setDischarged(boolean isDischarged) {
+    private void setDischarged(boolean isDischarged) {
         this.isDischarged = isDischarged;
     }
 

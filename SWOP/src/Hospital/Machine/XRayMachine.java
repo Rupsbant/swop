@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  */
 public class XRayMachine extends Machine implements MachineFactory {
 
-	public static final String X_RAY_MACHINE_FACTORY = "New XRayMachine";
+    public static final String X_RAY_MACHINE_FACTORY = "New XRayMachine";
 
-	/**
+    /**
      * Constructor
      * @param id a unique identifier
      * @param location the location of this X-ray machine

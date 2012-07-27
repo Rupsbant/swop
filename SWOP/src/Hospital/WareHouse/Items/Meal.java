@@ -12,6 +12,7 @@ import Hospital.World.Time;
  * A meal for patients
  */
 public class Meal extends ExpiringItem {
+    public static final String MEAL = "Meal";
 
     /**
      * Constructor
@@ -27,7 +28,7 @@ public class Meal extends ExpiringItem {
      */
     @Override
     public String toString() {
-        return "Meal";
+        return MEAL;
     }
 
     /**

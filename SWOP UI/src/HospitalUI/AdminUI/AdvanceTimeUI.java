@@ -28,8 +28,8 @@ import java.util.logging.Logger;
 
 public class AdvanceTimeUI {
 
-    AdministratorController ac;
-    WorldController wc;
+    private AdministratorController ac;
+    private WorldController wc;
 
     public AdvanceTimeUI(AdministratorController ac, WorldController wc) {
         this.ac = ac;

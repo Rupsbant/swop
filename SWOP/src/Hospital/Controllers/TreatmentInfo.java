@@ -23,14 +23,6 @@ public class TreatmentInfo {
     }
 
     /**
-     * Getter for treatment
-     * @return the represented treatment
-     */
-    private Treatment get(){
-        return treatment;
-    }
-
-    /**
      * Returns the String of the wrapped Treatment
      * @return treatment.toString();
      */

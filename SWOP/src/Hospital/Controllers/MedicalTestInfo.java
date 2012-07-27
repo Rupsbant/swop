@@ -30,17 +30,17 @@ public class MedicalTestInfo {
      */
     @SystemAPI
     public String advancedString() {
-    	return m.advancedString();
+        return m.advancedString();
     }
-    
+
     /**
      * Returns an ordering of the Appointment of the medicalTest and the Time
      * @param t the time to compare with.
      * @return The ordering based on the startTime of the Appointment.
      */
     @SystemAPI
-    public int compareTimeAppointment(Time t){
-    	return m.getAppointment().getTimeFrame().compareTo(t);
+    public int compareTimeAppointment(Time t) {
+        return m.getAppointment().compareTo(t);
     }
 
     /**
@@ -51,19 +51,19 @@ public class MedicalTestInfo {
     @Override
     @SystemAPI
     public boolean equals(Object obj) {
-        if(obj == null){
+        if (obj == null) {
             return false;
         }
-        if(super.equals(obj)){
+        if (super.equals(obj)) {
             return true;
         }
-        if(obj instanceof MedicalTest){
-            if(m.equals(((MedicalTest) obj))){
+        if (obj instanceof MedicalTest) {
+            if (m.equals(((MedicalTest) obj))) {
                 return true;
             }
         }
-        if(obj instanceof MedicalTestInfo){
-            if(m.equals(((MedicalTestInfo) obj).m)){
+        if (obj instanceof MedicalTestInfo) {
+            if (m.equals(((MedicalTestInfo) obj).m)) {
                 return true;
             }
         }
@@ -80,7 +80,4 @@ public class MedicalTestInfo {
     public int hashCode() {
         return (this.m != null ? this.m.hashCode() : 0);
     }
-
-
-
 }

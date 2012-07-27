@@ -1,7 +1,6 @@
 package Hospital.WareHouse;
 
 import Hospital.Argument.Argument;
-import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Warehouse.OrderUnavailableException;

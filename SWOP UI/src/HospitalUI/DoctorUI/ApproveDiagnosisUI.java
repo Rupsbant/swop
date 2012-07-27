@@ -25,7 +25,7 @@ public class ApproveDiagnosisUI {
     
     
     public void run(Scanner sc) throws NotLoggedInException {
-        DiagnosisInfo[] secop = dc.getSecondOpinions();
+        DiagnosisInfo[] secop = dc.getUnapprovedSecondOpinions();
         if (secop.length == 0) {
             System.out.println("This doctor doesn't have any diagnoses to approve.");
             return;

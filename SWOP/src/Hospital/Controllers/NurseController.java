@@ -21,6 +21,7 @@ import Hospital.Schedules.DoctorPatientAppointment;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
+import Hospital.World.World;
 
 
 /**
@@ -92,13 +93,17 @@ public class NurseController extends LoginController<Nurse> {
             throw new Error("This never happens, getCampus never returns null.");
         }
         Doctor doc = wc.getWorld().getPersonByName(Doctor.class, doctor);
+        return makeAppointment(wc.getWorld(), doc, patient);
+    }
+
+    private String makeAppointment(World world, Doctor doc, Patient patient) throws Error, NoPersonWithNameAndRoleException, ArgumentIsNullException {
         DoctorPatientAppointment app = new DoctorPatientAppointment();
-        List<ScheduleGroup> docPat = new ArrayList<ScheduleGroup>();
-        docPat.add(new SingleSchedulableGroup(patient));
-        docPat.add(new SingleSchedulableGroup(doc));
+        List<ScheduleGroup> doctorAndPatient = new ArrayList<ScheduleGroup>();
+        doctorAndPatient.add(new SingleSchedulableGroup(patient));
+        doctorAndPatient.add(new SingleSchedulableGroup(doc));
 
         Priority p = DoctorPatientAppointment.PRIORITY;
-        AppointmentCommand appC = new AppointmentCommand(wc.getWorld(), app, docPat, p);
+        AppointmentCommand appC = new AppointmentCommand(world, app, doctorAndPatient, p);
         try {
             return appC.execute();
         } catch (CannotDoException ex) {

@@ -1,11 +1,8 @@
 package Hospital.Controllers;
 
-
 import Hospital.SystemAPI;
-import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
-import Hospital.Exception.Warehouse.StockException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Warehouse.OrderUnavailableException;
 import Hospital.Exception.Warehouse.StockException;
@@ -30,7 +27,7 @@ public class WareHouseController extends LoginController<WarehouseManager> {
     /**
      * defines the maximum amount of orders to show when asking for an order history
      */
-	@SystemAPI
+    @SystemAPI
     public static final int ORDERS_TO_SHOW = 20;
 
     /**
@@ -38,7 +35,7 @@ public class WareHouseController extends LoginController<WarehouseManager> {
      * @param cc the Campus from where is logged in
      * @param user The staffmember to log in.
      */
-	@SystemAPI
+    @SystemAPI
     public WareHouseController(WarehouseManager user, CampusController cc) {
         super(user, cc);
     }
@@ -48,7 +45,7 @@ public class WareHouseController extends LoginController<WarehouseManager> {
      * @return a list of strings representing the stock categories
      * @throws NotLoggedInException The Warehousemanager is not logged in
      */
-	@SystemAPI
+    @SystemAPI
     public Set<String> getStockCategories() throws NotLoggedInException {
         checkLoggedIn();
         Warehouse w = this.getCampusController().getCampus().getWarehouse();
@@ -64,7 +61,7 @@ public class WareHouseController extends LoginController<WarehouseManager> {
      * @throws OrderUnavailableException the order was not found in this warehouse
      * @throws StockException this order was not in the correct warehouse
      */
-	@SystemAPI
+    @SystemAPI
     public ArgumentList getOrderArguments(String order) throws NotLoggedInException, OrderUnavailableException, StockException {
         checkLoggedIn();
         Order o = getOrder(order);

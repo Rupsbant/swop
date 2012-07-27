@@ -12,6 +12,8 @@ public class FullyStockOrderPlacer implements OrderPlacer {
      * @see Hospital.WareHouse.OrderPlacers.OrderPlacer#checkStock(int, int, int)
      */
     public int checkStock(int currentStock, int ordered, int maxStock) throws ArgumentConstraintException {
-        return Math.max(0, maxStock - currentStock - ordered);
+        final int fullRestock = maxStock - currentStock - ordered;
+        final int minimumSafety = Math.max(0, fullRestock);
+        return minimumSafety;
     }
 }

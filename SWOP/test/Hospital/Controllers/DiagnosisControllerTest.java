@@ -85,10 +85,10 @@ public class DiagnosisControllerTest {
         diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args3), new LoginInfo("Doctor 2", "Doctor"));
         diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args4), new LoginInfo("Doktoor", "Doctor"));
         diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args5), new LoginInfo("Doctor 2", "Doctor"));
-        DiagnosisInfo[] diaginfo = dc.getSecondOpinions();
+        DiagnosisInfo[] diaginfo = dc.getUnapprovedSecondOpinions();
         assertEquals(diaginfo.length, 2);
         dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doctor 2", "Doctor"));
-        DiagnosisInfo[] diaginfo2 = dc.getSecondOpinions();
+        DiagnosisInfo[] diaginfo2 = dc.getUnapprovedSecondOpinions();
         assertEquals(diaginfo2.length, 3);
     }
 
@@ -125,17 +125,17 @@ public class DiagnosisControllerTest {
         diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args2), new LoginInfo("Doctor 2", "Doctor"));
         diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args3), new LoginInfo("Doctor 2", "Doctor"));
 
-        int lengte2 = dc.getSecondOpinions().length;
+        int lengte2 = dc.getUnapprovedSecondOpinions().length;
         
         DoctorController dc2 = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doctor 2", "Doctor"));
         DiagnosisController diag2 = new DiagnosisController(wc, dc2);
-        int lengte1 = dc2.getSecondOpinions().length;
+        int lengte1 = dc2.getUnapprovedSecondOpinions().length;
         dc2.consultPatientFile("Ruben", wc);
-        DiagnosisInfo[] diaginfo = dc2.getSecondOpinions();
+        DiagnosisInfo[] diaginfo = dc2.getUnapprovedSecondOpinions();
         diag2.disapproveDiagnosis(diaginfo[0], "details blabla");
         
-        assertEquals(lengte1 - 1, dc2.getSecondOpinions().length);
+        assertEquals(lengte1 - 1, dc2.getUnapprovedSecondOpinions().length);
         dc2 = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doktoor", "Doctor"));
-        assertEquals(lengte2 + 1, dc2.getSecondOpinions().length);
+        assertEquals(lengte2 + 1, dc2.getUnapprovedSecondOpinions().length);
     }
 }

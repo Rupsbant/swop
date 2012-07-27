@@ -1,8 +1,6 @@
-//TODO: catch every error with "somehow" in its documentation
 package Hospital.Controllers;
 
 import Hospital.SystemAPI;
-import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
@@ -13,8 +11,11 @@ import Hospital.Patient.DiagnosisInfo;
 import Hospital.Argument.Argument;
 import Hospital.Argument.DoctorArgument;
 import Hospital.Argument.StringArgument;
-import Hospital.Exception.*;
 import Hospital.Exception.Arguments.InvalidArgumentException;
+import Hospital.Exception.CannotChangeException;
+import Hospital.Exception.NoPersonWithNameAndRoleException;
+import Hospital.Exception.NotAFactoryException;
+import Hospital.Exception.NotLoggedInException;
 import Hospital.Patient.Diagnosis;
 import Hospital.Patient.DiagnosisApproveCommand;
 import Hospital.Patient.DiagnosisCommand;
@@ -167,7 +168,7 @@ public class DiagnosisController {
             InvalidArgumentException {
         dc.checkLoggedIn();
         if (dc.getUser().getOpenedPatient().isDischarged()) {
-            throw new Error("Patient can't be discharged with unaproved diagnosis");
+            throw new Error("Patient can't be discharged with unapproved diagnosis");
             //throw new PatientIsDischargedException();
         }
         Diagnosis diagnosis = dc.getUser().getOpenedPatient().isValidDiagnosisInfo(diag);
@@ -215,7 +216,6 @@ public class DiagnosisController {
      * @throws NotLoggedInException the doctor is not logged in
      */
     @SystemAPI
-    //TODO:do we really need to be logged in for this action?
     public String[] getAvailableDiagnosisFactories() throws NotLoggedInException {
         dc.checkLoggedIn();
         try {

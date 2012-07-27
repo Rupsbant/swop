@@ -34,18 +34,17 @@ public class CampusController {
     Campus getCampus() {
         return campus;
     }
-    
-    
+
     /**
      * 
      * @return The amount of patients that can check in and have food. amount of food/6 - amount of patients.
      */
-    int getFoodCapacityForPatients(){
-   	 Warehouse w = campus.getWarehouse();
-		try {
-			return ((FoodStock) w.getStock("Meal")).getPatientCapacity();
-		} catch (StockException e) {
-			return 0;
-		}
-   }
+    int getFoodCapacityForPatients() {
+        Warehouse w = campus.getWarehouse();
+        try {
+            return ((FoodStock) w.getStock("Meal")).getPatientCapacity();
+        } catch (StockException e) {
+            return 0;
+        }
+    }
 }
