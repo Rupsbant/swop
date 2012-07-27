@@ -40,4 +40,17 @@ public class CommandInfo {
     Command getCommand() {
         return original;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(super.equals(obj)){
+            return true;
+        }
+        if(obj instanceof CommandInfo){
+            return original.equals(((CommandInfo)obj).original);
+        }
+        return original.equals(obj);
+    }
+    
+    
 }
