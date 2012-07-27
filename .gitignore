@@ -1,6 +1,11 @@
 *.class
 *.jar
 !capsules.jar
+!UMLet/*
 */dist/*
 */nbproject/*
 */build/*
+build.xml
+project.xml
+project.properties
+manifest.mf
