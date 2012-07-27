@@ -1,12 +1,5 @@
 package Hospital.Schedules;
 
-import Hospital.Patient.Patient;
-import Hospital.People.Doctor;
-import Hospital.People.Nurse;
-import Hospital.People.Staff;
-import Hospital.Schedules.Schedulable;
-import Hospital.Schedules.SchedulableVisitor;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 
 /**
@@ -17,9 +10,12 @@ public abstract class TimeFrameConstraint extends SchedulableVisitor {
 
     /**
      * Check whether the Constraint is accepted.
-     * @return true if valid.
+     * @return the last timeFrame itself, if valid
+     *         the first open TimeFrame if invalid and known
+     *         the next minute, if invalid and unknown
+     *         null if not all information was given by the visitors.
      */
-    public abstract Boolean isAccepted();
+    public abstract TimeFrame isAccepted();
 
     /**
      * Resets the Constraint.

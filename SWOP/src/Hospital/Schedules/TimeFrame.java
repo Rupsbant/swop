@@ -4,6 +4,8 @@ import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.World.HasTime;
 import Hospital.World.Time;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents a timeframe used ins scheduling, has a starting time and a length
@@ -139,5 +141,16 @@ public final class TimeFrame implements HasTime, Cloneable {
     @Override
     public String toString() {
         return "Frame on: " + this.time + ", length: " + length;
+    }
+    
+    /**
+     * Returns the next possible TimeFrame
+     */
+    public TimeFrame next(){
+        try {
+            return new TimeFrame(time.getLaterTime(1), length);
+        } catch (Exception ex) {
+            throw new Error("This cannot happen");
+        }
     }
 }

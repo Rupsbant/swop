@@ -1,5 +1,6 @@
 package Hospital.Schedules.Constraints.Implementation;
 
+import Hospital.Schedules.Constraints.XRayConstraint.XRayConstraint;
 import Hospital.World.Time;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;

@@ -5,6 +5,7 @@ import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
+import Hospital.World.Time;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,19 +20,26 @@ public class PriorityConstraint extends TimeFrameConstraint {
         this.priority = priority;
     }
 
-    public Boolean isAccepted() {
-        if(tf == null){
+    public TimeFrame isAccepted() {
+        if (tf == null) {
             return null;
         }
-        for(Schedule schedule : attendeeSchedules){
+        for (Schedule schedule : attendeeSchedules) {
             List<Appointment> collidingSchedules = schedule.getCollidingAppointments(tf);
             for (Appointment p : collidingSchedules) {
                 if (!priority.canPreempt(p.getPriority())) {
-                    return false;
+                    Time start = p.getTimeFrame().getEndTime();
+                    TimeFrame out;
+                    try {
+                        out = new TimeFrame(start, tf.getLength());
+                    } catch (Exception ex) {
+                        throw new Error("This cannot happen");
+                    }
+                    return out;
                 }
             }
         }
-        return true;
+        return tf;
     }
 
     @Override

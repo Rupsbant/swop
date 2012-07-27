@@ -11,20 +11,24 @@ public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint {
     private Nurse nurse;
     private TimeFrame tf;
 
-    public Boolean isAccepted() {
+    public TimeFrame isAccepted() {
         if(tf == null || nurse == null){
-            return false;
+            return null;
         }
         if (tf.getTime().getMinute() == 0) {
-            return true;
+            return tf;
         }
         Schedule schedule = nurse.getSchedule();
         Appointment prev = schedule.getAppointmentBefore(tf.getTime());
         if (prev == null) {
-            return false;
+            return tf.next();
         }
         int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
-        return timeDiff == 0;
+        if(timeDiff == 0){
+            return tf;
+        } else {
+            return tf.next();
+        }
 
     }
 

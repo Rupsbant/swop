@@ -14,19 +14,22 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
     private static final Time dayEnd = new Time(0, 0, 0, 17, 0);
     private TimeFrame tf;
 
-    //TODO: Test this!!!!
-    public Boolean isAccepted() {
+    public TimeFrame isAccepted() {
         if (tf == null) {
             return null;
         }
         Time start = TimeUtils.copyDay(tf.getTime(), dayStart);
         Time end = TimeUtils.copyDay(tf.getTime(), dayEnd);
         if (tf.compareTo(start) < 0) {
-            return false;
+            try {
+                return new TimeFrame(start, tf.getLength());
+            } catch (Exception ex) {
+                throw new Error(ex);
+            }
         } else if (end.compareTo(tf.getEndTime()) < 0) {
-            return false;
+            return tf.next();
         } else {
-            return true;
+            return tf;
         }
     }
 

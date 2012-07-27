@@ -14,9 +14,8 @@ import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Factory.Command;
 import Hospital.Factory.NullCommand;
 import Hospital.Schedules.ConstraintSolver.AppointmentConstraintSolver;
-import Hospital.Schedules.ConstraintSolver.Solver;
+import Hospital.Schedules.ConstraintSolver.BruteForceSolver;
 import Hospital.Utils;
-import Hospital.World.Campus;
 import Hospital.World.World;
 import Hospital.World.WorldTime;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class AppointmentCommand implements Command {
         return new PublicArgument[]{new PriorityArgument("Enter the priority of the appointment")};
     }
 
-    private AppointmentConstraintSolver solver = new Solver();
+    private AppointmentConstraintSolver solver = new BruteForceSolver();
     /**
      * The minimal delay before the appointment can be scheduled
      */

@@ -63,7 +63,7 @@ public class AppointmentConstraintSolverTest {
 
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException, SchedulingException, ArgumentConstraintException {
-        instance = new Solver();
+        instance = new BruteForceSolver();
 
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 30), 20);
         Schedule sched1 = d.getSchedule();

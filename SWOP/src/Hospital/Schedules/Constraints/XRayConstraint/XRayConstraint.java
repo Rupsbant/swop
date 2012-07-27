@@ -1,4 +1,4 @@
-package Hospital.Schedules.Constraints.Implementation;
+package Hospital.Schedules.Constraints.XRayConstraint;
 
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.MedicalTest.XRayScan;
@@ -10,6 +10,7 @@ import Hospital.World.Time;
 import Hospital.World.TimeUtils;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.TreeMap;
 
 /**
  * The constraint imposed on scheduling by X-ray scans
@@ -55,16 +56,36 @@ public class XRayConstraint extends TimeFrameConstraint {
         this.tf = null;
     }
 
-    public Boolean isAccepted() {
+    public TimeFrame isAccepted() {
         if (tf == null || patient == null) {
             return null;
         }
-        List<XRayScan> filter = Utils.filter(patient.getMedicalTests(), XRayScan.class);
         Time start = TimeUtils.getStartOfDay(tf.getTime());
-        Time end = TimeUtils.getNextYear(start).getDiffTime(0, 0, 0, 0, -1);
         start = TimeUtils.getLastYear(start);
+        Time end = start;
+        end = TimeUtils.getNextYear(end);
+        end = TimeUtils.getNextYear(end);
+        end = end.getDiffTime(0, 0, 0, 23, 59);
+        PriorityQueue<AppEvent> events = getBasicEvents(start, end);
+        TreeMap<Integer, Integer> counter = new TreeMap<Integer, Integer>();
+        int countPlanned = 0;
+        
+        while (!events.isEmpty()) {
+            AppEvent e = events.poll();
+            countPlanned = e.doEvent(countPlanned, counter, events);
+            int maximum = counter.lastEntry().getValue();
+            if (e.compareTo(tf) >= 0) {
+                if (maximum < XRayScan.MAX_XRAY_COUNT - wantToDo) {
+                    return tf;
+                }
+            }
+        }
+        return null;
+    }
 
-        PriorityQueue<Event> events = new PriorityQueue<Event>();
+    private PriorityQueue<AppEvent> getBasicEvents(Time start, Time end) {
+        List<XRayScan> filter = Utils.filter(patient.getMedicalTests(), XRayScan.class);
+        PriorityQueue<AppEvent> events = new PriorityQueue<AppEvent>();
         for (XRayScan xray : filter) {
             if (xray.getAppointment() == null) {
                 continue;
@@ -76,41 +97,9 @@ public class XRayConstraint extends TimeFrameConstraint {
                 continue;
             }
             Time appStart = TimeUtils.getStartOfDay(xray.getAppointment().getTimeFrame().getTime());
-            Time appOver = TimeUtils.getNextYear(xray.getAppointment().getTimeFrame().getEndTime());
-            appOver = TimeUtils.getStartOfDay(appOver).getDiffTime(0, 0, 0, 23, 59);
 
-            events.add(new Event(appStart, xray.getXRayCount()));
-            events.add(new Event(appOver, -xray.getXRayCount()));
+            events.add(new AppEvent(appStart, xray.getXRayCount()));
         }
-        events.add(new Event(tf.getTime(), wantToDo));
-        events.add(new Event(TimeUtils.getNextYear(tf.getTime()), -wantToDo));
-        int count = 0;
-        while (!events.isEmpty()) {
-            Event e = events.poll();
-            count = e.newValue(count);
-            if (count > XRayScan.MAX_XRAY_COUNT) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private class Event implements Comparable<Event> {
-
-        private int change;
-        private Time time;
-
-        public Event(Time time, int change) {
-            this.change = change;
-            this.time = time;
-        }
-
-        public int compareTo(Event o) {
-            return time.compareTo(o.time);
-        }
-
-        int newValue(int old) {
-            return change + old;
-        }
+        return events;
     }
 }

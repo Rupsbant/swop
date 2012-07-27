@@ -9,6 +9,7 @@ public class UnmovableConstraint extends TimeFrameConstraint {
 
     private Unmovable unmovable;
     private Campus campus;
+    private TimeFrame tf;
 
     public UnmovableConstraint(Unmovable unmovable) {
         this.unmovable = unmovable;
@@ -19,11 +20,15 @@ public class UnmovableConstraint extends TimeFrameConstraint {
         this.campus = c;
     }
 
-    public Boolean isAccepted() {
+    public TimeFrame isAccepted() {
         if(campus == null){
             return null;
         }
-        return unmovable.getCampus().equals(campus);
+        if(unmovable.getCampus().equals(campus)){
+            return tf;
+        } else {
+            return tf.next();
+        }
     }
 
     public void reset() {
@@ -32,6 +37,6 @@ public class UnmovableConstraint extends TimeFrameConstraint {
 
     @Override
     public void setTimeFrame(TimeFrame tf) {
-        // does nothing
+        this.tf = tf;
     }
 }

@@ -13,7 +13,7 @@ import Hospital.World.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solver implements AppointmentConstraintSolver {
+public class BruteForceSolver implements AppointmentConstraintSolver {
 
     //TODO: make solver using AI: backjumping or tables
     //Will require serious rewrite of Constraints
@@ -33,7 +33,7 @@ public class Solver implements AppointmentConstraintSolver {
     private TimeFrame chosenTimeFrame;
     private Campus campus;
 
-    public Solver solve() throws SchedulingException {
+    public BruteForceSolver solve() throws SchedulingException {
         if (out.isEmpty()) {
             chosenTimeFrame = tf;
             while (!recursive(0, chosenTimeFrame)) {
@@ -65,10 +65,10 @@ public class Solver implements AppointmentConstraintSolver {
             for (Schedulable sched : out) {
                 sched.visitConstraint(tfC);
             }
-            Boolean accepted = tfC.isAccepted();
-            if(accepted == null){
+            TimeFrame outputTimeFrame = tfC.isAccepted();
+            if(outputTimeFrame == null){
                 throw new SchedulingException("Something went very wrong, information was missing"+tfC);
-            } else if(!accepted){
+            } else if(!outputTimeFrame.equals(tf)){
                 return false;
             }
         }

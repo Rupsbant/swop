@@ -11,7 +11,7 @@ import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Machine.Machine;
 import Hospital.Machine.XRayMachine;
-import Hospital.Schedules.Constraints.Implementation.XRayConstraint;
+import Hospital.Schedules.Constraints.XRayConstraint.XRayConstraint;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Utils;
 import java.util.List;

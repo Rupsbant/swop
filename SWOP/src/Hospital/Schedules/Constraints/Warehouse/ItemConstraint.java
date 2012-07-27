@@ -2,7 +2,6 @@ package Hospital.Schedules.Constraints.Warehouse;
 
 import Hospital.Exception.Warehouse.StockException;
 import Hospital.Schedules.TimeFrameConstraint;
-import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
 import Hospital.Treatments.Treatment;
 import Hospital.WareHouse.ItemInfo;
@@ -18,7 +17,7 @@ public class ItemConstraint extends TimeFrameConstraint {
         this.app = app;
     }
 
-    public Boolean isAccepted() {
+    public TimeFrame isAccepted() {
         if (tf == null || campus == null) {
             return null;
         }
@@ -26,15 +25,15 @@ public class ItemConstraint extends TimeFrameConstraint {
         for (ItemInfo i : infos) {
             try {
                 if (!campus.getWarehouse().getStock(i.getName()).testReservation(i.getCount(), tf.getTime())) {
-                    return false;
+                    return tf.next();
                 }
             } catch (StockException ex) {
                 //The item is not in stock in that warehouse.
-                return false;
+                return null;
                 //throw new Error(ex);
             }
         }
-        return true;
+        return tf;
     }
 
     public void reset() {

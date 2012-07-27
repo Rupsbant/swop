@@ -26,12 +26,15 @@ public class PreferenceConstraint extends TimeFrameConstraint {
         this.tf = tf;
     }
 
-    public Boolean isAccepted() {
+    public TimeFrame isAccepted() {
         if (preference == null || tf == null || campus == null) {
-            System.out.println(preference+""+tf+campus);
             return null;
         }
-        return preference.canAddAppointment(tf, campus);
+        if (preference.canAddAppointment(tf, campus)) {
+            return tf;
+        } else {
+            return tf.next();
+        }
     }
 
     public void reset() {
