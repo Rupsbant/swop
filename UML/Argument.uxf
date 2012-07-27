@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>6</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>210</x>
+      <y>252</y>
+      <w>126</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Argument&lt;Type&gt;
+--
+getAnswer() : Type
+getQuestion() String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>210</x>
+      <y>342</y>
+      <w>126</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>/BasicArgument&lt;Type&gt;/
+--
+question : String
+answer : Type
+--
+setAnswer(Type answer)
+getAnswer() : Type
+getQuestion() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>390</x>
+      <y>252</y>
+      <w>180</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+PublicArgument&lt;Type&gt;
+--
+enterAnswer(String ans) : PublicArgument
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>318</x>
+      <y>264</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;72;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>258</x>
+      <y>288</y>
+      <w>30</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>18;18;18;54</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>252</y>
+      <w>198</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+WorldPopulatedArgument
+--
+setWorld(World w) : WorldPopulatedArgument</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>192</x>
+      <y>474</y>
+      <w>162</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>WorldArgument
+--
+getAnswer(World w)
+getQuestion() : String
+setWorld(World w) : WorldArgument</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>258</x>
+      <y>396</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;78</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>84</x>
+      <y>288</y>
+      <w>180</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>18;18;18;168;168;168;168;186</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>372</x>
+      <y>474</y>
+      <w>162</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>TimeArgument
+--
+enterAnswer(String ans)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>258</x>
+      <y>396</y>
+      <w>198</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;48;156;48;186;78</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>438</x>
+      <y>288</y>
+      <w>30</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;186</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>546</x>
+      <y>474</y>
+      <w>162</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>StringArgument
+--
+enterAnswer(String ans) : StringArgument</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>438</x>
+      <y>288</y>
+      <w>204</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;126;114;126;192;186</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>258</x>
+      <y>396</y>
+      <w>342</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;48;288;48;330;78</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>720</x>
+      <y>474</y>
+      <w>108</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>ListArgument&lt;Type&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>438</x>
+      <y>288</y>
+      <w>342</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;60;18;126;258;126;330;186</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>6</x>
+      <y>474</y>
+      <w>174</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>DoctorArgument
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>84</x>
+      <y>396</y>
+      <w>204</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>192;18;192;48;48;48;18;78</additional_attributes>
+  </element>
+</diagram>
