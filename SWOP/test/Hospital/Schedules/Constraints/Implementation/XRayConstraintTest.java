@@ -8,27 +8,13 @@ import Hospital.MedicalTest.XRayScan;
 import Hospital.Patient.Patient;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.TimeFrame;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class XRayConstraintTest {
 
     Patient p;
-
-    public XRayConstraintTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Before
     public void setUp() throws ArgumentConstraintException, ArgumentIsNullException {
@@ -47,10 +33,6 @@ public class XRayConstraintTest {
         p.addMedicalTest(xray);
     }
 
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of setValidPatient method, of class XRayConstraint.
      */
@@ -61,7 +43,8 @@ public class XRayConstraintTest {
         XRayConstraint instance = new XRayConstraint(1);
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertTrue("Can fit another XRay", instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue("Can fit another XRay", instance.isAccepted());
     }
 
     /**
@@ -74,19 +57,22 @@ public class XRayConstraintTest {
         XRayConstraint instance = new XRayConstraint(3);
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertFalse("Can't fit another XRay", instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
+        //assertFalse("Can't fit another XRay", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2012, 11, 8, 9, 0), 15);
         instance.reset();
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertFalse("Can't fit another XRay", instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
+        //assertFalse("Can't fit another XRay", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2012, 11, 9, 9, 0), 15);
         instance.reset();
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertTrue("Can fit another XRay", instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue("Can fit another XRay", instance.isAccepted());
     }
 
     @Test
@@ -96,24 +82,28 @@ public class XRayConstraintTest {
         XRayConstraint instance = new XRayConstraint(7);
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertFalse("Can't fit another XRay", instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
+        //assertFalse("Can't fit another XRay", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2012, 11, 9, 9, 0), 15);
         instance.reset();
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertFalse("Can't fit another XRay", instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
+        //assertFalse("Can't fit another XRay", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2013, 5, 8, 9, 0), 15);
         instance.reset();
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertFalse("Can't fit another XRay", instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
+        //assertFalse("Can't fit another XRay", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2013, 5, 9, 9, 0), 15);
         instance.reset();
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertTrue("Can fit another XRay", instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue("Can fit another XRay", instance.isAccepted());
     }
 }

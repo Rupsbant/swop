@@ -91,14 +91,14 @@ public class PreferenceConstraintTest {
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        assertTrue(instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        assertTrue(instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
     }
 
     @Test
@@ -108,14 +108,14 @@ public class PreferenceConstraintTest {
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        assertFalse(instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        assertFalse(instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
     }
 
     @Test
@@ -125,28 +125,28 @@ public class PreferenceConstraintTest {
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        assertFalse(instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 11, 59), 15);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        assertFalse(instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
         
         tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        assertFalse(instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
         instance.reset();
         instance.setDoctor(d);
         instance.setTimeFrame(tf);
         instance.setCampus(ruben.getCampus());
-        assertTrue(instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
 
     }
 }

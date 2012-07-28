@@ -62,20 +62,18 @@ public class XRayConstraint extends TimeFrameConstraint {
         }
         Time start = TimeUtils.getStartOfDay(tf.getTime());
         start = TimeUtils.getLastYear(start);
-        Time end = start;
-        end = TimeUtils.getNextYear(end);
-        end = TimeUtils.getNextYear(end);
-        end = end.getDiffTime(0, 0, 0, 23, 59);
-        PriorityQueue<AppEvent> events = getBasicEvents(start, end);
+        Time end = TimeUtils.getStartOfDay(tf.getTime()).getDiffTime(1, 0, 0, 23, 59);
+        PriorityQueue<AppEvent> events = getBasicEvents(start);
         TreeMap<Integer, Integer> counter = new TreeMap<Integer, Integer>();
         int countPlanned = 0;
-        
+
+        events.add(new AppEndEvent(end, 0, 0));
         while (!events.isEmpty()) {
             AppEvent e = events.poll();
             countPlanned = e.doEvent(countPlanned, counter, events);
             int maximum = counter.lastEntry().getValue();
             if (e.compareTo(tf) >= 0) {
-                if (maximum < XRayScan.MAX_XRAY_COUNT - wantToDo) {
+                if (wantToDo < XRayScan.MAX_XRAY_COUNT - maximum) {
                     return tf;
                 }
             }
@@ -83,7 +81,7 @@ public class XRayConstraint extends TimeFrameConstraint {
         return null;
     }
 
-    private PriorityQueue<AppEvent> getBasicEvents(Time start, Time end) {
+    private PriorityQueue<AppEvent> getBasicEvents(Time start) {
         List<XRayScan> filter = Utils.filter(patient.getMedicalTests(), XRayScan.class);
         PriorityQueue<AppEvent> events = new PriorityQueue<AppEvent>();
         for (XRayScan xray : filter) {
@@ -93,12 +91,9 @@ public class XRayConstraint extends TimeFrameConstraint {
             if (xray.getAppointment().compareTo(start) < 0) {
                 continue;
             }
-            if (xray.getAppointment().compareTo(end) >= 0) {
-                continue;
-            }
             Time appStart = TimeUtils.getStartOfDay(xray.getAppointment().getTimeFrame().getTime());
 
-            events.add(new AppEvent(appStart, xray.getXRayCount()));
+            events.add(new AppStartEvent(appStart, xray.getXRayCount()));
         }
         return events;
     }

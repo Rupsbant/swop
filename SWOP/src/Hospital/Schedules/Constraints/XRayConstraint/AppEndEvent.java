@@ -6,18 +6,24 @@ import java.util.TreeMap;
 
 public class AppEndEvent extends AppEvent {
 
-    public AppEndEvent(Time time, int plannedChange) {
-        super(time, plannedChange);
-    }
+    private static final int CHANGE_DIRECTION = -1;
+    private int plannedChange;
+    private int doneCount;
 
-    protected AppEndEvent(Time time, int planndedChange, int changeCount) {
-        super(time, planndedChange, changeCount);
+    public AppEndEvent(Time time, int plannedChange, int doneCount) {
+        super(time);
+        this.plannedChange = plannedChange;
+        this.doneCount = doneCount;
     }
 
     @Override
     int doEvent(int old, TreeMap<Integer, Integer> counter, PriorityQueue<AppEvent> events) {
-        final int eventOut = super.doEvent(old, counter, events);
-
-        return eventOut;
+        int newCount = old + plannedChange;
+        Integer count = counter.get(doneCount);
+        if (count == null) {
+            count = 0;
+        }
+        counter.put(doneCount, count + CHANGE_DIRECTION);
+        return newCount;
     }
 }

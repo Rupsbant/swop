@@ -6,21 +6,26 @@ import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 public class AppStartEvent extends AppEvent {
+    private final static int CHANGE_DIRECTION = 1;
+    private int plannedChange;
 
     public AppStartEvent(Time time, int plannedChange) {
-        super(time, plannedChange);
-    }
-
-    private AppStartEvent(Time time, int planndedChange, int changeCount) {
-        super(time, planndedChange, changeCount);
+        super(time);
+        this.plannedChange = plannedChange;
     }
 
     @Override
-    int doEvent(int old, TreeMap<Integer, Integer> counter, PriorityQueue<AppEvent> events) {
-        int eventOut = super.doEvent(old, counter, events);
+    int doEvent(int old, TreeMap<Integer, Integer> counter, PriorityQueue<AppEvent> events) { 
+        int newCount = old + plannedChange;
+        Integer count = counter.get(newCount);
+        if (count == null) {
+            count = 0;
+        }
+        counter.put(newCount, count + CHANGE_DIRECTION);
+        
         Time appOver = TimeUtils.getNextYear(getTime());
         appOver = TimeUtils.getStartOfDay(appOver).getDiffTime(0, 0, 0, 23, 59);
-        events.add(new AppEndEvent(appOver, -getPlannedChange(), -1));
-        return eventOut;
+        events.add(new AppEndEvent(appOver, -plannedChange, newCount));
+        return newCount;
     }
 }

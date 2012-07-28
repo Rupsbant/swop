@@ -11,7 +11,6 @@ import Hospital.World.Campus;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
-import Hospital.Schedules.ConstraintSolver.GetC;
 import Hospital.World.BasicWorld;
 import Hospital.World.World;
 import Hospital.Schedules.TimeFrame;
@@ -68,14 +67,17 @@ public class ItemConstraintTest {
         ItemInfo toOrder = new ItemInfo(MEDICATION_NAME, 3);
         Treatment t = new Medication("MedicationTest", Boolean.TRUE, new ItemInfo[]{toOrder});
         ItemConstraint instance = new ItemConstraint(t);
-        instance.setTimeFrame(new TimeFrame(new Time(2011, 11, 9, 13, 0), 20));
+        TimeFrame tf = new TimeFrame(new Time(2011, 11, 9, 13, 0), 20);
+        instance.setTimeFrame(tf);
         instance.setCampus(campusNorth);
-        assertFalse(instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
+        //assertFalse(instance.isAccepted());
 
         toOrder.addCount(-1);
         instance.reset();
         instance.setCampus(campusNorth);
         instance.setTimeFrame(new TimeFrame(new Time(2011, 11, 9, 13, 0), 20));
-        assertTrue(instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue(instance.isAccepted());
     }
 }

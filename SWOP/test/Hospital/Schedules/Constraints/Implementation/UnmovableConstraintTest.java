@@ -63,41 +63,49 @@ public class UnmovableConstraintTest {
         instance.reset();
         instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue("Can always move instantly on campus", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
         instance.reset();
         instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue("Can always move instantly on campus", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 19), 20);
         instance.reset();
         instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue("Can always move instantly on campus", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
         instance.reset();
         instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue("Can always move instantly on campus", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.reset();
         instance.setCampus(nurse.getCampus());
         instance.setTimeFrame(tf);
-        assertTrue("Can always move instantly on campus", instance.isAccepted());
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue("Can always move instantly on campus", instance.isAccepted());
     }
 
     /**
      * Test of resetValid method, of class UnmovableConstraint.
      */
     @Test
-    public void testResetValid() {
+    public void testResetValid() throws ArgumentIsNullException, ArgumentConstraintException {
         UnmovableConstraint instance = new UnmovableConstraint(nurse);
+        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.setCampus(nurse.getCampus());
-        assertTrue(instance.isAccepted());
+        instance.setTimeFrame(tf);
+        assertEquals(tf, instance.isAccepted());
+        //assertTrue(instance.isAccepted());
         instance.reset();
         assertEquals(null, instance.isAccepted());
     }
