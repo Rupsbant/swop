@@ -48,6 +48,7 @@ public class Doctor extends Staff implements HasPreference {
         super(name);
         this.openedPatient = null;
         this.secondOpinions = new ArrayList<DiagnosisSecondOpinion>();
+        this.history = new CommandHistory();
     }
 
     /**

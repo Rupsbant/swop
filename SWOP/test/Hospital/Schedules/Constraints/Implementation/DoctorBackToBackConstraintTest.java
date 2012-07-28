@@ -102,7 +102,7 @@ public class DoctorBackToBackConstraintTest {
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 50), 15);
         instance.setDoctor(d);
@@ -114,13 +114,13 @@ public class DoctorBackToBackConstraintTest {
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 30), 15);
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 45), 15);
         instance.setDoctor(d);
@@ -132,13 +132,13 @@ public class DoctorBackToBackConstraintTest {
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
         instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 45), 15);
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
         instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 30), 15);
         instance.setDoctor(d);

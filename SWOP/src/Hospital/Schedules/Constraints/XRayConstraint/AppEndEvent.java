@@ -1,29 +1,29 @@
 package Hospital.Schedules.Constraints.XRayConstraint;
 
 import Hospital.World.Time;
+import Hospital.World.TimeUtils;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 public class AppEndEvent extends AppEvent {
 
-    private static final int CHANGE_DIRECTION = -1;
+    private static final int CHANGE_DIRECTION = 1;
     private int plannedChange;
-    private int doneCount;
 
-    public AppEndEvent(Time time, int plannedChange, int doneCount) {
+    public AppEndEvent(Time time, int plannedChange) {
         super(time);
         this.plannedChange = plannedChange;
-        this.doneCount = doneCount;
     }
 
     @Override
     int doEvent(int old, TreeMap<Integer, Integer> counter, PriorityQueue<AppEvent> events) {
-        int newCount = old + plannedChange;
-        Integer count = counter.get(doneCount);
-        if (count == null) {
-            count = 0;
-        }
-        counter.put(doneCount, count + CHANGE_DIRECTION);
+        int newCount = old - plannedChange;
+        Integer nextCount = counter.get(newCount);
+        nextCount = (nextCount == null ? 0 : nextCount);
+        counter.put(newCount, nextCount+1);
+        
+        Time time = TimeUtils.getNextYear(getTime());
+        events.add(new AppRemoveSetEvent(time, old));
         return newCount;
     }
 }

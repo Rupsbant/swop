@@ -57,7 +57,9 @@ public class XRayConstraintTest {
         XRayConstraint instance = new XRayConstraint(3);
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
+        
+        TimeFrame accepted = instance.isAccepted();
+        assertNotSame(tf, accepted);
         //assertFalse("Can't fit another XRay", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2012, 11, 8, 9, 0), 15);

@@ -18,10 +18,7 @@ import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
 import Hospital.Schedules.TimeFrame;
 import Hospital.Treatments.Medication;
 import Hospital.Treatments.Treatment;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -36,14 +33,6 @@ public class NurseAppointmentBackToBackConstraintTest {
         this.nurse = w.getPersonByName(Nurse.class, "Nurse Joy");
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException {
         Treatment t = new Medication("Medication1", Boolean.TRUE, new ItemInfo[0]);
@@ -55,10 +44,6 @@ public class NurseAppointmentBackToBackConstraintTest {
         t = new Medication("Medication2", Boolean.TRUE, new ItemInfo[0]);
         appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
         System.out.println(appC.execute());
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -78,7 +63,7 @@ public class NurseAppointmentBackToBackConstraintTest {
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
         //assertFalse("Time doesn't start at the hour.", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
@@ -92,7 +77,7 @@ public class NurseAppointmentBackToBackConstraintTest {
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
         //assertFalse("Time is not backtoback with appointment", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 9, 40), 20);
@@ -106,7 +91,7 @@ public class NurseAppointmentBackToBackConstraintTest {
         instance.reset();
         instance.setNurse(nurse);
         instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        assertNotSame(tf, instance.isAccepted());
         //assertFalse("Time is not backtoback with appointment", instance.isAccepted());
     }
 }

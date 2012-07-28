@@ -6,7 +6,6 @@ import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 public class AppStartEvent extends AppEvent {
-    private final static int CHANGE_DIRECTION = 1;
     private int plannedChange;
 
     public AppStartEvent(Time time, int plannedChange) {
@@ -21,11 +20,14 @@ public class AppStartEvent extends AppEvent {
         if (count == null) {
             count = 0;
         }
-        counter.put(newCount, count + CHANGE_DIRECTION);
+        counter.put(newCount, count + 1);
         
         Time appOver = TimeUtils.getNextYear(getTime());
         appOver = TimeUtils.getStartOfDay(appOver).getDiffTime(0, 0, 0, 23, 59);
-        events.add(new AppEndEvent(appOver, -plannedChange, newCount));
+        events.add(new AppEndEvent(appOver, plannedChange));
+        
+        AppRemoveSetEvent remove = new AppRemoveSetEvent(appOver, old);
+        events.add(remove);
         return newCount;
     }
 }
