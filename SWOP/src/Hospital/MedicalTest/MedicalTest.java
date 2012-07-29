@@ -9,7 +9,7 @@ import Hospital.People.Nurse;
 import Hospital.Schedules.Appointable;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.CampusDecider;
-import Hospital.Schedules.Constraints.GetCampus.NurseDecides;
+import Hospital.Schedules.GetCampus.NurseDecides;
 import Hospital.Schedules.Constraints.Implementation.NurseAppointmentBackToBackConstraint;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;

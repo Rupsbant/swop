@@ -23,19 +23,20 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 // This text will be stored with each diagram;  use it for notes.</help_text>
-  <zoom_level>5</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>765</x>
-      <y>235</y>
-      <w>175</w>
-      <h>65</h>
+      <x>784</x>
+      <y>140</y>
+      <w>245</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>/TimeFrameConstraint/
 --
 /+reset()/
-/+isAccepted() : Boolean/
+/+isAccepted() : TimeFrame/
+/                  {exception ScheduleConstraintException}/
 /+setTimeFrame(TimeFrame tf)/
 </panel_attributes>
     <additional_attributes/>
@@ -43,21 +44,21 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>395</x>
-      <y>250</y>
-      <w>379</w>
-      <h>249</h>
+      <x>266</x>
+      <y>161</y>
+      <w>531</w>
+      <h>349</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370;15;15;15;15;240;50;240;155;125</additional_attributes>
+    <additional_attributes>518;21;21;21;21;336;70;336;203;175</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
-      <y>330</y>
-      <w>115</w>
-      <h>45</h>
+      <x>469</x>
+      <y>273</y>
+      <w>182</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>PriorityConstraint
 --
@@ -68,10 +69,10 @@ setSchedulable(Schedulable s)
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
-      <y>405</y>
-      <w>115</w>
-      <h>35</h>
+      <x>469</x>
+      <y>378</y>
+      <w>182</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>WorkingHoursConstraint
 --
@@ -83,21 +84,21 @@ setTimeFrame(TimeFrame tf)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>395</x>
-      <y>250</y>
-      <w>379</w>
-      <h>249</h>
+      <x>266</x>
+      <y>161</y>
+      <w>531</w>
+      <h>349</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370;15;15;15;15;240;50;240;155;155</additional_attributes>
+    <additional_attributes>518;21;21;21;21;336;70;336;203;231</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
-      <y>545</y>
-      <w>115</w>
-      <h>40</h>
+      <x>469</x>
+      <y>574</y>
+      <w>182</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>XRayConstraint
 --
@@ -109,21 +110,21 @@ setPatient(Patient p)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>395</x>
-      <y>250</y>
-      <w>379</w>
-      <h>304</h>
+      <x>266</x>
+      <y>161</y>
+      <w>531</w>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370;15;15;15;15;240;50;240;155;295</additional_attributes>
+    <additional_attributes>518;21;21;21;21;336;70;336;203;427</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>925</x>
-      <y>355</y>
-      <w>170</w>
-      <h>55</h>
+      <x>1008</x>
+      <y>308</y>
+      <w>238</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 Schedulable
@@ -136,10 +137,10 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1005</x>
-      <y>445</y>
-      <w>185</w>
-      <h>65</h>
+      <x>1120</x>
+      <y>434</y>
+      <w>259</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>Person
 --
@@ -154,21 +155,21 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>995</x>
-      <y>395</y>
-      <w>114</w>
-      <h>59</h>
+      <x>1106</x>
+      <y>364</y>
+      <w>160</w>
+      <h>83</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>15;15;105;50</additional_attributes>
+    <additional_attributes>21;21;147;70</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>780</x>
-      <y>445</y>
-      <w>205</w>
-      <h>65</h>
+      <x>805</x>
+      <y>434</y>
+      <w>287</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>Machine
 --
@@ -182,10 +183,10 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1020</x>
-      <y>540</y>
-      <w>50</w>
-      <h>15</h>
+      <x>1141</x>
+      <y>567</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>Patient
 </panel_attributes>
@@ -194,10 +195,10 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1120</x>
-      <y>540</y>
-      <w>50</w>
-      <h>15</h>
+      <x>1281</x>
+      <y>567</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>Staff</panel_attributes>
     <additional_attributes/>
@@ -205,10 +206,10 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1125</x>
-      <y>645</y>
-      <w>50</w>
-      <h>15</h>
+      <x>1288</x>
+      <y>714</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>Doctor</panel_attributes>
     <additional_attributes/>
@@ -216,10 +217,10 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1060</x>
-      <y>600</y>
-      <w>50</w>
-      <h>15</h>
+      <x>1197</x>
+      <y>651</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>Nurse
 </panel_attributes>
@@ -228,10 +229,10 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1175</x>
-      <y>600</y>
-      <w>50</w>
-      <h>15</h>
+      <x>1358</x>
+      <y>651</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>...
 </panel_attributes>
@@ -240,76 +241,76 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1080</x>
-      <y>495</y>
-      <w>74</w>
-      <h>54</h>
+      <x>1225</x>
+      <y>504</y>
+      <w>104</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>15;15;65;45</additional_attributes>
+    <additional_attributes>21;21;91;63</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1030</x>
-      <y>495</y>
-      <w>74</w>
-      <h>54</h>
+      <x>1155</x>
+      <y>504</y>
+      <w>104</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>65;15;15;45</additional_attributes>
+    <additional_attributes>91;21;21;63</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1135</x>
-      <y>540</y>
-      <w>74</w>
-      <h>69</h>
+      <x>1302</x>
+      <y>567</y>
+      <w>104</w>
+      <h>97</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>15;15;65;60</additional_attributes>
+    <additional_attributes>21;21;91;84</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1075</x>
-      <y>540</y>
-      <w>84</w>
-      <h>69</h>
+      <x>1218</x>
+      <y>567</y>
+      <w>118</w>
+      <h>97</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>75;15;15;60</additional_attributes>
+    <additional_attributes>105;21;21;84</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1135</x>
-      <y>540</y>
-      <w>24</w>
-      <h>114</h>
+      <x>1302</x>
+      <y>567</y>
+      <w>34</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>15;15;15;105</additional_attributes>
+    <additional_attributes>21;21;21;147</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>865</x>
-      <y>395</y>
-      <w>154</w>
-      <h>59</h>
+      <x>924</x>
+      <y>364</y>
+      <w>216</w>
+      <h>83</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>145;15;15;50</additional_attributes>
+    <additional_attributes>203;21;21;70</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>805</x>
-      <y>540</y>
-      <w>50</w>
-      <h>15</h>
+      <x>840</x>
+      <y>567</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>XRayMachine</panel_attributes>
     <additional_attributes/>
@@ -317,10 +318,10 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>905</x>
-      <y>540</y>
-      <w>50</w>
-      <h>15</h>
+      <x>980</x>
+      <y>567</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>...
 </panel_attributes>
@@ -329,46 +330,46 @@ getConstraints() : List&lt;TimeFrameConstraint&gt;
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>865</x>
-      <y>495</y>
-      <w>74</w>
-      <h>54</h>
+      <x>924</x>
+      <y>504</y>
+      <w>104</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>15;15;65;45</additional_attributes>
+    <additional_attributes>21;21;91;63</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>815</x>
-      <y>495</y>
-      <w>74</w>
-      <h>54</h>
+      <x>854</x>
+      <y>504</y>
+      <w>104</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>65;15;15;45</additional_attributes>
+    <additional_attributes>91;21;21;63</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>650</x>
-      <y>345</y>
-      <w>284</w>
-      <h>35</h>
+      <x>630</x>
+      <y>294</y>
+      <w>391</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=0..n
 &lt; get Schedule</panel_attributes>
-    <additional_attributes>15;25;275;25</additional_attributes>
+    <additional_attributes>21;35;378;35</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
-      <y>705</y>
-      <w>115</w>
-      <h>40</h>
+      <x>469</x>
+      <y>798</y>
+      <w>182</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>PreferenceConstraint
 --
@@ -380,36 +381,36 @@ setCampus(Campus c)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>395</x>
-      <y>250</y>
-      <w>379</w>
-      <h>414</h>
+      <x>266</x>
+      <y>161</y>
+      <w>531</w>
+      <h>580</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370;15;15;15;15;240;50;240;155;405</additional_attributes>
+    <additional_attributes>518;21;21;21;21;336;70;336;203;567</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>650</x>
-      <y>635</y>
-      <w>484</w>
-      <h>85</h>
+      <x>630</x>
+      <y>700</y>
+      <w>671</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 get Preference from &gt;
 </panel_attributes>
-    <additional_attributes>15;75;45;75;60;75;190;75;190;15;475;15</additional_attributes>
+    <additional_attributes>21;105;56;105;77;105;259;105;259;21;658;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>850</x>
-      <y>700</y>
-      <w>190</w>
-      <h>50</h>
+      <x>903</x>
+      <y>791</y>
+      <w>266</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 Preference
@@ -422,21 +423,21 @@ String getDescription() : String</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1140</x>
-      <y>645</y>
-      <w>24</w>
-      <h>59</h>
+      <x>1309</x>
+      <y>714</y>
+      <w>34</w>
+      <h>83</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>15;50;15;15</additional_attributes>
+    <additional_attributes>21;70;21;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1070</x>
-      <y>695</y>
-      <w>120</w>
-      <h>40</h>
+      <x>1211</x>
+      <y>784</y>
+      <w>168</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 HasPreference
@@ -448,86 +449,88 @@ setPreference(Preference pref)</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1025</x>
-      <y>695</y>
-      <w>54</w>
-      <h>24</h>
+      <x>1148</x>
+      <y>784</y>
+      <w>76</w>
+      <h>34</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>15;15;45;15</additional_attributes>
+    <additional_attributes>21;21;63;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>650</x>
-      <y>705</y>
-      <w>209</w>
-      <h>35</h>
+      <x>630</x>
+      <y>798</y>
+      <w>286</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 checks TimeFrame with</panel_attributes>
-    <additional_attributes>15;25;200;25</additional_attributes>
+    <additional_attributes>21;35;273;35</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>650</x>
-      <y>540</y>
-      <w>404</w>
-      <h>40</h>
+      <x>630</x>
+      <y>567</y>
+      <w>559</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=1
 check number of Xrays with &gt;</panel_attributes>
-    <additional_attributes>15;30;60;30;110;30;395;30;395;15</additional_attributes>
+    <additional_attributes>21;42;77;42;147;42;546;42;546;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>650</x>
-      <y>520</y>
-      <w>164</w>
-      <h>35</h>
+      <x>616</x>
+      <y>539</y>
+      <w>237</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=-
 &lt; creates</panel_attributes>
-    <additional_attributes>15;25;155;25</additional_attributes>
+    <additional_attributes>21;35;224;35</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
-      <y>495</y>
-      <w>115</w>
-      <h>40</h>
+      <x>469</x>
+      <y>504</y>
+      <w>182</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>UnmovableConstraint
 --
 setCampus(Campus c)
+isAccepted() : TimeFrame
+  {exception ScheduleConstraintException}
 ...</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>395</x>
-      <y>250</y>
-      <w>379</w>
-      <h>254</h>
+      <x>266</x>
+      <y>161</y>
+      <w>531</w>
+      <h>370</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370;15;15;15;15;20;15;240;50;240;155;245</additional_attributes>
+    <additional_attributes>518;21;21;21;21;28;21;336;70;336;203;357</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>760</x>
-      <y>315</y>
-      <w>120</w>
-      <h>35</h>
+      <x>777</x>
+      <y>252</y>
+      <w>168</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>Schedule
 --
@@ -540,37 +543,37 @@ setCampus(Campus c)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>865</x>
-      <y>310</y>
-      <w>174</w>
-      <h>54</h>
+      <x>924</x>
+      <y>245</y>
+      <w>241</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 &lt; has one
 </panel_attributes>
-    <additional_attributes>15;25;145;25;145;45</additional_attributes>
+    <additional_attributes>21;35;203;35;203;63</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>650</x>
-      <y>310</y>
-      <w>119</w>
-      <h>35</h>
+      <x>630</x>
+      <y>245</y>
+      <w>160</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=-
 check collisions &gt;</panel_attributes>
-    <additional_attributes>15;25;110;25</additional_attributes>
+    <additional_attributes>21;35;147;35</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
-      <y>645</y>
-      <w>115</w>
-      <h>35</h>
+      <x>469</x>
+      <y>714</y>
+      <w>182</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>DoctorBackToBackConstraint
 --
@@ -582,10 +585,10 @@ setCampus(Campus c)
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>265</x>
-      <y>530</y>
-      <w>175</w>
-      <h>30</h>
+      <x>84</x>
+      <y>553</y>
+      <w>245</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>The methods isAccepted(), reset()
 and setTimeFrame(TimeFrame tf)
@@ -595,32 +598,32 @@ are always implemented and used.</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>405</x>
-      <y>480</y>
-      <w>24</w>
-      <h>59</h>
+      <x>280</x>
+      <y>483</y>
+      <w>34</w>
+      <h>83</h>
     </coordinates>
     <panel_attributes>lt=.&lt;()</panel_attributes>
-    <additional_attributes>15;15;15;50</additional_attributes>
+    <additional_attributes>21;21;21;70</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>395</x>
-      <y>250</y>
-      <w>379</w>
-      <h>469</h>
+      <x>266</x>
+      <y>161</y>
+      <w>531</w>
+      <h>657</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370;15;15;15;15;240;50;240;155;460</additional_attributes>
+    <additional_attributes>518;21;21;21;21;336;70;336;203;644</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>650</x>
-      <y>625</y>
-      <w>484</w>
-      <h>52</h>
+      <x>630</x>
+      <y>686</y>
+      <w>671</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=-
  
@@ -628,15 +631,15 @@ are always implemented and used.</panel_attributes>
 get previous appointment&gt;
 
 </panel_attributes>
-    <additional_attributes>15;25;40;25;80;25;120;25;150;25;175;25;475;25</additional_attributes>
+    <additional_attributes>21;35;49;35;105;35;161;35;203;35;238;35;658;35</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
-      <y>595</y>
-      <w>115</w>
-      <h>35</h>
+      <x>469</x>
+      <y>644</y>
+      <w>182</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>NurseBackToBackConstraint
 --
@@ -648,24 +651,24 @@ setNurse(Nurse n)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>650</x>
-      <y>580</y>
-      <w>419</w>
-      <h>35</h>
+      <x>630</x>
+      <y>623</y>
+      <w>580</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=-
               check previous appointment&gt;
 
 </panel_attributes>
-    <additional_attributes>15;25;410;25</additional_attributes>
+    <additional_attributes>21;35;567;35</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
-      <y>450</y>
-      <w>115</w>
-      <h>35</h>
+      <x>469</x>
+      <y>441</y>
+      <w>182</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>NullConstraint
 --
@@ -676,32 +679,32 @@ isAccepted() : true
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>395</x>
-      <y>250</y>
-      <w>379</w>
-      <h>389</h>
+      <x>266</x>
+      <y>161</y>
+      <w>531</w>
+      <h>510</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370;15;15;15;15;240;50;240;155;380</additional_attributes>
+    <additional_attributes>518;21;21;21;21;336;70;336;203;497</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>395</x>
-      <y>250</y>
-      <w>379</w>
-      <h>249</h>
+      <x>266</x>
+      <y>161</y>
+      <w>531</w>
+      <h>349</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370;15;15;15;15;240;50;240;155;220</additional_attributes>
+    <additional_attributes>518;21;21;21;21;336;70;336;203;308</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>955</x>
-      <y>235</y>
-      <w>175</w>
-      <h>65</h>
+      <x>1050</x>
+      <y>140</y>
+      <w>245</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>/SchedulableVisitor/
 --
@@ -716,21 +719,21 @@ setPatient(Patient p)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>925</x>
-      <y>245</y>
-      <w>39</w>
-      <h>24</h>
+      <x>1008</x>
+      <y>154</y>
+      <w>55</w>
+      <h>34</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;15;15;15</additional_attributes>
+    <additional_attributes>42;21;21;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>445</x>
-      <y>390</y>
-      <w>235</w>
-      <h>295</h>
+      <x>336</x>
+      <y>357</y>
+      <w>329</w>
+      <h>413</h>
     </coordinates>
     <panel_attributes>Hospital.Schedule.Constraints.Implementation
 bg=gray</panel_attributes>
@@ -739,10 +742,10 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>445</x>
-      <y>305</y>
-      <w>235</w>
-      <h>80</h>
+      <x>336</x>
+      <y>238</y>
+      <w>329</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>Hospital.Schedule.Constraints.Priority
 
@@ -752,10 +755,10 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>445</x>
-      <y>690</y>
-      <w>235</w>
-      <h>60</h>
+      <x>336</x>
+      <y>777</y>
+      <w>329</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Hospital.Schedule.Constraints.Preference
 
@@ -765,10 +768,10 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>755</x>
-      <y>205</y>
-      <w>385</w>
-      <h>215</h>
+      <x>770</x>
+      <y>98</y>
+      <w>539</w>
+      <h>301</h>
     </coordinates>
     <panel_attributes>Hospital.Schedule
 bg=gray</panel_attributes>

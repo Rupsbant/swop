@@ -1,4 +1,4 @@
-package Hospital.Schedules.Constraints.GetCampus;
+package Hospital.Schedules.GetCampus;
 
 import Hospital.People.Nurse;
 import Hospital.Schedules.CampusDecider;

@@ -3,7 +3,7 @@ package Hospital.Schedules;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
-import Hospital.Schedules.Constraints.GetCampus.PatientDecides;
+import Hospital.Schedules.GetCampus.PatientDecides;
 import Hospital.Schedules.Constraints.Implementation.DoctorBackToBackConstraint;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import java.util.ArrayList;
