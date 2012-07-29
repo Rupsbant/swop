@@ -1,5 +1,6 @@
 package Hospital.Schedules.Constraints.Implementation;
 
+import Hospital.Exception.Scheduling.ScheduleConstraintException;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.World.Time;
 import Hospital.Exception.Command.CannotDoException;
@@ -28,15 +29,15 @@ import static org.junit.Assert.*;
  */
 public class UnmovableConstraintTest {
 
-    World w = BasicWorld.getWorldForTesting();
-    Patient ruben;
-    Patient jeroen;
-    Nurse nurse;
+    private World w = BasicWorld.getWorldForTesting();
+    private Patient ruben;
+    private Nurse nurse;
+    private Nurse otherNurse;
 
     public UnmovableConstraintTest() throws ArgumentConstraintException, ArgumentIsNullException, NoPersonWithNameAndRoleException {
         this.ruben = new Patient("Ruben");
-        this.jeroen = new Patient("Jeroen");
         this.nurse = w.getPersonByName(Nurse.class, "Nurse Joy");
+        this.otherNurse = w.getPersonByName(Nurse.class, "Verpleegster");
     }
 
     @Before
@@ -56,7 +57,7 @@ public class UnmovableConstraintTest {
      * Test of setValidSchedulable method, of class UnmovableConstraint.
      */
     @Test
-    public void testSetValidSchedulableNurse() throws ArgumentIsNullException, ArgumentConstraintException {
+    public void testSetValidSchedulableNurse() throws ArgumentIsNullException, ArgumentConstraintException, ScheduleConstraintException {
         UnmovableConstraint instance = new UnmovableConstraint(nurse);
 
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
@@ -99,7 +100,7 @@ public class UnmovableConstraintTest {
      * Test of resetValid method, of class UnmovableConstraint.
      */
     @Test
-    public void testResetValid() throws ArgumentIsNullException, ArgumentConstraintException {
+    public void testResetValid() throws ArgumentIsNullException, ArgumentConstraintException, ScheduleConstraintException {
         UnmovableConstraint instance = new UnmovableConstraint(nurse);
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.setCampus(nurse.getCampus());
@@ -108,5 +109,14 @@ public class UnmovableConstraintTest {
         //assertTrue(instance.isAccepted());
         instance.reset();
         assertEquals(null, instance.isAccepted());
+    }
+
+    @Test (expected=ScheduleConstraintException.class)
+    public void testWrongCampus() throws ArgumentIsNullException, ArgumentConstraintException, ScheduleConstraintException {
+        UnmovableConstraint instance = new UnmovableConstraint(nurse);
+        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
+        instance.setCampus(otherNurse.getCampus());
+        instance.setTimeFrame(tf);
+        instance.isAccepted();
     }
 }

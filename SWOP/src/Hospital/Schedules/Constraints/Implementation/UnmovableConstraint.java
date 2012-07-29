@@ -1,5 +1,6 @@
 package Hospital.Schedules.Constraints.Implementation;
 
+import Hospital.Exception.Scheduling.ScheduleConstraintException;
 import Hospital.People.Unmovable;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.TimeFrame;
@@ -20,15 +21,14 @@ public class UnmovableConstraint extends TimeFrameConstraint {
         this.campus = c;
     }
 
-    public TimeFrame isAccepted() {
-        if(campus == null){
+    public TimeFrame isAccepted() throws ScheduleConstraintException {
+        if (campus == null) {
             return null;
         }
-        if(unmovable.getCampus().equals(campus)){
-            return tf;
-        } else {
-            return tf.next();
+        if (!unmovable.getCampus().equals(campus)) {
+            throw new ScheduleConstraintException();
         }
+        return tf;
     }
 
     public void reset() {

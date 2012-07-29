@@ -28,13 +28,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class AppointmentConstraintSolverTest {
+public class AppointmentConstraintSolverTestDummy {
 
     AppointmentConstraintSolver instance;
     World w = BasicWorld.getWorldForTesting();
@@ -44,7 +42,7 @@ public class AppointmentConstraintSolverTest {
     Campus campusNorth;
     Campus campusSouth;
 
-    public AppointmentConstraintSolverTest() throws NoPersonWithNameAndRoleException, ArgumentConstraintException {
+    public AppointmentConstraintSolverTestDummy() throws NoPersonWithNameAndRoleException, ArgumentConstraintException {
         this.ruben = w.getPersonByName(Patient.class, "Ruben");
         this.jeroen = w.getPersonByName(Patient.class, "Jeroen");
         this.d = w.getPersonByName(Doctor.class, "Gregory House");
@@ -53,18 +51,8 @@ public class AppointmentConstraintSolverTest {
         campusSouth = w.getCampusFromInfo(w.getCampuses().get(1));
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException, SchedulingException, ArgumentConstraintException {
-        instance = new BruteForceSolver();
-
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 30), 20);
         Schedule sched1 = d.getSchedule();
         Schedule sched2 = ruben.getSchedule();
@@ -82,11 +70,6 @@ public class AppointmentConstraintSolverTest {
         p = new Appointment(tf, Arrays.asList(sched1, sched2), appC, campusSouth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
-
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**

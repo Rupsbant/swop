@@ -2,6 +2,7 @@ package Hospital.Schedules.ConstraintSolver;
 
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
+import Hospital.Exception.Scheduling.ScheduleConstraintException;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Schedules.CampusDecider;
 import Hospital.Schedules.TimeFrameConstraint;
@@ -45,7 +46,7 @@ public class BruteForceSolver implements AppointmentConstraintSolver {
 
     private boolean stopConditions(TimeFrame tf) throws SchedulingException {
         //reset previous
-        for(TimeFrameConstraint tfC : tfConstraints){
+        for (TimeFrameConstraint tfC : tfConstraints) {
             tfC.reset();
         }
         //get constraints
@@ -59,16 +60,20 @@ public class BruteForceSolver implements AppointmentConstraintSolver {
         //decide campus
         this.campus = campusDecider.getCampus();
         //visit constraints
-        for(TimeFrameConstraint tfC : allConstraints){
+        for (TimeFrameConstraint tfC : allConstraints) {
             tfC.setTimeFrame(tf);
             tfC.setCampus(campus);
             for (Schedulable sched : out) {
                 sched.visitConstraint(tfC);
             }
-            TimeFrame outputTimeFrame = tfC.isAccepted();
-            if(outputTimeFrame == null){
-                throw new SchedulingException("Something went very wrong, information was missing"+tfC);
-            } else if(!outputTimeFrame.equals(tf)){
+            try {
+                TimeFrame outputTimeFrame = tfC.isAccepted();
+                if (outputTimeFrame == null) {
+                    throw new SchedulingException("Something went very wrong, information was missing" + tfC);
+                } else if (!outputTimeFrame.equals(tf)) {
+                    return false;
+                }
+            } catch (ScheduleConstraintException ex) {
                 return false;
             }
         }
