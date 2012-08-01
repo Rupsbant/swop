@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>210</x>
-      <y>252</y>
+      <x>414</x>
+      <y>264</y>
       <w>126</w>
       <h>54</h>
     </coordinates>
@@ -19,8 +19,8 @@ getQuestion() String</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>210</x>
-      <y>342</y>
+      <x>414</x>
+      <y>354</y>
       <w>126</w>
       <h>72</h>
     </coordinates>
@@ -37,8 +37,8 @@ getQuestion() : String</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>390</x>
-      <y>252</y>
+      <x>594</x>
+      <y>264</y>
       <w>180</w>
       <h>54</h>
     </coordinates>
@@ -52,8 +52,8 @@ enterAnswer(String ans) : PublicArgument
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>318</x>
-      <y>264</y>
+      <x>522</x>
+      <y>276</y>
       <w>84</w>
       <h>30</h>
     </coordinates>
@@ -63,8 +63,8 @@ enterAnswer(String ans) : PublicArgument
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>258</x>
-      <y>288</y>
+      <x>462</x>
+      <y>300</y>
       <w>30</w>
       <h>66</h>
     </coordinates>
@@ -74,8 +74,8 @@ enterAnswer(String ans) : PublicArgument
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>252</y>
+      <x>204</x>
+      <y>264</y>
       <w>198</w>
       <h>54</h>
     </coordinates>
@@ -88,8 +88,8 @@ setWorld(World w) : WorldPopulatedArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>192</x>
-      <y>474</y>
+      <x>396</x>
+      <y>486</y>
       <w>162</w>
       <h>66</h>
     </coordinates>
@@ -103,8 +103,8 @@ setWorld(World w) : WorldArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>258</x>
-      <y>396</y>
+      <x>462</x>
+      <y>408</y>
       <w>30</w>
       <h>90</h>
     </coordinates>
@@ -114,8 +114,8 @@ setWorld(World w) : WorldArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>84</x>
-      <y>288</y>
+      <x>288</x>
+      <y>300</y>
       <w>180</w>
       <h>198</h>
     </coordinates>
@@ -125,8 +125,8 @@ setWorld(World w) : WorldArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>372</x>
-      <y>474</y>
+      <x>576</x>
+      <y>486</y>
       <w>162</w>
       <h>66</h>
     </coordinates>
@@ -138,8 +138,8 @@ enterAnswer(String ans)</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>258</x>
-      <y>396</y>
+      <x>462</x>
+      <y>408</y>
       <w>198</w>
       <h>90</h>
     </coordinates>
@@ -149,8 +149,8 @@ enterAnswer(String ans)</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>438</x>
-      <y>288</y>
+      <x>642</x>
+      <y>300</y>
       <w>30</w>
       <h>198</h>
     </coordinates>
@@ -160,8 +160,8 @@ enterAnswer(String ans)</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>546</x>
-      <y>474</y>
+      <x>750</x>
+      <y>486</y>
       <w>162</w>
       <h>66</h>
     </coordinates>
@@ -173,8 +173,8 @@ enterAnswer(String ans) : StringArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>438</x>
-      <y>288</y>
+      <x>642</x>
+      <y>300</y>
       <w>204</w>
       <h>198</h>
     </coordinates>
@@ -184,8 +184,8 @@ enterAnswer(String ans) : StringArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>258</x>
-      <y>396</y>
+      <x>462</x>
+      <y>408</y>
       <w>342</w>
       <h>90</h>
     </coordinates>
@@ -195,19 +195,20 @@ enterAnswer(String ans) : StringArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>720</x>
-      <y>474</y>
+      <x>924</x>
+      <y>486</y>
       <w>108</w>
       <h>66</h>
     </coordinates>
-    <panel_attributes>ListArgument&lt;Type&gt;</panel_attributes>
+    <panel_attributes>ListArgument&lt;Type&gt;
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>438</x>
-      <y>288</y>
+      <x>642</x>
+      <y>300</y>
       <w>342</w>
       <h>198</h>
     </coordinates>
@@ -217,8 +218,8 @@ enterAnswer(String ans) : StringArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>6</x>
-      <y>474</y>
+      <x>210</x>
+      <y>486</y>
       <w>174</w>
       <h>66</h>
     </coordinates>
@@ -230,8 +231,8 @@ enterAnswer(String ans) : StringArgument</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>84</x>
-      <y>396</y>
+      <x>288</x>
+      <y>408</y>
       <w>204</w>
       <h>90</h>
     </coordinates>

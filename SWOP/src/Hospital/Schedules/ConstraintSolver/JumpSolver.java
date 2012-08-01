@@ -27,9 +27,7 @@ public class JumpSolver implements AppointmentConstraintSolver {
     private Campus output_campus;
 
     public JumpSolver solve() throws SchedulingException {
-        if (!output_list.isEmpty()) {
-            return this;
-        }
+        reset();
         List<Schedulable> testing = new ArrayList<Schedulable>();
         recursive(0, testing);
         return this;
@@ -127,17 +125,14 @@ public class JumpSolver implements AppointmentConstraintSolver {
     }
 
     public void setFirstTimeFrame(TimeFrame tf) {
-        reset();
         this.tf = tf;
     }
 
     public void setScheduleGroups(List<ScheduleGroup> list) {
-        reset();
         groups = list;
     }
 
     public void setConstaints(List<TimeFrameConstraint> tfConstraints) {
-        reset();
         this.tfConstraints = tfConstraints;
     }
 
@@ -146,6 +141,7 @@ public class JumpSolver implements AppointmentConstraintSolver {
     }
 
     public void reset() {
+        this.output_timeFrame = null;
         this.output_list = new ArrayList<Schedulable>();
         this.output_campus = null;
     }
