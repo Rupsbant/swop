@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="11.5.1">
-  <zoom_level>7</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>812</x>
-      <y>378</y>
-      <w>70</w>
-      <h>21</h>
+      <x>546</x>
+      <y>558</y>
+      <w>60</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>_:Solver_</panel_attributes>
     <additional_attributes/>
@@ -15,21 +15,21 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>826</x>
-      <y>378</y>
-      <w>34</w>
-      <h>475</h>
+      <x>558</x>
+      <y>558</y>
+      <w>30</w>
+      <h>408</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>21;21;21;462</additional_attributes>
+    <additional_attributes>18;18;18;396</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>840</x>
-      <y>413</y>
-      <w>14</w>
-      <h>14</h>
+      <x>570</x>
+      <y>588</y>
+      <w>12</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -37,22 +37,22 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>385</y>
-      <w>293</w>
-      <h>49</h>
+      <x>330</x>
+      <y>564</y>
+      <w>252</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 setScheduleGroups(List&lt;ScheduleGroups&gt; groups)</panel_attributes>
-    <additional_attributes>280;35;21;35</additional_attributes>
+    <additional_attributes>240;30;18;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>840</x>
-      <y>434</y>
-      <w>14</w>
-      <h>14</h>
+      <x>570</x>
+      <y>606</y>
+      <w>12</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -60,22 +60,22 @@ setScheduleGroups(List&lt;ScheduleGroups&gt; groups)</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>406</y>
-      <w>293</w>
-      <h>49</h>
+      <x>330</x>
+      <y>582</y>
+      <w>252</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 setConstraints(List&lt;TimeFrameConstraint&gt; tfC)</panel_attributes>
-    <additional_attributes>280;35;21;35</additional_attributes>
+    <additional_attributes>240;30;18;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>840</x>
-      <y>455</y>
-      <w>14</w>
-      <h>14</h>
+      <x>570</x>
+      <y>624</y>
+      <w>12</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -83,22 +83,22 @@ setConstraints(List&lt;TimeFrameConstraint&gt; tfC)</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>427</y>
-      <w>293</w>
-      <h>49</h>
+      <x>330</x>
+      <y>600</y>
+      <w>252</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 setCampusDecider(CampusDecider c)</panel_attributes>
-    <additional_attributes>280;35;21;35</additional_attributes>
+    <additional_attributes>240;30;18;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>840</x>
-      <y>518</y>
-      <w>14</w>
-      <h>217</h>
+      <x>570</x>
+      <y>678</y>
+      <w>12</w>
+      <h>186</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -106,36 +106,36 @@ setCampusDecider(CampusDecider c)</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>469</y>
-      <w>293</w>
-      <h>49</h>
+      <x>330</x>
+      <y>636</y>
+      <w>252</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 setFirstTimeFrame(TimeFrame tf)
 </panel_attributes>
-    <additional_attributes>280;35;21;35</additional_attributes>
+    <additional_attributes>240;30;18;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>490</y>
-      <w>293</w>
-      <h>49</h>
+      <x>330</x>
+      <y>654</y>
+      <w>252</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 solve()
 </panel_attributes>
-    <additional_attributes>280;35;21;35</additional_attributes>
+    <additional_attributes>240;30;18;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>840</x>
-      <y>497</y>
-      <w>14</w>
-      <h>14</h>
+      <x>570</x>
+      <y>660</y>
+      <w>12</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -143,10 +143,10 @@ solve()
   <element>
     <type>com.umlet.element.custom.InteractionFrame</type>
     <coordinates>
-      <x>735</x>
-      <y>539</y>
-      <w>371</w>
-      <h>189</h>
+      <x>480</x>
+      <y>696</y>
+      <w>318</w>
+      <h>162</h>
     </coordinates>
     <panel_attributes>loop
 </panel_attributes>
@@ -155,22 +155,22 @@ solve()
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>847</x>
-      <y>532</y>
-      <w>209</w>
-      <h>49</h>
+      <x>576</x>
+      <y>690</y>
+      <w>180</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 getList() : List&lt;Schedulable&gt; </panel_attributes>
-    <additional_attributes>196;35;21;35</additional_attributes>
+    <additional_attributes>168;30;18;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1043</x>
-      <y>560</y>
-      <w>14</w>
-      <h>14</h>
+      <x>744</x>
+      <y>714</y>
+      <w>12</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -178,10 +178,10 @@ getList() : List&lt;Schedulable&gt; </panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>980</x>
-      <y>476</y>
-      <w>119</w>
-      <h>21</h>
+      <x>690</x>
+      <y>642</y>
+      <w>102</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>_group[i]:ScheduleGroup_</panel_attributes>
     <additional_attributes/>
@@ -189,21 +189,21 @@ getList() : List&lt;Schedulable&gt; </panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1029</x>
-      <y>476</y>
-      <w>34</w>
-      <h>139</h>
+      <x>732</x>
+      <y>642</y>
+      <w>30</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>21;21;21;126</additional_attributes>
+    <additional_attributes>18;18;18;108</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>854</x>
-      <y>546</y>
-      <w>14</w>
-      <h>175</h>
+      <x>582</x>
+      <y>702</y>
+      <w>12</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -211,25 +211,25 @@ getList() : List&lt;Schedulable&gt; </panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>847</x>
-      <y>532</y>
-      <w>83</w>
-      <h>72</h>
+      <x>576</x>
+      <y>690</y>
+      <w>72</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;
  
  
 recursive
 </panel_attributes>
-    <additional_attributes>21;21;49;21;49;49;21;49</additional_attributes>
+    <additional_attributes>18;18;42;18;42;42;18;42</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>910</x>
-      <y>420</y>
-      <w>98</w>
-      <h>49</h>
+      <x>630</x>
+      <y>594</y>
+      <w>84</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>Create the cartesian 
 product of all 
@@ -240,21 +240,21 @@ bg=</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>938</x>
-      <y>448</y>
-      <w>34</w>
-      <h>104</h>
+      <x>654</x>
+      <y>618</y>
+      <w>30</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>21;91;21;21</additional_attributes>
+    <additional_attributes>18;78;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.InteractionFrame</type>
     <coordinates>
-      <x>756</x>
-      <y>630</y>
-      <w>336</w>
-      <h>84</h>
+      <x>498</x>
+      <y>774</y>
+      <w>288</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>ref
 --
@@ -264,35 +264,35 @@ bg=</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>833</x>
-      <y>574</y>
-      <w>116</w>
-      <h>69</h>
+      <x>564</x>
+      <y>726</y>
+      <w>100</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;
      aCartesianProduct</panel_attributes>
-    <additional_attributes>63;56;63;35;35;35</additional_attributes>
+    <additional_attributes>54;48;54;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>721</y>
-      <w>293</w>
-      <h>49</h>
+      <x>330</x>
+      <y>852</y>
+      <w>252</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 getChosenTimeFrame() : TimeFrame
 </panel_attributes>
-    <additional_attributes>21;35;280;35</additional_attributes>
+    <additional_attributes>18;30;240;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>840</x>
-      <y>749</y>
-      <w>14</w>
-      <h>14</h>
+      <x>570</x>
+      <y>876</y>
+      <w>12</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -300,10 +300,10 @@ getChosenTimeFrame() : TimeFrame
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>840</x>
-      <y>770</y>
-      <w>14</w>
-      <h>14</h>
+      <x>570</x>
+      <y>894</y>
+      <w>12</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -311,10 +311,10 @@ getChosenTimeFrame() : TimeFrame
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>840</x>
-      <y>791</y>
-      <w>14</w>
-      <h>14</h>
+      <x>570</x>
+      <y>912</y>
+      <w>12</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -322,57 +322,46 @@ getChosenTimeFrame() : TimeFrame
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>742</y>
-      <w>293</w>
-      <h>49</h>
+      <x>330</x>
+      <y>870</y>
+      <w>252</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 getAttendees() : List&lt;Schedulable&gt; </panel_attributes>
-    <additional_attributes>21;35;280;35</additional_attributes>
+    <additional_attributes>18;30;240;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>763</y>
-      <w>293</w>
-      <h>49</h>
+      <x>330</x>
+      <y>888</y>
+      <w>252</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 getCampus() : Campus
 </panel_attributes>
-    <additional_attributes>21;35;280;35</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.custom.SeqObjectActive</type>
-    <coordinates>
-      <x>1603</x>
-      <y>21</y>
-      <w>14</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
+    <additional_attributes>18;30;240;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>553</x>
-      <y>378</y>
-      <w>34</w>
-      <h>475</h>
+      <x>324</x>
+      <y>558</y>
+      <w>30</w>
+      <h>408</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>21;21;21;462</additional_attributes>
+    <additional_attributes>18;18;18;396</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>497</x>
-      <y>378</y>
-      <w>126</w>
-      <h>21</h>
+      <x>276</x>
+      <y>558</y>
+      <w>108</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>_:AppointmentCommand_</panel_attributes>
     <additional_attributes/>
@@ -380,10 +369,10 @@ getCampus() : Campus
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>567</x>
-      <y>399</y>
-      <w>14</w>
-      <h>77</h>
+      <x>336</x>
+      <y>576</y>
+      <w>12</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -391,23 +380,23 @@ getCampus() : Campus
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>175</x>
-      <y>350</y>
-      <w>335</w>
-      <h>64</h>
+      <x>0</x>
+      <y>534</y>
+      <w>288</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;-()&gt;
 create(World w, Appointable app, List&lt;ScheduleGroup&gt; groups, 
 Priority prio)    </panel_attributes>
-    <additional_attributes>322;35;21;35</additional_attributes>
+    <additional_attributes>276;30;18;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>567</x>
-      <y>490</y>
-      <w>14</w>
-      <h>322</h>
+      <x>336</x>
+      <y>654</y>
+      <w>12</w>
+      <h>276</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -415,25 +404,25 @@ Priority prio)    </panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>175</x>
-      <y>455</y>
-      <w>405</w>
-      <h>49</h>
+      <x>0</x>
+      <y>624</y>
+      <w>348</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;-()&gt;
 execute()</panel_attributes>
-    <additional_attributes>392;35;21;35</additional_attributes>
+    <additional_attributes>336;30;18;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>847</x>
-      <y>651</y>
-      <w>181</w>
-      <h>49</h>
+      <x>576</x>
+      <y>792</y>
+      <w>156</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;(-
 List&lt;Schedulable&gt; attendees</panel_attributes>
-    <additional_attributes>168;35;21;35</additional_attributes>
+    <additional_attributes>144;30;18;30</additional_attributes>
   </element>
 </diagram>
