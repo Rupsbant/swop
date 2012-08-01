@@ -22,31 +22,21 @@ import Hospital.World.World;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.TimeFrame;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PriorityConstraintTest {
 
-    World w = BasicWorld.getWorldForTesting();
-    Patient ruben;
-    Patient jeroen;
-    Doctor d;
+    private World w = BasicWorld.getWorldForTesting();
+    private Patient ruben;
+    private Patient jeroen;
+    private Doctor d;
 
     public PriorityConstraintTest() throws NoPersonWithNameAndRoleException {
         this.ruben = w.getPersonByName(Patient.class, "Ruben");
         this.jeroen = w.getPersonByName(Patient.class, "Jeroen");
         this.d = w.getPersonByName(Doctor.class, "Gregory House");
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
     }
 
     @Before
@@ -73,10 +63,6 @@ public class PriorityConstraintTest {
         ScheduleTestUtil.addAppointment(sched2, p);
     }
 
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of setValidSchedulable method, of class PriorityConstraint.
      */
@@ -89,6 +75,7 @@ public class PriorityConstraintTest {
         instance.setSchedulable(s);
         instance.setTimeFrame(tf);
         assertNotSame(tf, instance.isAccepted());
+        assertEquals(new TimeFrame(new Time(2011, 11, 8, 9, 50), 20), instance.isAccepted());
         //assertFalse("Appointments are same priority", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 0), 20);
@@ -107,6 +94,7 @@ public class PriorityConstraintTest {
         instance.setSchedulable(s);
         instance.setTimeFrame(tf);
         assertNotSame(tf, instance.isAccepted());
+        assertEquals(new TimeFrame(new Time(2011, 11, 8, 9, 50), 20), instance.isAccepted());
         //assertFalse("Appointments is of lower priority", instance.isAccepted());
 
         tf = new TimeFrame(new Time(2011, 11, 8, 13, 0), 20);
@@ -115,6 +103,7 @@ public class PriorityConstraintTest {
         instance.setSchedulable(s);
         instance.setTimeFrame(tf);
         assertNotSame(tf, instance.isAccepted());
+        assertEquals(new TimeFrame(new Time(2011, 11, 8, 13, 30), 20), instance.isAccepted());
         //assertFalse("Appointments are of the same priority", instance.isAccepted());
     }
 }

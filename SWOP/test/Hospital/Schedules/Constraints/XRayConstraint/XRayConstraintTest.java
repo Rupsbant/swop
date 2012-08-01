@@ -13,19 +13,20 @@ import org.junit.Test;
 
 public class XRayConstraintTest {
 
-    Patient p;
+    private Patient p;
 
     @Before
     public void setUp() throws ArgumentConstraintException, ArgumentIsNullException {
         p = new Patient("Ruben");
+        final int numberOfXRays = 4;
 
-        XRayScan xray = new XRayScan(3, 4, "Hoofd");
+        XRayScan xray = new XRayScan(3, numberOfXRays, "Hoofd");
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 15);
         Appointment app = new Appointment(tf, null, null, null);
         xray.setAppointment(app);
         p.addMedicalTest(xray);
 
-        xray = new XRayScan(3, 4, "Schouders");
+        xray = new XRayScan(3, numberOfXRays, "Schouders");
         tf = new TimeFrame(new Time(2012, 5, 8, 9, 0), 15);
         app = new Appointment(tf, null, null, null);
         xray.setAppointment(app);
@@ -37,7 +38,6 @@ public class XRayConstraintTest {
      */
     @Test
     public void testAddEnough() throws ArgumentIsNullException, ArgumentConstraintException {
-        System.out.println("AddEnough");
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 9, 9, 0), 15);
         XRayConstraint instance = new XRayConstraint(1);
         instance.setPatient(p);
@@ -51,19 +51,17 @@ public class XRayConstraintTest {
      */
     @Test
     public void testWaitYear() throws ArgumentIsNullException, ArgumentConstraintException {
-        System.out.println("waitYear");
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 9, 9, 0), 15);
         TimeFrame firstGood = new TimeFrame(new Time(2012, 11, 9, 0, 0), 15);
         XRayConstraint instance = new XRayConstraint(3);
         instance.setPatient(p);
         instance.setTimeFrame(tf);
-
         TimeFrame accepted = instance.isAccepted();
         assertNotSame(tf, accepted);
         assertEquals(firstGood, accepted);
         //assertFalse("Can't fit another XRay", instance.isAccepted());
 
-        tf = new TimeFrame(new Time(2012, 11, 8, 9, 0), 15);
+        tf = new TimeFrame(new Time(2012, 11, 9, 8, 59), 15);
         instance.reset();
         instance.setPatient(p);
         instance.setTimeFrame(tf);
@@ -81,7 +79,6 @@ public class XRayConstraintTest {
 
     @Test
     public void testWaitYearHalf() throws ArgumentIsNullException, ArgumentConstraintException {
-        System.out.println("waitYearHalf");
         TimeFrame tf = new TimeFrame(new Time(2012, 11, 8, 9, 0), 15);
         TimeFrame firstGood = new TimeFrame(new Time(2013, 5, 9, 0, 0), 15);
         XRayConstraint instance = new XRayConstraint(7);

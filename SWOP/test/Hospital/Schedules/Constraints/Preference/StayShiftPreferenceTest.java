@@ -16,10 +16,7 @@ import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.People.Doctor;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -38,14 +35,6 @@ public class StayShiftPreferenceTest {
         this.d = w.getPersonByName(Doctor.class, "Gregory House");
         campusNorth = w.getCampusFromInfo(w.getCampuses().get(0));
         campusSouth = w.getCampusFromInfo(w.getCampuses().get(1));
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
     }
 
     @Before
@@ -72,16 +61,11 @@ public class StayShiftPreferenceTest {
         ScheduleTestUtil.addAppointment(sched1, p);
     }
 
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of makeThisAsPreference method, of class StayShiftPreference.
      */
     @Test
     public void testMakeThisAsPreference() throws ArgumentConstraintException, ArgumentIsNullException {
-        System.out.println("makeThisAsPreference");
         StayShiftPreference instance = new StayShiftPreference(null);
         ChangeLocationPreference temp = new ChangeLocationPreference(null);
         temp.makeThisAsPreference(d);
@@ -95,7 +79,6 @@ public class StayShiftPreferenceTest {
      */
     @Test
     public void testCanAddAppointment() throws ArgumentIsNullException, ArgumentConstraintException {
-        System.out.println("canAddAppointment");
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 11, 10), 20);
         StayShiftPreference instance = new StayShiftPreference(d);
         boolean result = instance.canAddAppointment(tf, campusSouth);

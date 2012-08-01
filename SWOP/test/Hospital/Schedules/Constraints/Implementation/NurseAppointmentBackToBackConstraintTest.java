@@ -38,12 +38,16 @@ public class NurseAppointmentBackToBackConstraintTest {
         Treatment t = new Medication("Medication1", Boolean.TRUE, new ItemInfo[0]);
         ScheduleGroup scheduleGroup = new SingleSchedulableGroup(p);
         AppointmentCommand appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
-        System.out.println(appC.execute());
+        //Creates appointment with Nurse Joy, a bit magic... Do not change the order of the nurses ;)
+        //9:00->9:20
+        appC.execute();
 
         scheduleGroup = new SingleSchedulableGroup(p);
         t = new Medication("Medication2", Boolean.TRUE, new ItemInfo[0]);
         appC = new AppointmentCommand(w, t, Arrays.asList(scheduleGroup), new HighLowPriority(true));
-        System.out.println(appC.execute());
+        //Creates appointment with Nurse Joy, a bit magic... Do not change the order of the nurses ;)
+        //9:20->9:40
+        appC.execute();
     }
 
     /**

@@ -15,33 +15,22 @@ import Hospital.People.Doctor;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.ScheduleTestUtil;
 import Hospital.Schedules.TimeFrame;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PreferenceConstraintTest {
 
-    World w = BasicWorld.getWorldForTesting();
-    Patient ruben;
-    Patient jeroen;
-    Doctor d;
+    private World w = BasicWorld.getWorldForTesting();
+    private Patient ruben;
+    private Patient jeroen;
+    private Doctor d;
 
     public PreferenceConstraintTest() throws NoPersonWithNameAndRoleException {
         this.ruben = w.getPersonByName(Patient.class, "Ruben");
         this.jeroen = w.getPersonByName(Patient.class, "Jeroen");
         this.d = w.getPersonByName(Doctor.class, "Gregory House");
         new StayShiftPreference(null).makeThisAsPreference(d);
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
     }
 
     @Before
@@ -76,10 +65,6 @@ public class PreferenceConstraintTest {
         p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test

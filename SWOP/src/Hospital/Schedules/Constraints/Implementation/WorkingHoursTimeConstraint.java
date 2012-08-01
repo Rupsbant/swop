@@ -27,7 +27,12 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
                 throw new Error(ex);
             }
         } else if (end.compareTo(tf.getEndTime()) < 0) {
-            return tf.next();
+            Time startNextDay = TimeUtils.addDay(start);
+            try {
+                return new TimeFrame(startNextDay, tf.getLength());
+            } catch (Exception ex) {
+                throw new Error(ex);
+            }
         } else {
             return tf;
         }

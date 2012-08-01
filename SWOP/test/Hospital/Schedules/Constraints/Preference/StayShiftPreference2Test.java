@@ -10,19 +10,15 @@ import Hospital.World.BasicWorld;
 import Hospital.World.World;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StayShiftPreference2Test {
 
-    World w = BasicWorld.getWorldForTesting();
-    Patient ruben;
-    Patient jeroen;
-    Doctor d;
+    private World w = BasicWorld.getWorldForTesting();
+    private Patient ruben;
+    private Patient jeroen;
+    private Doctor d;
     private Campus campusNorth;
 
     public StayShiftPreference2Test() throws NoPersonWithNameAndRoleException, ArgumentConstraintException {
@@ -30,22 +26,6 @@ public class StayShiftPreference2Test {
         this.jeroen = w.getPersonByName(Patient.class, "Jeroen");
         this.d = w.getPersonByName(Doctor.class, "Gregory House");
         campusNorth = w.getCampusFromInfo(w.getCampuses().get(0));
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**
