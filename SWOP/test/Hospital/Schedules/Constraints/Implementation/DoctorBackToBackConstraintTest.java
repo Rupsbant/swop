@@ -1,5 +1,8 @@
 package Hospital.Schedules.Constraints.Implementation;
 
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Schedules.Appointment;
@@ -16,38 +19,27 @@ import Hospital.World.BasicWorld;
 import Hospital.World.World;
 import Hospital.Patient.Patient;
 import Hospital.World.Campus;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class DoctorBackToBackConstraintTest {
 
-    World w = BasicWorld.getWorldForTesting();
-    Patient ruben;
-    Patient jeroen;
-    Doctor d;
+    private World w = BasicWorld.getWorldForTesting();
+    private Patient ruben;
+    private Doctor d;
+    private Campus campusNorth;
+    private Campus campusSouth;
 
-    public DoctorBackToBackConstraintTest() throws NoPersonWithNameAndRoleException {
+    public DoctorBackToBackConstraintTest() throws NoPersonWithNameAndRoleException, ArgumentConstraintException {
         this.ruben = w.getPersonByName(Patient.class, "Ruben");
-        this.jeroen = w.getPersonByName(Patient.class, "Jeroen");
         this.d = w.getPersonByName(Doctor.class, "Gregory House");
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
+        campusNorth = w.getCampusFromInfo(w.getCampuses().get(0));
+        campusSouth = w.getCampusFromInfo(w.getCampuses().get(1));
     }
 
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException, SchedulingException, ArgumentConstraintException {
-        final Campus campusNorth = w.getCampusFromInfo(w.getCampuses().get(0));
-        final Campus campusSouth = w.getCampusFromInfo(w.getCampuses().get(1));
 
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 30), 20);
         Schedule sched1 = d.getSchedule();
@@ -62,10 +54,6 @@ public class DoctorBackToBackConstraintTest {
         p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusSouth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -93,57 +81,30 @@ public class DoctorBackToBackConstraintTest {
     public void testIsAccepted() throws ArgumentIsNullException, ArgumentConstraintException {
         TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 15);
         DoctorBackToBackConstraint instance = new DoctorBackToBackConstraint();
+        Map<TimeFrame, TimeFrame> tfList = new TreeMap<TimeFrame, TimeFrame>();
         instance.setDoctor(d);
-        instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        instance.setCampus(campusNorth);
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 0), 15), new TimeFrame(new Time(2011, 11, 8, 9, 0), 15));
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 1), 15), new TimeFrame(new Time(2011, 11, 8, 9, 2), 15));
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 50), 15), new TimeFrame(new Time(2011, 11, 8, 9, 50), 15));
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 51), 15), new TimeFrame(new Time(2011, 11, 8, 9, 52), 15));
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 10, 0), 15), new TimeFrame(new Time(2011, 11, 8, 10, 0), 15));
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 45), 15), new TimeFrame(new Time(2011, 11, 8, 13, 45), 15));
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 46), 15), new TimeFrame(new Time(2011, 11, 8, 13, 47), 15));
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 15);
-        instance.setDoctor(d);
-        instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 50), 15);
-        instance.setDoctor(d);
-        instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 51), 15);
-        instance.setDoctor(d);
-        instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 30), 15);
-        instance.setDoctor(d);
-        instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 45), 15);
-        instance.setDoctor(d);
-        instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 46), 15);
-        instance.setDoctor(d);
-        instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 45), 15);
-        instance.setDoctor(d);
-        instance.setCampus(jeroen.getCampus());
-        instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 30), 15);
-        instance.setDoctor(d);
-        instance.setCampus(jeroen.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
+        
+        for (Entry<TimeFrame, TimeFrame> e : tfList.entrySet()) {
+            instance.setTimeFrame(e.getKey());
+            assertEquals(e.getValue(), instance.isAccepted());
+        }
+        instance.setCampus(campusSouth);
+        tfList.clear();
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 30), 15), new TimeFrame(new Time(2011, 11, 8, 13, 30), 15));
+        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 45), 15), new TimeFrame(new Time(2011, 11, 8, 13, 46), 15));
+        
+        for (Entry<TimeFrame, TimeFrame> e : tfList.entrySet()) {
+            instance.setTimeFrame(e.getKey());
+            assertEquals(e.getValue(), instance.isAccepted());
+        }
     }
 }

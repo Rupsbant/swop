@@ -3,6 +3,7 @@ package Hospital.Schedules;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Scheduling.SchedulingException;
+import Hospital.World.HasTime;
 import Hospital.World.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,11 +128,11 @@ public class Schedule {
     }
 
     /**
-     * Returns the first appointment before the given time.
+     * Returns the first appointment that ends before the given time.
      * @param time, The time to start checking from
      * @return The first appointment before time.
      */
-    public Appointment getAppointmentBefore(Time time) {
+    public Appointment getAppointmentBefore(HasTime time) {
         Appointment max = null;
         //Can be optimalised with the invariants of the TreeSet
         for (Appointment app : appointments) {
@@ -146,15 +147,15 @@ public class Schedule {
     }
 
     /**
-     * Returns the first appointment after the given time.
+     * Returns the first appointment that starts after the given time.
      * @param time, The time to start checking from
      * @return The first appointment after time.
      */
-    public Appointment getAppointmentAfter(Time time) {
+    public Appointment getAppointmentAfter(HasTime time) {
         Appointment max = null;
         //Can be optimalised with the invariants of the TreeSet
         for (Appointment app : appointments) {
-            if (time.compareTo(app.getTimeFrame().getTime()) > 0) {
+            if (time.compareTo(app) > 0) {
                 continue;
             }
             if (max == null || app.compareTo(max) < 0) {

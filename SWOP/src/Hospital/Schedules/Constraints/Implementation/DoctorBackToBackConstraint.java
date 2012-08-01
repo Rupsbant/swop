@@ -6,7 +6,6 @@ import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
-import Hospital.World.Time;
 
 public class DoctorBackToBackConstraint extends TimeFrameConstraint {
 
@@ -19,36 +18,21 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraint {
         if (schedule == null || tf == null || campus == null) {
             return null;
         }
+        //Base output is on the next hour.
         if (tf.getTime().getMinute() == 0) {
             return tf;
         }
-        Appointment next = schedule.getAppointmentAfter(tf.getEndTime());
-        if (next != null) {
-            int timeDiff = next.getTimeFrame().getTime().getMinutesDiff(tf.getEndTime());
-            int walkTime = next.getCampus().getTravelTime(campus);
-            if (timeDiff < walkTime) {
-                Time startTime = next.getTimeFrame().getEndTime().getLaterTime(walkTime);
-                TimeFrame out;
-                try {
-                    out = new TimeFrame(startTime, tf.getLength());
-                } catch (Exception ex) {
-                    throw new Error(ex);
-                }
-                return out;
-            }
-        }
 
         Appointment prev = schedule.getAppointmentBefore(tf.getTime());
-        if (prev == null) {
-            return tf.next();
+        if (prev != null) {
+            int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
+            int walkTime = prev.getCampus().getTravelTime(campus);
+            if (timeDiff == walkTime) {
+                // If the WalkTime is correct, say yes with the current proposed time.
+                return tf;
+            }
         }
-        int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
-        int walkTime = prev.getCampus().getTravelTime(campus);
-        if(timeDiff == walkTime){
-            return tf;
-        } else {
-            return tf.next();
-        }
+        return tf.next();
     }
 
     public void reset() {
