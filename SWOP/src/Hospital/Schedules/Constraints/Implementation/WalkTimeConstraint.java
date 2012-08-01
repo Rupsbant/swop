@@ -1,7 +1,5 @@
 package Hospital.Schedules.Constraints.Implementation;
 
-import Hospital.Exception.Arguments.ArgumentConstraintException;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
@@ -11,8 +9,6 @@ import Hospital.World.Campus;
 import Hospital.World.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class WalkTimeConstraint extends TimeFrameConstraint {
 
