@@ -79,7 +79,7 @@ public class AppointmentCommand implements Command {
         setTimeFrameDelay(app, world.getWorldTime());
     }
 
-    private void populateScheduleGroups(World world, List<ScheduleGroup> g) throws ArgumentIsNullException, Error {
+    private void populateScheduleGroups(World world, List<ScheduleGroup> g) throws ArgumentIsNullException {
         List<MultiScheduleGroup> groups = Utils.filter(g, MultiScheduleGroup.class);
         for (MultiScheduleGroup m : groups) {
             try {
@@ -97,7 +97,7 @@ public class AppointmentCommand implements Command {
         appointable = app;
     }
 
-    private void setTimeFrameDelay(Appointable app, WorldTime wt) throws Error {
+    private void setTimeFrameDelay(Appointable app, WorldTime wt) {
         td = app.getTimeFrameDelay();
         try {
             td.setWorldTime(wt);

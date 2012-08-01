@@ -424,4 +424,16 @@ Priority prio)    </panel_attributes>
 execute()</panel_attributes>
     <additional_attributes>392;35;21;35</additional_attributes>
   </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>847</x>
+      <y>651</y>
+      <w>181</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;(-
+List&lt;Schedulable&gt; attendees</panel_attributes>
+    <additional_attributes>168;35;21;35</additional_attributes>
+  </element>
 </diagram>
