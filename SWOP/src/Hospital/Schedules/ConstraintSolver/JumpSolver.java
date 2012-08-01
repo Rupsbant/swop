@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JumpSolver implements AppointmentConstraintSolver {
+
     private TimeFrame tf;
     private CampusDecider campusDecider;
     private List<ScheduleGroup> groups;
@@ -88,9 +89,11 @@ public class JumpSolver implements AppointmentConstraintSolver {
             }
         } while (finalTest != position);
 
-        output_timeFrame = minimum(output_timeFrame, currentTesting);
-        output_campus = testCampus;
-        output_list = new ArrayList(built);
+        if (output_timeFrame == null || output_timeFrame.compareTo(currentTesting) > 0) {
+            output_timeFrame = currentTesting;
+            output_campus = testCampus;
+            output_list = new ArrayList(built);
+        }
     }
 
     private List<TimeFrameConstraint> makeAllConstraints(List<Schedulable> built) {
@@ -145,19 +148,5 @@ public class JumpSolver implements AppointmentConstraintSolver {
     public void reset() {
         this.output_list = new ArrayList<Schedulable>();
         this.output_campus = null;
-    }
-
-    private TimeFrame minimum(TimeFrame out, TimeFrame temp) {
-        if (out == null) {
-            return temp;
-        }
-        if (temp == null) {
-            return out;
-        }
-        if (out.compareTo(temp) < 0) {
-            return out;
-        } else {
-            return temp;
-        }
     }
 }
