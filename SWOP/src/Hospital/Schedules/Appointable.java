@@ -41,7 +41,7 @@ public interface Appointable {
 
     /**
      * Returns a TimeFrameDelay object that waits the needed time during scheduling based on the current time.
-     * @return Returns a new TimeFrameDelay that makes the basic TimeFrame for scheduling
+     * @return Returns a new TimeFrameDelay that makes the earliest Time there can be scheduled
      */
-    public TimeFrameDelay getTimeFrameDelay();
+    public DelayedTimeLength getDelayedTimeLength();
 }

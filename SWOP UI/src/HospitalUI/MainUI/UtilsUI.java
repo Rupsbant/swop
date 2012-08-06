@@ -45,6 +45,7 @@ public class UtilsUI {
             System.out.println("No options available, aborting!");
             return 0;
         }
+        System.out.println("\n\n");
         while (true) {
             System.out.println("Enter the number of a command");
             System.out.println("0 to exit");
@@ -61,6 +62,7 @@ public class UtilsUI {
                 sc.next();
             }
         }
+        
     }
 
     private static HashMap<Class, ArgumentAnswerer> getMap() {

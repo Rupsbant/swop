@@ -1,7 +1,6 @@
 package Hospital.Schedules.Constraints.Implementation;
 
 import Hospital.Schedules.TimeFrameConstraint;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Time;
 import Hospital.World.TimeUtils;
 
@@ -12,9 +11,10 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
 
     private static final Time dayStart = new Time(0, 0, 0, 9, 0);
     private static final Time dayEnd = new Time(0, 0, 0, 17, 0);
-    private TimeFrame tf;
+    private Time tf;
+    private int length;
 
-    public TimeFrame isAccepted() {
+    public Time isAccepted() {
         if (tf == null) {
             return null;
         }
@@ -22,14 +22,14 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
         Time end = TimeUtils.copyDay(tf.getTime(), dayEnd);
         if (tf.compareTo(start) < 0) {
             try {
-                return new TimeFrame(start, tf.getLength());
+                return start;
             } catch (Exception ex) {
                 throw new Error(ex);
             }
-        } else if (end.compareTo(tf.getEndTime()) < 0) {
+        } else if (end.compareTo(tf.getLaterTime(length)) < 0) {
             Time startNextDay = TimeUtils.addDay(start);
             try {
-                return new TimeFrame(startNextDay, tf.getLength());
+                return startNextDay;
             } catch (Exception ex) {
                 throw new Error(ex);
             }
@@ -39,8 +39,9 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
     }
 
     @Override
-    public void setTimeFrame(TimeFrame tf) {
+    public void setTime(Time tf, int length) {
         this.tf = tf;
+        this.length = length;
     }
 
     public void reset() {

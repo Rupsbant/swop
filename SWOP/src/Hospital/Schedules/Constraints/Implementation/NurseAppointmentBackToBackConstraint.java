@@ -4,42 +4,44 @@ import Hospital.People.Nurse;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
-import Hospital.Schedules.TimeFrame;
+import Hospital.World.Time;
 
 public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint {
 
     private Nurse nurse;
-    private TimeFrame tf;
+    private Time startTime;
+    private int length;
 
-    public TimeFrame isAccepted() {
-        if(tf == null || nurse == null){
+    public Time isAccepted() {
+        if(startTime == null || nurse == null){
             return null;
         }
-        if (tf.getTime().getMinute() == 0) {
-            return tf;
+        if (startTime.getTime().getMinute() == 0) {
+            return startTime;
         }
         Schedule schedule = nurse.getSchedule();
-        Appointment prev = schedule.getAppointmentBefore(tf.getTime());
+        Appointment prev = schedule.getAppointmentBefore(startTime.getTime());
         if (prev == null) {
-            return tf.next();
+            return startTime.getLaterTime(1);
         }
-        int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
+        int timeDiff = prev.getEndTime().getMinutesDiff(startTime.getTime());
         if(timeDiff == 0){
-            return tf;
+            return startTime;
         } else {
-            return tf.next();
+            return startTime.getLaterTime(1);
         }
 
     }
 
     public void reset() {
         this.nurse = null;
-        this.tf = null;
+        this.startTime = null;
     }
 
     @Override
-    public void setTimeFrame(TimeFrame tf) {
-        this.tf = tf;
+    public void setTime(Time tf, int length) {
+        this.startTime = tf;
+        this.length = length;
     }
 
     @Override

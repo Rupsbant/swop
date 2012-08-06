@@ -8,6 +8,7 @@ public class BasicAnswerer implements ArgumentAnswerer {
     public static final BasicAnswerer singleton = new BasicAnswerer();
 
     public void answer(PublicArgument arg, Scanner sc) {
+        System.out.println("\n\n");
         while (true) {
             System.out.println(arg.getQuestion());
             String answer = sc.nextLine();

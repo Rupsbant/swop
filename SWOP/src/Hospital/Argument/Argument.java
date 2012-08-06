@@ -15,13 +15,13 @@ public interface Argument<T extends Object> {
      * This returns the answer that was entered, null if no answer was given.
      * @return answer to the question
      */
-	@SystemAPI
+    @SystemAPI
     T getAnswer();
 
     /**
      * This returns the question to be answered. This can be translated with a map if necessary.
      * @return The question.
      */
-	@SystemAPI
+    @SystemAPI
     String getQuestion();
 }

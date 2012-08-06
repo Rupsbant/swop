@@ -2,20 +2,20 @@ package Hospital.Schedules;
 
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
+import Hospital.World.Time;
 import Hospital.World.WorldTime;
 
 /**
  * A moveable timeframe with a minimum delay
  */
-public class TimeFrameDelay {
+public class DelayedTimeLength {
 
     /**
      * the minimum delay for this timeframe in minutes
      */
     private final int delay;
     /**
-     * the length in minutes
+     * The length of the appointment
      */
     private final int length;
     /**
@@ -29,13 +29,13 @@ public class TimeFrameDelay {
      * @param length the length in minutes
      * @throws ArgumentConstraintException length or delay was negative
      */
-    public TimeFrameDelay(int delay, int length) throws ArgumentConstraintException {
+    public DelayedTimeLength(int delay, int length) throws ArgumentConstraintException {
         if (delay < 0) {
             throw new ArgumentConstraintException("Delay can't be less than zero");
         }
         this.delay = delay;
-        if (!TimeFrame.isValidLength(length)) {
-            throw new ArgumentConstraintException("Length can't be less than zero");
+        if (length < 0) {
+            throw new ArgumentConstraintException("Length can't be less than 0");
         }
         this.length = length;
     }
@@ -46,7 +46,7 @@ public class TimeFrameDelay {
      * @return this object
      * @throws CannotChangeException the world was already set
      */
-    TimeFrameDelay setWorldTime(WorldTime wt) throws CannotChangeException {
+    DelayedTimeLength setWorldTime(WorldTime wt) throws CannotChangeException {
         if (worldTime != null) {
             throw new CannotChangeException("World can't be set a second time");
         }
@@ -58,13 +58,14 @@ public class TimeFrameDelay {
      * Returns the first TimeFrame that can be used for planning.
      * @return TimeFrame
      */
-    public TimeFrame getDelayedTimeFrame() {
-        try {
-            return new TimeFrame(worldTime.getTime().getLaterTime(delay), length);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("getLaterTime is not null");
-        } catch (ArgumentConstraintException ex) {
-            throw new Error("length is greater than zero");
-        }
+    public Time getDelayedTime() {
+        return worldTime.getTime().getLaterTime(delay);
+    }
+    
+    /**
+     * returns the length of the appointment to be made
+     */
+    public int getLength(){
+        return this.length;
     }
 }

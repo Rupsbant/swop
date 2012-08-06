@@ -2,6 +2,7 @@ package Hospital.Schedules;
 
 import Hospital.Exception.Scheduling.ScheduleConstraintException;
 import Hospital.World.Campus;
+import Hospital.World.Time;
 
 /**
  * defines a constraint on the allowed times in a schedule
@@ -23,7 +24,7 @@ public abstract class TimeFrameConstraint extends SchedulableVisitor {
      *         null if information was missing
      * @throws ScheduleConstraintException when there is never a next valid Constraint
      */
-    public abstract TimeFrame isAccepted() throws ScheduleConstraintException;
+    public abstract Time isAccepted() throws ScheduleConstraintException;
 
     /**
      * Resets the Constraint.
@@ -40,5 +41,5 @@ public abstract class TimeFrameConstraint extends SchedulableVisitor {
      * Sets the TimeFrame of the appointment that is being made.
      * @param tf, The TimeFrame during which the appointment happens.
      */
-    public abstract void setTimeFrame(TimeFrame tf);
+    public abstract void setTime(Time tf, int length);
 }

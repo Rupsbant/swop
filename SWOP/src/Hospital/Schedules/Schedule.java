@@ -1,6 +1,5 @@
 package Hospital.Schedules;
 
-import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.World.HasTime;
@@ -59,30 +58,13 @@ public class Schedule {
      * @param tf the timeframe for which a free spot is to be found
      * @return a TimeFrame-object with the same length as tf and its starting time set to the first fitting time after the time in tf
      */
-    public TimeFrame getNextFreeSpot(TimeFrame tf) {
-        while (!isFree(tf)) { // pro forma , appointments are sorted, and iterated in order
-            for (Appointment app : appointments) {
-                if (app.collides(tf)) {
-                    try {
-                        tf = new TimeFrame(app.getTimeFrame().getEndTime(), tf.getLength());
-                    } catch (ArgumentConstraintException ex) {
-                        throw new Error("app.getLength() was negative, should not happen");
-                    } catch (ArgumentIsNullException ex) {
-                        throw new Error("app.getEndTime() was null, should not happen");
-                    }
-                }
+    public Time getNextFreeSpot(Time tf, int length) {
+        for (Appointment app : appointments) {
+            if (app.collides(tf, length)) {
+                tf = app.getEndTime();
             }
         }
         return tf;
-    }
-
-    /**
-     * Checks whether there is free space to add the given appointment in this schedule
-     * @param appointment the appointment to check
-     * @return true if the appointment can be added without creating time-conflicts, false otherwise
-     */
-    boolean isFree(Appointment appointment) {
-        return isFree(appointment.getTimeFrame());
     }
 
     /**
@@ -90,7 +72,7 @@ public class Schedule {
      * @param tf the timeframe to check
      * @return true if the timeframe can be added without creating time-conflicts, false otherwise
      */
-    public boolean isFree(TimeFrame tf) {
+    public boolean isFree(Appointment tf) {
         for (Appointment app : this.appointments) {
             if (app.collides(tf)) {
                 return false;
@@ -117,10 +99,25 @@ public class Schedule {
      * @param tf , The TimeFrame to check the appointments against.
      * @return List of all appointments that collide
      */
-    public List<Appointment> getCollidingAppointments(TimeFrame tf) {
+    public List<Appointment> getCollidingAppointments(Appointment tf) {
         List<Appointment> out = new ArrayList<Appointment>();
         for (Appointment app : appointments) {
             if (app.collides(tf)) {
+                out.add(app);
+            }
+        }
+        return out;
+    }
+
+    /**
+     * This returns all appointments that are colliding with the given TimeFrame
+     * @param tf , The TimeFrame to check the appointments against.
+     * @return List of all appointments that collide
+     */
+    public List<Appointment> getCollidingAppointments(Time tf, int length) {
+        List<Appointment> out = new ArrayList<Appointment>();
+        for (Appointment app : appointments) {
+            if (app.collides(tf, length)) {
                 out.add(app);
             }
         }
@@ -136,7 +133,7 @@ public class Schedule {
         Appointment max = null;
         //Can be optimalised with the invariants of the TreeSet
         for (Appointment app : appointments) {
-            if (time.compareTo(app.getTimeFrame().getEndTime()) < 0) {
+            if (time.compareTo(app.getEndTime()) < 0) {
                 continue;
             }
             if (max == null || app.compareTo(max) > 0) {

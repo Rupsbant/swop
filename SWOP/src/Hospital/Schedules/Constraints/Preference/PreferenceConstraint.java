@@ -2,14 +2,15 @@ package Hospital.Schedules.Constraints.Preference;
 
 import Hospital.People.Doctor;
 import Hospital.Schedules.TimeFrameConstraint;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
+import Hospital.World.Time;
 
 public class PreferenceConstraint extends TimeFrameConstraint {
 
     private Preference preference;
     private Campus campus;
-    private TimeFrame tf;
+    private Time tf;
+    private int length;
 
     @Override
     public void setDoctor(Doctor d) {
@@ -22,18 +23,19 @@ public class PreferenceConstraint extends TimeFrameConstraint {
     }
 
     @Override
-    public void setTimeFrame(TimeFrame tf) {
+    public void setTime(Time tf, int length) {
         this.tf = tf;
+        this.length = length;
     }
 
-    public TimeFrame isAccepted() {
+    public Time isAccepted() {
         if (preference == null || tf == null || campus == null) {
             return null;
         }
-        if (preference.canAddAppointment(tf, campus)) {
+        if (preference.canAddAppointment(tf, length, campus)) {
             return tf;
         } else {
-            return tf.next();
+            return tf.getLaterTime(1);
         }
     }
 

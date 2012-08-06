@@ -4,39 +4,40 @@ import Hospital.People.Doctor;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
+import Hospital.World.Time;
 
 public class DoctorBackToBackConstraint extends TimeFrameConstraint {
 
     private Campus campus;
     private Schedule schedule;
-    private TimeFrame tf;
+    private Time time;
+    private int length;
 
     @Override
-    public TimeFrame isAccepted() {
-        if (schedule == null || tf == null || campus == null) {
+    public Time isAccepted() {
+        if (schedule == null || time == null || campus == null) {
             return null;
         }
         //Base output is on the next hour.
-        if (tf.getTime().getMinute() == 0) {
-            return tf;
+        if (time.getTime().getMinute() == 0) {
+            return time;
         }
 
-        Appointment prev = schedule.getAppointmentBefore(tf.getTime());
+        Appointment prev = schedule.getAppointmentBefore(time.getTime());
         if (prev != null) {
-            int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
+            int timeDiff = prev.getEndTime().getMinutesDiff(time.getTime());
             int walkTime = prev.getCampus().getTravelTime(campus);
             if (timeDiff == walkTime) {
                 // If the WalkTime is correct, say yes with the current proposed time.
-                return tf;
+                return time;
             }
         }
-        return tf.next();
+        return time.getLaterTime(1);
     }
 
     public void reset() {
-        tf = null;
+        time = null;
         campus = null;
         schedule = null;
     }
@@ -52,7 +53,7 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraint {
     }
 
     @Override
-    public void setTimeFrame(TimeFrame tf) {
-        this.tf = tf;
+    public void setTime(Time tf, int length) {
+        this.time = tf;
     }
 }

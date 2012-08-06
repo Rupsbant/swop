@@ -2,7 +2,6 @@ package Hospital.Schedules.Constraints.Preference;
 
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Schedule;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 import Hospital.World.Time;
 import Hospital.World.TimeUtils;
@@ -21,14 +20,14 @@ public class StayShiftPreference implements Preference {
         d.setPreference(new StayShiftPreference(d));
     }
 
-    public boolean canAddAppointment(TimeFrame tf, Campus campus) {
-        if (!checkCampusForShift(tf.getTime(), tf, campus)) {
+    public boolean canAddAppointment(Time tf, int length, Campus campus) {
+        if (!checkCampusForShift(tf.getTime(), tf, length, campus)) {
             return false;
         }
-        return checkCampusForShift(tf.getEndTime(), tf, campus);
+        return checkCampusForShift(tf.getLaterTime(length), tf, length, campus);
     }
 
-    private boolean checkCampusForShift(Time startTime, TimeFrame colliding, Campus campus) {
+    private boolean checkCampusForShift(Time startTime, Time startTimeToTest, int lengthOfAppointmentToTest, Campus campus) {
         Time startDay = TimeUtils.getStartOfDay(startTime);
         Time noonOfApp = TimeUtils.copyDay(startTime, NOON);
         Time midNightOfApp = TimeUtils.copyDay(startTime, MIDNIGHT);
@@ -36,13 +35,13 @@ public class StayShiftPreference implements Preference {
         Time endShift = startTime.compareTo(noonOfApp) < 0 ? noonOfApp : midNightOfApp;
         Schedule sched = hasPreference.getSchedule();
         Appointment app = sched.getAppointmentAfter(startShift);
-        while (app != null && app.getTimeFrame().getTime().compareTo(endShift) < 0) {
-            if (!app.collides(colliding)) {
+        while (app != null && app.getTime().compareTo(endShift) < 0) {
+            if (!app.collides(startTimeToTest, lengthOfAppointmentToTest)) {
                 if (!app.getCampus().equals(campus)) {
                     return false;
                 }
             }
-            app = sched.getAppointmentAfter(app.getTimeFrame().getEndTime());
+            app = sched.getAppointmentAfter(app.getEndTime());
         }
         return true;
     }

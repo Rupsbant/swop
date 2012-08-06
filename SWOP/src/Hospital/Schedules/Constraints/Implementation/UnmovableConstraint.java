@@ -3,14 +3,14 @@ package Hospital.Schedules.Constraints.Implementation;
 import Hospital.Exception.Scheduling.ScheduleConstraintException;
 import Hospital.People.Unmovable;
 import Hospital.Schedules.TimeFrameConstraint;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
+import Hospital.World.Time;
 
 public class UnmovableConstraint extends TimeFrameConstraint {
 
     private Unmovable unmovable;
     private Campus campus;
-    private TimeFrame tf;
+    private Time startTime;
 
     public UnmovableConstraint(Unmovable unmovable) {
         this.unmovable = unmovable;
@@ -21,14 +21,14 @@ public class UnmovableConstraint extends TimeFrameConstraint {
         this.campus = c;
     }
 
-    public TimeFrame isAccepted() throws ScheduleConstraintException {
+    public Time isAccepted() throws ScheduleConstraintException {
         if (campus == null) {
             return null;
         }
         if (!unmovable.getCampus().equals(campus)) {
             throw new ScheduleConstraintException();
         }
-        return tf;
+        return startTime;
     }
 
     public void reset() {
@@ -36,7 +36,7 @@ public class UnmovableConstraint extends TimeFrameConstraint {
     }
 
     @Override
-    public void setTimeFrame(TimeFrame tf) {
-        this.tf = tf;
+    public void setTime(Time tf, int length) {
+        this.startTime = tf;
     }
 }

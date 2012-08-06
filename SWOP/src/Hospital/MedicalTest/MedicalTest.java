@@ -13,7 +13,7 @@ import Hospital.Schedules.GetCampus.NurseDecides;
 import Hospital.Schedules.Constraints.Implementation.NurseAppointmentBackToBackConstraint;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
-import Hospital.Schedules.TimeFrameDelay;
+import Hospital.Schedules.DelayedTimeLength;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -154,9 +154,9 @@ public abstract class MedicalTest implements Result, Appointable {
      * Returns a TimeFrameDelay object that waits the needed time during scheduling based on the current time.
      * @return Returns a new TimeFrameDelay that makes the basic TimeFrame for scheduling
      */
-    public TimeFrameDelay getTimeFrameDelay() {
+    public DelayedTimeLength getDelayedTimeLength() {
         try {
-            return new TimeFrameDelay(getTimeDiff(), getLength());
+            return new DelayedTimeLength(getTimeDiff(), getLength());
         } catch (ArgumentConstraintException ex) {
             throw new Error("Length of medicalTest was not valid somewhere, check code");
         }

@@ -1,7 +1,7 @@
 package Hospital.Schedules.Constraints.Preference;
 
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
+import Hospital.World.Time;
 
 /**
  * This allows acccess to preferences.
@@ -10,7 +10,7 @@ import Hospital.World.Campus;
  */
 public interface Preference {
     
-    boolean canAddAppointment(TimeFrame tf, Campus campus);
+    boolean canAddAppointment(Time timeToTest, int length, Campus campus);
     
     void makeThisAsPreference(HasPreference d);
 

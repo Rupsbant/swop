@@ -2,7 +2,6 @@ package Hospital.Schedules.Constraints.Preference;
 
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Schedule;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 import Hospital.World.Time;
 import Hospital.World.TimeUtils;
@@ -20,7 +19,7 @@ public class ChangeLocationPreference implements Preference {
         d.setPreference(new ChangeLocationPreference(d));
     }
 
-    public boolean canAddAppointment(TimeFrame tf, Campus campus) {
+    public boolean canAddAppointment(Time tf, int length, Campus campus) {
         Time start = TimeUtils.getStartOfDay(tf.getTime());
         Time end = TimeUtils.addDay(start);
         Schedule sched = schedulable.getSchedule();
@@ -29,15 +28,15 @@ public class ChangeLocationPreference implements Preference {
             return true;
         }
         Campus currentCampus = appointmentAfter.getCampus();
-        start = appointmentAfter.getTimeFrame().getEndTime();
-        int changeCount = getChangeCount(sched, start, end, tf, currentCampus);
+        start = appointmentAfter.getEndTime();
+        int changeCount = getChangeCount(sched, start, end, tf, length, currentCampus);
 
         Appointment appointmentBefore = sched.getAppointmentBefore(tf.getTime());
-        appointmentAfter = sched.getAppointmentAfter(tf.getEndTime());
-        if(appointmentBefore != null && appointmentBefore.getTimeFrame().getEndTime().compareTo(TimeUtils.getStartOfDay(tf.getTime()))<=0){
+        appointmentAfter = sched.getAppointmentAfter(tf.getLaterTime(length));
+        if(appointmentBefore != null && appointmentBefore.getEndTime().compareTo(TimeUtils.getStartOfDay(tf.getTime()))<=0){
             appointmentBefore = null;
         }
-        if(appointmentAfter != null &&appointmentAfter.getTimeFrame().getTime().compareTo(end)>=0){
+        if(appointmentAfter != null &&appointmentAfter.getTime().compareTo(end)>=0){
             appointmentAfter = null;
         }
         if (appointmentBefore != null && appointmentAfter != null) {
@@ -66,15 +65,15 @@ public class ChangeLocationPreference implements Preference {
         return changeCount <= MAX_CHANGES;
     }
 
-    private int getChangeCount(Schedule sched, Time start, Time end, TimeFrame tf, Campus currentCampus) {
+    private int getChangeCount(Schedule sched, Time start, Time end, Time startTimeToTest, int length, Campus currentCampus) {
         int changeCount = 0;
         while (true) {
             Appointment p = sched.getAppointmentAfter(start);
-            if (p == null || p.getTimeFrame().getTime().compareTo(end) >= 0) {
+            if (p == null || p.getTime().compareTo(end) >= 0) {
                 break;
             }
-            if (p.collides(tf)) {
-                start = p.getTimeFrame().getEndTime();
+            if (p.collides(startTimeToTest, length)) {
+                start = p.getEndTime();
                 continue;
             }
             Campus c = p.getCampus();
@@ -82,7 +81,7 @@ public class ChangeLocationPreference implements Preference {
                 changeCount++;
                 currentCampus = c;
             }
-            start = p.getTimeFrame().getEndTime();
+            start = p.getEndTime();
         }
         return changeCount;
     }

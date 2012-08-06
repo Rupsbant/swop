@@ -79,7 +79,6 @@ public class DoctorBackToBackConstraintTest {
      */
     @Test
     public void testIsAccepted() throws ArgumentIsNullException, ArgumentConstraintException {
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 15);
         DoctorBackToBackConstraint instance = new DoctorBackToBackConstraint();
         Map<TimeFrame, TimeFrame> tfList = new TreeMap<TimeFrame, TimeFrame>();
         instance.setDoctor(d);

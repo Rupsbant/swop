@@ -36,7 +36,7 @@ public class AppointmentCommand implements Command {
     /**
      * The minimal delay before the appointment can be scheduled
      */
-    private TimeFrameDelay td;
+    private DelayedTimeLength td;
     /**
      * The created appointment
      */
@@ -98,7 +98,7 @@ public class AppointmentCommand implements Command {
     }
 
     private void setTimeFrameDelay(Appointable app, WorldTime wt) {
-        td = app.getTimeFrameDelay();
+        td = app.getDelayedTimeLength();
         try {
             td.setWorldTime(wt);
         } catch (CannotChangeException ex) {
@@ -115,12 +115,12 @@ public class AppointmentCommand implements Command {
             throw new CannotDoException("Appointment already planned");
         }
         try {
-            solver.setFirstTimeFrame(td.getDelayedTimeFrame());
+            solver.setTimeDelay(td);
             solver.solve();
             List<Schedule> chosenSchedules = Schedule.getSchedules(solver.getAttendees());
-            appointment = new Appointment(solver.getChosenTimeFrame(), chosenSchedules, this, solver.getCampus());
+            appointment = new Appointment(solver.getChosenTime(), td.getLength(), chosenSchedules, this, solver.getCampus());
             
-            Set<AppointmentCommand> preempted = getPreempted(appointment.getAttendees(), appointment.getTimeFrame());
+            Set<AppointmentCommand> preempted = getPreempted(appointment.getAttendees(), appointment);
 
             String s = undoPreempted(preempted);
             appointment.schedule();
@@ -219,7 +219,7 @@ public class AppointmentCommand implements Command {
         return s;
     }
 
-    static Set<AppointmentCommand> getPreempted(List<Schedule> chosenSchedules, TimeFrame chosenTimeFrame) {
+    static Set<AppointmentCommand> getPreempted(List<Schedule> chosenSchedules, Appointment chosenTimeFrame) {
         Set<AppointmentCommand> preempted = new HashSet<AppointmentCommand>();
         for (Schedule s : chosenSchedules) {
             for (Appointment app : s.getCollidingAppointments(chosenTimeFrame)) {

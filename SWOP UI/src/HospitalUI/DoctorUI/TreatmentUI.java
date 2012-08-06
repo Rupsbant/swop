@@ -14,7 +14,6 @@ import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Warehouse.StockException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import HospitalUI.MainUI.UtilsUI;
 
 import java.util.Scanner;

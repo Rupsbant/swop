@@ -5,16 +5,17 @@ import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Schedules.CampusDecider;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
-import Hospital.Schedules.TimeFrame;
+import Hospital.Schedules.DelayedTimeLength;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
+import Hospital.World.Time;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class JumpSolver implements AppointmentConstraintSolver {
 
-    private TimeFrame tf;
+    private DelayedTimeLength startTime;
+    private int length;
     private CampusDecider campusDecider;
     private List<ScheduleGroup> groups;
     private List<TimeFrameConstraint> tfConstraints;
@@ -23,7 +24,7 @@ public class JumpSolver implements AppointmentConstraintSolver {
     |* Output *|
     \*--------*/
     private List<Schedulable> output_list;
-    private TimeFrame output_timeFrame;
+    private Time output_time;
     private Campus output_campus;
 
     public JumpSolver solve() throws SchedulingException {
@@ -54,7 +55,7 @@ public class JumpSolver implements AppointmentConstraintSolver {
         //initialize
         List<TimeFrameConstraint> allConstraints = makeAllConstraints(built);
         Campus testCampus = makeCampus(built);
-        TimeFrame currentTesting = tf;
+        Time currentTesting = startTime.getDelayedTime();
 
         //visit constraints
         for (TimeFrameConstraint tfC : allConstraints) {
@@ -71,9 +72,9 @@ public class JumpSolver implements AppointmentConstraintSolver {
             //Go to the next position, if at the end of the list, restart from first
             position = (position + 1) % size;
             TimeFrameConstraint tfC = allConstraints.get(position);
-            tfC.setTimeFrame(currentTesting);
+            tfC.setTime(currentTesting, length);
             try {
-                TimeFrame outputTimeFrame = tfC.isAccepted();
+                Time outputTimeFrame = tfC.isAccepted();
                 if (outputTimeFrame == null) {
                     throw new SchedulingException("Something went very wrong, information was missing" + tfC);
                 } else if (!outputTimeFrame.equals(currentTesting)) {
@@ -87,8 +88,8 @@ public class JumpSolver implements AppointmentConstraintSolver {
             }
         } while (finalTest != position);
 
-        if (output_timeFrame == null || output_timeFrame.compareTo(currentTesting) > 0) {
-            output_timeFrame = currentTesting;
+        if (output_time == null || output_time.compareTo(currentTesting) > 0) {
+            output_time = currentTesting;
             output_campus = testCampus;
             output_list = new ArrayList(built);
         }
@@ -120,12 +121,12 @@ public class JumpSolver implements AppointmentConstraintSolver {
         return this.output_list;
     }
 
-    public TimeFrame getChosenTimeFrame() {
-        return output_timeFrame;
+    public Time getChosenTime() {
+        return output_time;
     }
 
-    public void setFirstTimeFrame(TimeFrame tf) {
-        this.tf = tf;
+    public void setTimeDelay(DelayedTimeLength tf) {
+        this.startTime = tf;
     }
 
     public void setScheduleGroups(List<ScheduleGroup> list) {
@@ -141,8 +142,13 @@ public class JumpSolver implements AppointmentConstraintSolver {
     }
 
     public void reset() {
-        this.output_timeFrame = null;
+        this.output_time = null;
         this.output_list = new ArrayList<Schedulable>();
         this.output_campus = null;
+    }
+
+    @Override
+    public void setLength(int length) {
+        this.length = length;
     }
 }

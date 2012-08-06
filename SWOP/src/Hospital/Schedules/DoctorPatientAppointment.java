@@ -16,6 +16,8 @@ import java.util.List;
 public class DoctorPatientAppointment implements Appointable {
 
     public static final Priority PRIORITY = new HighLowPriority(false);
+    public static final int TIME_TO_WAIT = 60;
+    public static final int APPOINTMEN_LENGTH = 30;
     /**
      * the associated appointment-object
      */
@@ -65,9 +67,9 @@ public class DoctorPatientAppointment implements Appointable {
      * @return a TimeFrameDelay object with a delay of 60 minutes and a length of 30
      * @see Hospital.Schedules.Appointable#getTimeFrameDelay()
      */
-    public TimeFrameDelay getTimeFrameDelay() {
+    public DelayedTimeLength getDelayedTimeLength() {
         try {
-            return new TimeFrameDelay(60, 30);
+            return new DelayedTimeLength(TIME_TO_WAIT, APPOINTMEN_LENGTH);
         } catch (ArgumentConstraintException ex) {
             throw new Error("30 was illegal appointmentLength, check code");
         }

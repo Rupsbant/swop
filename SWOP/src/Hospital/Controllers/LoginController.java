@@ -3,7 +3,6 @@ package Hospital.Controllers;
 import Hospital.SystemAPI;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.People.Staff;
-import Hospital.World.Campus;
 
 /**
  * This controller is created when a user logs in and will represent

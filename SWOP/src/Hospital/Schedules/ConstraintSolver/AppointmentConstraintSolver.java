@@ -5,13 +5,16 @@ import Hospital.Schedules.CampusDecider;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
-import Hospital.Schedules.TimeFrame;
+import Hospital.Schedules.DelayedTimeLength;
 import Hospital.World.Campus;
+import Hospital.World.Time;
 import java.util.List;
 
 public interface AppointmentConstraintSolver {
 
-    void setFirstTimeFrame(TimeFrame tf);
+    void setTimeDelay(DelayedTimeLength tf);
+    
+    void setLength(int length);
 
     void setScheduleGroups(List<ScheduleGroup> list);
 
@@ -29,6 +32,6 @@ public interface AppointmentConstraintSolver {
 
     List<Schedulable> getAttendees();
 
-    TimeFrame getChosenTimeFrame();
+    Time getChosenTime();
 
 }

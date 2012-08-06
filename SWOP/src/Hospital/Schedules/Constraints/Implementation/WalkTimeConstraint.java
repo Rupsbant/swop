@@ -3,7 +3,6 @@ package Hospital.Schedules.Constraints.Implementation;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
-import Hospital.Schedules.TimeFrame;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
 import Hospital.World.Time;
@@ -14,51 +13,49 @@ public class WalkTimeConstraint extends TimeFrameConstraint {
 
     private Campus campus;
     private List<Schedule> schedules = new ArrayList<Schedule>();
-    private TimeFrame tf;
+    private Time startTime;
+    private int length;
 
     @Override
-    public TimeFrame isAccepted() {
-        if (tf == null || campus == null) {
+    public Time isAccepted() {
+        if (startTime == null || campus == null) {
             return null;
         }
-        Time out = tf.getTime();
+        Time out = startTime.getTime();
         for (Schedule schedule : schedules) {
             Time out2 = handleNext(schedule);
             out = (out.compareTo(out2) > 0 ? out : out2);
             out2 = handlePrevious(schedule);
             out = (out.compareTo(out2) > 0 ? out : out2);
         }
-        try {
-            return new TimeFrame(out, tf.getLength());
-        } catch (Exception ex) {
-            throw new Error(ex);
-        }
+        return out;
     }
 
     private Time handlePrevious(Schedule schedule) {
-        Appointment prev = schedule.getAppointmentBefore(tf.getTime());
+        Appointment prev = schedule.getAppointmentBefore(startTime.getTime());
         if (prev != null) {
-            int timeDiff = prev.getTimeFrame().getEndTime().getMinutesDiff(tf.getTime());
+            int timeDiff = prev.getEndTime().getMinutesDiff(startTime.getTime());
             int walkTime = prev.getCampus().getTravelTime(campus);
             if (timeDiff < walkTime) {
                 //if not enough time, add more
-                return prev.getTimeFrame().getEndTime().getLaterTime(walkTime);
+                return prev.getEndTime().getLaterTime(walkTime);
             }
         }
-        return tf.getTime();
+        return startTime.getTime();
     }
 
     private Time handleNext(Schedule schedule) {
-        Appointment next = schedule.getAppointmentAfter(tf.getTime());
+        Time endTime = startTime.getLaterTime(length);
+        Appointment next = schedule.getAppointmentAfter(endTime);
         if (next != null) {
-            int timeDiff = next.getTimeFrame().getTime().getMinutesDiff(tf.getEndTime());
+            int timeDiff = next.getTime().getMinutesDiff(endTime);
             int walkTime = next.getCampus().getTravelTime(campus);
             if (timeDiff < walkTime) {
-                // if not enough, start after the next appointment
-                return next.getTimeFrame().getEndTime().getLaterTime(walkTime);
+                // if not enough, start on first colliding moment
+                return next.getTime().getLaterTime(-length+1);
             }
         }
-        return tf.getTime();
+        return startTime.getTime();
     }
 
     @Override
@@ -72,13 +69,14 @@ public class WalkTimeConstraint extends TimeFrameConstraint {
     }
 
     @Override
-    public void setTimeFrame(TimeFrame tf) {
-        this.tf = tf;
+    public void setTime(Time tf, int length) {
+        this.startTime = tf;
+        this.length = length;
     }
 
     @Override
     public void reset() {
-        this.tf = null;
+        this.startTime = null;
         this.campus = null;
         this.schedules.clear();
     }

@@ -81,7 +81,7 @@ public class AppointmentConstraintSolverTestDummy {
         SingleSchedulableGroup single2 = new SingleSchedulableGroup(d);
         List<ScheduleGroup> groups = Arrays.asList(single1, single2);
         instance.setScheduleGroups(groups);
-        instance.setFirstTimeFrame(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20));
+        instance.setTimeDelay(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20));
         instance.setConstaints(Collections.EMPTY_LIST);
         instance.setCampusDecider(new GetC(campusNorth));
         instance.solve();
@@ -100,7 +100,7 @@ public class AppointmentConstraintSolverTestDummy {
         instance.setCampusDecider(new GetC(campusNorth));
         constraints.add(new PriorityConstraint(new HighLowPriority(false)));
         instance.setScheduleGroups(groups);
-        instance.setFirstTimeFrame(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20));
+        instance.setTimeDelay(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20));
         instance.setConstaints(constraints);
         instance.solve();
         assertEquals(ruben, instance.getAttendees().get(0));
@@ -117,7 +117,7 @@ public class AppointmentConstraintSolverTestDummy {
         List<TimeFrameConstraint> constraints = new ArrayList<TimeFrameConstraint>();
         constraints.add(new PriorityConstraint(new HighLowPriority(false)));
         instance.setScheduleGroups(groups);
-        instance.setFirstTimeFrame(new TimeFrame(new Time(2011, 11, 8, 9, 20), 20));
+        instance.setTimeDelay(new TimeFrame(new Time(2011, 11, 8, 9, 20), 20));
         instance.setCampusDecider(new GetC(campusNorth));
         instance.setConstaints(constraints);
         instance.solve();

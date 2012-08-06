@@ -26,7 +26,7 @@ public class ItemReservationCommand implements Command {
             try {
                 System.out.println("Adding:\"" + i.getName() + "\"");
                 Warehouse warehouse = appointable.getAppointment().getCampus().getWarehouse();
-                reservations.add(warehouse.getStock(i.getName()).reserveItem(i.getCount(), appointable.getAppointment().getTimeFrame().getTime()));
+                reservations.add(warehouse.getStock(i.getName()).reserveItem(i.getCount(), appointable.getAppointment().getTime()));
                 out += i.getCount() + " item(s) reserved of type: " + i.getName() + "\n";
             } catch (NotEnoughItemsAvailableException ex) {
                 throw new CannotDoException("Scheduling was wrong, it couldn't reserve the items at the scheduled time.");

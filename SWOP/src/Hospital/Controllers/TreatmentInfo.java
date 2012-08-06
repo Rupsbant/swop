@@ -2,7 +2,7 @@ package Hospital.Controllers;
 
 import Hospital.SystemAPI;
 import Hospital.Treatments.Treatment;
-import Hospital.World.Time;
+import Hospital.World.HasTime;
 
 /**
  * Represents a Treatment-object
@@ -74,8 +74,8 @@ public class TreatmentInfo {
      * @return The ordering based on the startTime of the Appointment.
      */
     @SystemAPI
-    public int compareTimeAppointment(Time t){
-    	return treatment.getAppointment().getTimeFrame().compareTo(t);
+    public int compareTimeAppointment(HasTime t){
+    	return treatment.getAppointment().compareTo(t);
     }
 
 

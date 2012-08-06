@@ -15,9 +15,13 @@ import java.util.List;
 public class Appointment implements HasTime {
 
     /**
-     * the starting time and length of this appointment
+     * Returns true if the length is more than 0 minutes.
+     * @param length The appointmentLength to test.
+     * @return length >=0
      */
-    private TimeFrame timeFrame;
+    public static boolean isValidLength(int length) {
+        return length >= 0;
+    }
     /**
      * the schedules of the attendees to this appointment
      */
@@ -34,16 +38,25 @@ public class Appointment implements HasTime {
      * the campus where the attendees will meet
      */
     private Campus campus;
+    /**
+     * the starting time
+     */
+    private final Time time;
+    /**
+     * the length in minutes
+     */
+    private final int length;
 
     /**
      * Constructor
      * @param timeFrame the starting time and length of the appointment as TimeFrame object
      * @param attendees the schedules of the attendees
      */
-    public Appointment(TimeFrame timeFrame, List<Schedule> attendees, AppointmentCommand appC, Campus campus) {
+    public Appointment(Time startTime, int length, List<Schedule> attendees, AppointmentCommand appC, Campus campus) {
         this.campus = campus;
         this.appCommand = appC;
-        this.timeFrame = timeFrame;
+        this.time = startTime;
+        this.length = length;
         try {
             this.addAttendees(attendees);
         } catch (SchedulingException ex) {
@@ -52,37 +65,33 @@ public class Appointment implements HasTime {
     }
 
     /**
-     * Returns the TimeFrame for which this Appointment is scheduled.
-     * @return the scheduled TimeFrame
-     */
-    public TimeFrame getTimeFrame() {
-        return this.timeFrame;
-    }
-
-    /**
      * Returns the Time this appointment starts
      * @return The Time this appointment starts
      */
-    public Time getTime(){
-        return this.timeFrame.getTime();
+    public Time getTime() {
+        return this.time;
     }
 
     /**
-     * Returns true is the two Appointment's TimeFrames collide.
-     * @param o Appointment
-     * @return true is o collides with this, false otherwise.
+     * Returns true if the two TimeFrame falls during the same time.
+     * @param tf Other TimeFrame to test.
+     * @return true if TimeFrames collide.
      */
-    public boolean collides(Appointment o) {
-        return collides(o.timeFrame);
+    public boolean collides(Appointment tf) {
+        return (getTime().compareTo(tf.getTime()) <= 0 && tf.getTime().compareTo(getEndTime()) < 0) || (tf.getTime().compareTo(getTime()) <= 0 && getTime().compareTo(tf.getEndTime()) < 0);
     }
 
     /**
-     * Returns true if the Appointment collides with the given TimeFrame.
-     * @param tf The TimeFrame to check.
-     * @return true if the Appointment's TimeFrame and tf collide.
+     * Returns true if the two TimeFrame falls during the same time.
+     * @param tf Other TimeFrame to test.
+     * @return true if TimeFrames collide.
      */
-    public boolean collides(TimeFrame tf) {
-        return timeFrame.collides(tf);
+    public boolean collides(Time tf, int length) {
+        Time endTime = tf.getLaterTime(length);
+        return (getTime().compareTo(tf.getTime()) <= 0 && 
+                tf.getTime().compareTo(getEndTime()) < 0) || 
+                (tf.getTime().compareTo(getTime()) <= 0 && 
+                getTime().compareTo(endTime) < 0);
     }
 
     /**
@@ -93,7 +102,7 @@ public class Appointment implements HasTime {
      *          > 0 : if the given HasTime falls before the Appointment.
      */
     public int compareTo(HasTime o) {
-        return timeFrame.compareTo(o.getTime());
+        return getTime().compareTo(o.getTime());
     }
 
     /**
@@ -102,9 +111,9 @@ public class Appointment implements HasTime {
      */
     @Override
     public String toString() {
-        return "Appointment from " + timeFrame.getTime()
-                + " of " + timeFrame.getLength() + " minutes, "
-                + "until " + timeFrame.getEndTime()
+        return "Appointment from " + getTime()
+                + " of " + getLength() + " minutes, "
+                + "until " + getEndTime()
                 + " with " + attendees.size() + " attendees.";
     }
 
@@ -158,25 +167,6 @@ public class Appointment implements HasTime {
     }
 
     /**
-     * Adds an attendee to the Appointment. If a exception is thrown a new Appointment must be made.
-     * @param sched Schedule to add.
-     * @throws SchedulingException If given Schedule can't be added.
-     */
-    public void addAttendee(Schedule sched) throws SchedulingException {
-        attendees.add(sched);
-        if (scheduled) {
-            try {
-                sched.addAppointment(this);
-            } catch (SchedulingException ex) {
-                remove();
-                throw ex;
-            } catch (ArgumentIsNullException ex) {
-                throw new Error("this can't happen.");
-            }
-        }
-    }
-
-    /**
      * Adds attendees to this appointment
      * @param attendees the schedules of the attendees to add
      * @throws SchedulingException one of the attendees has schedule that conflicts with this appointment,
@@ -215,5 +205,21 @@ public class Appointment implements HasTime {
 
     List<Schedule> getAttendees() {
         return this.attendees;
+    }
+
+    /**
+     * Return the length of the TimeFrame.
+     * @return length(minutes);
+     */
+    public int getLength() {
+        return length;
+    }
+
+    /**
+     * Returns the endTime of the TimeFrame.
+     * @return endTime.
+     */
+    public Time getEndTime() {
+        return getTime().getLaterTime(length);
     }
 }

@@ -53,11 +53,12 @@ public class CommandHistory {
         if(!commInfo.equals(command)){
             throw new Error("the Command and CommandInfo should always be linked");
         }
-        if (!recent.remove(commInfo)) {
+        if (!recent.contains(commInfo)) {
             throw new IllegalArgumentException("CommandInfo not found");
         }
         try {
             String string = command.undo();
+            recent.remove(commInfo);
             undone.add(commInfo);
             return string;
         } catch (NotDoneException ex) {
@@ -76,10 +77,11 @@ public class CommandHistory {
         if(!commInfo.equals(command)){
             throw new Error("the Command and CommandInfo should always be linked");
         }
-        if (!undone.remove(commInfo)) {
+        if (!undone.contains(commInfo)) {
             throw new IllegalArgumentException("CommandInfo not found");
         }
         String string = command.execute();
+        undone.remove(commInfo);
         recent.add(commInfo);
         return string;
     }

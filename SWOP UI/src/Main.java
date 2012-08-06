@@ -1,5 +1,4 @@
 import Hospital.Controllers.WorldController;
-import Hospital.World.BasicWorld;
 import HospitalUI.MainUI.MainUI;
 
 import java.util.Scanner;

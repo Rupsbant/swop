@@ -17,7 +17,7 @@ import Hospital.Schedules.Constraints.Implementation.NurseAppointmentBackToBackC
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Warehouse.ItemConstraint;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
-import Hospital.Schedules.TimeFrameDelay;
+import Hospital.Schedules.DelayedTimeLength;
 import Hospital.WareHouse.ItemReservationCommand;
 import Hospital.WareHouse.ItemInfo;
 import java.util.ArrayList;
@@ -118,9 +118,9 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
      * @return a TimeFrameDelay with a delay of 60 and the length specified this.getLength()
      * @see Hospital.Schedules.Appointable#getTimeFrameDelay()
      */
-    public TimeFrameDelay getTimeFrameDelay() {
+    public DelayedTimeLength getDelayedTimeLength() {
         try {
-            return new TimeFrameDelay(60, getLength());
+            return new DelayedTimeLength(60, getLength());
         } catch (ArgumentConstraintException ex) {
             throw new Error("Illegal length in code");
         }
@@ -194,11 +194,10 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
             if (delayedCommand.isDone()) {
                 return delayedCommand.undo();
             } else {
-                return "";
+                return "Not scheduled yet, not unscheduled.\n";
             }
         } catch (NotDoneException ex) {
-            Logger.getLogger(Treatment.class.getName()).log(Level.SEVERE, "Does not happen", ex);
-            return "";
+            throw new Error(ex);
         }
     }
 }

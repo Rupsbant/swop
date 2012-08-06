@@ -139,6 +139,7 @@ public class Diagnosis {
         if (!this.treatment.equals(t)) {
             throw new WrongTreatmentException("Can't remove another treatement!");
         }
+        this.treatment.unSchedule();
         this.treatment = null;
         return updateState();
     }

@@ -4,7 +4,6 @@ import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.MedicalTest.XRayScan;
 import Hospital.Patient.Patient;
 import Hospital.Schedules.TimeFrameConstraint;
-import Hospital.Schedules.TimeFrame;
 import Hospital.Utils;
 import Hospital.World.Time;
 import Hospital.World.TimeUtils;
@@ -22,7 +21,7 @@ public class XRayConstraint extends TimeFrameConstraint {
      */
     private final int wantToDo;
     private Patient patient;
-    private TimeFrame tf;
+    private Time tf;
 
     /**
      * Constructor
@@ -47,7 +46,7 @@ public class XRayConstraint extends TimeFrameConstraint {
         this.patient = p;
     }
 
-    public void setTimeFrame(TimeFrame tf) {
+    public void setTime(Time tf, int length) {
         this.tf = tf;
     }
 
@@ -56,13 +55,12 @@ public class XRayConstraint extends TimeFrameConstraint {
         this.tf = null;
     }
 
-    public TimeFrame isAccepted() {
+    public Time isAccepted() {
         if (tf == null || patient == null) {
             return null;
         }
         Time start = TimeUtils.getStartOfDay(tf.getTime());
         start = TimeUtils.getLastYear(start);
-        Time end = TimeUtils.getStartOfDay(tf.getTime()).getDiffTime(1, 0, 0, 23, 59);
         PriorityQueue<AppEvent> events = getBasicEvents(start);
         TreeMap<Integer, Integer> counter = new TreeMap<Integer, Integer>();
         int countPlanned = 0;
@@ -80,7 +78,7 @@ public class XRayConstraint extends TimeFrameConstraint {
                     try {
                         Time time = e.getTime();
                         time = TimeUtils.getLastYear(time).getLaterTime(1);
-                        return new TimeFrame(time, tf.getLength());
+                        return time;
                     } catch (Exception ex) {
                         throw new Error("this cannot happen");
                     }
@@ -100,7 +98,7 @@ public class XRayConstraint extends TimeFrameConstraint {
             if (xray.getAppointment().compareTo(start) < 0) {
                 continue;
             }
-            Time appStart = xray.getAppointment().getTimeFrame().getTime();
+            Time appStart = xray.getAppointment().getTime();
             appStart = TimeUtils.getStartOfDay(appStart);
             events.add(new AppStartEvent(appStart, xray.getXRayCount()));
         }
