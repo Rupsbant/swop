@@ -13,10 +13,10 @@ import Hospital.Schedules.Appointment;
 import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Schedules.Constraints.Priority.PriorityConstraint;
+import Hospital.Schedules.DelayedTimeLength;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.ScheduleTestUtil;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.BasicWorld;
 import Hospital.World.Campus;
 import Hospital.World.Time;
@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -53,21 +52,19 @@ public class AppointmentConstraintSolverTestDummy {
 
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException, SchedulingException, ArgumentConstraintException {
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 30), 20);
         Schedule sched1 = d.getSchedule();
         Schedule sched2 = ruben.getSchedule();
         Appointable t = new XRayScan(3, 3, "knie");
         AppointmentCommand appC = new AppointmentCommand(w, t, Collections.EMPTY_LIST, new HighLowPriority(true));
-        Appointment p = new Appointment(tf, Arrays.asList(sched1, sched2), appC, campusNorth);
+        Appointment p = new Appointment(new Time(2011, 11, 8, 9, 30), 20, Arrays.asList(sched1, sched2), appC, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 10), 20);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
         t = new XRayScan(3, 3, "teen");
         appC = new AppointmentCommand(w, t, Collections.EMPTY_LIST, new HighLowPriority(true));
-        p = new Appointment(tf, Arrays.asList(sched1, sched2), appC, campusSouth);
+        p = new Appointment(new Time(2011, 11, 8, 13, 10), 20, Arrays.asList(sched1, sched2), appC, campusSouth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
     }
@@ -81,13 +78,18 @@ public class AppointmentConstraintSolverTestDummy {
         SingleSchedulableGroup single2 = new SingleSchedulableGroup(d);
         List<ScheduleGroup> groups = Arrays.asList(single1, single2);
         instance.setScheduleGroups(groups);
-        instance.setTimeDelay(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20));
+        instance.setTimeDelay(new DelayedTimeLength(30, 20) {
+            @Override
+            public Time getDelayedTime() {
+                return new Time(2011, 11, 8, 9, 0);
+            }
+        });
         instance.setConstaints(Collections.EMPTY_LIST);
         instance.setCampusDecider(new GetC(campusNorth));
         instance.solve();
         assertEquals(ruben, instance.getAttendees().get(0));
         assertEquals(d, instance.getAttendees().get(1));
-        assertEquals(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20), instance.getChosenTimeFrame());
+        assertEquals(new Time(2011, 11, 8, 9, 0), instance.getChosenTime());
         assertEquals(campusNorth, instance.getCampus());
     }
 
@@ -100,12 +102,17 @@ public class AppointmentConstraintSolverTestDummy {
         instance.setCampusDecider(new GetC(campusNorth));
         constraints.add(new PriorityConstraint(new HighLowPriority(false)));
         instance.setScheduleGroups(groups);
-        instance.setTimeDelay(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20));
+        instance.setTimeDelay(new DelayedTimeLength(30, 20) {
+            @Override
+            public Time getDelayedTime() {
+                return new Time(2011, 11, 8, 9, 0);
+            }
+        });
         instance.setConstaints(constraints);
         instance.solve();
         assertEquals(ruben, instance.getAttendees().get(0));
         assertEquals(d, instance.getAttendees().get(1));
-        assertEquals(new TimeFrame(new Time(2011, 11, 8, 9, 0), 20), instance.getChosenTimeFrame());
+        assertEquals(new Time(2011, 11, 8, 9, 0), instance.getChosenTime());
         assertEquals(campusNorth, instance.getCampus());
     }
 
@@ -117,13 +124,19 @@ public class AppointmentConstraintSolverTestDummy {
         List<TimeFrameConstraint> constraints = new ArrayList<TimeFrameConstraint>();
         constraints.add(new PriorityConstraint(new HighLowPriority(false)));
         instance.setScheduleGroups(groups);
-        instance.setTimeDelay(new TimeFrame(new Time(2011, 11, 8, 9, 20), 20));
+        
+        instance.setTimeDelay(new DelayedTimeLength(30, 20) {
+            @Override
+            public Time getDelayedTime() {
+                return new Time(2011, 11, 8, 9, 20);
+            }
+        });
         instance.setCampusDecider(new GetC(campusNorth));
         instance.setConstaints(constraints);
         instance.solve();
         assertEquals(ruben, instance.getAttendees().get(0));
         assertEquals(d, instance.getAttendees().get(1));
-        assertEquals(new TimeFrame(new Time(2011, 11, 8, 9, 50), 20), instance.getChosenTimeFrame());
+        assertEquals(new Time(2011, 11, 8, 9, 50), instance.getChosenTime());
         assertEquals(campusNorth, instance.getCampus());
     }
 }

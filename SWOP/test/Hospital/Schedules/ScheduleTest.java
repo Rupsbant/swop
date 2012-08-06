@@ -5,10 +5,8 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Scheduling.SchedulingException;
-import Hospital.World.Time;
 
 public class ScheduleTest {
 
@@ -41,31 +39,5 @@ public class ScheduleTest {
 
     public void removeAppointmentWrongArgumentTest() {
         //TODO
-    }
-
-    @Test
-    public void isFreeNullArgumentTest() {
-        Schedule schedule = new Schedule();
-        try {
-            schedule.isFree(new TimeFrame(null, 5));
-        } catch (ArgumentIsNullException e) {
-            assertEquals(ArgumentIsNullException.class, e.getClass());
-            assertEquals("Starttime of appointment is null", e.getMessage());
-        } catch (ArgumentConstraintException e) {
-            fail("This exception should not have been thrown");
-        }
-    }
-
-    @Test
-    public void isFreeWrongArgumentTest() {
-        Schedule schedule = new Schedule();
-        try {
-            schedule.isFree(new TimeFrame(new Time(), -5));
-        } catch (ArgumentConstraintException e) {
-            assertEquals(ArgumentConstraintException.class, e.getClass());
-            assertEquals("Length of appointment is negative", e.getMessage());
-        } catch (ArgumentIsNullException e) {
-            fail("This exception should not have been thrown");
-        }
     }
 }

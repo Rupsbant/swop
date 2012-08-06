@@ -13,7 +13,6 @@ import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.World.BasicWorld;
 import Hospital.World.World;
-import Hospital.Schedules.TimeFrame;
 import Hospital.Treatments.Medication;
 import Hospital.WareHouse.ItemInfo;
 import org.junit.After;
@@ -67,17 +66,16 @@ public class ItemConstraintTest {
         ItemInfo toOrder = new ItemInfo(MEDICATION_NAME, 3);
         Treatment t = new Medication("MedicationTest", Boolean.TRUE, new ItemInfo[]{toOrder});
         ItemConstraint instance = new ItemConstraint(t);
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 9, 13, 0), 20);
-        instance.setTimeFrame(tf);
+        instance.setTime(new Time(2011, 11, 9, 13, 0), 20);
         instance.setCampus(campusNorth);
-        assertNotSame(tf, instance.isAccepted());
+        assertNotSame(new Time(2011, 11, 9, 13, 0), instance.isAccepted());
         //assertFalse(instance.isAccepted());
 
         toOrder.addCount(-1);
         instance.reset();
         instance.setCampus(campusNorth);
-        instance.setTimeFrame(new TimeFrame(new Time(2011, 11, 9, 13, 0), 20));
-        assertEquals(tf, instance.isAccepted());
+        instance.setTime(new Time(2011, 11, 9, 13, 0), 20);
+        assertEquals(new Time(2011, 11, 9, 13, 0), instance.isAccepted());
         //assertTrue(instance.isAccepted());
     }
 }

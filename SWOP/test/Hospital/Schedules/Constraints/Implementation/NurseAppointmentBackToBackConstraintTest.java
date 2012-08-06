@@ -1,5 +1,8 @@
 package Hospital.Schedules.Constraints.Implementation;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.WareHouse.ItemInfo;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
@@ -15,7 +18,6 @@ import Hospital.People.Nurse;
 import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
-import Hospital.Schedules.TimeFrame;
 import Hospital.Treatments.Medication;
 import Hospital.Treatments.Treatment;
 import org.junit.Before;
@@ -56,46 +58,22 @@ public class NurseAppointmentBackToBackConstraintTest {
     @Test
     public void testSetValidNurse() throws ArgumentIsNullException, ArgumentConstraintException {
         NurseAppointmentBackToBackConstraint instance = new NurseAppointmentBackToBackConstraint();
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
         instance.reset();
         instance.setNurse(nurse);
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue("Time starts at the hour.", instance.isAccepted());
+        Map<Time, Time> tfList = new TreeMap<Time, Time>();
+        tfList.put(new Time(2011, 11, 8, 9, 0), new Time(2011, 11, 8, 9, 0));
+        tfList.put(new Time(2011, 11, 8, 9, 1), new Time(2011, 11, 8, 9, 2));
+        tfList.put(new Time(2011, 11, 8, 9, 20), new Time(2011, 11, 8, 9, 20));
+        tfList.put(new Time(2011, 11, 8, 9, 21), new Time(2011, 11, 8, 9, 22));
+        tfList.put(new Time(2011, 11, 8, 9, 40), new Time(2011, 11, 8, 9, 40));
+        tfList.put(new Time(2011, 11, 8, 9, 41), new Time(2011, 11, 8, 9, 42));
+        tfList.put(new Time(2011, 11, 8, 13, 45), new Time(2011, 11, 8, 13, 46));
+        tfList.put(new Time(2011, 11, 8, 13, 46), new Time(2011, 11, 8, 13, 47));
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
-        instance.reset();
-        instance.setNurse(nurse);
-        instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
-        //assertFalse("Time doesn't start at the hour.", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
-        instance.reset();
-        instance.setNurse(nurse);
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue("Time is backtoback with appointment", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
-        instance.reset();
-        instance.setNurse(nurse);
-        instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
-        //assertFalse("Time is not backtoback with appointment", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 40), 20);
-        instance.reset();
-        instance.setNurse(nurse);
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue("Time is backtoback with appointment", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 41), 20);
-        instance.reset();
-        instance.setNurse(nurse);
-        instance.setTimeFrame(tf);
-        assertNotSame(tf, instance.isAccepted());
-        //assertFalse("Time is not backtoback with appointment", instance.isAccepted());
+        
+        for (Entry<Time, Time> e : tfList.entrySet()) {
+            instance.setTime(e.getKey(), 15);
+            assertEquals(e.getValue(), instance.isAccepted());
+        }
     }
 }

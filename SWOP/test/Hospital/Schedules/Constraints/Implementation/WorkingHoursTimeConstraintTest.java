@@ -3,7 +3,6 @@ package Hospital.Schedules.Constraints.Implementation;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.World.Time;
-import Hospital.Schedules.TimeFrame;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,48 +14,48 @@ public class WorkingHoursTimeConstraintTest {
     @Test
     public void testSetValidStaff() throws ArgumentConstraintException, ArgumentIsNullException {
         WorkingHoursTimeConstraint instance = new WorkingHoursTimeConstraint();
-        TimeFrame tf = new TimeFrame(new Time(9, 9, 9, 8, 0), 15);
-        instance.setTimeFrame(tf);
+        Time tf = new Time(9, 9, 9, 8, 0);
+        instance.setTime(tf, 15);
         instance.reset();
         assertEquals("Did not revert to null", instance.isAccepted(), null);
 
-        tf = new TimeFrame(new Time(9, 9, 9, 8, 0), 15);
+        tf = new Time(9, 9, 9, 8, 0);
         instance.reset();
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
-        assertEquals(new TimeFrame(new Time(9, 9, 9, 9, 0), 15), instance.isAccepted());
-        //assertFalse("TimeFrame is not a working hour.", instance.isAccepted());
+        assertEquals(new Time(9, 9, 9, 9, 0), instance.isAccepted());
+        //assertFalse("Time is not a working hour.", instance.isAccepted());
 
-        tf = new TimeFrame(new Time(9, 9, 9, 9, 00), 15);
+        tf = new Time(9, 9, 9, 9, 00);
         instance.reset();
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertEquals(tf, instance.isAccepted());
-        //assertTrue("TimeFrame is a working hour.", instance.isAccepted());
+        //assertTrue("Time is a working hour.", instance.isAccepted());
 
-        tf = new TimeFrame(new Time(9, 9, 9, 0, 59), 15);
+        tf = new Time(9, 9, 9, 0, 59);
         instance.reset();
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
-        //assertFalse("TimeFrame is not a working hour.", instance.isAccepted());
+        //assertFalse("Time is not a working hour.", instance.isAccepted());
 
-        tf = new TimeFrame(new Time(9, 9, 9, 17, 00), 15);
+        tf = new Time(9, 9, 9, 17, 00);
         instance.reset();
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
-        assertEquals(new TimeFrame(new Time(9, 9, 10, 9, 0), 15), instance.isAccepted());
-        //assertFalse("TimeFrame is not a working hour.", instance.isAccepted());
+        assertEquals(new Time(9, 9, 10, 9, 0), instance.isAccepted());
+        //assertFalse("Time is not a working hour.", instance.isAccepted());
 
-        tf = new TimeFrame(new Time(9, 9, 9, 16, 46), 15);
+        tf = new Time(9, 9, 9, 16, 46);
         instance.reset();
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
-        assertEquals(new TimeFrame(new Time(9, 9, 10, 9, 0), 15), instance.isAccepted());
-        //assertFalse("TimeFrame is not a working hour.", instance.isAccepted());
+        assertEquals(new Time(9, 9, 10, 9, 0), instance.isAccepted());
+        //assertFalse("Time is not a working hour.", instance.isAccepted());
 
-        tf = new TimeFrame(new Time(9, 9, 9, 16, 45), 15);
+        tf = new Time(9, 9, 9, 16, 45);
         instance.reset();
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertEquals(tf, instance.isAccepted());
-        //assertTrue("TimeFrame is a working hour.", instance.isAccepted());
+        //assertTrue("Time is a working hour.", instance.isAccepted());
     }
 }

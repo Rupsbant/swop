@@ -15,7 +15,6 @@ import java.util.List;
 public class JumpSolver implements AppointmentConstraintSolver {
 
     private DelayedTimeLength startTime;
-    private int length;
     private CampusDecider campusDecider;
     private List<ScheduleGroup> groups;
     private List<TimeFrameConstraint> tfConstraints;
@@ -72,7 +71,7 @@ public class JumpSolver implements AppointmentConstraintSolver {
             //Go to the next position, if at the end of the list, restart from first
             position = (position + 1) % size;
             TimeFrameConstraint tfC = allConstraints.get(position);
-            tfC.setTime(currentTesting, length);
+            tfC.setTime(currentTesting, startTime.getLength());
             try {
                 Time outputTimeFrame = tfC.isAccepted();
                 if (outputTimeFrame == null) {
@@ -145,10 +144,5 @@ public class JumpSolver implements AppointmentConstraintSolver {
         this.output_time = null;
         this.output_list = new ArrayList<Schedulable>();
         this.output_campus = null;
-    }
-
-    @Override
-    public void setLength(int length) {
-        this.length = length;
     }
 }

@@ -1,5 +1,8 @@
 package Hospital.Schedules.Constraints.Implementation;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import Hospital.Exception.Scheduling.ScheduleConstraintException;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.World.Time;
@@ -17,7 +20,6 @@ import Hospital.Treatments.Medication;
 import Hospital.Treatments.Treatment;
 import Hospital.World.BasicWorld;
 import Hospital.World.World;
-import Hospital.Schedules.TimeFrame;
 import Hospital.WareHouse.ItemInfo;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,40 +62,22 @@ public class UnmovableConstraintTest {
     public void testSetValidSchedulableNurse() throws ArgumentIsNullException, ArgumentConstraintException, ScheduleConstraintException {
         UnmovableConstraint instance = new UnmovableConstraint(nurse);
 
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
         instance.reset();
         instance.setCampus(nurse.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue("Can always move instantly on campus", instance.isAccepted());
+        Map<Time, Time> tfList = new TreeMap<Time, Time>();
+        tfList.put(new Time(2011, 11, 8, 9, 0), new Time(2011, 11, 8, 9, 0));
+        tfList.put(new Time(2011, 11, 8, 9, 1), new Time(2011, 11, 8, 9, 1));
+        tfList.put(new Time(2011, 11, 8, 9, 50), new Time(2011, 11, 8, 9, 50));
+        tfList.put(new Time(2011, 11, 8, 9, 51), new Time(2011, 11, 8, 9, 51));
+        tfList.put(new Time(2011, 11, 8, 10, 0), new Time(2011, 11, 8, 10, 0));
+        tfList.put(new Time(2011, 11, 8, 13, 45), new Time(2011, 11, 8, 13, 45));
+        tfList.put(new Time(2011, 11, 8, 13, 46), new Time(2011, 11, 8, 13, 46));
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 1), 20);
-        instance.reset();
-        instance.setCampus(nurse.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue("Can always move instantly on campus", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 19), 20);
-        instance.reset();
-        instance.setCampus(nurse.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue("Can always move instantly on campus", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 20), 20);
-        instance.reset();
-        instance.setCampus(nurse.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue("Can always move instantly on campus", instance.isAccepted());
-
-        tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
-        instance.reset();
-        instance.setCampus(nurse.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue("Can always move instantly on campus", instance.isAccepted());
+        
+        for (Entry<Time, Time> e : tfList.entrySet()) {
+            instance.setTime(e.getKey(), 15);
+            assertEquals(e.getValue(), instance.isAccepted());
+        }
     }
 
     /**
@@ -102,11 +86,9 @@ public class UnmovableConstraintTest {
     @Test
     public void testResetValid() throws ArgumentIsNullException, ArgumentConstraintException, ScheduleConstraintException {
         UnmovableConstraint instance = new UnmovableConstraint(nurse);
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.setCampus(nurse.getCampus());
-        instance.setTimeFrame(tf);
-        assertEquals(tf, instance.isAccepted());
-        //assertTrue(instance.isAccepted());
+        instance.setTime(new Time(2011, 11, 8, 9, 21), 20);
+        assertEquals(new Time(2011, 11, 8, 9, 21), instance.isAccepted());
         instance.reset();
         assertEquals(null, instance.isAccepted());
     }
@@ -114,9 +96,8 @@ public class UnmovableConstraintTest {
     @Test (expected=ScheduleConstraintException.class)
     public void testWrongCampus() throws ArgumentIsNullException, ArgumentConstraintException, ScheduleConstraintException {
         UnmovableConstraint instance = new UnmovableConstraint(nurse);
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 21), 20);
         instance.setCampus(otherNurse.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(new Time(2011, 11, 8, 9, 21), 20);
         instance.isAccepted();
     }
 }

@@ -14,7 +14,6 @@ import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.ScheduleTestUtil;
-import Hospital.Schedules.TimeFrame;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -38,31 +37,31 @@ public class PreferenceConstraintTest {
         final Campus campusNorth = w.getCampusFromInfo(w.getCampuses().get(0));
         final Campus campusSouth = w.getCampusFromInfo(w.getCampuses().get(1));
 
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 0), 20);
+        Time tf = new Time(2011, 11, 8, 9, 0);
         Schedule sched1 = d.getSchedule();
         Schedule sched2 = ruben.getSchedule();
-        Appointment p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusSouth);
+        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusSouth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 0), 20);
+        tf = new Time(2011, 11, 8, 13, 0);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 9, 9, 0), 20);
+        tf = new Time(2011, 11, 9, 9, 0);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 9, 13, 0), 20);
+        tf = new Time(2011, 11, 9, 13, 0);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
     }
@@ -71,65 +70,65 @@ public class PreferenceConstraintTest {
     public void testIsAccepted() throws ArgumentIsNullException, ArgumentConstraintException {
         PreferenceConstraint instance = new PreferenceConstraint();
 
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
+        Time tf = new Time(2011, 11, 8, 10, 0);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertEquals(tf, instance.isAccepted());
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
+        tf = new Time(2011, 11, 8, 12, 0);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertEquals(tf, instance.isAccepted());
     }
 
     @Test
     public void testIsFail() throws ArgumentIsNullException, ArgumentConstraintException {
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
+        Time tf = new Time(2011, 11, 8, 10, 0);
         PreferenceConstraint instance = new PreferenceConstraint();
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 12, 0), 15);
+        tf = new Time(2011, 11, 8, 12, 0);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
     }
 
     @Test
     public void testStayOnNoon() throws ArgumentIsNullException, ArgumentConstraintException {
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 11, 59), 15);
+        Time tf = new Time(2011, 11, 8, 11, 59);
         PreferenceConstraint instance = new PreferenceConstraint();
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 11, 59), 15);
+        tf = new Time(2011, 11, 8, 11, 59);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
         
-        tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
+        tf = new Time(2011, 11, 9, 11, 59);
         instance.reset();
         instance.setDoctor(d);
         instance.setCampus(jeroen.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         assertNotSame(tf, instance.isAccepted());
 
-        tf = new TimeFrame(new Time(2011, 11, 9, 11, 59), 15);
+        tf = new Time(2011, 11, 9, 11, 59);
         instance.reset();
         instance.setDoctor(d);
-        instance.setTimeFrame(tf);
+        instance.setTime(tf, 15);
         instance.setCampus(ruben.getCampus());
         assertEquals(tf, instance.isAccepted());
 

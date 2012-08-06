@@ -18,7 +18,6 @@ import Hospital.World.Time;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-import Hospital.Schedules.TimeFrame;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -41,17 +40,17 @@ public class WalkTimeConstraintTest {
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException, SchedulingException, ArgumentConstraintException {
 
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 30), 20);
+        Time tf = new Time(2011, 11, 8, 9, 30);
         Schedule sched1 = d.getSchedule();
         Schedule sched2 = ruben.getSchedule();
-        Appointment p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusNorth);
+        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 10), 20);
+        tf = new Time(2011, 11, 8, 13, 10);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusSouth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusSouth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
     }
@@ -62,23 +61,23 @@ public class WalkTimeConstraintTest {
     @Test
     public void testIsAcceptedCampusNorth() throws ArgumentIsNullException, ArgumentConstraintException {
         WalkTimeConstraint instance = new WalkTimeConstraint();
-        Map<TimeFrame, TimeFrame> tfList = new TreeMap<TimeFrame, TimeFrame>();
+        Map<Time, Time> tfList = new TreeMap<Time, Time>();
         d.visitConstraint(instance);
         instance.setCampus(campusNorth);
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 0), 15), new TimeFrame(new Time(2011, 11, 8, 9, 0), 15));   //WalkTime == 0, always possible, 
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 15), 15), new TimeFrame(new Time(2011, 11, 8, 9, 15), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 16), 15), new TimeFrame(new Time(2011, 11, 8, 9, 16), 15)); //if at same time, it will be preempted so can't be found
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 50), 15), new TimeFrame(new Time(2011, 11, 8, 9, 50), 15));
+        tfList.put(new Time(2011, 11, 8, 9, 0), new Time(2011, 11, 8, 9, 0));   //WalkTime == 0, always possible, 
+        tfList.put(new Time(2011, 11, 8, 9, 15), new Time(2011, 11, 8, 9, 15));
+        tfList.put(new Time(2011, 11, 8, 9, 16), new Time(2011, 11, 8, 9, 16)); //if at same time, it will be preempted so can't be found
+        tfList.put(new Time(2011, 11, 8, 9, 50), new Time(2011, 11, 8, 9, 50));
         
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 12, 40), 15), new TimeFrame(new Time(2011, 11, 8, 12, 40), 15)); //WalkTime == 15
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 12, 41), 15), new TimeFrame(new Time(2011, 11, 8, 12, 56), 15)); //If not enough WalkTime between go to first collision time
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 12, 55), 15), new TimeFrame(new Time(2011, 11, 8, 12, 56), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 12, 56), 15), new TimeFrame(new Time(2011, 11, 8, 12, 56), 15)); //If collision, don't care
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 30), 15), new TimeFrame(new Time(2011, 11, 8, 13, 45), 15)); //If not enough WalkTime before: fast-forward until enough WalkTime
+        tfList.put(new Time(2011, 11, 8, 12, 40), new Time(2011, 11, 8, 12, 40)); //WalkTime == 15
+        tfList.put(new Time(2011, 11, 8, 12, 41), new Time(2011, 11, 8, 12, 56)); //If not enough WalkTime between go to first collision time
+        tfList.put(new Time(2011, 11, 8, 12, 55), new Time(2011, 11, 8, 12, 56));
+        tfList.put(new Time(2011, 11, 8, 12, 56), new Time(2011, 11, 8, 12, 56)); //If collision, don't care
+        tfList.put(new Time(2011, 11, 8, 13, 30), new Time(2011, 11, 8, 13, 45)); //If not enough WalkTime before: fast-forward until enough WalkTime
 
 
-        for (Entry<TimeFrame, TimeFrame> e : tfList.entrySet()) {
-            instance.setTimeFrame(e.getKey());
+        for (Entry<Time, Time> e : tfList.entrySet()) {
+            instance.setTime(e.getKey(), 15);
             assertEquals(e.getValue(), instance.isAccepted());
         }
     }
@@ -86,21 +85,21 @@ public class WalkTimeConstraintTest {
     @Test
     public void testIsAcceptedOtherCampus() throws ArgumentIsNullException, ArgumentConstraintException {
         WalkTimeConstraint instance = new WalkTimeConstraint();
-        Map<TimeFrame, TimeFrame> tfList = new TreeMap<TimeFrame, TimeFrame>();
+        Map<Time, Time> tfList = new TreeMap<Time, Time>();
         d.visitConstraint(instance);
 
         instance.setCampus(campusSouth);
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 0), 15), new TimeFrame(new Time(2011, 11, 8, 9, 0), 15)); //Not colliding, enough time
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 1), 15), new TimeFrame(new Time(2011, 11, 8, 9, 16), 15));//WalkTime colliding, go to colliding time
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 16), 15), new TimeFrame(new Time(2011, 11, 8, 9, 16), 15)); //Colliding, don't care, possible preemption
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 50), 15), new TimeFrame(new Time(2011, 11, 8, 10, 5), 15)); //Not enough time, can't preempt (to late): go to first right time
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 12, 55), 15), new TimeFrame(new Time(2011, 11, 8, 12, 55), 15)); //Same campus, never walking problem, otherwise colliding (-1) minute walking
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 15), 15), new TimeFrame(new Time(2011, 11, 8, 13, 15), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 30), 15), new TimeFrame(new Time(2011, 11, 8, 13, 30), 15));
+        tfList.put(new Time(2011, 11, 8, 9, 0), new Time(2011, 11, 8, 9, 0)); //Not colliding, enough time
+        tfList.put(new Time(2011, 11, 8, 9, 1), new Time(2011, 11, 8, 9, 16));//WalkTime colliding, go to colliding time
+        tfList.put(new Time(2011, 11, 8, 9, 16), new Time(2011, 11, 8, 9, 16)); //Colliding, don't care, possible preemption
+        tfList.put(new Time(2011, 11, 8, 9, 50), new Time(2011, 11, 8, 10, 5)); //Not enough time, can't preempt (to late): go to first right time
+        tfList.put(new Time(2011, 11, 8, 12, 55), new Time(2011, 11, 8, 12, 55)); //Same campus, never walking problem, otherwise colliding (-1) minute walking
+        tfList.put(new Time(2011, 11, 8, 13, 15), new Time(2011, 11, 8, 13, 15));
+        tfList.put(new Time(2011, 11, 8, 13, 30), new Time(2011, 11, 8, 13, 30));
 
 
-        for (Entry<TimeFrame, TimeFrame> e : tfList.entrySet()) {
-            instance.setTimeFrame(e.getKey());
+        for (Entry<Time, Time> e : tfList.entrySet()) {
+            instance.setTime(e.getKey(), 15);
             assertEquals(e.getValue(), instance.isAccepted());
         }
     }
@@ -113,7 +112,7 @@ public class WalkTimeConstraintTest {
         assertEquals(null, instance.isAccepted());
         instance.setCampus(campusNorth);
         assertEquals(null, instance.isAccepted());
-        instance.setTimeFrame(new TimeFrame(new Time(), 15));
+        instance.setTime(new Time(), 15);
         assertNotSame(null, instance.isAccepted());
         instance.reset();
         assertEquals(null, instance.isAccepted());

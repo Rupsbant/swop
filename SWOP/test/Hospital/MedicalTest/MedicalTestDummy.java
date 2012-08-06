@@ -1,14 +1,11 @@
 package Hospital.MedicalTest;
 
 import Hospital.Argument.Argument;
-import Hospital.Exception.Arguments.ArgumentConstraintException;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Machine.Machine;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.AppointmentCommand;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 import Hospital.World.Time;
 import java.util.Collections;
@@ -41,13 +38,7 @@ public class MedicalTestDummy extends MedicalTest {
 
     @Override
     public Appointment getAppointment() {
-        try {
-            return new Appointment(new TimeFrame(new Time(), 10), Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null);
-        } catch (ArgumentConstraintException e) {
-            throw new Error();
-        } catch (ArgumentIsNullException e) {
-            throw new Error();
-        }
+        return new Appointment(new Time(), 10, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null);
     }
 
     @Override
@@ -70,7 +61,7 @@ public class MedicalTestDummy extends MedicalTest {
     }
 
     public boolean validateResults(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
-        if(args.length>0){
+        if (args.length > 0) {
             throw new WrongArgumentListException("LONG ARRAY IS LOOOOOOOONG");
         }
         return true;

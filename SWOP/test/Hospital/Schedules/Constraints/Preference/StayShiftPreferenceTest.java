@@ -14,7 +14,6 @@ import Hospital.World.World;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.People.Doctor;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Campus;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,24 +39,24 @@ public class StayShiftPreferenceTest {
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException, SchedulingException, ArgumentConstraintException {
 
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 30), 20);
+        Time tf = new Time(2011, 11, 8, 9, 30);
         Schedule sched1 = d.getSchedule();
-        Appointment p = new Appointment(tf, Arrays.asList(sched1), null, campusNorth);
+        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 10), 20);
+        tf = new Time(2011, 11, 8, 13, 10);
         sched1 = d.getSchedule();
-        p = new Appointment(tf, Arrays.asList(sched1), null, campusSouth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusSouth);
         ScheduleTestUtil.addAppointment(sched1, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 9, 9, 30), 20);
+        tf = new Time(2011, 11, 9, 9, 30);
         sched1 = d.getSchedule();
-        p = new Appointment(tf, Arrays.asList(sched1), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 9, 13, 10), 20);
+        tf = new Time(2011, 11, 9, 13, 10);
         sched1 = d.getSchedule();
-        p = new Appointment(tf, Arrays.asList(sched1), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
     }
 
@@ -79,36 +78,36 @@ public class StayShiftPreferenceTest {
      */
     @Test
     public void testCanAddAppointment() throws ArgumentIsNullException, ArgumentConstraintException {
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 11, 10), 20);
+        Time tf = new Time(2011, 11, 8, 11, 10);
         StayShiftPreference instance = new StayShiftPreference(d);
-        boolean result = instance.canAddAppointment(tf, campusSouth);
+        boolean result = instance.canAddAppointment(tf, 20, campusSouth);
         assertFalse(result);
 
-        result = instance.canAddAppointment(tf, campusNorth);
+        result = instance.canAddAppointment(tf, 20, campusNorth);
         assertTrue(result);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 14, 10), 20);
-        result = instance.canAddAppointment(tf, campusNorth);
+        tf = new Time(2011, 11, 8, 14, 10);
+        result = instance.canAddAppointment(tf, 20, campusNorth);
         assertFalse(result);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 14, 10), 20);
-        result = instance.canAddAppointment(tf, campusSouth);
+        tf = new Time(2011, 11, 8, 14, 10);
+        result = instance.canAddAppointment(tf, 20, campusSouth);
         assertTrue(result);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 11, 50), 20);
-        result = instance.canAddAppointment(tf, campusSouth);
+        tf = new Time(2011, 11, 8, 11, 50);
+        result = instance.canAddAppointment(tf, 20, campusSouth);
         assertFalse(result);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 11, 50), 20);
-        result = instance.canAddAppointment(tf, campusNorth);
+        tf = new Time(2011, 11, 8, 11, 50);
+        result = instance.canAddAppointment(tf, 20, campusNorth);
         assertFalse(result);
 
-        tf = new TimeFrame(new Time(2011, 11, 9, 11, 50), 20);
-        result = instance.canAddAppointment(tf, campusSouth);
+        tf = new Time(2011, 11, 9, 11, 50);
+        result = instance.canAddAppointment(tf, 20, campusSouth);
         assertFalse(result);
 
-        tf = new TimeFrame(new Time(2011, 11, 9, 11, 50), 20);
-        result = instance.canAddAppointment(tf, campusNorth);
+        tf = new Time(2011, 11, 9, 11, 50);
+        result = instance.canAddAppointment(tf, 20, campusNorth);
         assertTrue(result);
 
     }

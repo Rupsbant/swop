@@ -38,7 +38,6 @@ import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Patient.Diagnosis;
 import Hospital.People.Doctor;
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.TimeFrame;
 import Hospital.WareHouse.ItemReservationCommand;
 import Hospital.World.Campus;
 import Hospital.World.Time;
@@ -75,7 +74,7 @@ public class CastResultTest {
         PublicArgument[] args = (PublicArgument[]) med.getEmptyResultArgumentList();
         assertTrue("Wrong argument, should be IntegerArgument", args[0].getClass().equals(StringArgument.class));
         args[0].enterAnswer("reportje");
-        med.setAppointment(new Appointment(new TimeFrame(new Time(), 15), Collections.EMPTY_LIST, null, new Campus("Cast Campus", new World())));
+        med.setAppointment(new Appointment(new Time(), 15, Collections.EMPTY_LIST, null, new Campus("Cast Campus", new World())));
         ItemReservationCommand itemReservationCommand = new ItemReservationCommand(med);
         itemReservationCommand.execute();
         med.setItemReservationCommand(itemReservationCommand);

@@ -8,7 +8,6 @@ import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Schedules.Appointment;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.ScheduleTestUtil;
-import Hospital.Schedules.TimeFrame;
 import Hospital.World.Time;
 import Hospital.People.Doctor;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -40,18 +39,15 @@ public class DoctorBackToBackConstraintTest {
 
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException, SchedulingException, ArgumentConstraintException {
-
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 9, 30), 20);
         Schedule sched1 = d.getSchedule();
         Schedule sched2 = ruben.getSchedule();
-        Appointment p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusNorth);
+        Appointment p = new Appointment(new Time(2011, 11, 8, 9, 30), 20, Arrays.asList(sched1, sched2), null, campusNorth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
-        tf = new TimeFrame(new Time(2011, 11, 8, 13, 10), 20);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, Arrays.asList(sched1, sched2), null, campusSouth);
+        p = new Appointment(new Time(2011, 11, 8, 13, 10), 20, Arrays.asList(sched1, sched2), null, campusSouth);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
     }
@@ -64,10 +60,9 @@ public class DoctorBackToBackConstraintTest {
         DoctorBackToBackConstraint instance = new DoctorBackToBackConstraint();
         instance.reset();
         assertTrue(instance.isAccepted() == null);
-        TimeFrame tf = new TimeFrame(new Time(2011, 11, 8, 10, 0), 15);
         instance.setDoctor(d);
         instance.setCampus(ruben.getCampus());
-        instance.setTimeFrame(tf);
+        instance.setTime(new Time(2011, 11, 8, 10, 0), 15);
 
         assertTrue(instance.isAccepted() != null);
         instance.reset();
@@ -80,29 +75,29 @@ public class DoctorBackToBackConstraintTest {
     @Test
     public void testIsAccepted() throws ArgumentIsNullException, ArgumentConstraintException {
         DoctorBackToBackConstraint instance = new DoctorBackToBackConstraint();
-        Map<TimeFrame, TimeFrame> tfList = new TreeMap<TimeFrame, TimeFrame>();
         instance.setDoctor(d);
         instance.setCampus(campusNorth);
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 0), 15), new TimeFrame(new Time(2011, 11, 8, 9, 0), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 1), 15), new TimeFrame(new Time(2011, 11, 8, 9, 2), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 50), 15), new TimeFrame(new Time(2011, 11, 8, 9, 50), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 9, 51), 15), new TimeFrame(new Time(2011, 11, 8, 9, 52), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 10, 0), 15), new TimeFrame(new Time(2011, 11, 8, 10, 0), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 45), 15), new TimeFrame(new Time(2011, 11, 8, 13, 45), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 46), 15), new TimeFrame(new Time(2011, 11, 8, 13, 47), 15));
+        Map<Time, Time> tfList = new TreeMap<Time, Time>();
+        tfList.put(new Time(2011, 11, 8, 9, 0), new Time(2011, 11, 8, 9, 0));
+        tfList.put(new Time(2011, 11, 8, 9, 1), new Time(2011, 11, 8, 9, 2));
+        tfList.put(new Time(2011, 11, 8, 9, 50), new Time(2011, 11, 8, 9, 50));
+        tfList.put(new Time(2011, 11, 8, 9, 51), new Time(2011, 11, 8, 9, 52));
+        tfList.put(new Time(2011, 11, 8, 10, 0), new Time(2011, 11, 8, 10, 0));
+        tfList.put(new Time(2011, 11, 8, 13, 45), new Time(2011, 11, 8, 13, 45));
+        tfList.put(new Time(2011, 11, 8, 13, 46), new Time(2011, 11, 8, 13, 47));
 
         
-        for (Entry<TimeFrame, TimeFrame> e : tfList.entrySet()) {
-            instance.setTimeFrame(e.getKey());
+        for (Entry<Time, Time> e : tfList.entrySet()) {
+            instance.setTime(e.getKey(), 15);
             assertEquals(e.getValue(), instance.isAccepted());
         }
         instance.setCampus(campusSouth);
         tfList.clear();
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 30), 15), new TimeFrame(new Time(2011, 11, 8, 13, 30), 15));
-        tfList.put(new TimeFrame(new Time(2011, 11, 8, 13, 45), 15), new TimeFrame(new Time(2011, 11, 8, 13, 46), 15));
+        tfList.put(new Time(2011, 11, 8, 13, 30), new Time(2011, 11, 8, 13, 30));
+        tfList.put(new Time(2011, 11, 8, 13, 45), new Time(2011, 11, 8, 13, 46));
         
-        for (Entry<TimeFrame, TimeFrame> e : tfList.entrySet()) {
-            instance.setTimeFrame(e.getKey());
+        for (Entry<Time, Time> e : tfList.entrySet()) {
+            instance.setTime(e.getKey(), 15);
             assertEquals(e.getValue(), instance.isAccepted());
         }
     }
