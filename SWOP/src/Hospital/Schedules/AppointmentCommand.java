@@ -13,11 +13,10 @@ import Hospital.Exception.Scheduling.ScheduleGroupUnavailable;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Factory.Command;
 import Hospital.Factory.NullCommand;
-import Hospital.Schedules.ConstraintSolver.AppointmentConstraintSolver;
-import Hospital.Schedules.ConstraintSolver.JumpSolver;
+import Hospital.Schedules.ConstraintSolver.AppointmentResult;
+import Hospital.Schedules.ConstraintSolver.SolverAdapter;
 import Hospital.Utils;
 import Hospital.World.World;
-import Hospital.World.WorldTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -31,8 +30,6 @@ public class AppointmentCommand implements Command {
     public static PublicArgument[] getArguments() {
         return new PublicArgument[]{new PriorityArgument("Enter the priority of the appointment")};
     }
-
-    private AppointmentConstraintSolver solver = new JumpSolver();
     /**
      * The minimal delay before the appointment can be scheduled
      */
@@ -53,6 +50,8 @@ public class AppointmentCommand implements Command {
      * The next command to execute in chain form
      */
     private Command next = NullCommand.singleton;
+    private List<ScheduleGroup> groups = new ArrayList<ScheduleGroup>();
+    private final List<TimeFrameConstraint> constraints;
 
     /**
      * Constructor
@@ -62,21 +61,18 @@ public class AppointmentCommand implements Command {
      * @throws ArgumentIsNullException world, coreSchedules and/or app was null
      */
     public AppointmentCommand(World world, Appointable app, List<ScheduleGroup> coreSchedules, Priority priority) throws ArgumentIsNullException {
-        setAppointable(app);
-        
-        List<ScheduleGroup> groups = new ArrayList<ScheduleGroup>();
+        if (app == null) {
+            throw new ArgumentIsNullException("Appointable should not be null");
+        }
+        appointable = app;
         groups.addAll(app.getScheduleGroups());
         groups.addAll(coreSchedules);
         populateScheduleGroups(world, groups);
-        solver.setScheduleGroups(groups);
-        
-        List<TimeFrameConstraint> temp  = app.getConstraints();
-        temp.add(new PriorityConstraint(priority));
-        solver.setConstaints(temp);
-        solver.setCampusDecider(appointable.getCampusDecider());
-        
+        constraints = app.getConstraints();
+        constraints.add(new PriorityConstraint(priority));
+
         this.priority = priority;
-        setTimeFrameDelay(app, world.getWorldTime());
+        td = app.getDelayedTimeLength().setWorldTime(world.getWorldTime());
     }
 
     private void populateScheduleGroups(World world, List<ScheduleGroup> g) throws ArgumentIsNullException {
@@ -90,22 +86,6 @@ public class AppointmentCommand implements Command {
         }
     }
 
-    private void setAppointable(Appointable app) throws ArgumentIsNullException {
-        if (app == null) {
-            throw new ArgumentIsNullException("Appointable should not be null");
-        }
-        appointable = app;
-    }
-
-    private void setTimeFrameDelay(Appointable app, WorldTime wt) {
-        td = app.getDelayedTimeLength();
-        try {
-            td.setWorldTime(wt);
-        } catch (CannotChangeException ex) {
-            throw new Error("This was the first time World was set after creation");
-        }
-    }
-
     /**
      * Executes the command by making and scheduling an appointment between the attendees given in the constructor
      * @see Hospital.Factory.Command#execute()
@@ -115,13 +95,10 @@ public class AppointmentCommand implements Command {
             throw new CannotDoException("Appointment already planned");
         }
         try {
-            solver.setTimeDelay(td);
-            solver.solve();
-            List<Schedule> chosenSchedules = Schedule.getSchedules(solver.getAttendees());
-            appointment = new Appointment(solver.getChosenTime(), td.getLength(), chosenSchedules, this, solver.getCampus());
-            
-            Set<AppointmentCommand> preempted = getPreempted(appointment.getAttendees(), appointment);
+            AppointmentResult result = SolverAdapter.SINGLETON.solve(appointable.getCampusDecider(), constraints, groups, td);
+            appointment = new Appointment(result, this, this.priority);
 
+            Set<AppointmentCommand> preempted = getPreempted(appointment.getAttendees(), appointment);
             String s = undoPreempted(preempted);
             appointment.schedule();
             s += redoPreempted(preempted);
@@ -164,18 +141,6 @@ public class AppointmentCommand implements Command {
     @Override
     public String toString() {
         return "AppointmentCommand of " + appointable;
-    }
-
-    protected Priority getPriority() {
-        return priority;
-    }
-
-    protected Appointment getAppointment() {
-        return appointment;
-    }
-
-    public Command getNext() {
-        return next;
     }
 
     public void setNext(Command next) {

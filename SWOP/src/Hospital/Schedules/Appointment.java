@@ -1,5 +1,6 @@
 package Hospital.Schedules;
 
+import Hospital.Schedules.ConstraintSolver.AppointmentResult;
 import Hospital.World.HasTime;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Scheduling.SchedulingException;
@@ -8,6 +9,8 @@ import Hospital.World.Campus;
 import Hospital.World.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * An appointment between multiple Scheduleable objects
@@ -46,19 +49,37 @@ public class Appointment implements HasTime {
      * the length in minutes
      */
     private final int length;
+    /**
+     * the priority of the appointment
+     */
+    private Priority priority;
 
     /**
      * Constructor
      * @param timeFrame the starting time and length of the appointment as TimeFrame object
      * @param attendees the schedules of the attendees
      */
-    public Appointment(Time startTime, int length, List<Schedule> attendees, AppointmentCommand appC, Campus campus) {
+    public Appointment(Time startTime, int length, List<Schedule> attendees, AppointmentCommand appC, Campus campus, Priority priority) {
         this.campus = campus;
         this.appCommand = appC;
         this.time = startTime;
         this.length = length;
+        this.priority = priority;
         try {
             this.addAttendees(attendees);
+        } catch (SchedulingException ex) {
+            throw new Error("Appointment is not scheduled on creation, exception can't be thrown");
+        }
+    }
+
+    Appointment(AppointmentResult result, AppointmentCommand appCommand, Priority priority) {
+        this.campus = result.getCampus();
+        this.length = result.getLength();
+        this.time = result.getChosenTime();
+        this.appCommand = appCommand;
+        this.priority = priority;
+        try {
+            addAttendees(Schedule.getSchedules(result.getAttendees()));
         } catch (SchedulingException ex) {
             throw new Error("Appointment is not scheduled on creation, exception can't be thrown");
         }
@@ -88,10 +109,10 @@ public class Appointment implements HasTime {
      */
     public boolean collides(Time tf, int length) {
         Time endTime = tf.getLaterTime(length);
-        return (getTime().compareTo(tf.getTime()) <= 0 && 
-                tf.getTime().compareTo(getEndTime()) < 0) || 
-                (tf.getTime().compareTo(getTime()) <= 0 && 
-                getTime().compareTo(endTime) < 0);
+        return (getTime().compareTo(tf.getTime()) <= 0
+                && tf.getTime().compareTo(getEndTime()) < 0)
+                || (tf.getTime().compareTo(getTime()) <= 0
+                && getTime().compareTo(endTime) < 0);
     }
 
     /**
@@ -196,7 +217,7 @@ public class Appointment implements HasTime {
     }
 
     public Priority getPriority() {
-        return this.appCommand.getPriority();
+        return this.priority;
     }
 
     public Campus getCampus() {

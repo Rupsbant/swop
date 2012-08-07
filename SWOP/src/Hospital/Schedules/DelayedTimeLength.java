@@ -44,12 +44,8 @@ public class DelayedTimeLength {
      * Sets the world from which to get the current time
      * @param w the world to set
      * @return this object
-     * @throws CannotChangeException the world was already set
      */
-    DelayedTimeLength setWorldTime(WorldTime wt) throws CannotChangeException {
-        if (worldTime != null) {
-            throw new CannotChangeException("World can't be set a second time");
-        }
+    DelayedTimeLength setWorldTime(WorldTime wt) {
         worldTime = wt;
         return this;
     }

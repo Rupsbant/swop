@@ -45,7 +45,7 @@ public class PriorityConstraintTest {
         Schedule sched2 = ruben.getSchedule();
         Appointable t = new XRayScan(3, 3, "hoofd en schouders");
         AppointmentCommand appC = new AppointmentCommand(w, t, Collections.EMPTY_LIST, new HighLowPriority(true));
-        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), appC, campusNorth);
+        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), appC, campusNorth, new HighLowPriority(true));
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
@@ -54,7 +54,7 @@ public class PriorityConstraintTest {
         sched2 = ruben.getSchedule();
         t = new XRayScan(3, 3, "knie en teen");
         appC = new AppointmentCommand(w, t, Collections.EMPTY_LIST, new HighLowPriority(false));
-        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), appC, campusSouth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), appC, campusSouth, new HighLowPriority(false));
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
     }

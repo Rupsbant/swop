@@ -41,22 +41,22 @@ public class StayShiftPreferenceTest {
 
         Time tf = new Time(2011, 11, 8, 9, 30);
         Schedule sched1 = d.getSchedule();
-        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth);
+        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
 
         tf = new Time(2011, 11, 8, 13, 10);
         sched1 = d.getSchedule();
-        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusSouth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusSouth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
 
         tf = new Time(2011, 11, 9, 9, 30);
         sched1 = d.getSchedule();
-        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
 
         tf = new Time(2011, 11, 9, 13, 10);
         sched1 = d.getSchedule();
-        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
     }
 

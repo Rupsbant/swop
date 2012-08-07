@@ -21,13 +21,13 @@ public class XRayConstraintTest {
 
         XRayScan xray = new XRayScan(3, numberOfXRays, "Hoofd");
         Time tf = new Time(2011, 11, 8, 9, 0);
-        Appointment app = new Appointment(tf, 20, null, null, null);
+        Appointment app = new Appointment(tf, 20, null, null, null, null);
         xray.setAppointment(app);
         p.addMedicalTest(xray);
 
         xray = new XRayScan(3, numberOfXRays, "Schouders");
         tf = new Time(2012, 5, 8, 9, 0);
-        app = new Appointment(tf, 20, null, null, null);
+        app = new Appointment(tf, 20, null, null, null, null);
         xray.setAppointment(app);
         p.addMedicalTest(xray);
     }

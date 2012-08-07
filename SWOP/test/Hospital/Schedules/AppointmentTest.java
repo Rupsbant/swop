@@ -15,10 +15,10 @@ public class AppointmentTest {
 
     @Test
     public void collidesTest() {
-        Appointment app1 = new Appointment(new Time(), 30, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null);
-        Appointment app2 = new Appointment(new Time(), 30, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null);
-        Appointment app3 = new Appointment(new Time(2011, 11, 8, 8, 40), 30, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null);
-        Appointment app4 = new Appointment(new Time(2011, 11, 8, 8, 20), 30, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null);
+        Appointment app1 = new Appointment(new Time(), 30, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null, null);
+        Appointment app2 = new Appointment(new Time(), 30, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null, null);
+        Appointment app3 = new Appointment(new Time(2011, 11, 8, 8, 40), 30, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null, null);
+        Appointment app4 = new Appointment(new Time(2011, 11, 8, 8, 20), 30, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null, null);
         assertTrue("These two appointments collide", app1.collides(app2));
         assertTrue("These two appointments collide", app2.collides(app1));
         assertTrue("These two appointments collide", app1.collides(app4));

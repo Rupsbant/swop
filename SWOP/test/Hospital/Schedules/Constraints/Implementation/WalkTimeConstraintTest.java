@@ -43,14 +43,14 @@ public class WalkTimeConstraintTest {
         Time tf = new Time(2011, 11, 8, 9, 30);
         Schedule sched1 = d.getSchedule();
         Schedule sched2 = ruben.getSchedule();
-        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth);
+        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
         tf = new Time(2011, 11, 8, 13, 10);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusSouth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusSouth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
     }

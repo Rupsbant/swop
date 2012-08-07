@@ -38,7 +38,7 @@ public class MedicalTestDummy extends MedicalTest {
 
     @Override
     public Appointment getAppointment() {
-        return new Appointment(new Time(), 10, Collections.EMPTY_LIST, (AppointmentCommand) null, (Campus) null);
+        return new Appointment(new Time(), 10, Collections.EMPTY_LIST, null, null, null);
     }
 
     @Override

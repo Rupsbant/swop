@@ -1,5 +1,7 @@
 package Hospital.Schedules.Constraints.Preference;
 
+import java.util.Map.Entry;
+import java.util.HashMap;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Schedules.Appointment;
@@ -50,62 +52,41 @@ public class ChangeLocationPreferenceTest {
     @Before
     public void setUp() throws ArgumentIsNullException, CannotDoException, SchedulingException, ArgumentConstraintException {
         Schedule sched1 = d.getSchedule();
-
+        HashMap<Time, Campus> times = new HashMap<Time, Campus>();
+        
         /**
          * Day one
          */
-        Time tf = new Time(2011, 11, 8, 9, 30);
-        makeAppointment(tf, sched1, campusNorth);
-
-        tf = new Time(2011, 11, 8, 13, 10);
-        makeAppointment(tf, sched1, campusSouth);
-
-        tf = new Time(2011, 11, 8, 14, 10);
-        makeAppointment(tf, sched1, campusNorth);
-
-        tf = new Time(2011, 11, 8, 15, 10);
-        makeAppointment(tf, sched1, campusNorth);
+        times.put(new Time(2011, 11, 8, 9, 30), campusNorth);
+        times.put(new Time(2011, 11, 8, 13, 10), campusSouth);
+        times.put(new Time(2011, 11, 8, 14, 10), campusNorth);
+        times.put(new Time(2011, 11, 8, 15, 10), campusNorth);
 
         /**
          * Day two
          */
-        tf = new Time(2011, 11, 9, 9, 30);
-        makeAppointment(tf, sched1, campusNorth);
-
-        tf = new Time(2011, 11, 9, 13, 10);
-        makeAppointment(tf, sched1, campusSouth);
-
-        tf = new Time(2011, 11, 9, 14, 10);
-        makeAppointment(tf, sched1, campusNorth);
-
-        tf = new Time(2011, 11, 9, 15, 10);
-        makeAppointment(tf, sched1, campusSouth);
-
-        tf = new Time(2011, 11, 9, 16, 10);
-        makeAppointment(tf, sched1, campusNorth);
+        times.put(new Time(2011, 11, 9, 9, 30), campusNorth);
+        times.put(new Time(2011, 11, 9, 13, 10), campusSouth);
+        times.put(new Time(2011, 11, 9, 14, 10), campusNorth);
+        times.put(new Time(2011, 11, 9, 15, 10), campusSouth);
+        times.put(new Time(2011, 11, 9, 16, 10), campusNorth);
 
         /**
          * Day three
          */
-        tf = new Time(2011, 11, 10, 9, 30);
-        makeAppointment(tf, sched1, campusNorth);
-
-        tf = new Time(2011, 11, 10, 13, 10);
-        makeAppointment(tf, sched1, campusSouth);
-
-        tf = new Time(2011, 11, 10, 14, 10);
-        makeAppointment(tf, sched1, campusNorth);
-
-        tf = new Time(2011, 11, 10, 15, 10);
-        makeAppointment(tf, sched1, campusSouth);
-
-        tf = new Time(2011, 11, 10, 16, 10);
-        makeAppointment(tf, sched1, campusSouth);
+        times.put(new Time(2011, 11, 10, 9, 30), campusNorth);
+        times.put(new Time(2011, 11, 10, 13, 10), campusSouth);
+        times.put(new Time(2011, 11, 10, 14, 10), campusNorth);
+        times.put(new Time(2011, 11, 10, 15, 10), campusSouth);
+        times.put(new Time(2011, 11, 10, 16, 10), campusSouth);
+        for(Entry<Time, Campus> entry: times.entrySet()){
+            makeAppointment(entry.getKey(), sched1, entry.getValue());
+        }
     }
 
     private void makeAppointment(Time tf, Schedule sched1, final Campus campusNorth) throws ArgumentIsNullException, SchedulingException {
         sched1 = d.getSchedule();
-        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth);
+        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1), null, campusNorth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
     }
 
@@ -118,7 +99,6 @@ public class ChangeLocationPreferenceTest {
      */
     @Test
     public void testMakeThisAsPreference() throws ArgumentConstraintException, ArgumentIsNullException {
-        System.out.println("makeThisAsPreference");
         HasPreference d = new Doctor("abc");
         ChangeLocationPreference instance = new ChangeLocationPreference(null);
         assertEquals(null, d.getPreference());

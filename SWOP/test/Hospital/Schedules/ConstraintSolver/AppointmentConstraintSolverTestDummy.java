@@ -56,7 +56,7 @@ public class AppointmentConstraintSolverTestDummy {
         Schedule sched2 = ruben.getSchedule();
         Appointable t = new XRayScan(3, 3, "knie");
         AppointmentCommand appC = new AppointmentCommand(w, t, Collections.EMPTY_LIST, new HighLowPriority(true));
-        Appointment p = new Appointment(new Time(2011, 11, 8, 9, 30), 20, Arrays.asList(sched1, sched2), appC, campusNorth);
+        Appointment p = new Appointment(new Time(2011, 11, 8, 9, 30), 20, Arrays.asList(sched1, sched2), appC, campusNorth, new HighLowPriority(true));
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
@@ -64,7 +64,7 @@ public class AppointmentConstraintSolverTestDummy {
         sched2 = ruben.getSchedule();
         t = new XRayScan(3, 3, "teen");
         appC = new AppointmentCommand(w, t, Collections.EMPTY_LIST, new HighLowPriority(true));
-        p = new Appointment(new Time(2011, 11, 8, 13, 10), 20, Arrays.asList(sched1, sched2), appC, campusSouth);
+        p = new Appointment(new Time(2011, 11, 8, 13, 10), 20, Arrays.asList(sched1, sched2), appC, campusSouth, new HighLowPriority(true));
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
     }

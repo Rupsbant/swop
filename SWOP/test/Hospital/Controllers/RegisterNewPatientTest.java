@@ -6,7 +6,6 @@ import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.NotAFactoryException;
-import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.People.LoginInfo;
 import Hospital.Exception.Arguments.ArgumentIsNullException;

@@ -40,28 +40,28 @@ public class PreferenceConstraintTest {
         Time tf = new Time(2011, 11, 8, 9, 0);
         Schedule sched1 = d.getSchedule();
         Schedule sched2 = ruben.getSchedule();
-        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusSouth);
+        Appointment p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusSouth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
         tf = new Time(2011, 11, 8, 13, 0);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
         tf = new Time(2011, 11, 9, 9, 0);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
 
         tf = new Time(2011, 11, 9, 13, 0);
         sched1 = d.getSchedule();
         sched2 = ruben.getSchedule();
-        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth);
+        p = new Appointment(tf, 20, Arrays.asList(sched1, sched2), null, campusNorth, null);
         ScheduleTestUtil.addAppointment(sched1, p);
         ScheduleTestUtil.addAppointment(sched2, p);
     }
