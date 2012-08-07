@@ -13,13 +13,9 @@ import Hospital.Controllers.NurseControllerTest;
 import Hospital.Controllers.PatientFileTest;
 import Hospital.Controllers.RegisterNewPatientTest;
 import Hospital.Controllers.WorldControllerTest;
-import Hospital.MedicalTest.BloodAnalysisFactoryTest;
 import Hospital.MedicalTest.BloodAnalysisResultTest;
 import Hospital.MedicalTest.EnterMedicalTestResultTest;
-import Hospital.MedicalTest.OrderMedicalTestTest;
-import Hospital.MedicalTest.UltraSoundFactoryTest;
 import Hospital.MedicalTest.UltraSoundScanResultTest;
-import Hospital.MedicalTest.XRayFactoryTest;
 import Hospital.MedicalTest.XRayResultTest;
 import Hospital.Schedules.AppointmentTest;
 import Hospital.Schedules.ScheduleTest;
@@ -51,16 +47,11 @@ import Hospital.World.WorldTest;
 	NurseControllerTest.class,
 	AvailableFactoriesTest.class,
 	WorldControllerTest.class,
-	//TestUtil.class,
 	
 	
 	BloodAnalysisResultTest.class,
-	BloodAnalysisFactoryTest.class,
 	UltraSoundScanResultTest.class,
-	UltraSoundFactoryTest.class,
 	EnterMedicalTestResultTest.class,
-	OrderMedicalTestTest.class,
-	XRayFactoryTest.class,
 	XRayResultTest.class,
 	
 	AppointmentTest.class,

@@ -18,10 +18,6 @@ public interface AppointmentConstraintSolver {
 
     void setCampusDecider(CampusDecider campusDecider);
 
-    /**
-     * Linked list of all constraints.
-     * @param tfConstraints
-     */
     void setConstaints(List<TimeFrameConstraint> tfConstraints);
 
     AppointmentConstraintSolver solve() throws SchedulingException;

@@ -38,8 +38,9 @@ public class CommandHistory {
      * adds a command to recent commands
      * @param comm command to be added
      */
-    public void addCommand(Command comm) {
+    public String addCommand(Command comm) throws CannotDoException {
         recent.add(new CommandInfo(comm));
+        return comm.execute();
     }
 
     /**

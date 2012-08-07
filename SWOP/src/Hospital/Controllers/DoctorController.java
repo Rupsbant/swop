@@ -153,8 +153,8 @@ public class DoctorController extends LoginController<Doctor> {
      * adds a command
      * @param comm command to be added
      */
-    protected void addCommand(Command comm) {
-        this.getUser().getHistory().addCommand(comm);
+    protected String addCommand(Command comm) throws CannotDoException {
+        return this.getUser().getHistory().addCommand(comm);
     }
 
     /**

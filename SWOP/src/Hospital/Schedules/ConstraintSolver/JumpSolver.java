@@ -26,6 +26,9 @@ public class JumpSolver implements AppointmentConstraintSolver {
     private Time output_time;
     private Campus output_campus;
 
+    protected JumpSolver() {
+    }
+
     public JumpSolver solve() throws SchedulingException {
         reset();
         List<Schedulable> testing = new ArrayList<Schedulable>();

@@ -1,6 +1,5 @@
 package Hospital.World;
 
-import Hospital.SystemAPI;
 import Hospital.Controllers.WorldController;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Machine.BloodAnalyzer;
@@ -8,9 +7,6 @@ import Hospital.Machine.Location;
 import Hospital.Machine.SurgicalEquipment;
 import Hospital.Machine.UltraSoundMachine;
 import Hospital.Machine.XRayMachine;
-import Hospital.MedicalTest.BloodAnalysisFactory;
-import Hospital.MedicalTest.UltraSoundScanFactory;
-import Hospital.MedicalTest.XRayFactory;
 import Hospital.Patient.DiagnosisFactory;
 import Hospital.Patient.DiagnosisSecondOpinionFactory;
 import Hospital.Patient.Patient;
@@ -59,9 +55,6 @@ public class BasicWorld {
         World w = new World();
 
         w.addFactory(new PatientFactory());
-        w.addFactory(new XRayFactory());
-        w.addFactory(new BloodAnalysisFactory());
-        w.addFactory(new UltraSoundScanFactory());
         w.addFactory(new MedicationFactory());
         w.addFactory(new CastFactory());
         w.addFactory(new SurgeryFactory());

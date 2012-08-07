@@ -111,9 +111,8 @@ public class TreatmentController {
         Patient openedPatient = dc.getUser().getOpenedPatient();
         World world = wc.getWorld();
         TreatmentCommand execTreatment = new TreatmentCommand(openedPatient, diagnosis, world, treatment, args.getAllArguments());
-        dc.addCommand(execTreatment);
         try {
-            return execTreatment.execute();
+            return dc.addCommand(execTreatment);
         } catch (CannotDoException ex) {
             Logger.getLogger(TreatmentController.class.getName()).log(Level.SEVERE, null, ex);
             throw new Error();

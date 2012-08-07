@@ -9,8 +9,6 @@ import Hospital.World.Campus;
 import Hospital.World.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * An appointment between multiple Scheduleable objects

@@ -4,6 +4,7 @@
  */
 package Hospital.MedicalTest;
 
+import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Argument.IntegerArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Controllers.ArgumentList;
@@ -121,14 +122,7 @@ public class EnterMedicalTestResultTest {
     }
 
     private void initMedicalTests() throws NotAFactoryException, CannotChangeException, NotLoggedInException, ArgumentNotAnsweredException, WrongArgumentListException, ArgumentConstraintException, NoOpenedPatientFileException, ArgumentIsNullException, InvalidArgumentException {
-
-        final ArgumentList resultArgs = mc.getMedicalTestArguments("New XRayScan");
-        PublicArgument[] args = resultArgs.getPublicArguments();
-        args[0].enterAnswer("0");
-        args[1].enterAnswer("1");
-        args[2].enterAnswer("2");
-        args[3].enterAnswer("high");
-        mc.makeMedicalTest("New XRayScan", resultArgs);
+        String mtstring = mc.makeXRayScan("This should be an xray", 1, 1, new HighLowPriority(true));
     }
 
     private void initPatientFile() throws NoPersonWithNameAndRoleException, NotLoggedInException, NoOpenedPatientFileException {

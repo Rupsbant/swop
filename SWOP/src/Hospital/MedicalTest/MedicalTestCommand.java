@@ -1,7 +1,5 @@
 package Hospital.MedicalTest;
 
-import Hospital.Argument.Argument;
-import Hospital.Argument.PriorityArgument;
 import Hospital.Factory.Command;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -15,9 +13,7 @@ import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
-import Hospital.Utils;
 import Hospital.World.World;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -54,18 +50,10 @@ public class MedicalTestCommand implements Command {
      * @throws ArgumentIsNullException the array of PublicArguments is null
      * @throws NotAFactoryException the given type of medical test does not exist in the world
      */
-    public MedicalTestCommand(World world, Patient openedPatient, String medicalTestName, Argument[] args)
-            throws WrongArgumentListException, InvalidArgumentException, NotAFactoryException {
-        MedicalTestFactory factory = world.getFactory(MedicalTestFactory.class, medicalTestName);
-        if(args == null){
-            throw new ArgumentIsNullException("ArgumentList is null");
-        }
-        made = factory.make(Arrays.copyOf(args, args.length-1));
+    public MedicalTestCommand(World world, Patient openedPatient, MedicalTest med, Priority priority)
+            throws InvalidArgumentException {
         ScheduleGroup pat = new SingleSchedulableGroup(openedPatient);
-        
-        Priority p = Utils.getAnswer(PriorityArgument.class, "the priority", args[args.length-1]);
-        appC = new AppointmentCommand(world, made, Collections.singletonList(pat), p);
-
+        appC = new AppointmentCommand(world, made, Collections.singletonList(pat), priority);
         toAdd = openedPatient;
     }
 

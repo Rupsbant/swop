@@ -29,6 +29,7 @@ import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.TreatmentAlreadyAddedException;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.People.LoginInfo;
+import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
@@ -193,13 +194,7 @@ public class DischargePatientTest {
         regPat("Patrick Ient");
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
-        System.out.println(medC.getAvailableMedicalTests()[0]);
-        ArgumentList args = medC.getMedicalTestArguments(medC.getAvailableMedicalTests()[0]);
-        args.getPublicArguments()[0].enterAnswer("This should be an xray");
-        args.getPublicArguments()[1].enterAnswer("1");
-        args.getPublicArguments()[2].enterAnswer("1");
-        args.getPublicArguments()[3].enterAnswer("urgent");
-        String mtstring = medC.makeMedicalTest(medC.getAvailableMedicalTests()[0], args);
+        String mtstring = medC.makeXRayScan("This should be an xray", 1, 1, new HighLowPriority(true));
         MedicalTestInfo medTest = null;
         for (MedicalTestInfo medTestInfo : mtrC.getOpenMedicalTests()) {
             if (medTestInfo.advancedString().equals(mtstring)) {
@@ -207,7 +202,7 @@ public class DischargePatientTest {
             }
         }
         
-        args = mtrC.getArguments(medTest);
+        ArgumentList args = mtrC.getArguments(medTest);
         args.getPublicArguments()[0].enterAnswer("1");
         args.getPublicArguments()[1].enterAnswer("Bar");
         mtrC.enterResult(medTest, args);
@@ -228,12 +223,7 @@ public class DischargePatientTest {
         regPat("Patrick Ient");
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
-        ArgumentList args = medC.getMedicalTestArguments(medC.getAvailableMedicalTests()[0]);
-        args.getPublicArguments()[0].enterAnswer("This should be an xray");
-        args.getPublicArguments()[1].enterAnswer("1");
-        args.getPublicArguments()[2].enterAnswer("1");
-        args.getPublicArguments()[3].enterAnswer("urgent");
-        medC.makeMedicalTest(medC.getAvailableMedicalTests()[0], args);
+        medC.makeXRayScan("This should be an xray", 1, 1, new HighLowPriority(true));
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
         dc.dischargePatient();
         assertTrue(dc.getUser().getOpenedPatient().isDischarged());

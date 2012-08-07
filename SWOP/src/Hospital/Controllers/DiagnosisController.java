@@ -95,9 +95,8 @@ public class DiagnosisController {
             secondDoc = wc.getWorld().getPersonByName(Doctor.class, secondOpinion.getName());
         }
         DiagnosisCommand diaC = new DiagnosisCommand(wc.getWorld(), dc.getUser(), factoryName, secondDoc, args.getAllArguments());
-        dc.addCommand(diaC);
         try {
-            return diaC.execute();
+            return dc.addCommand(diaC);
         } catch (CannotDoException ex) {
             Logger.getLogger(DiagnosisController.class.getName()).log(Level.SEVERE, "Execute should work!", ex);
             return "Error";
