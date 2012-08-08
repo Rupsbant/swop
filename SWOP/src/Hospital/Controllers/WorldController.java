@@ -11,7 +11,6 @@ import Hospital.Factory.Factory;
 import Hospital.Patient.Patient;
 import Hospital.People.LoginInfo;
 import Hospital.Schedules.Constraints.Preference.Preference;
-import Hospital.Treatments.TreatmentFactory;
 import Hospital.SystemAPI;
 import Hospital.WareHouse.FoodStock.FoodStock;
 import Hospital.WareHouse.Items.Meal;
@@ -172,18 +171,6 @@ public class WorldController {
     @SystemAPI
     public Time getTime() {
         return world.getWorldTime().getTime();
-    }
-
-    /**
-     * Indicates whether a certain type of treatment involves medication items
-     * @param aClass either TreatmentFactory.class to check all factories or a specific subclass to limit the check
-     * @param chosen the type of treatment to check
-     * @return true if the treatment requires medication
-     * @throws ArgumentIsNullException the given string was null
-     * @throws NotAFactoryException chosen was not an existing treatment
-     */
-    boolean needsMedication(Class<TreatmentFactory> aClass, String chosen) throws ArgumentIsNullException, NotAFactoryException {
-        return world.getFactory(aClass, chosen).needsMedication();
     }
 
     /**

@@ -1,8 +1,6 @@
 package Hospital.Treatments;
 
 import Hospital.Factory.Command;
-import Hospital.Argument.Argument;
-import Hospital.Argument.PriorityArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
@@ -20,10 +18,8 @@ import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.SingleSchedulableGroup;
-import Hospital.Utils;
 import Hospital.WareHouse.ItemReservationCommand;
 import Hospital.World.World;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -49,31 +45,18 @@ public class TreatmentCommand implements Command {
      * @param patient the patient to which teh diagnosis belongs
      * @param diagnosis the diagnosis to which to add the new treatment
      * @param world the world in which this takes place
-     * @param treatmentName the type of treatment to create
-     * @param args the arguments to the creation of this treatment
-     * @throws NotAFactoryException the given type of treatment does not exist
+     * @param treat The prepared treatment that this Command must execute.
+     * @param p The priority this treatment must be scheduled with.
      * @throws InvalidDiagnosisException diagnosis does not point to an existing diagnosis
-     * @throws ArgumentIsNullException one or more of the parameters was null
-     * @throws WrongArgumentListException the argument list did not match the creation type
-     * @throws ArgumentNotAnsweredException one or more of the given arguments was not answered
-     * @throws ArgumentConstraintException one or more of the arguments was incorrect
+     * @throws InvalidArgumentException if a argument is not valid, null, or doesn't satisfy the constraints
      */
-    public TreatmentCommand(Patient patient, DiagnosisInfo diagnosis, World world, String treatmentName, Argument[] args)
-            throws NotAFactoryException, InvalidDiagnosisException,
-            WrongArgumentListException, InvalidArgumentException {
-        TreatmentFactory factory = world.getFactory(TreatmentFactory.class, treatmentName);
-        if (args == null) {
-            throw new ArgumentIsNullException("ArgumentList is null");
-        }
+    public TreatmentCommand(Patient patient, DiagnosisInfo diagnosis, World world, Treatment treat, Priority p)
+            throws InvalidDiagnosisException, InvalidArgumentException {
         this.diagnosis = patient.isValidDiagnosisInfo(diagnosis);
-        this.treatment = factory.make(Arrays.copyOf(args, args.length - 1));
+        this.treatment = treat;
         ScheduleGroup core = new SingleSchedulableGroup(patient);
-
-        Priority p = Utils.getAnswer(PriorityArgument.class, "the priority", args[args.length - 1]);
-
         AppointmentCommand appC = new AppointmentCommand(world, treatment, Collections.singletonList(core), p);
 
-        //TODO FIX ME!!!!
         ItemReservationCommand itemReservationCommand = new ItemReservationCommand(treatment);
         appC.setNext(itemReservationCommand);
         treatment.setItemReservationCommand(itemReservationCommand);

@@ -25,6 +25,10 @@ public class ItemInfo {
         }
         return items.toArray(new ItemInfo[0]);
     }
+
+    public static ItemInfo[] getItemInfo(String items) {
+        return getItemInfo(items.split("(, )+"));
+    }
     private String name;
     private int count;
 

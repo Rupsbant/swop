@@ -20,9 +20,6 @@ import Hospital.People.PeopleFactories.WarehouseFactory;
 import Hospital.Schedules.Constraints.Preference.ChangeLocationPreference;
 import Hospital.Schedules.Constraints.Preference.Preference;
 import Hospital.Schedules.Constraints.Preference.StayShiftPreference;
-import Hospital.Treatments.CastFactory;
-import Hospital.Treatments.MedicationFactory;
-import Hospital.Treatments.SurgeryFactory;
 import Hospital.WareHouse.WarehouseManager;
 
 /**
@@ -55,9 +52,6 @@ public class BasicWorld {
         World w = new World();
 
         w.addFactory(new PatientFactory());
-        w.addFactory(new MedicationFactory());
-        w.addFactory(new CastFactory());
-        w.addFactory(new SurgeryFactory());
         w.addFactory(new DoctorFactory());
         w.addFactory(new WarehouseFactory());
         w.addFactory(new NurseFactory());
