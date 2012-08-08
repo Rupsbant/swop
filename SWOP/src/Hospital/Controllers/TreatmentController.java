@@ -1,5 +1,6 @@
 package Hospital.Controllers;
 
+import Hospital.Argument.ItemArgument;
 import Hospital.SystemAPI;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.Exception.Arguments.InvalidArgumentException;
@@ -71,5 +72,9 @@ public class TreatmentController {
         Patient openedPatient = dc.getUser().getOpenedPatient();
         World world = wc.getWorld();
         return TreatmentMakers.SINGLETON.makeMedication(dc.getUser(), description, sensitivity, items, openedPatient, diagnosis, world, p);
+    }
+    
+    public ItemArgument getItemArgument(){
+        return (ItemArgument) new ItemArgument("Select the items you wish:").setWorld(wc.getWorld());
     }
 }
