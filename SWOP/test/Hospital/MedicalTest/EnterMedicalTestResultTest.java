@@ -37,23 +37,12 @@ import static org.junit.Assert.*;
 
 public class EnterMedicalTestResultTest {
 
-    public WorldController wc;
-    public DoctorController dc;
-    public NurseController nc;
-    public MedicalTestController mc;
-    public DiagnosisController diac;
-    public MedicalTestResultController mrc;
-
-    public EnterMedicalTestResultTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    private WorldController wc;
+    private DoctorController dc;
+    private NurseController nc;
+    private MedicalTestController mc;
+    private DiagnosisController diac;
+    private MedicalTestResultController mrc;
 
     @Before
     public void setUp() throws NoPersonWithNameAndRoleException, NotLoggedInException, NotAFactoryException, CannotChangeException, ArgumentNotAnsweredException, WrongArgumentListException, ArgumentConstraintException, ArgumentIsNullException, NoOpenedPatientFileException, InvalidArgumentException {
@@ -67,10 +56,6 @@ public class EnterMedicalTestResultTest {
 
         initPatientFile();
         initMedicalTests();
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test
@@ -122,7 +107,7 @@ public class EnterMedicalTestResultTest {
     }
 
     private void initMedicalTests() throws NotAFactoryException, CannotChangeException, NotLoggedInException, ArgumentNotAnsweredException, WrongArgumentListException, ArgumentConstraintException, NoOpenedPatientFileException, ArgumentIsNullException, InvalidArgumentException {
-        String mtstring = mc.makeXRayScan("This should be an xray", 1, 1, new HighLowPriority(true));
+        String mtstring = mc.makeXRayScan("0", 2, 1, new HighLowPriority(true));
     }
 
     private void initPatientFile() throws NoPersonWithNameAndRoleException, NotLoggedInException, NoOpenedPatientFileException {

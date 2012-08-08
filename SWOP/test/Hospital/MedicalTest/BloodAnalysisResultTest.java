@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Hospital.Argument.Argument;
 import Hospital.Argument.IntegerArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
@@ -163,15 +162,5 @@ public class BloodAnalysisResultTest {
             fail("Exception should be thrown");
         } catch (ArgumentNotAnsweredException e) {
         }
-    }
-
-    @Test
-    public void bloodanalysisFactoryTest() throws WrongArgumentListException, ArgumentNotAnsweredException, ArgumentConstraintException, ArgumentIsNullException, CannotChangeException, InvalidArgumentException {
-        BloodAnalysisFactory fact = new BloodAnalysisFactory();
-        assertEquals(fact.getEmptyArgumentList().length, 2);
-        Argument[] args = new Argument[2];
-        args[0] = new StringArgument("string").enterAnswer("blabla");
-        args[1] = new IntegerArgument("integer").enterAnswer("2");
-        fact.make(args);
     }
 }

@@ -52,6 +52,7 @@ public class MedicalTestCommand implements Command {
      */
     public MedicalTestCommand(World world, Patient openedPatient, MedicalTest med, Priority priority)
             throws InvalidArgumentException {
+        this.made = med;
         ScheduleGroup pat = new SingleSchedulableGroup(openedPatient);
         appC = new AppointmentCommand(world, made, Collections.singletonList(pat), priority);
         toAdd = openedPatient;

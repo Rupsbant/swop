@@ -11,8 +11,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Hospital.Argument.Argument;
-import Hospital.Argument.BooleanArgument;
 import Hospital.Argument.IntegerArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
@@ -145,17 +143,5 @@ public class UltraSoundScanResultTest {
         } catch (ArgumentNotAnsweredException e) {
             assertEquals("Exceptionmessage is wrong", "Argument-answer of \"The nature of the mass\" was null", e.getMessage());
         }
-    }
-
-    @Test
-    public void ultrasoundFactoryTest() 
-            throws WrongArgumentListException, InvalidArgumentException, CannotChangeException {
-        UltraSoundScanFactory fact = new UltraSoundScanFactory();
-        assertEquals(fact.getEmptyArgumentList().length, 3);
-        Argument[] args = new Argument[3];
-        args[0] = new StringArgument("string").enterAnswer("blabla");
-        args[1] = new BooleanArgument("integer").enterAnswer("true");
-        args[2] = new BooleanArgument("integer").enterAnswer("false");
-        fact.make(args);
     }
 }
