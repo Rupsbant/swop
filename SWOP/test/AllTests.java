@@ -20,15 +20,13 @@ import Hospital.MedicalTest.XRayResultTest;
 import Hospital.Schedules.AppointmentTest;
 import Hospital.Schedules.ScheduleTest;
 
-import Hospital.Treatments.CastFactoryTest;
+import Hospital.Treatments.CastTest;
 import Hospital.Treatments.CastResultTest;
 import Hospital.Treatments.MedicationFactoryTest;
 import Hospital.Treatments.MedicationResultTest;
 import Hospital.Treatments.SurgeryFactoryTest;
 import Hospital.Treatments.SurgeryResultTest;
-import Hospital.Treatments.TreatmentFactoryTest;
 import Hospital.UtilsTest.EmptyNameTest;
-import Hospital.World.FactoryTest;
 import Hospital.World.TimeTest;
 import Hospital.World.WorldTest;
 
@@ -58,18 +56,16 @@ import Hospital.World.WorldTest;
 	ScheduleTest.class,
 	
 	
-	CastFactoryTest.class,
+	CastTest.class,
 	CastResultTest.class,
 	EnterTreatmentResultControllerTest.class,
 	MedicationFactoryTest.class,
 	MedicationResultTest.class,
 	SurgeryFactoryTest.class,
 	SurgeryResultTest.class,
-	TreatmentFactoryTest.class,
 	
 	EmptyNameTest.class,
 
-	FactoryTest.class,
 	WorldTest.class,
 	TimeTest.class
 })

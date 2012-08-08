@@ -1,6 +1,5 @@
 package Hospital.Controllers;
 
-import Hospital.Argument.PriorityArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Exception.Arguments.InvalidArgumentException;
@@ -33,17 +32,17 @@ import Hospital.Patient.Diagnosis;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.Patient.Patient;
 import Hospital.People.LoginInfo;
+import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.World.World;
 
 public class PatientFileTest {
 
-    WorldController wc;
-    DoctorController dc;
-    World w;
-    TreatmentController tc;
-    NurseController nc;
-    TreatmentResultController trC;
-    
+    private WorldController wc;
+    private DoctorController dc;
+    private World w;
+    private TreatmentController tc;
+    private NurseController nc;
+    private TreatmentResultController trC;
 
     @Before
     public void setUp() throws ArgumentIsNullException, NoPersonWithNameAndRoleException, ArgumentConstraintException {
@@ -52,7 +51,7 @@ public class PatientFileTest {
         List<LoginInfo> logins = wc.getLogins();
         for (int i = 0; i < logins.size(); i++) {
             if (logins.get(i).getRole().equals("Doctor")) {
-                dc = (DoctorController) wc.login(wc.getCampuses().get(0),logins.get(i));
+                dc = (DoctorController) wc.login(wc.getCampuses().get(0), logins.get(i));
             }
         }
         try {
@@ -65,7 +64,7 @@ public class PatientFileTest {
             System.out.println("Jeroen is aanwezig in de test World.");
         }
         tc = new TreatmentController(wc, dc);
-        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", "Nurse")); //don't search for nurse
+        nc = (NurseController) wc.login(wc.getCampuses().get(0), new LoginInfo("Nurse Joy", "Nurse")); //don't search for nurse
         trC = new TreatmentResultController(wc, nc);
         wc = new WorldController(w);
         List<LoginInfo> l = wc.getLogins();
@@ -76,7 +75,7 @@ public class PatientFileTest {
             }
         }
         try {
-            dc = (DoctorController) wc.login(wc.getCampuses().get(0),doctor);
+            dc = (DoctorController) wc.login(wc.getCampuses().get(0), doctor);
         } catch (NoPersonWithNameAndRoleException e) {
             System.out.println("check LoginTest voor fouten");
         }
@@ -150,19 +149,15 @@ public class PatientFileTest {
         assertTrue("PatientFile was opened", dc.hasOpenedPatientFile());
         assertTrue(dc.openedPatientFileNotDischarged());
         wc.getWorld().getPersonByName(Patient.class, "Ruben").dischargePatient();
-        
+
         assertFalse(dc.openedPatientFileNotDischarged());
         assertFalse(dc.openedPatientHasUntreatedDiagnosis());
         Patient p = w.getPersonByName(Patient.class, "Ruben");
         p.addDiagnosis(new Diagnosis("hoofdpijn", dc.getUser()));
         assertTrue(dc.openedPatientHasUntreatedDiagnosis());
-        
-        PublicArgument[] args1 = new PublicArgument[2];
-        args1[0] = new StringArgument("Enter the report: ").enterAnswer("report blabla");
-        args1[1] = new PriorityArgument("priority").enterAnswer("high");
-        DiagnosisInfo diagnosisinfo = new DiagnosisInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0));
 
-        tc.makeTreatment("Surgery", new ArgumentList(args1), diagnosisinfo);
+        DiagnosisInfo diagnosisinfo = new DiagnosisInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0));
+        tc.makeSurgery(diagnosisinfo, "report blabla", new HighLowPriority(true));
         TreatmentInfo treatmentinfo = new TreatmentInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0).getTreatment());
         PublicArgument[] args2 = new PublicArgument[2];
         args2[0] = new StringArgument("Enter the report: ").enterAnswer("reportje");

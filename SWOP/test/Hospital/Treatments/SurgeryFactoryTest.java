@@ -7,9 +7,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import Hospital.Argument.Argument;
-import Hospital.Argument.PublicArgument;
-import Hospital.Argument.StringArgument;
 import Hospital.Controllers.DiagnosisController;
 import Hospital.Controllers.DoctorController;
 import Hospital.Controllers.TestUtil;
@@ -48,21 +45,10 @@ public class SurgeryFactoryTest {
     @Test
     public void testCreate() throws CannotChangeException, ArgumentNotAnsweredException, WrongArgumentListException, ArgumentIsNullException, ArgumentConstraintException, InvalidArgumentException {
         String STRING = "10x 500mg Ibuprofen bij elke maaltijd";
-        SurgeryFactory med = new SurgeryFactory();
         Diagnosis dia = new Diagnosis("De patient leeft.",new Doctor("Doktoor"));
-        Argument[] args = med.getEmptyArgumentList();
-        ((PublicArgument) args[0]).enterAnswer(STRING);
-        Treatment t = med.make(args);
+        Treatment t = new Surgery(STRING);
         Surgery medication = (Surgery) t;
         assertEquals(medication.getDescription(), STRING);
-    }
-
-    @Test
-    public void getArguments() throws NotLoggedInException, NotAFactoryException {
-        PublicArgument[] args = tc.getTreatmentArguments("Surgery").getPublicArguments();
-        assertEquals("Wrong length", 2, args.length);
-        assertEquals("Wrong type, first", StringArgument.class, args[0].getClass());
-        assertEquals("Wrong question, first", "Please enter a description: ", args[0].getQuestion());
     }
 
     private void initDiagnoses()

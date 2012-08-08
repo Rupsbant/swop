@@ -3,6 +3,7 @@ package Hospital.Treatments;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
+import Hospital.Exception.Command.CannotDoException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.Patient.InvalidDiagnosisException;
 import Hospital.Patient.DiagnosisInfo;
@@ -11,6 +12,8 @@ import Hospital.People.Doctor;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.WareHouse.ItemInfo;
 import Hospital.World.World;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TreatmentMakers {
 
@@ -21,7 +24,11 @@ public class TreatmentMakers {
             throws InvalidDiagnosisException, InvalidArgumentException {
         Treatment out = new Cast(bodyPart, duration);
         TreatmentCommand outCommand = new TreatmentCommand(patient, diagnosis, world, out, p);
-        return orderingDoc.getHistory().addCommand(outCommand);
+        try {
+            return orderingDoc.getHistory().addCommand(outCommand);
+        } catch (CannotDoException ex) {
+            throw new Error(ex);
+        }
     }
 
     public String makeMedication(Doctor orderingDoc, String description, boolean sensitivity, String items,
@@ -30,7 +37,11 @@ public class TreatmentMakers {
         ItemInfo[] infos = ItemInfo.getItemInfo(items);
         Treatment out = new Medication(description, sensitivity, infos);
         TreatmentCommand outCommand = new TreatmentCommand(patient, diagnosis, world, out, p);
-        return orderingDoc.getHistory().addCommand(outCommand);
+        try {
+            return orderingDoc.getHistory().addCommand(outCommand);
+        } catch (CannotDoException ex) {
+            throw new Error(ex);
+        }
     }
 
     public String makeSurgery(Doctor orderingDoc, String description,
@@ -38,6 +49,10 @@ public class TreatmentMakers {
             throws InvalidDiagnosisException, InvalidArgumentException {
         Treatment out = new Surgery(description);
         TreatmentCommand outCommand = new TreatmentCommand(patient, diagnosis, world, out, p);
-        return orderingDoc.getHistory().addCommand(outCommand);
+        try {
+            return orderingDoc.getHistory().addCommand(outCommand);
+        } catch (CannotDoException ex) {
+            throw new Error(ex);
+        }
     }
 }

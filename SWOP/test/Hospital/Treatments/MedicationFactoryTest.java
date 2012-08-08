@@ -12,27 +12,22 @@ import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.Patient.PatientIsDischargedException;
-import Hospital.People.Doctor;
 import Hospital.People.LoginInfo;
-import Hospital.Argument.BooleanArgument;
-import Hospital.Argument.StringArgument;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
-import Hospital.Patient.Diagnosis;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MedicationFactoryTest {
 
-    WorldController wc;
-    DoctorController dc;
-    TreatmentController tc;
-    DiagnosisController diac;
+    private WorldController wc;
+    private DoctorController dc;
+    private TreatmentController tc;
+    private DiagnosisController diac;
 
     public MedicationFactoryTest() {
     }
@@ -51,26 +46,9 @@ public class MedicationFactoryTest {
     public void testCreate() throws CannotChangeException, ArgumentNotAnsweredException, WrongArgumentListException, ArgumentIsNullException, ArgumentConstraintException, InvalidArgumentException {
         String STRING = "10x 500mg Ibuprofen bij elke maaltijd";
 
-        MedicationFactory med = new MedicationFactory();
-        Diagnosis dia = new Diagnosis("De patient leeft.",new Doctor("Doktoor"));
-        PublicArgument[] args = new PublicArgument[3];
-        args[0] = new StringArgument("blabla").enterAnswer(STRING);
-        args[1] = new BooleanArgument("blabla").enterAnswer("true");
-        args[2] = new StringArgument("blabla").enterAnswer("ActivatedCarbon Aspirin");
-        Treatment t = med.make(args);
-        Medication medication = (Medication) t;
+        Medication medication = new Medication(STRING, Boolean.TRUE, null);
         assertEquals(medication.getSensitive(), true);
         assertEquals(medication.getDescription(), STRING);
-    }
-
-    @Test
-    public void getArguments() throws NotLoggedInException, NotAFactoryException {
-        PublicArgument[] args = tc.getTreatmentArguments("Medication").getPublicArguments();
-        assertEquals("Wrong length", 4, args.length);
-        assertEquals("Wrong type, first", StringArgument.class, args[0].getClass());
-        assertEquals("Wrong type, second", BooleanArgument.class, args[1].getClass());
-        assertEquals("Wrong question, first", "Please enter a description: ", args[0].getQuestion());
-        assertEquals("Wrong question, second", "Is the medication sensitive?: ", args[1].getQuestion());
     }
 
     private void initDiagnoses()

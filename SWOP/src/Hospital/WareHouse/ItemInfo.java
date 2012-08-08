@@ -27,6 +27,9 @@ public class ItemInfo {
     }
 
     public static ItemInfo[] getItemInfo(String items) {
+        if(items == null){
+            return null;
+        }
         return getItemInfo(items.split("(, )+"));
     }
     private String name;

@@ -11,8 +11,6 @@ import Hospital.Exception.Patient.PatientIsDischargedException;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Argument.StringArgument;
 import Hospital.Argument.BooleanArgument;
-import Hospital.Argument.PriorityArgument;
-import Hospital.Argument.PublicArgument;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -28,6 +26,7 @@ import Hospital.Exception.Warehouse.StockException;
 import Hospital.Patient.Diagnosis;
 import Hospital.People.Doctor;
 import Hospital.People.LoginInfo;
+import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Treatments.Medication;
 
 import org.junit.Test;
@@ -92,12 +91,7 @@ public class EnterTreatmentResultControllerTest {
     public void testBasic() throws NotLoggedInException, WrongArgumentListException, InvalidArgumentException,
        	IllegalInfo, CannotChangeException, ArgumentConstraintException, NoOpenedPatientFileException, NotAFactoryException, InvalidDiagnosisException, StockException, ItemNotReservedException, ItemNotFoundException {
     	DiagnosisInfo[] infos = tc.getUntreatedDiagnoses();
-        PublicArgument[] args2 = new PublicArgument[4];
-        args2[0] = new StringArgument("description").enterAnswer("description");
-        args2[1] = new BooleanArgument("sensitive").enterAnswer("yes");
-        args2[2] = new StringArgument("items").enterAnswer("");
-        args2[3] = new PriorityArgument("priority").enterAnswer("urgent");
-        tc.makeTreatment("Medication", new ArgumentList(args2), infos[0]);
+        tc.makeMedication(infos[0], "description", true, "", new HighLowPriority(true));
     	assertTrue("Treatments are not correctly filtered", trc.getOpenTreatments().length == 1);
         ArgumentList args = trc.getArguments(trc.getOpenTreatments()[0]);
         assertTrue("Arguments not right type", args.getPublicArguments()[0].getClass().equals(BooleanArgument.class));
@@ -113,12 +107,7 @@ public class EnterTreatmentResultControllerTest {
             WrongArgumentListException, InvalidArgumentException, ArgumentIsNullException,
             IllegalInfo, ArgumentConstraintException, CannotDoException, NotAFactoryException, InvalidDiagnosisException, NoOpenedPatientFileException, StockException, ItemNotReservedException, ItemNotFoundException {
     	DiagnosisInfo[] infos = tc.getUntreatedDiagnoses();
-        PublicArgument[] args2 = new PublicArgument[4];
-        args2[0] = new StringArgument("description").enterAnswer("description");
-        args2[1] = new BooleanArgument("sensitive").enterAnswer("yes");
-        args2[2] = new StringArgument("items").enterAnswer("");
-        args2[3] = new PriorityArgument("priority").enterAnswer("high");
-        tc.makeTreatment("Medication", new ArgumentList(args2), infos[0]);
+        tc.makeMedication(infos[0], "description", true, "", new HighLowPriority(true));
     	ArgumentList args = trc.getArguments(trc.getOpenTreatments()[0]);
         args.getPublicArguments()[0].enterAnswer("true");
         args.getPublicArguments()[1].enterAnswer("report");

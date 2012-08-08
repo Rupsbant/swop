@@ -165,12 +165,9 @@ public class DischargePatientTest {
         diagnose("Foo", false);
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
         
-        PublicArgument[] args1 = new PublicArgument[2];
-        args1[0] = new StringArgument("Enter the report: ").enterAnswer("report blabla");
-        args1[1] = new PriorityArgument("priority").enterAnswer("high");
         DiagnosisInfo diagnosisinfo = new DiagnosisInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0));
         
-        tc.makeTreatment("Surgery", new ArgumentList(args1), diagnosisinfo);
+        tc.makeSurgery(diagnosisinfo, "report blabla", new HighLowPriority(true));
         TreatmentInfo treatmentinfo = new TreatmentInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0).getTreatment());
         PublicArgument[] args2 = new PublicArgument[2];
         args2[0] = new StringArgument("Enter the report: ").enterAnswer("reportje");
@@ -246,13 +243,7 @@ public class DischargePatientTest {
 
         diagnose("Foo", false);
 
-        PublicArgument[] args = new PublicArgument[4];
-        args[0] = new StringArgument("description").enterAnswer("Medication");
-        args[1] = new BooleanArgument("sensitive").enterAnswer("no");
-        args[2] = new StringArgument("items").enterAnswer("");
-        args[3] = new PriorityArgument("priority").enterAnswer("urgent");
-        System.out.println("Make");
-        tc.makeTreatment(tc.getAvailableTreatments()[0], new ArgumentList(args), tc.getUntreatedDiagnoses()[0]);
+        tc.makeMedication(tc.getUntreatedDiagnoses()[0], "Medication", false, "", new HighLowPriority(true));
         ArgumentList args2 = trC.getArguments(trC.getOpenTreatments()[0]);
         args2.getPublicArguments()[0].enterAnswer("no");
         args2.getPublicArguments()[1].enterAnswer("Bar");
@@ -277,12 +268,8 @@ public class DischargePatientTest {
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
         diagnose("Foo", false);
-        PublicArgument[] args = new PublicArgument[4];
-        args[0] = new StringArgument("description").enterAnswer("Medication");
-        args[1] = new BooleanArgument("sensitive").enterAnswer("no");
-        args[2] = new StringArgument("items").enterAnswer("Aspirin");
-        args[3] = new PriorityArgument("priority").enterAnswer("urgent");
-        tc.makeTreatment(tc.getAvailableTreatments()[0], new ArgumentList(args), tc.getUntreatedDiagnoses()[0]);
+        
+        tc.makeMedication(tc.getUntreatedDiagnoses()[0], "Medication", false, "Aspirin", new HighLowPriority(true));
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
         dc.dischargePatient();
         assertTrue(dc.getUser().getOpenedPatient().isDischarged());
