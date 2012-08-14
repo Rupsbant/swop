@@ -3,13 +3,9 @@ package Hospital.Controllers;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
-import Hospital.Exception.Command.CannotDoException;
 import Hospital.Exception.*;
 import Hospital.Exception.Arguments.InvalidArgumentException;
-import Hospital.MedicalTest.MedicalTest;
-import Hospital.MedicalTest.MedicalTestCommand;
 import Hospital.MedicalTest.MedicalTestCreator;
-import Hospital.Patient.Patient;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.SystemAPI;
 

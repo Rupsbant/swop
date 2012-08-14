@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>16</x>
+      <y>552</y>
+      <w>248</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>World
+--
+worldTime : WorldTime
+...
+--
+getResourceByType(Class&lt;S&gt; clazz) : List&lt;S&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>72</x>
+      <y>464</y>
+      <w>152</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=-
+get schedulables from &gt;</panel_attributes>
+    <additional_attributes>80;24;80;88</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>424</x>
+      <y>320</y>
+      <w>360</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1
+selects attendees from</panel_attributes>
+    <additional_attributes>24;40;344;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>816</x>
+      <y>472</y>
+      <w>152</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=0..n
+ 
+must satisfy constraints
+</panel_attributes>
+    <additional_attributes>80;24;80;40;80;56;80;120;96;120</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>584</x>
+      <y>640</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Time</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>608</x>
+      <y>576</y>
+      <w>96</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+uses
+</panel_attributes>
+    <additional_attributes>80;40;40;40;40;64</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>640</x>
+      <y>616</y>
+      <w>288</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+satisfy constraints at
+</panel_attributes>
+    <additional_attributes>24;40;72;40;200;40;272;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>632</x>
+      <y>416</y>
+      <w>152</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+get first Time from</panel_attributes>
+    <additional_attributes>136;40;72;40;72;128</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1152</x>
+      <y>464</y>
+      <w>166</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+make fitting appointment</panel_attributes>
+    <additional_attributes>88;24;88;96</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>688</x>
+      <y>544</y>
+      <w>192</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>DelayedTimeLength
+--
+delay : int
+length : int
+worldTime : WorldTime
+--
+getLength() : int
+getDelayedTime() : Time
+setWorldTime(WorldTime wt)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>304</x>
+      <y>552</y>
+      <w>240</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>WorldTime
+--
+currentTime : Time
+--
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>520</x>
+      <y>536</y>
+      <w>184</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+gets time from                                  
+</panel_attributes>
+    <additional_attributes>24;40;32;40;128;40;168;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>240</x>
+      <y>544</y>
+      <w>72</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+holds</panel_attributes>
+    <additional_attributes>24;40;64;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>352</x>
+      <y>176</y>
+      <w>992</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=       0..n
+m2=   1
+aggregates all groups</panel_attributes>
+    <additional_attributes>24;112;24;40;976;40;976;384</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>768</x>
+      <y>352</y>
+      <w>304</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+AppointmentConstraintSolver
+--
+setTimeFrameConstraints(List&lt;TimeFrameConstraint&gt; tfC)
+setCampusDecider(CampusDecider cd)
+setDelayedTimeLength(DelayedTimeLength td)
+setScheduleGroups(List&lt;ScheduleGroup&gt; groups)
+
+getCampus() : Campus
+getAttendees() : List&lt;Schedulable&gt;
+getTime() : Time
+
+solve()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>960</x>
+      <y>296</y>
+      <w>112</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>BruteForceSolver</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>896</x>
+      <y>304</y>
+      <w>128</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>24;48;112;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>520</x>
+      <y>576</y>
+      <w>124</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+current Time                         </panel_attributes>
+    <additional_attributes>72;64;72;40;24;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1208</x>
+      <y>560</y>
+      <w>248</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>AppointmentCommand
+--
+next : Command
+--
+execute() throws CannotDoException
+undo()
+isDone() : boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1376</x>
+      <y>624</y>
+      <w>96</w>
+      <h>82</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;().
+ 
+Command</panel_attributes>
+    <additional_attributes>80;48;48;48;48;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1544</x>
+      <y>544</y>
+      <w>280</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Appointment
+--
+attendees : List&lt;Schedulable&gt;
+timeFrame : TimeFrame
+campus : Campus
+appCommand: AppointmentCommand
+--
+Appointment(AppointmentResult appResult, ...)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1432</x>
+      <y>560</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+creates</panel_attributes>
+    <additional_attributes>24;40;112;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1432</x>
+      <y>576</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+   holds creator</panel_attributes>
+    <additional_attributes>24;40;112;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1312</x>
+      <y>704</y>
+      <w>288</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Appointable
+--
+setAppointment(Appointment app)
+getAppointment()    : Appointment
+getConstraints()    : List&lt;TimeFrameConstraint&gt;
+getCampusDecider()  : CampusDecider
+getScheduleGroups() : List&lt;ScheduleGroup&gt;
+getTimeFrameDelay() : TimeFrameDelay
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1248</x>
+      <y>624</y>
+      <w>152</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+makes Appointment for</panel_attributes>
+    <additional_attributes>80;80;80;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1512</x>
+      <y>648</y>
+      <w>78</w>
+      <h>74</h>
+    </coordinates>
+    <panel_attributes>lt=-
+ 
+uses &gt;</panel_attributes>
+    <additional_attributes>40;56;40;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1168</x>
+      <y>624</y>
+      <w>126</w>
+      <h>82</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+ 
+aggregates</panel_attributes>
+    <additional_attributes>24;48;80;48;80;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>912</x>
+      <y>560</y>
+      <w>280</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>/TimeFrameConstraint/
+--
+/+reset()/
+/+isAccepted() : Time /
+/                 {exception ScheduleConstraintException}/
+/+setTimeFrame(Time time, int length)/
+setSchedulable(Schedulable s)
+setStaff(Staff s)
+setDoctor(Doctor d)
+setNurse(Nurse n)
+setPatient(Patient p)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>976</x>
+      <y>680</y>
+      <w>138</w>
+      <h>106</h>
+    </coordinates>
+    <panel_attributes>lt=-()&gt;
+ 
+SchedulableVisitor</panel_attributes>
+    <additional_attributes>72;24;72;72;112;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1416</x>
+      <y>296</y>
+      <w>256</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>CampusDecider
+--
+/+getCampus() : Campus/
+setSchedulable(Schedulable s)
+setStaff(Staff s)
+setDoctor(Doctor d)
+setNurse(Nurse n)
+setPatient(Patient p)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1680</x>
+      <y>400</y>
+      <w>144</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>NurseDecides
+--
+getCampus() : Campus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1648</x>
+      <y>304</y>
+      <w>138</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=()&gt;
+SchedulableVisitor
+</panel_attributes>
+    <additional_attributes>24;40;120;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1528</x>
+      <y>384</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;24;40;152;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1680</x>
+      <y>448</y>
+      <w>144</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>PatientDecides
+--
+getCampus() : Campus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1528</x>
+      <y>384</y>
+      <w>168</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;24;88;152;88</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1048</x>
+      <y>320</y>
+      <w>384</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+decide Campus</panel_attributes>
+    <additional_attributes>24;40;368;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>768</x>
+      <y>296</y>
+      <w>128</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>JumpSolver</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>816</x>
+      <y>304</y>
+      <w>120</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>104;48;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>200</x>
+      <y>288</y>
+      <w>248</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+ScheduleGroup
+--
+getSchedulables() : List&lt;Schedulable&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>336</x>
+      <y>416</y>
+      <w>296</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>SingleScheduleGroup
+--
+schedulable : Schedulable
+--
+getSchedulables() : List&lt;Schedulable&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>16</x>
+      <y>416</y>
+      <w>296</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>MultiScheduleGroup
+--
+Class&lt;S extends Schedulable&gt; type
+World world
+--
+getSchedulables() : List&lt;Schedulables&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>136</x>
+      <y>344</y>
+      <w>192</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>184;24;24;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>296</x>
+      <y>344</y>
+      <w>200</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;184;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>0</x>
+      <y>232</y>
+      <w>648</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>Hospital.Schedule.ScheduleGroups
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1104</x>
+      <y>408</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>SolverAdapter
+--
+SINGLETON : SolverAdapter
+solve( ... ) : AppointmentResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1048</x>
+      <y>408</y>
+      <w>72</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>24;24;56;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1096</x>
+      <y>256</y>
+      <w>184</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>AppointmentResult
+--
+getCampus() : Campus
+getAttandees() : List&lt;Schedulable&gt;
+getTime() : Time
+getLength() : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1088</x>
+      <y>320</y>
+      <w>82</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;
+creates</panel_attributes>
+    <additional_attributes>48;24;48;88</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1256</x>
+      <y>288</y>
+      <w>312</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;
+ 
+get result from</panel_attributes>
+    <additional_attributes>24;24;112;24;112;224;296;224;296;256</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>680</x>
+      <y>512</y>
+      <w>1168</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>Hospital.Schedules
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>744</x>
+      <y>232</y>
+      <w>560</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>Hospital.Schedule.ConstraintSolver
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>1392</x>
+      <y>264</y>
+      <w>456</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Hospital.Schedule.GetCampus
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
