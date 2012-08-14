@@ -24,7 +24,6 @@ public class UtilsUI {
         if (args.length == 0) {
             return;
         }
-        sc.nextLine();
         for (PublicArgument arg : args) {
             if (map.get(arg.getClass()) == null) {
                 BasicAnswerer.singleton.answer(arg, sc);
@@ -55,6 +54,7 @@ public class UtilsUI {
             try {
                 int ans = sc.nextInt();
                 if (ans >= 0 && ans <= options.length) {
+                    sc.nextLine();
                     return ans;
                 }
             } catch (InputMismatchException e) {

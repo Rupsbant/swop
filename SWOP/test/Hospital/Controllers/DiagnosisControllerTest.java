@@ -20,8 +20,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Hospital.Argument.PublicArgument;
-import Hospital.Argument.StringArgument;
 import Hospital.Exception.*;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.People.Doctor;
@@ -69,22 +67,14 @@ public class DiagnosisControllerTest {
     }
 
     @Test
-    public void listTest() throws ArgumentNotAnsweredException, NoPersonWithNameAndRoleException, NoOpenedPatientFileException, PatientIsDischargedException, NotLoggedInException, NotAFactoryException, ArgumentConstraintException, WrongArgumentListException, ArgumentIsNullException, IllegalArgumentException, CannotChangeException, InvalidArgumentException {
-        PublicArgument[] args1 = new PublicArgument[1];
-        PublicArgument[] args2 = new PublicArgument[1];
-        PublicArgument[] args3 = new PublicArgument[1];
-        PublicArgument[] args4 = new PublicArgument[1];
-        PublicArgument[] args5 = new PublicArgument[1];
-        args1[0] = new StringArgument("details").enterAnswer("hoofdpijn");
-        args2[0] = new StringArgument("details").enterAnswer("keelpijn");
-        args3[0] = new StringArgument("details").enterAnswer("arm gebroken");
-        args4[0] = new StringArgument("details").enterAnswer("been gebroken");
-        args5[0] = new StringArgument("details").enterAnswer("kaak gebroken");
-        diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args1), new LoginInfo("Doktoor", "Doctor"));
-        diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args2), new LoginInfo("Doctor 2", "Doctor"));
-        diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args3), new LoginInfo("Doctor 2", "Doctor"));
-        diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args4), new LoginInfo("Doktoor", "Doctor"));
-        diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args5), new LoginInfo("Doctor 2", "Doctor"));
+    public void listTest() 
+            throws NoPersonWithNameAndRoleException, NoOpenedPatientFileException, PatientIsDischargedException,
+            NotLoggedInException, ArgumentConstraintException, ArgumentIsNullException, InvalidArgumentException {
+        diag.enterDiagnosis("hoofdpijn", new LoginInfo("Doktoor", "Doctor"));
+        diag.enterDiagnosis("keelpijn", new LoginInfo("Doctor 2", "Doctor"));
+        diag.enterDiagnosis("arm gebroken", new LoginInfo("Doctor 2", "Doctor"));
+        diag.enterDiagnosis("been gebroken", new LoginInfo("Doktoor", "Doctor"));
+        diag.enterDiagnosis("kaak gebroken", new LoginInfo("Doctor 2", "Doctor"));
         DiagnosisInfo[] diaginfo = dc.getUnapprovedSecondOpinions();
         assertEquals(diaginfo.length, 2);
         dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doctor 2", "Doctor"));
@@ -110,32 +100,24 @@ public class DiagnosisControllerTest {
     }
 
     @Test
-    public void disApproveDiagnosisTest() throws CannotChangeException, WrongArgumentListException, ArgumentNotAnsweredException, NoPersonWithNameAndRoleException, NoOpenedPatientFileException, InvalidDiagnosisException, NotLoggedInException, NotAFactoryException, ArgumentConstraintException, ArgumentIsNullException, PatientIsDischargedException, InvalidArgumentException {
+    public void disApproveDiagnosisTest() throws NoPersonWithNameAndRoleException, NoOpenedPatientFileException, InvalidDiagnosisException, NotLoggedInException, ArgumentConstraintException, ArgumentIsNullException, PatientIsDischargedException, InvalidArgumentException, CannotChangeException {
         dc.consultPatientFile("Ruben", wc);
-
-        PublicArgument[] args1 = new PublicArgument[1];
-        PublicArgument[] args2 = new PublicArgument[1];
-        PublicArgument[] args3 = new PublicArgument[1];
-        PublicArgument[] args4 = new PublicArgument[1];
-        args1[0] = new StringArgument("details").enterAnswer("hoofdpijn");
-        args2[0] = new StringArgument("details").enterAnswer("keelpijn");
-        args3[0] = new StringArgument("details").enterAnswer("arm gebroken");
-        args4[0] = new StringArgument("details").enterAnswer("been gebroken");
-        diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args1), new LoginInfo("Doktoor", "Doctor"));
-        diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args2), new LoginInfo("Doctor 2", "Doctor"));
-        diag.enterDiagnosis("Diagnosis with SecondOpinion", new ArgumentList(args3), new LoginInfo("Doctor 2", "Doctor"));
-
-        int lengte2 = dc.getUnapprovedSecondOpinions().length;
         
         DoctorController dc2 = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doctor 2", "Doctor"));
         DiagnosisController diag2 = new DiagnosisController(wc, dc2);
+
+        diag.enterDiagnosis("hoofdpijn", new LoginInfo("Doktoor", "Doctor"));
+        diag.enterDiagnosis("keelpijn", new LoginInfo("Doctor 2", "Doctor"));
+        diag.enterDiagnosis("arm gebroken", new LoginInfo("Doctor 2", "Doctor"));
+
+        int lengte2 = dc.getUnapprovedSecondOpinions().length;
         int lengte1 = dc2.getUnapprovedSecondOpinions().length;
         dc2.consultPatientFile("Ruben", wc);
+        
         DiagnosisInfo[] diaginfo = dc2.getUnapprovedSecondOpinions();
         diag2.disapproveDiagnosis(diaginfo[0], "details blabla");
         
         assertEquals(lengte1 - 1, dc2.getUnapprovedSecondOpinions().length);
-        dc2 = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doktoor", "Doctor"));
-        assertEquals(lengte2 + 1, dc2.getUnapprovedSecondOpinions().length);
+        assertEquals(lengte2 + 1, dc.getUnapprovedSecondOpinions().length);
     }
 }

@@ -8,6 +8,8 @@ import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Factory.Factory;
+import Hospital.Machine.Machine;
+import Hospital.Machine.MachineFactory;
 import Hospital.Schedules.Schedulable;
 import Hospital.Patient.Patient;
 import Hospital.People.LoginInfo;
@@ -17,8 +19,6 @@ import Hospital.People.Unmovable;
 import Hospital.Schedules.Constraints.Preference.Preference;
 import Hospital.Utils;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +37,11 @@ public class World {
      * the factories in this world (for creating machines, diagnoses, etc...)
      */
     private Map<String, Factory> factories;
+    /**
+     * the machines that exist in this world
+     */
+    private Map<String, MachineFactory> machineFactories;
+    
     /**
      * this worldTime
      */
@@ -279,6 +284,18 @@ public class World {
             }
         }
         throw new CannotFindException("Preference");
+    }
+
+    public String[] getMachineFactories() {
+        return machineFactories.keySet().toArray(new String[0]);
+    }
+
+    public MachineFactory getMachineFactory(String machineType) {
+        return machineFactories.get(machineType);
+    }
+
+    void addMachineFactory(MachineFactory machine) {
+        machineFactories.put(machine.getType(), machine);
     }
 
 

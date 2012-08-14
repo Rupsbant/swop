@@ -1,6 +1,6 @@
 package Hospital.Treatments;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.BooleanArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
@@ -112,7 +112,7 @@ public class Medication extends Treatment {
      * Gets the arguments for Medication 
      * @see Hospital.Factory.Result#getResultArguments()
      */
-    public Argument[] getEmptyResultArgumentList() {
+    public PublicArgument[] getEmptyResultArgumentList() {
         PublicArgument[] out = new PublicArgument[2];
         out[0] = new BooleanArgument("Did an abnormal reaction occur?: ");
         out[1] = new StringArgument("Please enter the report: ");
@@ -122,14 +122,14 @@ public class Medication extends Treatment {
     /**
      * @see Hospital.Factory.Result#enterResult(Hospital.Argument.PublicArgument[])
      */
-    public void enterResult(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public void enterResult(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         validateResults(args);
         reaction = (Boolean) Utils.getAnswer(BooleanArgument.class, "Abnormal Reaction", args[0]);
         report = (String) Utils.getAnswer(StringArgument.class, "Report", args[1]);
         setResultEntered();
     }
 
-    public boolean validateResults(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
         }

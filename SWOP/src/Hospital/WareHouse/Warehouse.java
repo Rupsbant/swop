@@ -1,6 +1,6 @@
 package Hospital.WareHouse;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Warehouse.OrderUnavailableException;
@@ -41,7 +41,7 @@ public class Warehouse {
      * @throws WrongArgumentListException the arguments didn't meet the requirements for the item for which this order was made
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
-    public void processOrder(Order order, Argument[] args) throws StockException, WrongArgumentListException, InvalidArgumentException {
+    public void processOrder(Order order, PublicArgument[] args) throws StockException, WrongArgumentListException, InvalidArgumentException {
         if (order == null) {
             throw new ArgumentIsNullException("The order is null");
         }
@@ -146,7 +146,7 @@ public class Warehouse {
      * @return an array of PublicArguments which, when answered, can be used for processing this order
      * @throws StockNotFoundException there was no stock in this warehouse which holds this order
      */
-    public Argument[] getOrderArguments(Order o) throws StockException {
+    public PublicArgument[] getOrderArguments(Order o) throws StockException {
         return getStockOfOrder(o).getArguments();
     }
 }

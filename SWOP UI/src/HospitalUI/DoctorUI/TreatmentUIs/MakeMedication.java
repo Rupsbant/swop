@@ -24,10 +24,11 @@ public class MakeMedication implements RunnableUI {
         BasicAnswerer.singleton.answer(arg, sc);
         PriorityArgument arg2 = new PriorityArgument("Enter the priority of the medication-treatment");
         BasicAnswerer.singleton.answer(arg2, sc);
-        ItemArgument arg3 = tc.getItemArgument();
-        ItemArgumentAnswerer.singleton.answer(arg, sc);
-        String items = arg3.getAnswer();
-        tc.makeMedication(diagnosisInfo, description, arg.getAnswer(), items, arg2.getAnswer());
+        ItemArgument itemArg = tc.getItemArgument();
+        ItemArgumentAnswerer.singleton.answer(itemArg, sc);
+        String items = itemArg.getAnswer();
+        String out = tc.makeMedication(diagnosisInfo, description, arg.getAnswer(), items, arg2.getAnswer());
+        System.out.println(out);
     }
     
     @Override

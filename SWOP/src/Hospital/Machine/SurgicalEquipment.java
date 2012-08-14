@@ -1,16 +1,12 @@
 package Hospital.Machine;
 
-import Hospital.Argument.Argument;
-import Hospital.Argument.CampusInfoArgument;
-import Hospital.Argument.StringArgument;
-import Hospital.Argument.WorldArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.CannotChangeException;
-import Hospital.Utils;
+import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.World.CampusInfo;
 import Hospital.World.World;
 import java.util.logging.Level;
@@ -23,7 +19,7 @@ public class SurgicalEquipment extends Machine implements MachineFactory {
 
     public static final String SURGICAL_EQUIPMENT_FACTORY = "New SurgicalEquipment";
 
-	/**
+    /**
      * Constructor
      * @param id a unique identifier
      * @param location the location of this surgical equipment
@@ -51,14 +47,12 @@ public class SurgicalEquipment extends Machine implements MachineFactory {
      * @throws ArgumentIsNullException If an Argument was null.
      */
     @Override
-    public Machine make(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
-        validate(args);
-        String id = Utils.getAnswer(StringArgument.class, "ID", args[0]);
-        Location location = new Location(Utils.getAnswer(StringArgument.class, "Location", args[1]));
-        CampusInfo info = Utils.getAnswer(CampusInfoArgument.class, "info", args[2]);
-        World w = Utils.getAnswer(WorldArgument.class, "world", args[3]);
+    public Machine make(World w, CampusInfo info, Location location, String id) throws InvalidArgumentException, SchedulableAlreadyExistsException {
         try {
-            return new SurgicalEquipment(id, location).setCampus(w.getCampusFromInfo(info));
+            SurgicalEquipment surgicalEquipment = new SurgicalEquipment(id, location);
+            surgicalEquipment.setCampus(w.getCampusFromInfo(info));
+            w.addSchedulable(surgicalEquipment);
+            return surgicalEquipment;
         } catch (CannotChangeException ex) {
             Logger.getLogger(SurgicalEquipment.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -70,7 +64,7 @@ public class SurgicalEquipment extends Machine implements MachineFactory {
      * @return "New SurgicalEquipment"
      */
     @Override
-    public String getName() {
+    public String getType() {
         return SURGICAL_EQUIPMENT_FACTORY;
     }
 }

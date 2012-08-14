@@ -1,7 +1,7 @@
 package Hospital.People.PeopleFactories;
 
 import Hospital.Utils;
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.CampusInfoArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Argument.WorldArgument;
@@ -22,7 +22,7 @@ public class WarehouseFactory implements  StaffFactory {
      * Creates a WarehouseManager object
      * @see Hospital.Factory.Factory#make(Hospital.Argument.Argument[])
      */
-    public WarehouseManager make(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public WarehouseManager make(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         validate(args);
         String name = (String) Utils.getAnswer(StringArgument.class, "name", args[0]);
         return new WarehouseManager(name);
@@ -31,8 +31,8 @@ public class WarehouseFactory implements  StaffFactory {
     /**
      * @see Hospital.Factory.Factory#getArguments()
      */
-    public Argument[] getEmptyArgumentList() {
-        Argument[] args = new Argument[3];
+    public PublicArgument[] getEmptyArgumentList() {
+        PublicArgument[] args = new PublicArgument[3];
         args[0] = new StringArgument("Enter the name of the warehousemanager: ");
         args[1] = new CampusInfoArgument("Enter the number of the campus");
         args[2] = new WorldArgument();
@@ -47,7 +47,7 @@ public class WarehouseFactory implements  StaffFactory {
         return WAREHOUSE_MANAGER_FACTORY;
     }
 
-    public boolean validate(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public boolean validate(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("Argumentlist is null");
         }

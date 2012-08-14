@@ -13,7 +13,7 @@ import Hospital.Exception.CannotChangeException;
  * @param <T> the type of the answer to this Argument
  */
 @SystemAPI
-public abstract class BasicArgument<T extends Object> implements Argument<T> {
+public abstract class BasicArgument<T extends Object> implements PublicArgument<T> {
 
     /**
      * the question this BasicArgument provides an answer to
@@ -39,7 +39,7 @@ public abstract class BasicArgument<T extends Object> implements Argument<T> {
      * @throws CannotChangeException the question was already answered
      */
     @SystemAPI
-    Argument setAnswer(T ans) throws CannotChangeException {
+    PublicArgument setAnswer(T ans) throws CannotChangeException {
         if (answer != null) {
             throw new CannotChangeException();
         }

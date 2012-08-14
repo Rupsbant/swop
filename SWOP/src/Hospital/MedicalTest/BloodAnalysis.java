@@ -1,6 +1,6 @@
 package Hospital.MedicalTest;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.IntegerArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
@@ -76,7 +76,7 @@ public class BloodAnalysis extends MedicalTest {
      * @see Hospital.Factory.Result#getResultArguments()
      */
     @Override
-    public Argument[] getEmptyResultArgumentList() {
+    public PublicArgument[] getEmptyResultArgumentList() {
         PublicArgument[] out = new PublicArgument[4];
         out[0] = new IntegerArgument("Enter the amount of blood withdrawn: ");
         out[1] = new IntegerArgument("Enter the red cell count: ");
@@ -89,7 +89,7 @@ public class BloodAnalysis extends MedicalTest {
      * @see Hospital.Factory.Result#enterResult(Hospital.Argument.PublicArgument[])
      */
     @Override
-    public void enterResult(Argument[] args)
+    public void enterResult(PublicArgument[] args)
             throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
@@ -104,7 +104,7 @@ public class BloodAnalysis extends MedicalTest {
         this.setResultEntered(true);
     }
 
-    public boolean validateResults(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
         }
@@ -125,7 +125,7 @@ public class BloodAnalysis extends MedicalTest {
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      * @throws ArgumentConstraintException the amount was zero or less
      */
-    private int getPositiveInteger(Argument publicArgument) throws WrongArgumentListException, InvalidArgumentException {
+    private int getPositiveInteger(PublicArgument publicArgument) throws WrongArgumentListException, InvalidArgumentException {
         int temp = (Integer) Utils.getAnswer(IntegerArgument.class, "The white bloodcell count.", publicArgument);
         if (temp <= 0) {
             throw new ArgumentConstraintException("white cell count must be > 0 !");

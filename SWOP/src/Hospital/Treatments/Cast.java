@@ -1,6 +1,6 @@
 package Hospital.Treatments;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
@@ -71,7 +71,7 @@ public class Cast extends Treatment {
      * Returns the empty arguments for the result.
      * @return Arguments to enter the result.
      */
-    public Argument[] getEmptyResultArgumentList() {
+    public PublicArgument[] getEmptyResultArgumentList() {
         PublicArgument[] out = new PublicArgument[1];
         out[0] = new StringArgument("Insert the report: ");
         return out;
@@ -80,13 +80,13 @@ public class Cast extends Treatment {
     /**
      * @see Hospital.Factory.Result#enterResult(Hospital.Argument.PublicArgument[])
      */
-    public void enterResult(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public void enterResult(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         validateResults(args);
         report = (String) Utils.getAnswer(StringArgument.class, "Report", args[0]);
         setResultEntered();
     }
 
-    public boolean validateResults(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
         }

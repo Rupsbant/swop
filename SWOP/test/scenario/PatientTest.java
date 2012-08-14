@@ -61,9 +61,7 @@ public class PatientTest {
         DoctorController dc = (DoctorController) w.login(w.getCampuses().get(0),login);
         dc.consultPatientFile("Jeroen", w);
         DiagnosisController diag = new DiagnosisController(w, dc);
-        args = new PublicArgument[1];
-        args[0] = new StringArgument("details").enterAnswer("details blabla");
-        System.out.println(diag.enterDiagnosis("Diagnosis", new ArgumentList(args), null));
+        System.out.println(diag.enterDiagnosis("details blabla", null));
     }
 
     public LoginInfo login(String role, String name) {

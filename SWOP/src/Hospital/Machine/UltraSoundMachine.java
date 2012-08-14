@@ -1,20 +1,13 @@
 package Hospital.Machine;
 
-import Hospital.Argument.Argument;
-import Hospital.Argument.CampusInfoArgument;
-import Hospital.Argument.StringArgument;
-import Hospital.Argument.WorldArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.CannotChangeException;
-import Hospital.Utils;
 import Hospital.World.CampusInfo;
 import Hospital.World.World;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**.
  * Ultrasound machine used in medical tests
@@ -51,17 +44,11 @@ public class UltraSoundMachine extends Machine implements MachineFactory {
      * @throws ArgumentIsNullException If one of the arguments was null.
      */
     @Override
-    public Machine make(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
-        validate(args);
-        String id = Utils.getAnswer(StringArgument.class, "ID", args[0]);
-        Location location = new Location(Utils.getAnswer(StringArgument.class, "Location", args[1]));
-        CampusInfo info = Utils.getAnswer(CampusInfoArgument.class, "info", args[2]);
-        World w = Utils.getAnswer(WorldArgument.class, "world", args[3]);
+    public Machine make(World w, CampusInfo info, Location location, String id) throws InvalidArgumentException {
         try {
             return new UltraSoundMachine(id, location).setCampus(w.getCampusFromInfo(info));
         } catch (CannotChangeException ex) {
-            Logger.getLogger(BloodAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            throw new Error("Cannot happen");
         }
     }
 
@@ -70,7 +57,7 @@ public class UltraSoundMachine extends Machine implements MachineFactory {
      * @return "New UltraSoundMachine"
      */
     @Override
-    public String getName() {
+    public String getType() {
         return ULTRA_SOUND_MACHINE_FACTORY;
     }
 }

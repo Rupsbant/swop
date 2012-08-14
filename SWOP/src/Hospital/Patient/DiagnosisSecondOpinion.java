@@ -3,6 +3,8 @@ package Hospital.Patient;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.People.Doctor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A diagnosis which requires a second opinion
@@ -28,11 +30,7 @@ public class DiagnosisSecondOpinion extends Diagnosis {
     public DiagnosisSecondOpinion(String diagnoseDetails, Doctor originalDoctor, Doctor secondDoctor) throws ArgumentIsNullException {
         super(diagnoseDetails, originalDoctor);
         this.setSecondOpinion(secondDoctor);
-        try {
-            this.setApproved(false);
-        } catch (CannotDoException ex) {
-            throw new Error("This should not happen");
-        }
+        this.setApproved(false);
     }
 
     /**
@@ -71,9 +69,13 @@ public class DiagnosisSecondOpinion extends Diagnosis {
      * @param valid whether The diagnosis is approved or not.
      * @throws CannotDoException the associated treatment could not be (un)scheduled
      */
-    public final String setApproved(Boolean valid) throws CannotDoException {
+    public final String setApproved(Boolean valid) {
         this.approved = valid;
-        return updateState();
+        try {
+            return updateState();
+        } catch (CannotDoException ex) {
+            return "An error occured";
+        }
     }
 
     /**

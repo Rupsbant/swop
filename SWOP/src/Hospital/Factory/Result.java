@@ -1,6 +1,6 @@
 package Hospital.Factory;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 
@@ -13,7 +13,7 @@ public interface Result {
      * Gets the arguments of this type of Result
      * @return an array of PublicArguments which, when answered, can be used for entering the details of a Result
      */
-    public Argument[] getEmptyResultArgumentList();
+    public PublicArgument[] getEmptyResultArgumentList();
 
     /**
      * Enters the details of the result with the given arguments.
@@ -22,7 +22,7 @@ public interface Result {
      * @throws WrongArgumentListException the given list of arguments did not match this type of Result
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
-    public void enterResult(Argument[] args) throws WrongArgumentListException, InvalidArgumentException;
+    public void enterResult(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException;
 
     /**
      * Validates the argumentList for this factory.
@@ -31,7 +31,7 @@ public interface Result {
      * @throws WrongArgumentListException the given list of arguments did not match this type of Result
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
-    public boolean validateResults(Argument[] args) throws WrongArgumentListException, InvalidArgumentException;
+    public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException;
 
     /**
      * Checks whether the details of the result are entered

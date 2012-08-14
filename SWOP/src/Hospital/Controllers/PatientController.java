@@ -1,6 +1,6 @@
 package Hospital.Controllers;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
@@ -117,7 +117,7 @@ public class PatientController {
     public ArgumentList getFactoryArguments(String factoryName) throws NotLoggedInException, NotAFactoryException {
         nc.checkLoggedIn();
         try {
-            Argument[] args = wc.getWorld().getFactory(PatientFactory.class, factoryName).getEmptyArgumentList();
+            PublicArgument[] args = wc.getWorld().getFactory(PatientFactory.class, factoryName).getEmptyArgumentList();
             return new ArgumentList(args);
         } catch (ArgumentIsNullException ex) {
             throw new Error("Invalid state, args should not be null, class is not null");

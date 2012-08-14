@@ -19,7 +19,7 @@ public class SolverAdapter {
         solver.setCampusDecider(campus);
         solver.setConstaints(constraints);
         solver.setScheduleGroups(groups);
-        solver.setTimeDelay(delayed);
+        solver.setDelayedTimeLength(delayed);
         solver.solve();
         return new AppointmentResult(solver.getAttendees(), solver.getCampus(), solver.getChosenTime(), delayed.getLength());
     }

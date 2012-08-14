@@ -1,6 +1,6 @@
 package Hospital.WareHouse.Items;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.TimeArgument;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
@@ -44,7 +44,7 @@ public class Aspirin extends MedicationItem {
     /**
      * @see Hospital.WareHouse.ItemFactory#clone(Hospital.Argument.Argument[])
      */
-    public Item clone(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public Item clone(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args.length == 0) {
             return clone();
         }

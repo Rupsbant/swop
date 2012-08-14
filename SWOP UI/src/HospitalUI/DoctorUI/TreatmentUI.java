@@ -11,6 +11,8 @@ import Hospital.Exception.NotLoggedInException;
 import HospitalUI.DoctorUI.TreatmentUIs.MakeCast;
 import HospitalUI.DoctorUI.TreatmentUIs.RunnableUI;
 import Hospital.Exception.Warehouse.StockException;
+import HospitalUI.DoctorUI.TreatmentUIs.MakeMedication;
+import HospitalUI.DoctorUI.TreatmentUIs.MakeSurgery;
 import HospitalUI.MainUI.UtilsUI;
 
 import java.util.Scanner;
@@ -21,7 +23,9 @@ public class TreatmentUI {
     private WorldController wc;
     private TreatmentController tc;
     private RunnableUI[] treatments = new RunnableUI[]{
-        new MakeCast()
+        new MakeCast(),
+        new MakeMedication(),
+        new MakeSurgery()
     };
 
     public TreatmentUI(DoctorController dc, WorldController wc) {
@@ -49,7 +53,7 @@ public class TreatmentUI {
         }
         RunnableUI chosen = treatments[chosenInt - 1];
         try {
-            chosen.run(sc, tc, infos[diagnosisNumber]);
+            chosen.run(sc, tc, infos[diagnosisNumber - 1]);
         } catch (InvalidDiagnosisException ex) {
             System.out.println("The diagnosisinfo was invalid, this should not happen.");
         } catch (InvalidArgumentException ex) {

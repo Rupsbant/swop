@@ -1,6 +1,6 @@
 package Hospital.WareHouse.Items;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.WareHouse.Item;
 
 /**
@@ -29,7 +29,7 @@ public class Plaster extends Item {
     /**
      * @see Hospital.WareHouse.ItemFactory#clone(Hospital.Argument.Argument[])
      */
-    public Item clone(Argument[] args) {
+    public Item clone(PublicArgument[] args) {
         return clone();
     }
 

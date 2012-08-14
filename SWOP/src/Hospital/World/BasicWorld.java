@@ -7,8 +7,6 @@ import Hospital.Machine.Location;
 import Hospital.Machine.SurgicalEquipment;
 import Hospital.Machine.UltraSoundMachine;
 import Hospital.Machine.XRayMachine;
-import Hospital.Patient.DiagnosisFactory;
-import Hospital.Patient.DiagnosisSecondOpinionFactory;
 import Hospital.Patient.Patient;
 import Hospital.Patient.PatientFactory;
 import Hospital.People.Doctor;
@@ -55,12 +53,10 @@ public class BasicWorld {
         w.addFactory(new DoctorFactory());
         w.addFactory(new WarehouseFactory());
         w.addFactory(new NurseFactory());
-        w.addFactory(new DiagnosisFactory());
-        w.addFactory(new DiagnosisSecondOpinionFactory());
-        w.addFactory(new XRayMachine("Singleton ProtoType 1", null));
-        w.addFactory(new UltraSoundMachine("Singleton ProtoType 2", null));
-        w.addFactory(new BloodAnalyzer("Singleton ProtoType 3", null));
-        w.addFactory(new SurgicalEquipment("Singleton ProtoType 4", null));
+        w.addMachineFactory(new XRayMachine("Singleton ProtoType 1", null));
+        w.addMachineFactory(new UltraSoundMachine("Singleton ProtoType 2", null));
+        w.addMachineFactory(new BloodAnalyzer("Singleton ProtoType 3", null));
+        w.addMachineFactory(new SurgicalEquipment("Singleton ProtoType 4", null));
 
         w.addPreference(new StayShiftPreference(null));
         w.addPreference(new ChangeLocationPreference(null));

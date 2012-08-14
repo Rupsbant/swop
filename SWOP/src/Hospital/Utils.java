@@ -1,6 +1,6 @@
 package Hospital;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +99,7 @@ public class Utils {
      * @throws WrongArgumentListException the given Argument differs from the type specified by clazz
      * @throws ArgumentNotAnsweredException the given Argument was not yet anwered
      */
-    public static <O extends Object, S extends Argument<O>> O getAnswer(Class<S> clazz, String description, Argument arg)
+    public static <O extends Object, S extends PublicArgument<O>> O getAnswer(Class<S> clazz, String description, PublicArgument arg)
             throws ArgumentIsNullException, WrongArgumentListException, ArgumentNotAnsweredException {
         if (arg == null) {
             throw new ArgumentIsNullException("Argument \"" + description + "\" was null");

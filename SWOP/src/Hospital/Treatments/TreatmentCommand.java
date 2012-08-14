@@ -1,15 +1,11 @@
 package Hospital.Treatments;
 
 import Hospital.Factory.Command;
-import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Exception.Patient.InvalidDiagnosisException;
-import Hospital.Exception.NotAFactoryException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.WrongTreatmentException;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.Patient.Diagnosis;

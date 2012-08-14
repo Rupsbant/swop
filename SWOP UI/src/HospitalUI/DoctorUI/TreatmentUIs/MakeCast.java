@@ -20,7 +20,8 @@ public class MakeCast implements RunnableUI {
         int duration = sc.nextInt();
         PriorityArgument arg = new PriorityArgument("Enter the priority of the cast");
         BasicAnswerer.singleton.answer(arg, sc);
-        tc.makeCast(diagnosisInfo, bodyPart, duration, arg.getAnswer());
+        String out = tc.makeCast(diagnosisInfo, bodyPart, duration, arg.getAnswer());
+        System.out.println(out);
     }
     
     @Override

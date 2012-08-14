@@ -31,17 +31,14 @@ public class EnterDiagnosisUI {
     }
 
     public void run(Scanner sc) throws NotLoggedInException, NoOpenedPatientFileException, PatientIsDischargedException {
-        String[] names = diagnC.getAvailableDiagnosisFactories();
+        String[] names = {"Normal diagnosis", "Diagnosis that needs approval"};
         int factoryPos = UtilsUI.selectCommand(sc, names);
         if (factoryPos == 0) {
             return;
         }
-        String factoryName = names[factoryPos - 1];
         try {
-            ArgumentList args = diagnC.getDiagnosisArguments(factoryName);
-            UtilsUI.answerArguments(sc, args.getPublicArguments());
             LoginInfo doctorInfo = null;
-            if (factoryPos == 2) { //TODO fix this
+            if (factoryPos == 2) {
                 LoginInfo[] secondOpinionAvailable = diagnC.getAvailableSecondOpinionDoctors();
                 if (secondOpinionAvailable.length == 0) {
                     System.out.println("No doctors available. Aborting!");
@@ -54,18 +51,14 @@ public class EnterDiagnosisUI {
                 }
                 doctorInfo = secondOpinionAvailable[secondOpinionPos - 1];
             }
-            String out = diagnC.enterDiagnosis(factoryName, args, doctorInfo);
+            System.out.println("Please enter the content of the diagnosis");
+            String content = sc.nextLine();
+            String out = diagnC.enterDiagnosis(content, doctorInfo);
             System.out.println("Diagnosis entered: \n" + out);
-        } catch (WrongArgumentListException e) {
-            System.out.println("Wrong argument list exception.");
         } catch (InvalidArgumentException e) {
             Logger.getLogger(OrderMedicalUI.class.getName()).log(Level.SEVERE, null, e);
         } catch (NoPersonWithNameAndRoleException e) {
             System.out.println("No person with name and role exception.");
-        } catch (NotAFactoryException e) {
-            //This should not happen.
-            //The factory was before the world was, and will be after it is destroyed...
-            Logger.getLogger(EnterDiagnosisUI.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }

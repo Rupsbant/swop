@@ -2,15 +2,11 @@ package Hospital.Controllers;
 
 import Hospital.SystemAPI;
 import Hospital.Exception.Arguments.WrongArgumentListException;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Exception.Patient.InvalidDiagnosisException;
 import Hospital.Exception.Patient.PatientIsDischargedException;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Patient.DiagnosisInfo;
-import Hospital.Argument.Argument;
-import Hospital.Argument.DoctorArgument;
-import Hospital.Argument.StringArgument;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
@@ -19,7 +15,7 @@ import Hospital.Exception.NotLoggedInException;
 import Hospital.Patient.Diagnosis;
 import Hospital.Patient.DiagnosisApproveCommand;
 import Hospital.Patient.DiagnosisCommand;
-import Hospital.Patient.DiagnosisFactory;
+import Hospital.Patient.DiagnosisCreator;
 import Hospital.Patient.DiagnosisSecondOpinion;
 import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
@@ -65,7 +61,7 @@ public class DiagnosisController {
 
     /**
      * This creates a diagnosis in the system with the given Arguments
-     * @param factoryName The type of diagnosis to be created
+     * @param content The type of diagnosis to be created
      * @param args The arguments needed to instantiate the diagnosis
      * @param secondOpinion the LoginInfo of the doctor to ask a second opinion from
      * @return The details of the created diagnosis
@@ -78,14 +74,12 @@ public class DiagnosisController {
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
     @SystemAPI
-    public String enterDiagnosis(String factoryName, ArgumentList args, LoginInfo secondOpinion)
+    public String enterDiagnosis(String content, LoginInfo secondOpinion)
             throws InvalidArgumentException,
             NoPersonWithNameAndRoleException,
             NoOpenedPatientFileException,
             PatientIsDischargedException,
-            NotLoggedInException,
-            NotAFactoryException,
-            WrongArgumentListException {
+            NotLoggedInException {
         dc.checkLoggedIn();
         Doctor secondDoc = null;
         if (secondOpinion != null) {
@@ -93,13 +87,9 @@ public class DiagnosisController {
                 throw new NoPersonWithNameAndRoleException();
             }
             secondDoc = wc.getWorld().getPersonByName(Doctor.class, secondOpinion.getName());
-        }
-        DiagnosisCommand diaC = new DiagnosisCommand(wc.getWorld(), dc.getUser(), factoryName, secondDoc, args.getAllArguments());
-        try {
-            return dc.addCommand(diaC);
-        } catch (CannotDoException ex) {
-            Logger.getLogger(DiagnosisController.class.getName()).log(Level.SEVERE, "Execute should work!", ex);
-            return "Error";
+            return DiagnosisCreator.SINGLETON.makeSecondOpinionDiagnosis(wc.getWorld(), content, dc.getUser(), secondDoc);
+        } else {
+            return DiagnosisCreator.SINGLETON.makeNormalDiagnosis(wc.getWorld(), content, dc.getUser());
         }
     }
 
@@ -124,21 +114,12 @@ public class DiagnosisController {
         if (dc.getUser().getOpenedPatient().isDischarged()) {
             throw new PatientIsDischargedException();
         }
-        List<Patient> patientList = wc.getWorld().getResourceOfClass(Patient.class);
-        DiagnosisSecondOpinion diagsec = null;
-        for (Patient p : patientList) {
-            try {
-                diagsec = ((DiagnosisSecondOpinion) p.isValidDiagnosisInfo(diag));
-            } catch (InvalidDiagnosisException ex) {
-                //try next patient.
-            }
-        }
+        DiagnosisSecondOpinion diagsec = (DiagnosisSecondOpinion) dc.getUser().getOpenedPatient().isValidDiagnosisInfo(diag);
         if (diagsec == null) {
             throw new InvalidDiagnosisException("Diagnosis not found in all patients");
         }
         DiagnosisApproveCommand diaAppC = new DiagnosisApproveCommand(diagsec, dc.getUser());
-        dc.addCommand(diaAppC);
-        return diaAppC.execute();
+        return dc.addCommand(diaAppC);
     }
 
     /**
@@ -158,37 +139,24 @@ public class DiagnosisController {
     @SystemAPI
     public String disapproveDiagnosis(DiagnosisInfo diag, String details)
             throws CannotChangeException,
-            WrongArgumentListException,
             NoPersonWithNameAndRoleException,
             NoOpenedPatientFileException,
             InvalidDiagnosisException,
             NotLoggedInException,
-            NotAFactoryException,
-            InvalidArgumentException {
+            InvalidArgumentException, 
+            PatientIsDischargedException {
         dc.checkLoggedIn();
         if (dc.getUser().getOpenedPatient().isDischarged()) {
             throw new Error("Patient can't be discharged with unapproved diagnosis");
-            //throw new PatientIsDischargedException();
         }
         Diagnosis diagnosis = dc.getUser().getOpenedPatient().isValidDiagnosisInfo(diag);
         DiagnosisSecondOpinion diagsec = ((DiagnosisSecondOpinion) diagnosis);
         if (!dc.getUser().getSecondOpinions().contains(diagsec)) {
             throw new InvalidDiagnosisException("Diagnosis was not found in doctor");
         }
-        try {
-            Argument[] args = new Argument[3];
-            args[0] = (new StringArgument("Controller added")).enterAnswer(details);
-            args[1] = (new DoctorArgument("Controller added")).setAnswer(diagsec.getSecondOpinion());
-            args[2] = (new DoctorArgument("Controller added")).setAnswer(diagsec.getOriginalDoctor());
-            dc.getUser().removeSecondOpinion(diagsec);
-            DiagnosisCommand diaC = new DiagnosisCommand(wc.getWorld(), dc.getUser(), "Diagnosis with SecondOpinion", diagsec.getOriginalDoctor(), args);
-            diagsec.setApproved(false);
-            return diaC.execute();
-        } catch (PatientIsDischargedException ex) {
-            throw new Error("Patient can't be discharged with unaproved diagnosis");
-        } catch (CannotDoException ex) {
-            throw new Error("First time should always succeed");
-        }
+        dc.getUser().removeSecondOpinion(diagsec);
+        diagsec.setApproved(false);
+        return DiagnosisCreator.SINGLETON.makeSecondOpinionDiagnosis(wc.getWorld(), details, dc.getUser(), diagsec.getOriginalDoctor());
     }
 
     /**
@@ -207,37 +175,5 @@ public class DiagnosisController {
             }
         }
         return out.toArray(new LoginInfo[0]);
-    }
-
-    /**
-     * Used to find all possible types of diagnosis
-     * @return an array of strings containing the names of all types of diagnosis-factory
-     * @throws NotLoggedInException the doctor is not logged in
-     */
-    @SystemAPI
-    public String[] getAvailableDiagnosisFactories() throws NotLoggedInException {
-        dc.checkLoggedIn();
-        try {
-            return wc.getAvailableFactories(DiagnosisFactory.class).toArray(new String[0]);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null");
-        }
-    }
-
-    /**
-     * Gets the required arguments to a type of diagnosis
-     * @param factoryName the type of diagnosis
-     * @return an array of PublicArguments which, when answered, can be used to create a diagnosis of the given type
-     * @throws NotLoggedInException the doctor is not logged in
-     * @throws NotAFactoryException the given type of diagnosis does not exist in this world
-     */
-    @SystemAPI
-    public ArgumentList getDiagnosisArguments(String factoryName) throws NotLoggedInException, NotAFactoryException {
-        dc.checkLoggedIn();
-        try {
-            return wc.getFactoryArguments(DiagnosisFactory.class, factoryName);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null");
-        }
     }
 }

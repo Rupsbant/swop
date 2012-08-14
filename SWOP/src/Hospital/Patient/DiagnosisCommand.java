@@ -1,12 +1,9 @@
 package Hospital.Patient;
 
-import Hospital.Argument.Argument;
-import Hospital.Argument.DoctorArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
-import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Exception.NotAFactoryException;
@@ -15,7 +12,6 @@ import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Factory.Command;
 import Hospital.People.Doctor;
 import Hospital.World.World;
-import java.util.Arrays;
 
 /**
  * Creates a diagnosis (with or without second opinion), and undoes that later if necessary
@@ -54,13 +50,11 @@ public class DiagnosisCommand implements Command {
      * @throws ArgumentConstraintException the given argument was incorrect
      * @throws ArgumentIsNullException the given argument was null
      */
-    public DiagnosisCommand(World world, Doctor doctor, String factoryName, Doctor secondDoc, Argument[] args)
+    public DiagnosisCommand(World world, Doctor doctor, Diagnosis diagnosis, Doctor approvalOf)
             throws NoOpenedPatientFileException,
             PatientIsDischargedException,
-            NotAFactoryException,
-            WrongArgumentListException,
             InvalidArgumentException {
-        secondOpinion = secondDoc;
+        secondOpinion = approvalOf;
         if (doctor == null) {
             throw new ArgumentIsNullException("Doctor was null");
         }
@@ -68,30 +62,12 @@ public class DiagnosisCommand implements Command {
         if (doctor.getOpenedPatient().isDischarged()) {
             throw new PatientIsDischargedException();
         }
-        DiagnosisFactory factory = null;
-        try {
-            factory = world.getFactory(DiagnosisFactory.class, factoryName);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null!");
-        }
-        try {
-            Argument[] out = new Argument[2];
-            System.arraycopy(args, 0, out, 0, 1);
-            out[1] = new DoctorArgument("Controller added").setAnswer(doctor);
-            if (!factory.isSimpleDiagnosis()) {
-                if (secondDoc == null) {
-                    throw new ArgumentIsNullException("SecondOpinionDoctor needed!");
-                }
-                out = Arrays.copyOf(out, 3);
-                out[2] = new DoctorArgument("Controller added").setAnswer(secondDoc);
-            }
-
-            diagnosis = factory.make(out);
-
-            toAdd = doctor.getOpenedPatient();
-        } catch (CannotChangeException e) {
-            throw new Error("Can't set the answer of a newly created argument!");
-        }
+        this.diagnosis = diagnosis;
+        toAdd = doctor.getOpenedPatient();
+    }
+    public DiagnosisCommand(World world, Doctor doctor, Diagnosis diagnosis) 
+            throws NoOpenedPatientFileException, PatientIsDischargedException, InvalidArgumentException{
+        this(world, doctor, diagnosis, null);
     }
 
     /**

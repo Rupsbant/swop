@@ -1,12 +1,5 @@
 package Hospital.Machine;
 
-import Hospital.Argument.Argument;
-import Hospital.Argument.CampusInfoArgument;
-import Hospital.Argument.StringArgument;
-import Hospital.Argument.WorldArgument;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.InvalidArgumentException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.People.Unmovable;
 import Hospital.Schedules.TimeFrameConstraint;
@@ -14,7 +7,6 @@ import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.SchedulableVisitor;
 import Hospital.Schedules.Schedule;
 import Hospital.Schedules.Constraints.Implementation.UnmovableConstraint;
-import Hospital.Utils;
 import Hospital.World.Campus;
 import java.util.Arrays;
 import java.util.List;
@@ -104,33 +96,6 @@ public abstract class Machine implements Schedulable, Unmovable {
         int hash = 5;
         hash = 29 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
-    }
-
-    /**
-     * Gets the arguments used for the creation of a machine
-     * @return an array of Arguments which, when answered, can be used for the creation of a machine
-     */
-    public Argument[] getEmptyArgumentList() {
-        Argument[] out = new Argument[4];
-        out[0] = new StringArgument("Enter the id of the machine");
-        out[1] = new StringArgument("Enter the location of the machine");
-        out[2] = new CampusInfoArgument("Enter the number of the campus");
-        out[3] = new WorldArgument();
-        return out;
-    }
-
-    public boolean validate(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
-        if (args == null) {
-            throw new ArgumentIsNullException("ArgumentList is null");
-        }
-        if (args.length != 4) {
-            throw new WrongArgumentListException("Length of list is wrong");
-        }
-        Utils.getAnswer(StringArgument.class, "ID", args[0]);
-        Utils.getAnswer(StringArgument.class, "Location", args[1]);
-        Utils.getAnswer(CampusInfoArgument.class, "Campus", args[2]);
-        Utils.getAnswer(WorldArgument.class, "World", args[3]);
-        return true;
     }
 
     /**

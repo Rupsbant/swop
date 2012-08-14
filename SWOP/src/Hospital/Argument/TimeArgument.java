@@ -35,7 +35,7 @@ public class TimeArgument extends BasicArgument<Time> implements PublicArgument<
         try {
             setAnswer(new Time(numbers));
         } catch (ArgumentIsNullException ex) {
-        	Logger.getLogger(TimeArgument.class.getName()).log(Level.SEVERE, "Numbers is not null",ex);
+        	throw new Error("This cannot happen");
         } catch (WrongArgumentListException ex) {
                 throw new IllegalArgumentException(ex);
         }

@@ -1,6 +1,6 @@
 package Hospital.Controllers;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.WorldPopulatedArgument;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -16,14 +16,14 @@ import java.util.List;
 @SystemAPI
 public class ArgumentList {
 
-    private Argument[] args;
+    private PublicArgument[] args;
 
     /**
      * Constructor of this list
      * @param args the list of arguments
      * @throws ArgumentIsNullException if args is null
      */
-    public ArgumentList(Argument[] args) throws ArgumentIsNullException {
+    public ArgumentList(PublicArgument[] args) throws ArgumentIsNullException {
         if (args == null) {
             throw new ArgumentIsNullException("Can't make an ArgumentList with a null list");
         }
@@ -45,7 +45,7 @@ public class ArgumentList {
      * @return the argument list
      */
     @SystemAPI
-    Argument[] getAllArguments() {
+    PublicArgument[] getAllArguments() {
         return this.args.clone();
     }
 
@@ -67,7 +67,7 @@ public class ArgumentList {
      * @param args the arguments to add.
      * @return this
      */
-    ArgumentList addArguments(Argument[] args) {
+    ArgumentList addArguments(PublicArgument[] args) {
         if (args != null) {
             this.args = Utils.merge(this.args, args);
         }

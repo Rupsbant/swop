@@ -1,6 +1,6 @@
 package Hospital.MedicalTest;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Machine.Machine;
@@ -19,13 +19,13 @@ public class MedicalTestDummy extends MedicalTest {
     }
 
     @Override
-    public Argument[] getEmptyResultArgumentList() {
+    public PublicArgument[] getEmptyResultArgumentList() {
         // TODO Auto-generated method stub
-        return new Argument[0];
+        return new PublicArgument[0];
     }
 
     @Override
-    public void enterResult(Argument[] args)
+    public void enterResult(PublicArgument[] args)
             throws WrongArgumentListException, InvalidArgumentException {
         validateResults(args);
     }
@@ -60,7 +60,7 @@ public class MedicalTestDummy extends MedicalTest {
         return 10;
     }
 
-    public boolean validateResults(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args.length > 0) {
             throw new WrongArgumentListException("LONG ARRAY IS LOOOOOOOONG");
         }

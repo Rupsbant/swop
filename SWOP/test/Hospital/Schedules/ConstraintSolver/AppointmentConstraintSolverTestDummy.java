@@ -78,7 +78,7 @@ public class AppointmentConstraintSolverTestDummy {
         SingleSchedulableGroup single2 = new SingleSchedulableGroup(d);
         List<ScheduleGroup> groups = Arrays.asList(single1, single2);
         instance.setScheduleGroups(groups);
-        instance.setTimeDelay(new DelayedTimeLength(30, 20) {
+        instance.setDelayedTimeLength(new DelayedTimeLength(30, 20) {
             @Override
             public Time getDelayedTime() {
                 return new Time(2011, 11, 8, 9, 0);
@@ -102,7 +102,7 @@ public class AppointmentConstraintSolverTestDummy {
         instance.setCampusDecider(new GetC(campusNorth));
         constraints.add(new PriorityConstraint(new HighLowPriority(false)));
         instance.setScheduleGroups(groups);
-        instance.setTimeDelay(new DelayedTimeLength(30, 20) {
+        instance.setDelayedTimeLength(new DelayedTimeLength(30, 20) {
             @Override
             public Time getDelayedTime() {
                 return new Time(2011, 11, 8, 9, 0);
@@ -125,7 +125,7 @@ public class AppointmentConstraintSolverTestDummy {
         constraints.add(new PriorityConstraint(new HighLowPriority(false)));
         instance.setScheduleGroups(groups);
         
-        instance.setTimeDelay(new DelayedTimeLength(30, 20) {
+        instance.setDelayedTimeLength(new DelayedTimeLength(30, 20) {
             @Override
             public Time getDelayedTime() {
                 return new Time(2011, 11, 8, 9, 20);

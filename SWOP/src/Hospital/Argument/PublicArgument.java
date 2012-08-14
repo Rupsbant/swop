@@ -1,14 +1,16 @@
 package Hospital.Argument;
 
-import Hospital.SystemAPI;
 import Hospital.Exception.CannotChangeException;
+import Hospital.SystemAPI;
 
 /**
- * Public arguments contain a method to parse the string put in by the user.
- * @param <T> the type of the answer to this PublicArgument
+ * This class holds the answer to some information that is needed.
+ * A question is given for information purposes.
+ * @author SWOP-12
+ * @param <T> The type of the argument to be answered
  */
 @SystemAPI
-public interface PublicArgument<T extends Object> extends Argument<T> {
+public interface PublicArgument<T extends Object> {
 	
     /**
      * This method parses a String input to the correct ArgumentType
@@ -19,4 +21,18 @@ public interface PublicArgument<T extends Object> extends Argument<T> {
      */
 	@SystemAPI
     PublicArgument enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException;
+
+    /**
+     * This returns the answer that was entered, null if no answer was given.
+     * @return answer to the question
+     */
+    @SystemAPI
+    T getAnswer();
+
+    /**
+     * This returns the question to be answered. This can be translated with a map if necessary.
+     * @return The question.
+     */
+    @SystemAPI
+    String getQuestion();
 }

@@ -9,8 +9,10 @@ import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
+import Hospital.Machine.Location;
 import Hospital.Machine.Machine;
 import Hospital.Machine.MachineFactory;
+import Hospital.World.CampusInfo;
 
 /**
  * Used to perform Machine-related actions.
@@ -21,11 +23,11 @@ public class MachineController {
     /**
      * the world to perform these actions in
      */
-    WorldController wc;
+    private WorldController wc;
     /**
      * the administrator performing these actions
      */
-    AdministratorController admin;
+    private AdministratorController admin;
 
     /**
      * Constructor
@@ -37,23 +39,6 @@ public class MachineController {
     public MachineController(WorldController wc, AdministratorController admin) throws ArgumentIsNullException {
         setAdministratorController(admin);
         setWorldController(wc);
-    }
-
-    /**
-     * Gets the Arguments needed for the creation of a type of Machine.
-     * @param machine the type of machine to get the arguments from
-     * @return an array of PublicArguments which, when answered, can be used for the creation of a new machine of this type
-     * @throws NotLoggedInException the administrator is not logged in
-     * @throws NotAFactoryException the given type of machine was invalid
-     */
-    @SystemAPI
-    public ArgumentList getMachineArguments(String machine) throws NotLoggedInException, NotAFactoryException {
-        admin.checkLoggedIn();
-        try {
-            return wc.getFactoryArguments(MachineFactory.class, machine);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null");
-        }
     }
 
     /**
@@ -69,24 +54,15 @@ public class MachineController {
      * @throws CannotChangeException 
      */
     @SystemAPI
-    public String makeMachine(String machine, ArgumentList argv)
+    public String makeMachine(String machineType, String id, Location location, CampusInfo info)
             throws NotAFactoryException,
             NotLoggedInException,
             WrongArgumentListException,
             SchedulableAlreadyExistsException,
             InvalidArgumentException, CannotChangeException {
         admin.checkLoggedIn();
-        if (argv == null) {
-            throw new ArgumentIsNullException("ArgumentList was null");
-        }
-        MachineFactory factory;
-        try {
-            factory = wc.getWorld().getFactory(MachineFactory.class, machine);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null");
-        }
-        Machine newTest = factory.make(argv.getAllArguments());
-        wc.getWorld().addSchedulable(newTest);
+        MachineFactory factory = wc.getWorld().getMachineFactory(machineType);
+        Machine newTest = factory.make(wc.getWorld(), info, location, id);
         return newTest.toString();
     }
 
@@ -96,11 +72,7 @@ public class MachineController {
      */
     @SystemAPI
     public String[] getAvailableMachineFactories() {
-        try {
-            return wc.getAvailableFactories(MachineFactory.class).toArray(new String[0]);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null");
-        }
+        return wc.getWorld().getMachineFactories();
     }
 
     /**

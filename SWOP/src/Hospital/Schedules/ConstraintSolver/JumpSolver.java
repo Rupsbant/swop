@@ -127,7 +127,7 @@ public class JumpSolver implements AppointmentConstraintSolver {
         return output_time;
     }
 
-    public void setTimeDelay(DelayedTimeLength tf) {
+    public void setDelayedTimeLength(DelayedTimeLength tf) {
         this.startTime = tf;
     }
 

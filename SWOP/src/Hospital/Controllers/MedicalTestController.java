@@ -47,14 +47,7 @@ public class MedicalTestController {
      * @throws InvalidArgumentException thrown if one of the arguments is null, or if the answer does not satisfy the constraints.
      */
     public String makeBloodAnalysis(String focus, int numberOfImages, Priority p) throws NoOpenedPatientFileException, ArgumentConstraintException, InvalidArgumentException {
-        Patient openedPatient = dc.getUser().getOpenedPatient();
-        MedicalTest med = MedicalTestCreator.SINGLETON.makeBloodAnalysis(focus, numberOfImages);
-        MedicalTestCommand medCom = new MedicalTestCommand(wc.getWorld(), openedPatient, med, p);
-        try {
-            return dc.addCommand(medCom);
-        } catch (CannotDoException ex) {
-            throw new Error("New command was not done: " + ex);
-        }
+        return MedicalTestCreator.SINGLETON.makeBloodAnalysis(wc.getWorld(), dc.getUser(), p, focus, numberOfImages);
     }
 
     /**
@@ -65,14 +58,7 @@ public class MedicalTestController {
      * @throws InvalidArgumentException thrown if one of the arguments is null, or if the answer does not satisfy the constraints.
      */
     public String makeUltraSound(String focus, boolean recordVideo, boolean recordImages, Priority p) throws NoOpenedPatientFileException, ArgumentConstraintException, InvalidArgumentException {
-        Patient openedPatient = dc.getUser().getOpenedPatient();
-        MedicalTest med = MedicalTestCreator.SINGLETON.makeUltraSoundScan(focus, recordVideo, recordImages);
-        MedicalTestCommand medCom = new MedicalTestCommand(wc.getWorld(), openedPatient, med, p);
-        try {
-            return dc.addCommand(medCom);
-        } catch (CannotDoException ex) {
-            throw new Error("New command was not done: " + ex);
-        }
+        return MedicalTestCreator.SINGLETON.makeUltraSoundScan(wc.getWorld(), dc.getUser(), p, focus, recordVideo, recordImages);
     }
 
     /**
@@ -83,13 +69,6 @@ public class MedicalTestController {
      * @throws InvalidArgumentException thrown if one of the arguments is null, or if the answer does not satisfy the constraints.
      */
     public String makeXRayScan(String bodyPart, int zoom, int numberOfImages, Priority p) throws NoOpenedPatientFileException, ArgumentConstraintException, InvalidArgumentException {
-        Patient openedPatient = dc.getUser().getOpenedPatient();
-        MedicalTest med = MedicalTestCreator.SINGLETON.makeXRayScan(bodyPart, zoom, numberOfImages);
-        MedicalTestCommand medCom = new MedicalTestCommand(wc.getWorld(), openedPatient, med, p);
-        try {
-            return dc.addCommand(medCom);
-        } catch (CannotDoException ex) {
-            throw new Error("New command was not done: " + ex);
-        }
+        return  MedicalTestCreator.SINGLETON.makeXRayScan(wc.getWorld(), dc.getUser(), p, bodyPart, zoom, numberOfImages);
     }
 }

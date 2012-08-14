@@ -1,6 +1,6 @@
 package Hospital.WareHouse;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 
@@ -16,11 +16,11 @@ public interface ItemFactory {
      * @throws WrongArgumentListException the list of arguments didn't meet the requirements
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
-    Item clone(Argument[] args) throws WrongArgumentListException, InvalidArgumentException;
+    Item clone(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException;
 
     /**
      * Gets the arguments required for creation of an item of this type
      * @return an array of Arguments which, when answered, can be used with clone()
      */
-    Argument[] getArguments();
+    PublicArgument[] getArguments();
 }

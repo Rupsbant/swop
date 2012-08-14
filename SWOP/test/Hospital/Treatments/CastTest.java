@@ -1,6 +1,5 @@
 package Hospital.Treatments;
 
-import Hospital.Controllers.ArgumentList;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -68,12 +67,8 @@ public class CastTest {
             throws NotLoggedInException, CannotChangeException, WrongArgumentListException,
             InvalidArgumentException, NoPersonWithNameAndRoleException, NoPersonWithNameAndRoleException,
             NoOpenedPatientFileException, PatientIsDischargedException, NotAFactoryException {
-        ArgumentList args = diac.getDiagnosisArguments("Diagnosis");
-        args.getPublicArguments()[0].enterAnswer("abdce");
-        diac.enterDiagnosis("Diagnosis", args, null);
-        args = diac.getDiagnosisArguments("Diagnosis");
-        args.getPublicArguments()[0].enterAnswer("abdce2");
-        diac.enterDiagnosis("Diagnosis", args, null);
+        diac.enterDiagnosis("abcde", null);
+        diac.enterDiagnosis("abdce2", null);
     }
 
     private void initPatientFile() throws NoPersonWithNameAndRoleException, NotLoggedInException, NoOpenedPatientFileException {

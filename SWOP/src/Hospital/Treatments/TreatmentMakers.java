@@ -1,10 +1,7 @@
 package Hospital.Treatments;
 
-import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.Command.CannotDoException;
-import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.Patient.InvalidDiagnosisException;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.Patient.Patient;
@@ -12,8 +9,6 @@ import Hospital.People.Doctor;
 import Hospital.Schedules.Constraints.Priority.Priority;
 import Hospital.WareHouse.ItemInfo;
 import Hospital.World.World;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TreatmentMakers {
 

@@ -1,6 +1,6 @@
 package Hospital.WareHouse;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -298,7 +298,7 @@ public class Stock<I extends Item> implements TimeObserver {
      * @throws WrongArgumentListException the arguments did not match the requirements for this type of item
      * @throws ArgumentNotAnsweredException one or more of the given arguments was not answered
      */
-    void processOrder(Order order, Argument[] args) throws StockException,
+    void processOrder(Order order, PublicArgument[] args) throws StockException,
             OrderUnavailableException, WrongArgumentListException, InvalidArgumentException {
         orderList.remove(order);
         try {
@@ -343,7 +343,7 @@ public class Stock<I extends Item> implements TimeObserver {
      * Gets the arguments needed for processing orders for this stock
      * @return an array of PublicArguments which, when answered, can be used with processOrder()
      */
-    Argument[] getArguments() {
+    PublicArgument[] getArguments() {
         return prototype.getArguments();
     }
 

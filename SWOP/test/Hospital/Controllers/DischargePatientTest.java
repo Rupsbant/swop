@@ -1,7 +1,5 @@
 package Hospital.Controllers;
 
-import Hospital.Argument.BooleanArgument;
-import Hospital.Argument.PriorityArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
@@ -120,15 +118,11 @@ public class DischargePatientTest {
             ArgumentNotAnsweredException, NoPersonWithNameAndRoleException,
             NoOpenedPatientFileException, PatientIsDischargedException, InvalidDiagnosisException,
             StockException, ItemNotReservedException, ItemNotFoundException, IllegalInfo, InvalidArgumentException {
-        int fact = 0;
-        ArgumentList args = diagnC.getDiagnosisArguments(diagnC.getAvailableDiagnosisFactories()[fact]);
-        args.getPublicArguments()[0].enterAnswer(diagnosis);
         LoginInfo doctorInfo = null;
         if (snd_op) {
             doctorInfo = new LoginInfo("Janet Fraiser", "Doctor");
-            fact = 1;
         }
-        diagnC.enterDiagnosis(diagnC.getAvailableDiagnosisFactories()[fact], args, doctorInfo);
+        diagnC.enterDiagnosis(diagnosis, doctorInfo);
     }
 
     @Test(expected = CannotDischargeException.class)

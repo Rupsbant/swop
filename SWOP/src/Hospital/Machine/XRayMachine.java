@@ -1,17 +1,11 @@
 package Hospital.Machine;
 
-import Hospital.Argument.Argument;
-import Hospital.Argument.CampusInfoArgument;
-import Hospital.Argument.StringArgument;
-import Hospital.Argument.WorldArgument;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.CannotChangeException;
-import Hospital.Utils;
+import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.World.CampusInfo;
 import Hospital.World.World;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * X-ray machine used in medical tests
@@ -45,17 +39,14 @@ public class XRayMachine extends Machine implements MachineFactory {
      * @throws WrongArgumentListException If the length of the list is wrong or one of the argumentTypes in the list.
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
-    public Machine make(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
-        validate(args);
-        String id = Utils.getAnswer(StringArgument.class, "ID", args[0]);
-        Location location = new Location(Utils.getAnswer(StringArgument.class, "Location", args[1]));
-        CampusInfo info = Utils.getAnswer(CampusInfoArgument.class, "info", args[2]);
-        World w = Utils.getAnswer(WorldArgument.class, "world", args[3]);
+    public Machine make(World w, CampusInfo info, Location location, String id) throws InvalidArgumentException, SchedulableAlreadyExistsException {
         try {
-            return new XRayMachine(id, location).setCampus(w.getCampusFromInfo(info));
+            XRayMachine xRayMachine = new XRayMachine(id, location);
+            xRayMachine.setCampus(w.getCampusFromInfo(info));
+            w.addSchedulable(xRayMachine);
+            return xRayMachine;
         } catch (CannotChangeException ex) {
-            Logger.getLogger(XRayMachine.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            throw new Error("This cannot happen");
         }
     }
 
@@ -63,7 +54,7 @@ public class XRayMachine extends Machine implements MachineFactory {
      * Return the name of this factory
      * @return "New XRayMachine"
      */
-    public String getName() {
+    public String getType() {
         return X_RAY_MACHINE_FACTORY;
     }
 }

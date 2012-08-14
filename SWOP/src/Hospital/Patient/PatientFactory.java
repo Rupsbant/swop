@@ -1,6 +1,6 @@
 package Hospital.Patient;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -26,7 +26,7 @@ public class PatientFactory implements Factory<Patient> {
      * @throws ArgumentNotAnsweredException the given argument was not answered
      * @throws ArgumentIsNullException the given argument was null 
      */
-    public Patient make(Argument[] args) throws ArgumentConstraintException, WrongArgumentListException, InvalidArgumentException {
+    public Patient make(PublicArgument[] args) throws ArgumentConstraintException, WrongArgumentListException, InvalidArgumentException {
         validate(args);
         String name = (String) Utils.getAnswer(StringArgument.class, "name", args[0]);
         return new Patient(name);
@@ -36,8 +36,8 @@ public class PatientFactory implements Factory<Patient> {
      * Gets the patient's details.
      * @return an array of Arguments
      */
-    public Argument[] getEmptyArgumentList() {
-        Argument[] out = new Argument[1];
+    public PublicArgument[] getEmptyArgumentList() {
+        PublicArgument[] out = new PublicArgument[1];
         out[0] = new StringArgument("Enter the patient's name: ");
         return out;
     }
@@ -50,7 +50,7 @@ public class PatientFactory implements Factory<Patient> {
         return PATIENT_FACTORY;
     }
 
-    public boolean validate(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public boolean validate(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("Argumentlist is null");
         }

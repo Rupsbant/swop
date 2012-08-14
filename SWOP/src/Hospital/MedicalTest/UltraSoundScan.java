@@ -1,6 +1,6 @@
 package Hospital.MedicalTest;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
@@ -61,7 +61,7 @@ public class UltraSoundScan extends MedicalTest {
      * @see Hospital.Factory.Result#getResultArguments()
      */
     @Override
-    public Argument[] getEmptyResultArgumentList() {
+    public PublicArgument[] getEmptyResultArgumentList() {
         PublicArgument[] out = new PublicArgument[2];
         out[0] = new StringArgument("Enter the scan information: ");
         out[1] = new StringArgument("Nature of scanned mass: benign, unknown or malignant");
@@ -72,14 +72,14 @@ public class UltraSoundScan extends MedicalTest {
      * @see Hospital.Factory.Result#enterResult(Hospital.Argument.PublicArgument[])
      */
     @Override
-    public void enterResult(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public void enterResult(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         validateResults(args);
         scanInformation = (String) Utils.getAnswer(StringArgument.class, "ScanInformation", args[0]);
         setNature(args[1]);
         this.setResultEntered(true);
     }
 
-    public boolean validateResults(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
         }
@@ -101,7 +101,7 @@ public class UltraSoundScan extends MedicalTest {
      * @throws ArgumentNotAnsweredException the argument was not answered
      * @throws ArgumentConstraintException the answer to the argument was not an allowed value nature
      */
-    private void setNature(Argument arg) throws WrongArgumentListException, InvalidArgumentException {
+    private void setNature(PublicArgument arg) throws WrongArgumentListException, InvalidArgumentException {
         nature = (String) Utils.getAnswer(StringArgument.class, "The nature of the mass", arg);
         if (!checkNature(nature)) {
             throw new ArgumentConstraintException("Nature can't be " + nature);

@@ -1,6 +1,6 @@
 package Hospital.MedicalTest;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Argument.IntegerArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
@@ -64,7 +64,7 @@ public class XRayScan extends MedicalTest {
     /**
      * @see Hospital.Factory.Result#getResultArguments()
      */
-    public Argument[] getEmptyResultArgumentList() {
+    public PublicArgument[] getEmptyResultArgumentList() {
         PublicArgument[] out = new PublicArgument[2];
         out[0] = new IntegerArgument("Enter the number of images taken: ");
         out[1] = new StringArgument("Please enter any abnormalities: ");
@@ -74,7 +74,7 @@ public class XRayScan extends MedicalTest {
     /**
      * @see Hospital.Factory.Result#enterResult(Hospital.Argument.PublicArgument[])
      */
-    public void enterResult(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public void enterResult(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
         }
@@ -87,7 +87,7 @@ public class XRayScan extends MedicalTest {
     }
 
 
-    public boolean validateResults(Argument[] args) throws WrongArgumentListException, InvalidArgumentException {
+    public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
         }
@@ -109,7 +109,7 @@ public class XRayScan extends MedicalTest {
      * @throws ArgumentNotAnsweredException the argument was not answered
      * @throws ArgumentConstraintException the number of images was not in the 1-MAX_XRAY_COUNT range
      */
-    private void setNumberOfImagesTaken(Argument arg) throws WrongArgumentListException, InvalidArgumentException {
+    private void setNumberOfImagesTaken(PublicArgument arg) throws WrongArgumentListException, InvalidArgumentException {
         numberOfImagesTaken = (Integer) Utils.getAnswer(IntegerArgument.class, "The number of images", arg);
         if (!isValidNumberImages(numberOfImagesTaken)) {
             throw new ArgumentConstraintException("Number of images taken must be > 0 !");

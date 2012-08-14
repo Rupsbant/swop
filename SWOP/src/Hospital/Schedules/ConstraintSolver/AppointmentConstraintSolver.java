@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface AppointmentConstraintSolver {
 
-    void setTimeDelay(DelayedTimeLength tf);
+    void setDelayedTimeLength(DelayedTimeLength tf);
 
     void setScheduleGroups(List<ScheduleGroup> list);
 

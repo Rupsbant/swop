@@ -17,7 +17,12 @@ public class MakeSurgery implements RunnableUI {
         String description = sc.nextLine();
         PriorityArgument arg = new PriorityArgument("Enter the priority of the surgery");
         BasicAnswerer.singleton.answer(arg, sc);
-        tc.makeSurgery(diagnosisInfo, description, arg.getAnswer());
+        String str = tc.makeSurgery(diagnosisInfo, description, arg.getAnswer());
+        System.out.println(str);
+    }
+    
+    public String toString(){
+        return "Order Surgery";
     }
     
 }

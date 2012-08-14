@@ -6,14 +6,10 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import Hospital.Argument.StringArgument;
-import Hospital.Argument.WorldArgument;
 import Hospital.Controllers.AdministratorController;
 import Hospital.Controllers.StaffController;
 import Hospital.Controllers.TestUtil;
@@ -35,21 +31,10 @@ import Hospital.World.World;
 
 public class AddStaffMemberTest {
 
-    World w;
-    WorldController wc;
-    AdministratorController ac;
-    StaffController staffController;
-
-    public AddStaffMemberTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    private World w;
+    private WorldController wc;
+    private AdministratorController ac;
+    private StaffController staffController;
 
     @Before
     public void setUp() throws ArgumentIsNullException, NoPersonWithNameAndRoleException, ArgumentConstraintException {
@@ -58,14 +43,10 @@ public class AddStaffMemberTest {
         List<LoginInfo> logins = wc.getLogins();
         for (int i = 0; i < logins.size(); i++) {
             if (logins.get(i).getRole().equals("HospitalAdministrator")) {
-                ac = (AdministratorController) wc.login(wc.getCampuses().get(0),logins.get(i));
+                ac = (AdministratorController) wc.login(wc.getCampuses().get(0), logins.get(i));
             }
         }
         staffController = new StaffController(wc, ac);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test

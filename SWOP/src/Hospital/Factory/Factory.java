@@ -1,6 +1,6 @@
 package Hospital.Factory;
 
-import Hospital.Argument.Argument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Controllers.ArgumentList;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
@@ -18,7 +18,7 @@ public interface Factory<Fac> {
      * @throws WrongArgumentListException the given arguments did not match the requirements for Fac
      * @throws IllegalArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
-    public Fac make(Argument[] args) throws WrongArgumentListException, InvalidArgumentException;
+    public Fac make(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException;
     
     /**
      * Tests if the argumentList satisfies the constraints
@@ -27,13 +27,13 @@ public interface Factory<Fac> {
      * @throws WrongArgumentListException the given arguments did not match the requirements for Fac
      * @throws IllegalArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
-    public boolean validate(Argument[] args) throws WrongArgumentListException, InvalidArgumentException;
+    public boolean validate(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException;
 
     /**
      * Gets the arguments required for the creation of an object in this factory
      * @return an array of Arguments which, when answered, can be used for creation of an object of type Fac
      */
-    public Argument[] getEmptyArgumentList();
+    public PublicArgument[] getEmptyArgumentList();
 
     /**
      * Returns the name of this factory, used to identify it

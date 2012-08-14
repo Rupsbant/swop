@@ -18,7 +18,8 @@ public class OrderBloodAnalysis implements RunnableUI {
         PriorityArgument priorityArgument = new PriorityArgument("Enter the priority of the appointment");
         Priority priority = priorityArgument.getAnswer();
         try {
-            med.makeBloodAnalysis(focus, numberOfAnalyses, priority);
+            String out = med.makeBloodAnalysis(focus, numberOfAnalyses, priority);
+            System.out.println(out);
         } catch (NoOpenedPatientFileException ex) {
             throw new Error(ex); // patientFile was opened
         } catch (ArgumentConstraintException ex) {
