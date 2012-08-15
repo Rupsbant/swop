@@ -12,9 +12,6 @@ import Hospital.Patient.PatientFactory;
 import Hospital.People.Doctor;
 import Hospital.People.HospitalAdministrator;
 import Hospital.People.Nurse;
-import Hospital.People.PeopleFactories.DoctorFactory;
-import Hospital.People.PeopleFactories.NurseFactory;
-import Hospital.People.PeopleFactories.WarehouseFactory;
 import Hospital.Schedules.Constraints.Preference.ChangeLocationPreference;
 import Hospital.Schedules.Constraints.Preference.Preference;
 import Hospital.Schedules.Constraints.Preference.StayShiftPreference;
@@ -50,9 +47,6 @@ public class BasicWorld {
         World w = new World();
 
         w.addFactory(new PatientFactory());
-        w.addFactory(new DoctorFactory());
-        w.addFactory(new WarehouseFactory());
-        w.addFactory(new NurseFactory());
         w.addMachineFactory(new XRayMachine("Singleton ProtoType 1", null));
         w.addMachineFactory(new UltraSoundMachine("Singleton ProtoType 2", null));
         w.addMachineFactory(new BloodAnalyzer("Singleton ProtoType 3", null));

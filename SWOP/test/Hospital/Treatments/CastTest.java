@@ -23,6 +23,7 @@ import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Patient.Diagnosis;
 import Hospital.People.Doctor;
 import Hospital.People.LoginInfo;
+import Hospital.People.StaffRole;
 
 public class CastTest {
 
@@ -36,7 +37,7 @@ public class CastTest {
             throws NoPersonWithNameAndRoleException, NotLoggedInException, NoOpenedPatientFileException,
             CannotChangeException, WrongArgumentListException, InvalidArgumentException, PatientIsDischargedException, NotAFactoryException {
         wc = TestUtil.getWorldControllerForTesting();
-        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Gregory House", "Doctor")); //don't search for doctor
+        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Gregory House", StaffRole.Doctor)); //don't search for doctor
         tc = new TreatmentController(wc, dc);
         diac = new DiagnosisController(wc, dc);
         initPatientFile();

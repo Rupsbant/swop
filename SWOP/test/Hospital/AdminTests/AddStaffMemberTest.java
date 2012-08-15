@@ -25,8 +25,11 @@ import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.People.Doctor;
+import Hospital.People.HospitalAdministrator;
 import Hospital.People.LoginInfo;
 import Hospital.People.Nurse;
+import Hospital.People.StaffRole;
+import Hospital.World.CampusInfo;
 import Hospital.World.World;
 
 public class AddStaffMemberTest {
@@ -42,7 +45,7 @@ public class AddStaffMemberTest {
         wc = new WorldController(w);
         List<LoginInfo> logins = wc.getLogins();
         for (int i = 0; i < logins.size(); i++) {
-            if (logins.get(i).getRole().equals("HospitalAdministrator")) {
+            if (logins.get(i).getRole().equals(StaffRole.HospitalAdministrator)) {
                 ac = (AdministratorController) wc.login(wc.getCampuses().get(0), logins.get(i));
             }
         }
@@ -51,84 +54,36 @@ public class AddStaffMemberTest {
 
     @Test
     public void addDoctor() throws NotLoggedInException, NotAFactoryException, InvalidArgumentException, WrongArgumentListException, SchedulableAlreadyExistsException, NoPersonWithNameAndRoleException, CannotChangeException {
-        ArgumentList args = staffController.getStaffArguments("New Doctor");
-        args.getPublicArguments()[0].enterAnswer("TestDoctor");
-        String staff = staffController.makeStaffMember("New Doctor", args);
-        assertEquals("TestDoctor", staff);
+        String staff = staffController.makeStaffMember(StaffRole.Doctor, "TestDoctor", null);
+        assertEquals("Created new: TestDoctor", staff);
         Doctor d = w.getPersonByName(Doctor.class, "TestDoctor");
     }
 
     @Test
     public void addNurse() throws NoPersonWithNameAndRoleException, NotAFactoryException, NotLoggedInException, InvalidArgumentException, WrongArgumentListException, SchedulableAlreadyExistsException, CannotChangeException {
-        ArgumentList args = staffController.getStaffArguments("New Nurse");
-        args.getPublicArguments()[0].enterAnswer("testnurse");
-        args.getPublicArguments()[1].enterAnswer("1");
-        System.out.println(args.getPublicArguments()[1].getAnswer());
-        String staff = staffController.makeStaffMember("New Nurse", args);
-        assertEquals("testnurse", staff);
+        CampusInfo campus = wc.getCampuses().get(1);
+        String staff = staffController.makeStaffMember(StaffRole.Nurse, "testnurse", campus);
+        assertEquals("Created new: testnurse", staff);
         Nurse d = w.getPersonByName(Nurse.class, "testnurse");
-    }
-
-    @Test
-    public void getNurseArguments() throws ArgumentIsNullException, NotLoggedInException, NotAFactoryException {
-        ArgumentList args = staffController.getStaffArguments("New Nurse");
-        assertEquals(2, args.getPublicArguments().length);
-        assertEquals("Enter the name of the nurse: ", args.getPublicArguments()[0].getQuestion());
-        assertEquals("Enter the number of the campus\n1: North\n2: South\n", args.getPublicArguments()[1].getQuestion());
-        assertEquals(StringArgument.class, args.getPublicArguments()[0].getClass());
-        assertEquals(CampusInfoArgument.class, args.getPublicArguments()[1].getClass());
-    }
-
-    @Test
-    public void getDoctorArguments() throws NotLoggedInException, NotAFactoryException, ArgumentIsNullException {
-        ArgumentList args = staffController.getStaffArguments("New Doctor");
-        assertEquals(1, args.getPublicArguments().length);
-        assertEquals("Enter the name of the doctor: ",
-                args.getPublicArguments()[0].getQuestion());
-        assertEquals(StringArgument.class, args.getPublicArguments()[0].getClass());
-    }
-
-    @Test
-    public void addDoctorWrongPublicArgument() throws NotAFactoryException, NotLoggedInException, WrongArgumentListException, SchedulableAlreadyExistsException, InvalidArgumentException, CannotChangeException {
-        try {
-            ArgumentList args = staffController.getStaffArguments("New Doctor");
-            String staff = staffController.makeStaffMember("New Doctor", args);
-            fail("An exception should not have been thrown");
-        } catch (ArgumentNotAnsweredException e) {
-            assertEquals(ArgumentNotAnsweredException.class, e.getClass());
-        }
     }
 
     @Test
     public void addDoctorNullPublicArgument() throws NotAFactoryException, NotLoggedInException, SchedulableAlreadyExistsException, InvalidArgumentException, WrongArgumentListException, CannotChangeException {
         try {
-            String staff = staffController.makeStaffMember("New Doctor", null);
+            String staff = staffController.makeStaffMember(StaffRole.Doctor, null, null);
             fail("An exception should not have been thrown");
         } catch (ArgumentIsNullException e) {
-            assertEquals("ArgumentList was null", e.getMessage());
+            assertEquals("Name is null", e.getMessage());
         }
     }
 
     @Test
     public void addDoctorWrongFactoryArgument() throws NotLoggedInException, WrongArgumentListException, SchedulableAlreadyExistsException, InvalidArgumentException, CannotChangeException {
         try {
-            ArgumentList args = staffController.getStaffArguments("New Doctor");
-            args.getPublicArguments()[0].enterAnswer("testdoctor");
-            String staff = staffController.makeStaffMember("test", args);
+            String staff = staffController.makeStaffMember(StaffRole.HospitalAdministrator, null, null);
             fail("An exception should not have been thrown");
-        } catch (NotAFactoryException e) {
-        }
-    }
-
-    @Test
-    public void addDoctorNullStaffArgument() throws NotLoggedInException, InvalidArgumentException, WrongArgumentListException, SchedulableAlreadyExistsException, CannotChangeException {
-
-        try {
-            ArgumentList args = staffController.getStaffArguments("New Doctor");
-            args.getPublicArguments()[0].enterAnswer("testdoctor");
-            String staff = staffController.makeStaffMember(null, args);
-            fail("An exception should not have been thrown");
-        } catch (NotAFactoryException e) {
+        } catch (ArgumentConstraintException e) {
+            assertEquals("This Role cannot be created", e.getMessage());
         }
     }
 

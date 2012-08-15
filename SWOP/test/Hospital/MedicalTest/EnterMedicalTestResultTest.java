@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Hospital.MedicalTest;
 
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
@@ -29,10 +25,8 @@ import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.People.LoginInfo;
-import org.junit.After;
-import org.junit.AfterClass;
+import Hospital.People.StaffRole;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 
 public class EnterMedicalTestResultTest {
@@ -47,8 +41,8 @@ public class EnterMedicalTestResultTest {
     @Before
     public void setUp() throws NoPersonWithNameAndRoleException, NotLoggedInException, NotAFactoryException, CannotChangeException, ArgumentNotAnsweredException, WrongArgumentListException, ArgumentConstraintException, ArgumentIsNullException, NoOpenedPatientFileException, InvalidArgumentException {
         wc = TestUtil.getWorldControllerForTesting();
-        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Gregory House", "Doctor")); //don't search for doctor
-        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", "Nurse")); //don't search for nurse
+        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Gregory House", StaffRole.Doctor)); //don't search for doctor
+        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", StaffRole.Nurse)); //don't search for nurse
         mc = new MedicalTestController(wc, dc);
         diac = new DiagnosisController(wc, dc);
 

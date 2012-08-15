@@ -10,7 +10,7 @@ import Hospital.World.World;
 /**
  * X-ray machine used in medical tests
  */
-public class XRayMachine extends Machine implements MachineFactory {
+public class XRayMachine extends Machine implements MachineAbstractFactory {
 
     public static final String X_RAY_MACHINE_FACTORY = "New XRayMachine";
 

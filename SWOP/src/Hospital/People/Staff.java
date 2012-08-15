@@ -47,7 +47,7 @@ public abstract class Staff extends Person {
      * Returns this person's role.
      * @return String The role of this person.
      */
-    public abstract String getRole();
+    public abstract StaffRole getRole();
 
     /**
      * Returns a description of this Staff-member.

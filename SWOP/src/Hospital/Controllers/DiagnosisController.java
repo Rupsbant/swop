@@ -20,6 +20,7 @@ import Hospital.Patient.DiagnosisSecondOpinion;
 import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.People.LoginInfo;
+import Hospital.People.StaffRole;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -83,7 +84,7 @@ public class DiagnosisController {
         dc.checkLoggedIn();
         Doctor secondDoc = null;
         if (secondOpinion != null) {
-            if (!secondOpinion.getRole().equals("Doctor")) {
+            if (!secondOpinion.getRole().equals(StaffRole.Doctor)) {
                 throw new NoPersonWithNameAndRoleException();
             }
             secondDoc = wc.getWorld().getPersonByName(Doctor.class, secondOpinion.getName());

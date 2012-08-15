@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 /**
  * Surgical equipment used for treatments
  */
-public class SurgicalEquipment extends Machine implements MachineFactory {
+public class SurgicalEquipment extends Machine implements MachineAbstractFactory {
 
     public static final String SURGICAL_EQUIPMENT_FACTORY = "New SurgicalEquipment";
 

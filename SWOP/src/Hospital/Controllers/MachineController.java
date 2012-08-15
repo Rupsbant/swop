@@ -11,7 +11,7 @@ import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Machine.Location;
 import Hospital.Machine.Machine;
-import Hospital.Machine.MachineFactory;
+import Hospital.Machine.MachineAbstractFactory;
 import Hospital.World.CampusInfo;
 
 /**
@@ -61,7 +61,7 @@ public class MachineController {
             SchedulableAlreadyExistsException,
             InvalidArgumentException, CannotChangeException {
         admin.checkLoggedIn();
-        MachineFactory factory = wc.getWorld().getMachineFactory(machineType);
+        MachineAbstractFactory factory = wc.getWorld().getMachineFactory(machineType);
         Machine newTest = factory.make(wc.getWorld(), info, location, id);
         return newTest.toString();
     }

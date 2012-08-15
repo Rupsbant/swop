@@ -37,10 +37,11 @@ public class HospitalAdministrator extends Staff {
      * @see Hospital.People.Staff#getRole()
      */
     @Override
-    public String getRole() {
-        return "HospitalAdministrator";
+    public StaffRole getRole() {
+        return StaffRole.HospitalAdministrator;
     }
 
+    @Override
     public List<TimeFrameConstraint> getConstraints() {
         throw new UnsupportedOperationException("HospitalAdministrator has no appointments");
     }

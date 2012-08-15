@@ -43,8 +43,8 @@ public class Nurse extends Staff implements Unmovable {
      * @return String The role of this Nurse..
      */
     @Override
-    public String getRole() {
-        return "Nurse";
+    public StaffRole getRole() {
+        return StaffRole.Nurse;
     }
 
     /**

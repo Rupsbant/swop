@@ -7,6 +7,7 @@ import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.People.Staff;
+import Hospital.People.StaffRole;
 import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
 import java.util.List;
@@ -42,8 +43,8 @@ public class WarehouseManager extends Staff {
      * @see Hospital.People.Staff#getRole()
      */
     @Override
-    public String getRole() {
-        return "WareHouseManager";
+    public StaffRole getRole() {
+        return StaffRole.WarehouseManager;
     }
 
     /**

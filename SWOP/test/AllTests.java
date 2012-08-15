@@ -3,7 +3,6 @@ import org.junit.runner.RunWith;
 
 import Hospital.AdminTests.AddEquipmentTest;
 import Hospital.AdminTests.AddStaffMemberTest;
-import Hospital.Controllers.AvailableFactoriesTest;
 import Hospital.Controllers.CheckInPatientTest;
 import Hospital.Controllers.DiagnosisControllerTest;
 import Hospital.Controllers.DischargePatientTest;
@@ -43,7 +42,6 @@ import Hospital.World.WorldTest;
 	PatientFileTest.class,
 	RegisterNewPatientTest.class,
 	NurseControllerTest.class,
-	AvailableFactoriesTest.class,
 	WorldControllerTest.class,
 	
 	

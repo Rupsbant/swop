@@ -24,27 +24,20 @@ import Hospital.Exception.*;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.People.Doctor;
 import Hospital.People.LoginInfo;
+import Hospital.People.StaffRole;
 
 public class DiagnosisControllerTest {
 
-    WorldController wc;
-    DoctorController dc;
-    DiagnosisController diag;
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    private WorldController wc;
+    private DoctorController dc;
+    private DiagnosisController diag;
 
     @Before
     public void setUp() throws ArgumentIsNullException, NotLoggedInException, NoOpenedPatientFileException {
         try {
             wc = TestUtil.getWorldControllerForTesting();
             wc.getWorld().addSchedulable(new Doctor("Doctor 2"));
-            dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doktoor", "Doctor"));
+            dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doktoor", StaffRole.Doctor));
             dc.consultPatientFile("Ruben", wc);
             diag = new DiagnosisController(wc, dc);
         } catch (Exception e) {
@@ -70,14 +63,14 @@ public class DiagnosisControllerTest {
     public void listTest() 
             throws NoPersonWithNameAndRoleException, NoOpenedPatientFileException, PatientIsDischargedException,
             NotLoggedInException, ArgumentConstraintException, ArgumentIsNullException, InvalidArgumentException {
-        diag.enterDiagnosis("hoofdpijn", new LoginInfo("Doktoor", "Doctor"));
-        diag.enterDiagnosis("keelpijn", new LoginInfo("Doctor 2", "Doctor"));
-        diag.enterDiagnosis("arm gebroken", new LoginInfo("Doctor 2", "Doctor"));
-        diag.enterDiagnosis("been gebroken", new LoginInfo("Doktoor", "Doctor"));
-        diag.enterDiagnosis("kaak gebroken", new LoginInfo("Doctor 2", "Doctor"));
+        diag.enterDiagnosis("hoofdpijn", new LoginInfo("Doktoor", StaffRole.Doctor));
+        diag.enterDiagnosis("keelpijn", new LoginInfo("Doctor 2", StaffRole.Doctor));
+        diag.enterDiagnosis("arm gebroken", new LoginInfo("Doctor 2", StaffRole.Doctor));
+        diag.enterDiagnosis("been gebroken", new LoginInfo("Doktoor", StaffRole.Doctor));
+        diag.enterDiagnosis("kaak gebroken", new LoginInfo("Doctor 2", StaffRole.Doctor));
         DiagnosisInfo[] diaginfo = dc.getUnapprovedSecondOpinions();
         assertEquals(diaginfo.length, 2);
-        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doctor 2", "Doctor"));
+        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doctor 2", StaffRole.Doctor));
         DiagnosisInfo[] diaginfo2 = dc.getUnapprovedSecondOpinions();
         assertEquals(diaginfo2.length, 3);
     }
@@ -87,7 +80,7 @@ public class DiagnosisControllerTest {
         LoginInfo[] info = diag.getAvailableSecondOpinionDoctors();
         ArrayList<String> infos = new ArrayList<String>();
         for (int i = 0; i < info.length; i++) {
-            if (!info[i].getRole().equals("Doctor")) {
+            if (!info[i].getRole().equals(StaffRole.Doctor)) {
                 fail("not a doctor!");
             }
             infos.add(info[i].getName());
@@ -103,12 +96,12 @@ public class DiagnosisControllerTest {
     public void disApproveDiagnosisTest() throws NoPersonWithNameAndRoleException, NoOpenedPatientFileException, InvalidDiagnosisException, NotLoggedInException, ArgumentConstraintException, ArgumentIsNullException, PatientIsDischargedException, InvalidArgumentException, CannotChangeException {
         dc.consultPatientFile("Ruben", wc);
         
-        DoctorController dc2 = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doctor 2", "Doctor"));
+        DoctorController dc2 = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Doctor 2", StaffRole.Doctor));
         DiagnosisController diag2 = new DiagnosisController(wc, dc2);
 
-        diag.enterDiagnosis("hoofdpijn", new LoginInfo("Doktoor", "Doctor"));
-        diag.enterDiagnosis("keelpijn", new LoginInfo("Doctor 2", "Doctor"));
-        diag.enterDiagnosis("arm gebroken", new LoginInfo("Doctor 2", "Doctor"));
+        diag.enterDiagnosis("hoofdpijn", new LoginInfo("Doktoor", StaffRole.Doctor));
+        diag.enterDiagnosis("keelpijn", new LoginInfo("Doctor 2", StaffRole.Doctor));
+        diag.enterDiagnosis("arm gebroken", new LoginInfo("Doctor 2", StaffRole.Doctor));
 
         int lengte2 = dc.getUnapprovedSecondOpinions().length;
         int lengte1 = dc2.getUnapprovedSecondOpinions().length;

@@ -12,7 +12,7 @@ import Hospital.World.World;
 /**.
  * Ultrasound machine used in medical tests
  */
-public class UltraSoundMachine extends Machine implements MachineFactory {
+public class UltraSoundMachine extends Machine implements MachineAbstractFactory {
 
     public static final String ULTRA_SOUND_MACHINE_FACTORY = "New UltraSoundMachine";
 

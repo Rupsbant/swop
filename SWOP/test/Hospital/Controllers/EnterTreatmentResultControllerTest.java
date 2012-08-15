@@ -26,6 +26,7 @@ import Hospital.Exception.Warehouse.StockException;
 import Hospital.Patient.Diagnosis;
 import Hospital.People.Doctor;
 import Hospital.People.LoginInfo;
+import Hospital.People.StaffRole;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Treatments.Medication;
 
@@ -69,8 +70,8 @@ public class EnterTreatmentResultControllerTest {
             PatientIsDischargedException, NotAFactoryException,
             ArgumentConstraintException, InvalidDiagnosisException, TreatmentAlreadyAddedException, NotEnoughItemsAvailableException, StockException, ItemNotReservedException, ItemNotFoundException {
     	wc = TestUtil.getWorldControllerForTesting();
-        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Gregory House", "Doctor")); //don't search for doctor
-        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", "Nurse")); //don't search for nurse
+        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Gregory House", StaffRole.Doctor)); //don't search for doctor
+        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", StaffRole.Nurse)); //don't search for nurse
         pc = new PatientController(wc, nc);
         medC = new MedicalTestController(wc, dc);
         mtrC = new MedicalTestResultController(wc, nc);

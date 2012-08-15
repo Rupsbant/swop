@@ -16,7 +16,7 @@ public class LoginInfo {
     /**
      * the role of the represented user
      */
-    private String role;
+    private StaffRole role;
 
     /**
      * Constructor
@@ -24,11 +24,11 @@ public class LoginInfo {
      * @param role  The role of this person.
      * @throws ArgumentIsNullException when name is empty or when role is empty
      */
-    public LoginInfo(String name, String role) throws ArgumentIsNullException {
+    public LoginInfo(String name, StaffRole role) throws ArgumentIsNullException {
         if (name == null || name.equals("")) {
             throw new ArgumentIsNullException("Empty name");
         }
-        if (role == null || role.equals("")) {
+        if (role == null) {
             throw new ArgumentIsNullException("Empty role");
         }
         this.name = name;
@@ -49,7 +49,7 @@ public class LoginInfo {
      * @return The role of of the person identified by this LoginInfo.
      */
     @SystemAPI
-    public String getRole() {
+    public StaffRole getRole() {
         return role;
     }
 

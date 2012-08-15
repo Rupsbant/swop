@@ -19,7 +19,7 @@ De koppeling is hetzelfde gebleven, de cohesie is een stukje lager.
 De verantwoordelijkheden zijn nu beter toegekend en het subsysteem werkt overzichtelijker. 
 
 \subsection{Volledig Design}
-
+Door het gebruik van de factories zijn alle post-processing stappen van een nieuwe creatie gecentraliseerd en is dit beter bescherd tegen variatie. 
 
 \subsection{Uitbreidbaarheid}
 Indien er een nieuw user-type/een nieuw machine-type/een nieuw type medische testen of nieuwe behandelingen wordt aangemaakt moeten de data-klassen aangemaakt worden. 
@@ -114,7 +114,8 @@ Op de plaatsen waar dit niet van toepassing was, is de TimeFrame opgesplitst in 
 
 \subsection{AppointmentConstraintSolver en AppointmentCommand}
 Deze klassen was sterk gekoppeld met elkaar. Aangezien deze alletwee een grote verantwoordelijkheid hebben zijn deze instabieler en worden deze best zo veel mogelijk losgekoppeld. 
-De klasse SolverAdapter bepaald nu de communicatie tussen deze klassen met een enkele methode solve(...).
+De klasse SolverAdapter bepaald nu de communicatie tussen deze klassen met een enkele methode solve(...). 
+Deze maakt een AppointmentResult, deze kan rechtstreeks doorgegeven worden aan de constructor van Appointment zodat de koppeling tussen AppointmentConstraintSolver en AppointmentCommand nog meer daalt. 
 
 \subsection{JumpSolver}
 Deze klasse is een herschrijving van BruteForceSolver. 
@@ -132,14 +133,21 @@ Een interactiediagramma hiervan vind je in figuur \ref{fig: AppCretion}.
 
 De Solver werkt als volgt: eerst worden alle combinaties van personen gemaakt die nodig zijn voor de afspraak, één per groep. 
 Daarna wordt voor iedere combinatie het eerste moment berekend dat er een afspraak kan gemaakt worden, dit gebeurt in schema \ref{fig:}. 
-Het vroegste moment wordt onthouden en uiteindelijk gebruikt.
+Het vroegste moment wordt onthouden en uiteindelijk gebruikt. 
+Om de uitbreidbaarheid zo groot mogelijk te houden is er een afscheiding gemaakt tussen de welke aanwezigen er kunnen zijn, en waar deze informatie opgeslagen is. 
+Hierdoor is de koppeling tussen belangrijke systemen tot een minimum gehouden en is de cohesie hoger: 
+De solver moet zelf moet geen enkele informatie gebruiken van de rest van de wereld om een afspraak te plannen. 
 
 Het berekenen van de eerstvolgende afspraak voor een bepaalde combinatie gebeurt als volgt: alle TimeFrameConstraints worden opgevraagd: van de Appointable, en alle aanwezigen. 
 Daarna bezoeken alle aanwezigen de CampusDecider, die de plaats bepaald. 
 Als laatste voorbereidingsstap worden alle TimeFrameConstraints bezocht door alle aanwezigen en de Campus.
 Dit is de bovenste helft van \ref{fig:cartesianProduct}. 
+Dit design is om dezelfde redenen gekozen als de groepen, dezelfde GRASP-principes zijn van toepassing. 
 
-De eerst mogelijke tijd dat een afspraak mag gebeuren, een medische test heeft bijvoorbeeld een vertraging van één uur, wordt opgevraagd. Vanaf dan worden de TimeFrameConstraints de tijd en de lengte van de mogelijke afspraak aangeboden en wordt deze iedere keer verlaat tot alle TimeFrameConstraints akkoord zijn. 
+De eerst mogelijke tijd dat een afspraak mag gebeuren, een medische test heeft bijvoorbeeld een vertraging van één uur, wordt opgevraagd. 
+Vanaf dan worden de TimeFrameConstraints de tijd en de lengte van de mogelijke afspraak aangeboden en wordt deze iedere keer verlaat tot alle TimeFrameConstraints akkoord zijn. 
+Door het gebruik van de TimeFrameConstraints kunnen verschillende aanwezigen elk hun eigen informatie op een veilige delen. 
+Op basis hiervan is de koppeling tussen de Solver en de domeinlaag veel kleiner, ook de cohesie is hoger: de Constraints schermen al hun informatie af en maken enkel beslissingen, hierdoor is de Solver beschermd tegen veranderingen in de minder stabiele domein-laag.
 
 \section{Andere problemen}
 \subsection{Controllers}

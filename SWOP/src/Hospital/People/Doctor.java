@@ -66,8 +66,8 @@ public class Doctor extends Staff implements HasPreference {
      * @return String The role of this Doctor.
      */
     @Override
-    public String getRole() {
-        return "Doctor";
+    public StaffRole getRole() {
+        return StaffRole.Doctor;
     }
 
     /**

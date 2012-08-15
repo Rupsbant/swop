@@ -8,8 +8,7 @@ import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Factory.Factory;
-import Hospital.Machine.Machine;
-import Hospital.Machine.MachineFactory;
+import Hospital.Machine.MachineAbstractFactory;
 import Hospital.Schedules.Schedulable;
 import Hospital.Patient.Patient;
 import Hospital.People.LoginInfo;
@@ -40,7 +39,7 @@ public class World {
     /**
      * the machines that exist in this world
      */
-    private Map<String, MachineFactory> machineFactories;
+    private Map<String, MachineAbstractFactory> machineFactories;
     
     /**
      * this worldTime
@@ -64,6 +63,7 @@ public class World {
         worldTime = new WorldTime();
         campuses = new ArrayList<Campus>();
         preferences = new ArrayList<Preference>();
+        machineFactories = new HashMap<String, MachineAbstractFactory>();
     }
 
     /**
@@ -290,11 +290,15 @@ public class World {
         return machineFactories.keySet().toArray(new String[0]);
     }
 
-    public MachineFactory getMachineFactory(String machineType) {
-        return machineFactories.get(machineType);
+    public MachineAbstractFactory getMachineFactory(String machineType) throws NotAFactoryException {
+        MachineAbstractFactory out = machineFactories.get(machineType);
+        if(out == null){
+            throw new NotAFactoryException();
+        }
+        return out;
     }
 
-    void addMachineFactory(MachineFactory machine) {
+    void addMachineFactory(MachineAbstractFactory machine) {
         machineFactories.put(machine.getType(), machine);
     }
 

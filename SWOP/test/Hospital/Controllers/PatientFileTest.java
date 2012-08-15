@@ -32,6 +32,7 @@ import Hospital.Patient.Diagnosis;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.Patient.Patient;
 import Hospital.People.LoginInfo;
+import Hospital.People.StaffRole;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.World.World;
 
@@ -50,7 +51,7 @@ public class PatientFileTest {
         w = wc.getWorld();
         List<LoginInfo> logins = wc.getLogins();
         for (int i = 0; i < logins.size(); i++) {
-            if (logins.get(i).getRole().equals("Doctor")) {
+            if (logins.get(i).getRole().equals(StaffRole.Doctor)) {
                 dc = (DoctorController) wc.login(wc.getCampuses().get(0), logins.get(i));
             }
         }
@@ -64,13 +65,13 @@ public class PatientFileTest {
             System.out.println("Jeroen is aanwezig in de test World.");
         }
         tc = new TreatmentController(wc, dc);
-        nc = (NurseController) wc.login(wc.getCampuses().get(0), new LoginInfo("Nurse Joy", "Nurse")); //don't search for nurse
+        nc = (NurseController) wc.login(wc.getCampuses().get(0), new LoginInfo("Nurse Joy", StaffRole.Nurse)); //don't search for nurse
         trC = new TreatmentResultController(wc, nc);
         wc = new WorldController(w);
         List<LoginInfo> l = wc.getLogins();
         LoginInfo doctor = null;
         for (LoginInfo loginInfo : l) {
-            if (loginInfo.getRole().equals("Doctor")) {
+            if (loginInfo.getRole().equals(StaffRole.Doctor)) {
                 doctor = loginInfo;
             }
         }

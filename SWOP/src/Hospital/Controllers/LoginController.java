@@ -3,6 +3,7 @@ package Hospital.Controllers;
 import Hospital.SystemAPI;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.People.Staff;
+import Hospital.People.StaffRole;
 
 /**
  * This controller is created when a user logs in and will represent
@@ -51,7 +52,7 @@ public abstract class LoginController<T extends Staff> {
      * @return The role of the user represented by this object.
      */
     @SystemAPI
-    public String getRole() {
+    public StaffRole getRole() {
         return user.getRole();
     }
 

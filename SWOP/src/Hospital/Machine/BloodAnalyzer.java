@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 /**
  * The blood analyzer machine used for medical tests
  */
-public class BloodAnalyzer extends Machine implements MachineFactory {
+public class BloodAnalyzer extends Machine implements MachineAbstractFactory {
 
     public static final String BLOOD_ANALYZER_FACTORY = "New BloodAnalyzer";
 

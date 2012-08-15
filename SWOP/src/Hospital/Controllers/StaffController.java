@@ -1,5 +1,6 @@
 package Hospital.Controllers;
 
+import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.SystemAPI;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
@@ -8,9 +9,10 @@ import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
-import Hospital.People.Staff;
-import Hospital.People.PeopleFactories.StaffFactory;
+import Hospital.People.PeopleCreator;
+import Hospital.People.StaffRole;
 import Hospital.Schedules.Schedulable;
+import Hospital.World.CampusInfo;
 
 /**
  * Used for staff-related actions.
@@ -40,23 +42,6 @@ public class StaffController {
     }
 
     /**
-     * Gets the arguments needed for the creation of new staff
-     * @param staff the type of staff to be created
-     * @return an array of PublicArguments which, when answered, can be used for the creation of a new staffmember of the given type
-     * @throws NotLoggedInException the admin is not logged in
-     * @throws NotAFactoryException the given type does not exist in this world
-     */
-    @SystemAPI
-    public ArgumentList getStaffArguments(String staff) throws NotLoggedInException, NotAFactoryException {
-        ac.checkLoggedIn();
-        try {
-            return wc.getFactoryArguments(StaffFactory.class, staff);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null");
-        }
-    }
-
-    /**
      * Creates a new staff member
      * @param staff the type of staff to be created
      * @param argv the arguments to the creation of the new staff member
@@ -69,32 +54,17 @@ public class StaffController {
      * @throws CannotChangeException 
      */
     @SystemAPI
-    public String makeStaffMember(String staff, ArgumentList argv) throws NotAFactoryException, NotLoggedInException, InvalidArgumentException, WrongArgumentListException, SchedulableAlreadyExistsException, CannotChangeException {
+    public String makeStaffMember(StaffRole role, String name, CampusInfo info) throws InvalidArgumentException, NotLoggedInException, SchedulableAlreadyExistsException, CannotChangeException {
         ac.checkLoggedIn();
-        if (argv == null) {
-            throw new ArgumentIsNullException("ArgumentList was null");
-        }
-        StaffFactory factory = null;
-        try {
-            factory = wc.getWorld().getFactory(StaffFactory.class, staff);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null");
-        }
-        Schedulable newTest = factory.make(argv.getAllArguments());
-        wc.getWorld().addSchedulable(newTest);
-        return newTest.toString();
-    }
-
-    /**
-     * Gets the available types of staff that can be created
-     * @return an array of strings containing names of the types of staff
-     */
-    @SystemAPI
-    public String[] getAvailableStaffFactories() {
-        try {
-            return wc.getAvailableFactories(StaffFactory.class).toArray(new String[0]);
-        } catch (ArgumentIsNullException ex) {
-            throw new Error("Class is not null");
+        switch (role) {
+            case Doctor:
+                return PeopleCreator.SINGLETON.makeDoctor(wc.getWorld(), name);
+            case Nurse:
+                return PeopleCreator.SINGLETON.makeNurse(wc.getWorld(), name, info);
+            case WarehouseManager:
+                return PeopleCreator.SINGLETON.makeWarehouseManager(wc.getWorld(), name, info);
+            default:
+                throw new ArgumentConstraintException("This Role cannot be created");
         }
     }
 

@@ -3,12 +3,9 @@ package Hospital.Controllers;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import static org.junit.Assert.*;
 
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.CannotChangeException;
@@ -21,25 +18,18 @@ import Hospital.Exception.Scheduling.SchedulingException;
 import Hospital.Exception.Warehouse.NotEnoughItemsAvailableException;
 import Hospital.Patient.Patient;
 import Hospital.People.LoginInfo;
+import Hospital.People.StaffRole;
 
 public class CheckInPatientTest {
 
-    WorldController wc;
-    NurseController nc;
-    PatientController pc;
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    private WorldController wc;
+    private NurseController nc;
+    private PatientController pc;
 
     @Before
     public void setUp() throws NoPersonWithNameAndRoleException, InvalidArgumentException, NotLoggedInException, NotAFactoryException, CannotChangeException, SchedulableAlreadyExistsException, WrongArgumentListException {
         wc = TestUtil.getWorldControllerForTesting();
-        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", "Nurse"));
+        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", StaffRole.Nurse));
         pc = new PatientController(wc, nc);
         ArgumentList args = pc.getFactoryArguments(pc.getAvailablePatientFactories()[0]);
         ArgumentList args2 = pc.getFactoryArguments(pc.getAvailablePatientFactories()[0]);

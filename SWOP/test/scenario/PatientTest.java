@@ -68,7 +68,7 @@ public class PatientTest {
         List<LoginInfo> logins = w.getLogins();
         LoginInfo login = null;
         for (LoginInfo loginInfo : logins) {
-            if (loginInfo.getRole().equals(role) && loginInfo.getName().equals(name)) {
+            if (loginInfo.getRole().toString().equals(role) && loginInfo.getName().equals(name)) {
                 login = loginInfo;
                 break;
             }

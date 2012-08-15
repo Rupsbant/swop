@@ -12,6 +12,7 @@ import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.NotLoggedInException;
 
+import Hospital.People.StaffRole;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,7 +40,7 @@ public class RegisterNewPatientTest {
     @Before
     public void setUp() throws ArgumentIsNullException, NoPersonWithNameAndRoleException, ArgumentConstraintException {
         wc = TestUtil.getWorldControllerForTesting();
-        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", "Nurse"));
+        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", StaffRole.Nurse));
         pc = new PatientController(wc, nc);
     }
 

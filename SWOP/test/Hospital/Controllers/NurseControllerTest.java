@@ -16,6 +16,7 @@ import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.People.LoginInfo;
+import Hospital.People.StaffRole;
 
 public class NurseControllerTest {
 
@@ -27,7 +28,7 @@ public class NurseControllerTest {
         wc = TestUtil.getWorldControllerForTesting();
         List<LoginInfo> logins = wc.getLogins();
         for (int i = 0; i < logins.size(); i++) {
-            if (logins.get(i).getRole().equals("Nurse")) {
+            if (logins.get(i).getRole().equals(StaffRole.Nurse)) {
                 nc = (NurseController) wc.login(wc.getCampuses().get(0), logins.get(i));
             }
         }

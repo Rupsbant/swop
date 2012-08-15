@@ -5,7 +5,7 @@ import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.World.CampusInfo;
 import Hospital.World.World;
 
-public interface MachineFactory {
+public interface MachineAbstractFactory {
 
     /**
      * Makes a new UltraSoundMachine with the given arguments
