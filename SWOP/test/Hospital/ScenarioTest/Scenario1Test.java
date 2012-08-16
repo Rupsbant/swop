@@ -3,8 +3,6 @@ package Hospital.ScenarioTest;
 import Hospital.Controllers.ArgumentList;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Warehouse.NotEnoughItemsAvailableException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static org.junit.Assert.*;
 
 import java.util.List;
@@ -18,7 +16,6 @@ import Hospital.Controllers.PatientController;
 import Hospital.Controllers.WorldController;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.NotAFactoryException;
@@ -26,13 +23,12 @@ import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Patient.PatientIsCheckedInException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.Exception.Scheduling.SchedulingException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.People.LoginInfo;
 import Hospital.World.BasicWorld;
 
 public class Scenario1Test {
 
-    WorldController w;
+    private WorldController w;
 
     @Before
     public void setUp() {
@@ -82,33 +78,12 @@ public class Scenario1Test {
         } catch (ArgumentIsNullException e) {
             fail("The arguments should not be null. Check this test.");
         }
-        ArgumentList args = null;
-        String factoryName = null;
-        try {
-            String[] names = patientController.getAvailablePatientFactories();
-            factoryName = names[0];
-            args = patientController.getFactoryArguments(factoryName);
-            assertEquals(1, args.getPublicArguments().length);
-        } catch (NotLoggedInException e) {
-            fail("The nurse should be logged in. This should not happen.");
-        } catch (NotAFactoryException e) {
-            fail("The factory should be correct. Got from getAvailbleFactories.");
-        }
-        try {
-            args.getPublicArguments()[0].enterAnswer("TestPatient1");
-        } catch (IllegalArgumentException e) {
-            fail("TestPatient1 is a valid string.");
-        } catch (CannotChangeException e) {
-            fail("This arguments are changeble.");
-        }
         String patient = null;
         try {
-            patient = patientController.registerPatient(factoryName, args);
+            patient = patientController.registerPatient("TestPatient1");
             System.out.println("New patient added to the system. The patients name is " + patient + ".");
         } catch (NotLoggedInException e) {
             fail("The nurse should be logged in. This should not happen.");
-        } catch (NotAFactoryException e) {
-            fail("The factory should be correct. Got from getAvailbleFactories.");
         } catch (SchedulableAlreadyExistsException e) {
             fail("Basicworld should not contain a patient with name TestPatient1.");
         } catch (InvalidArgumentException e) {

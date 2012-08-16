@@ -1,6 +1,5 @@
 package Hospital.MedicalTest;
 
-import Hospital.Argument.PublicArgument;
 import Hospital.Argument.IntegerArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;

@@ -52,7 +52,7 @@ public class PatientTest {
         PublicArgument[] args = new PublicArgument[1];
         args[0] = new StringArgument("name").enterAnswer("Jef");
         try {
-            pc.registerPatient("New Patient", new ArgumentList(args));
+            pc.registerPatient("Jef");
             System.out.println(nc.checkIn("Jef", "Doktoor", w));
             System.out.println(nc.checkIn("Jeroen", "Doktoor", w));
         } catch (PatientIsCheckedInException e) {

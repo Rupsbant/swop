@@ -31,58 +31,42 @@ import Hospital.People.StaffRole;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import static org.junit.Assert.*;
 
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class DischargePatientTest {
 
-    WorldController wc;
-    NurseController nc;
-    PatientController pc;
-    DoctorController dc;
-    DiagnosisController diagnC;
-    MedicalTestController medC;
-    MedicalTestResultController mtrC;
-    TreatmentController tc;
-    TreatmentResultController trC;
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    private WorldController wc;
+    private NurseController nc;
+    private PatientController pc;
+    private DoctorController dc;
+    private DiagnosisController diagnC;
+    private MedicalTestController medC;
+    private MedicalTestResultController mtrC;
+    private TreatmentController tc;
+    private TreatmentResultController trC;
 
     @Before
-    public void setUp() throws ArgumentIsNullException, NoPersonWithNameAndRoleException, ArgumentConstraintException {
+    public void setUp() throws ArgumentIsNullException, NoPersonWithNameAndRoleException, ArgumentConstraintException, NotLoggedInException, SchedulableAlreadyExistsException, InvalidArgumentException {
         wc = TestUtil.getWorldControllerForTesting();
-        dc = (DoctorController) wc.login(wc.getCampuses().get(0),new LoginInfo("Gregory House", StaffRole.Doctor)); //don't search for doctor
-        nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", StaffRole.Nurse)); //don't search for nurse
+        dc = (DoctorController) wc.login(wc.getCampuses().get(0), new LoginInfo("Gregory House", StaffRole.Doctor)); //don't search for doctor
+        nc = (NurseController) wc.login(wc.getCampuses().get(0), new LoginInfo("Nurse Joy", StaffRole.Nurse)); //don't search for nurse
         pc = new PatientController(wc, nc);
         diagnC = new DiagnosisController(wc, dc);
         medC = new MedicalTestController(wc, dc);
         mtrC = new MedicalTestResultController(wc, nc);
         tc = new TreatmentController(wc, dc);
         trC = new TreatmentResultController(wc, nc);
-    }
-
-    private void regPat(String name) throws SchedulableAlreadyExistsException, NotLoggedInException, NotAFactoryException, WrongArgumentListException, CannotChangeException, InvalidArgumentException {
-        ArgumentList args = pc.getFactoryArguments(pc.getAvailablePatientFactories()[0]);
-        args.getPublicArguments()[0].enterAnswer(name);
-        pc.registerPatient(pc.getAvailablePatientFactories()[0], args);
+        pc.registerPatient("Patrick Ient");
     }
 
     @Test
     public void HappyTest() throws
-            SchedulableAlreadyExistsException, NoPersonWithNameAndRoleException,
-            ScheduleGroupUnavailable,SchedulingException,
+            NoPersonWithNameAndRoleException,
+            SchedulingException,
             PatientIsCheckedInException, NotLoggedInException,
             NoOpenedPatientFileException, CannotDischargeException,
-            NotAFactoryException, WrongArgumentListException,CannotChangeException, InvalidArgumentException, NotEnoughItemsAvailableException {
-        regPat("Patrick Ient");
+            InvalidArgumentException, NotEnoughItemsAvailableException {
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
@@ -99,12 +83,11 @@ public class DischargePatientTest {
 
     @Test(expected = CannotDischargeException.class)
     public void DischargeTwiceTest() throws
-            SchedulableAlreadyExistsException, NoPersonWithNameAndRoleException,
-            ScheduleGroupUnavailable, SchedulingException,
+            NoPersonWithNameAndRoleException,
+            SchedulingException,
             PatientIsCheckedInException, NotLoggedInException,
             NoOpenedPatientFileException, CannotDischargeException,
-            NotAFactoryException, WrongArgumentListException, CannotChangeException, InvalidArgumentException, NotEnoughItemsAvailableException {
-        regPat("Patrick Ient");
+            InvalidArgumentException, NotEnoughItemsAvailableException {
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
@@ -132,9 +115,8 @@ public class DischargePatientTest {
             SchedulingException, PatientIsCheckedInException, NotLoggedInException,
             NoOpenedPatientFileException, CannotDischargeException,
             NotAFactoryException, CannotChangeException,
-            WrongArgumentListException, InvalidArgumentException, 
+            WrongArgumentListException, InvalidArgumentException,
             PatientIsDischargedException, InvalidDiagnosisException, StockException, ItemNotReservedException, ItemNotFoundException, IllegalInfo, NotEnoughItemsAvailableException {
-        regPat("Patrick Ient");
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
         diagnose("Foo", true);
@@ -153,21 +135,20 @@ public class DischargePatientTest {
             NotAFactoryException, CannotChangeException,
             WrongArgumentListException, ArgumentNotAnsweredException,
             PatientIsDischargedException, InvalidDiagnosisException, StockException, ItemNotReservedException, ItemNotFoundException, IllegalInfo, InvalidArgumentException, NotEnoughItemsAvailableException {
-        regPat("Patrick Ient");
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
-        
+
         diagnose("Foo", false);
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
-        
+
         DiagnosisInfo diagnosisinfo = new DiagnosisInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0));
-        
+
         tc.makeSurgery(diagnosisinfo, "report blabla", new HighLowPriority(true));
         TreatmentInfo treatmentinfo = new TreatmentInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0).getTreatment());
         PublicArgument[] args2 = new PublicArgument[2];
         args2[0] = new StringArgument("Enter the report: ").enterAnswer("reportje");
         args2[1] = new StringArgument("Enter the special aftercare: ").enterAnswer("no special aftercare");
-        
+
         trC.enterResult(treatmentinfo, new ArgumentList(args2));
         dc.dischargePatient();
         assertTrue(dc.getUser().getOpenedPatient().isDischarged());
@@ -183,7 +164,6 @@ public class DischargePatientTest {
             NotAFactoryException, WrongArgumentListException,
             ArgumentNotAnsweredException, CannotChangeException,
             IllegalInfo, InvalidArgumentException, NotEnoughItemsAvailableException {
-        regPat("Patrick Ient");
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
         String mtstring = medC.makeXRayScan("This should be an xray", 1, 1, new HighLowPriority(true));
@@ -193,7 +173,7 @@ public class DischargePatientTest {
                 medTest = medTestInfo;
             }
         }
-        
+
         ArgumentList args = mtrC.getArguments(medTest);
         args.getPublicArguments()[0].enterAnswer("1");
         args.getPublicArguments()[1].enterAnswer("Bar");
@@ -212,7 +192,6 @@ public class DischargePatientTest {
             NoOpenedPatientFileException, CannotDischargeException,
             NotAFactoryException, WrongArgumentListException,
             ArgumentNotAnsweredException, CannotChangeException, InvalidArgumentException, NotEnoughItemsAvailableException {
-        regPat("Patrick Ient");
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
         medC.makeXRayScan("This should be an xray", 1, 1, new HighLowPriority(true));
@@ -232,7 +211,6 @@ public class DischargePatientTest {
             ArgumentNotAnsweredException, CannotChangeException,
             PatientIsDischargedException, InvalidDiagnosisException,
             IllegalInfo, TreatmentAlreadyAddedException, NotEnoughItemsAvailableException, StockException, ItemNotReservedException, ItemNotFoundException, InvalidArgumentException {
-        regPat("Patrick Ient");
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
 
@@ -259,11 +237,10 @@ public class DischargePatientTest {
             ArgumentNotAnsweredException, CannotChangeException,
             PatientIsDischargedException, InvalidDiagnosisException,
             IllegalInfo, TreatmentAlreadyAddedException, NotEnoughItemsAvailableException, StockException, ItemNotReservedException, ItemNotFoundException, InvalidArgumentException {
-        regPat("Patrick Ient");
         nc.checkIn("Patrick Ient", dc.getUser().getName(), wc);
         dc.consultPatientFile("Patrick Ient", wc);
         diagnose("Foo", false);
-        
+
         tc.makeMedication(tc.getUntreatedDiagnoses()[0], "Medication", false, "Aspirin", new HighLowPriority(true));
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
         dc.dischargePatient();

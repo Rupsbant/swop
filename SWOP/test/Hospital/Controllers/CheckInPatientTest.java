@@ -31,12 +31,8 @@ public class CheckInPatientTest {
         wc = TestUtil.getWorldControllerForTesting();
         nc = (NurseController) wc.login(wc.getCampuses().get(0),new LoginInfo("Nurse Joy", StaffRole.Nurse));
         pc = new PatientController(wc, nc);
-        ArgumentList args = pc.getFactoryArguments(pc.getAvailablePatientFactories()[0]);
-        ArgumentList args2 = pc.getFactoryArguments(pc.getAvailablePatientFactories()[0]);
-        args.getPublicArguments()[0].enterAnswer("Patient1");
-        args2.getPublicArguments()[0].enterAnswer("Patient2");
-        pc.registerPatient(pc.getAvailablePatientFactories()[0], args);
-        pc.registerPatient(pc.getAvailablePatientFactories()[0], args2);
+        pc.registerPatient("Patient1");
+        pc.registerPatient("Patient2");
     }
 
     @Test

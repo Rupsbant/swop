@@ -74,21 +74,12 @@ public class PatientController {
      * @throws InvalidArgumentException If the ArgumentList was of the wrong size, null, not answered or of the wrong type
      */
     @SystemAPI
-    public String registerPatient(String factoryName, ArgumentList args)
-            throws NotLoggedInException, NotAFactoryException, SchedulableAlreadyExistsException, InvalidArgumentException {
+    public String registerPatient(String name)
+            throws NotLoggedInException, SchedulableAlreadyExistsException, InvalidArgumentException {
         nc.checkLoggedIn();
-        if(args == null){
-            throw new ArgumentIsNullException("ArgumentList was null");
-        }
-        PatientFactory factory = wc.getWorld().getFactory(PatientFactory.class, factoryName);
-        Patient newPatient = (Patient) factory.make(args.getAllArguments());
-        try {
-            wc.getWorld().getPersonByName(Patient.class, newPatient.getName());
-            throw new SchedulableAlreadyExistsException();
-        } catch (NoPersonWithNameAndRoleException e) {
-            wc.getWorld().addSchedulable(newPatient);
-            return newPatient.toString();
-        }
+        Patient newPatient = new Patient(name);
+        wc.getWorld().addSchedulable(newPatient);
+        return newPatient.toString();
     }
 
     /**

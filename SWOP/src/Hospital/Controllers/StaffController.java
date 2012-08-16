@@ -1,6 +1,5 @@
 package Hospital.Controllers;
 
-import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.SystemAPI;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
@@ -11,7 +10,6 @@ import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.People.PeopleCreator;
 import Hospital.People.StaffRole;
-import Hospital.Schedules.Schedulable;
 import Hospital.World.CampusInfo;
 
 /**
@@ -56,16 +54,7 @@ public class StaffController {
     @SystemAPI
     public String makeStaffMember(StaffRole role, String name, CampusInfo info) throws InvalidArgumentException, NotLoggedInException, SchedulableAlreadyExistsException, CannotChangeException {
         ac.checkLoggedIn();
-        switch (role) {
-            case Doctor:
-                return PeopleCreator.SINGLETON.makeDoctor(wc.getWorld(), name);
-            case Nurse:
-                return PeopleCreator.SINGLETON.makeNurse(wc.getWorld(), name, info);
-            case WarehouseManager:
-                return PeopleCreator.SINGLETON.makeWarehouseManager(wc.getWorld(), name, info);
-            default:
-                throw new ArgumentConstraintException("This Role cannot be created");
-        }
+        return PeopleCreator.SINGLETON.makeStaff(role, wc.getWorld(), name, info);
     }
 
     /**

@@ -1,8 +1,9 @@
-\section{Aanpassingen}
-
 \section{Factories}
 \subsection{Origineel}
-Omdat er bij de creatie van MedicalTests en Treatments objecten moeten gemaakt worden van dezelfde familie maar met verschillende attributen werd er gekozen voor een factory-method patroon. Aangezien dit generisch werd gedaan, zijn de factory-methodes geabstraheerd naar elk hun eigen klasse. De lijst met attributen is dan aangepast naar een generische lijst van Argument's:
+Omdat er bij de creatie van MedicalTests en Treatments objecten moeten gemaakt worden van dezelfde familie maar met verschillende attributen werd er gekozen voor een factory-method patroon. 
+Aangezien dit generisch werd gedaan, zijn de factory-methodes geabstraheerd naar elk hun eigen klasse. 
+De lijst met attributen is dan aangepast naar een generische lijst van Argument's:
+
 \[MedicalTest\ make(Argument[])\]
 \[Argument[]\ getEmptyArguments()\]
 
@@ -18,8 +19,11 @@ De verkeerde verantwoordelijkheden die aan de Controllers toegekend waren, zijn 
 De koppeling is hetzelfde gebleven, de cohesie is een stukje lager. 
 De verantwoordelijkheden zijn nu beter toegekend en het subsysteem werkt overzichtelijker. 
 
+\[ String\ makeBloodAnalysis(String\ focus,\ int\ numberOfImages,\ Priority\ p)\]
+\[ String\ makeMachine(String\ type,\ String\ id,\ Location\ location,\ CampusInfo\ info)\]
+
 \subsection{Volledig Design}
-Door het gebruik van de factories zijn alle post-processing stappen van een nieuwe creatie gecentraliseerd en is dit beter bescherd tegen variatie. 
+Door het gebruik van de factories zijn alle post-processing stappen van een nieuwe creatie gecentraliseerd en is dit beter bescherd tegen variatie.  ... ... 
 
 \subsection{Uitbreidbaarheid}
 Indien er een nieuw user-type/een nieuw machine-type/een nieuw type medische testen of nieuwe behandelingen wordt aangemaakt moeten de data-klassen aangemaakt worden. 
