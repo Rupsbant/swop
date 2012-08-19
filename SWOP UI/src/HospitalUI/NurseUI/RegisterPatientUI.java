@@ -101,38 +101,28 @@ public class RegisterPatientUI {
             System.out.println("The patient is already checked in.");
             return;
         } catch (NotEnoughItemsAvailableException e) {
-			System.out.println("There is not enough food available at this campus.");
-			System.out.println("There is enough food availble at following campuses:");
-			List<CampusInfo> otherCampuses = wc.getCampusesWithFood();
-			for (CampusInfo campusInfo : otherCampuses) {
-				System.out.println(campusInfo);
-			}
-			return;
-		}
+            System.out.println("There is not enough food available at this campus.");
+            System.out.println("There is enough food availble at following campuses:");
+            List<CampusInfo> otherCampuses = wc.getCampusesWithFood();
+            for (CampusInfo campusInfo : otherCampuses) {
+                System.out.println(campusInfo);
+            }
+            return;
+        }
     }
 
     private String createNewPatient(Scanner sc) throws NotLoggedInException, SchedulableAlreadyExistsException {
-        String[] names = pc.getAvailablePatientFactories();
-        String factoryName = names[0];
-        String chosenPatient;
-        try {
-            ArgumentList args = pc.getFactoryArguments(factoryName);
-            UtilsUI.answerArguments(sc, args.getPublicArguments());
-            chosenPatient = pc.registerPatient(factoryName, args);
-            System.out.println("The patient is added:");
-            System.out.println(chosenPatient);
-        } catch (NotAFactoryException e) {
-            //This should not happen.
-            //The factory was before the world was, and will be after it is destroyed...
-            Logger.getLogger(RegisterPatientUI.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        } catch (WrongArgumentListException ex) {
-            Logger.getLogger(RegisterPatientUI.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        } catch (InvalidArgumentException ex) {
-            System.out.println("This patient cannot be made.");
-            return null;
+        while (true) {
+            try {
+                System.out.println("Enter the name of the new patient: ");
+                String name = sc.nextLine();
+                String chosenPatient = pc.registerPatient(name);
+                System.out.println("The patient is added:");
+                System.out.println(chosenPatient);
+                return chosenPatient;
+            } catch (InvalidArgumentException ex) {
+                System.out.println("The patients name cannot be empty");
+            }
         }
-        return chosenPatient;
     }
 }

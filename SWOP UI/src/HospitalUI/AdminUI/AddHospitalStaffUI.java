@@ -4,9 +4,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Hospital.Argument.PublicArgument;
 import Hospital.Controllers.AdministratorController;
-import Hospital.Controllers.ArgumentList;
 import Hospital.Controllers.StaffController;
 import Hospital.Controllers.WorldController;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -15,13 +13,15 @@ import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
+import Hospital.People.StaffRole;
+import Hospital.World.CampusInfo;
 import HospitalUI.MainUI.UtilsUI;
+import java.util.List;
 
 public class AddHospitalStaffUI {
 
-    AdministratorController ac;
-    WorldController wc;
+    private AdministratorController ac;
+    private WorldController wc;
     private StaffController staff;
 
     public AddHospitalStaffUI(AdministratorController ac, WorldController wc) {
@@ -35,29 +35,28 @@ public class AddHospitalStaffUI {
     }
 
     public void run(Scanner sc) throws NotLoggedInException {
-        String[] tests = staff.getAvailableStaffFactories();
-        int chosenInt = UtilsUI.selectCommand(sc, tests);
+        StaffRole[] roles = {StaffRole.Doctor, StaffRole.Nurse, StaffRole.WarehouseManager};
+        int chosenInt = UtilsUI.selectCommand(sc, roles);
         if (chosenInt == 0) {
             return;
         }
-        String chosen = tests[chosenInt - 1];
+        StaffRole chosenRole = roles[chosenInt - 1];
+        System.out.println("Please enter the name: ");
+        String name = sc.nextLine();
+        CampusInfo info = null;
+        if(chosenRole != StaffRole.Doctor){
+            List<CampusInfo> infos = wc.getCampuses();
+            chosenInt = UtilsUI.selectCommand(sc, infos.toArray());
+            info = infos.get(chosenInt);
+        }
         try {
-            ArgumentList argL = staff.getStaffArguments(chosen);
-            PublicArgument[] args = argL.getPublicArguments();
-            UtilsUI.answerArguments(sc, args);
-            String newTest = staff.makeStaffMember(chosen, argL);
+            String newTest = staff.makeStaffMember(chosenRole, name, info);
             System.out.println("The staff member is added:");
             System.out.println(newTest);
         } catch (InvalidArgumentException ex) {
-            Logger.getLogger(AddHospitalStaffUI.class.getName()).log(Level.SEVERE, "Never happens, its the same ArgumentList and always fully answered", ex);
-        } catch (NotAFactoryException ex) {
-            //This should not happen.
-            //The factory was before the world was, and will be after it is destroyed...
-            Logger.getLogger(AddHospitalStaffUI.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("The name cannot be empty");
         } catch (SchedulableAlreadyExistsException e) {
             System.out.println("Name already exists!");
-        } catch (CannotChangeException e) {
-            System.out.println("Cannot change campus exception, should not happen" + e.getMessage());
         }
     }
 }

@@ -52,7 +52,7 @@ public class StaffController {
      * @throws CannotChangeException 
      */
     @SystemAPI
-    public String makeStaffMember(StaffRole role, String name, CampusInfo info) throws InvalidArgumentException, NotLoggedInException, SchedulableAlreadyExistsException, CannotChangeException {
+    public String makeStaffMember(StaffRole role, String name, CampusInfo info) throws InvalidArgumentException, NotLoggedInException, SchedulableAlreadyExistsException {
         ac.checkLoggedIn();
         return PeopleCreator.SINGLETON.makeStaff(role, wc.getWorld(), name, info);
     }

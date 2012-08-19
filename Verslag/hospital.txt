@@ -2,16 +2,20 @@
 \subsection{Origineel}
 Omdat er bij de creatie van MedicalTests en Treatments objecten moeten gemaakt worden van dezelfde familie maar met verschillende attributen werd er gekozen voor een factory-method patroon. 
 Aangezien dit generisch werd gedaan, zijn de factory-methodes geabstraheerd naar elk hun eigen klasse. 
-De lijst met attributen is dan aangepast naar een generische lijst van Argument's:
-
-\[MedicalTest\ make(Argument[])\]
-\[Argument[]\ getEmptyArguments()\]
+De lijst met attributen is dan aangepast naar een generische lijst van Argument's. Dit wordt nog steeds gebruikt bij de Resultaten van Medische testen: 
+De methode $Argument[]\ getEmptyArguments()$ vraagt de lijst van informatie die ingevuld moet worden op.
+Het is dan aan de gebruiker om deze in te vullen met $Argument.enterAnswer(String\ ans)$. 
+Bij iedere argument is er een vraag bij gesteld om de gebruiker te tonen welke invoer verwacht wordt. 
+Uiteindelijk roept de UI de methode $enterResults(Argument[]\ args)$ aan om de resultaten in te vullen. 
+Een interactiediagramma hiervan kan men vinden in figuur \ref{fig:}.
 
 \subsection{Problemen}
 Dit introduceerde onnodige complexiteit in het project. 
 En bepaalde verantwoordelijkheden die de factory-methodes hadden, werden teruggeschoven naar de Controller. 
 Zoals de gemaakte medische testen toevoegen bij de patient, en deze inplannen. 
 Ook was het originele patroon van de factory-method niet meer herkenbaar en trad er naamverwarring op. 
+Bij het invoeren van Argumenten waren er geen verantwoordelijkheden verkeerd toegekend, dit systeem is hier dus behouden. 
+Als men dit ook wil aanpassen dan moet men op één of andere manier het type van de medische testen bepalen. 
 
 \subsection{Aanpassingen}
 De abstractie werd verwijderd met voorkeur van een "puur" patroon. 
@@ -28,86 +32,99 @@ Door het gebruik van de factories zijn alle post-processing stappen van een nieu
 \subsection{Uitbreidbaarheid}
 Indien er een nieuw user-type/een nieuw machine-type/een nieuw type medische testen of nieuwe behandelingen wordt aangemaakt moeten de data-klassen aangemaakt worden. 
 Er moet ook per type een nieuwe factory-methode aangemaakt worden en een nieuwe controller-methode die de creatie van dat type object aan de UI.
-De UI moet ook een passend invoer-menu krijgen. 
+De UI moet ook een passend invoer-menu krijgen. Ondanks dat het werk om een nieuw type te maken een beetje groter is, is de uitbreidbaarheid groter.
+Ook is het design onderhoudbaarder: de informatie moet niet meer door juist één type klassen bijgehouden worden. 
+Indien er een grote uitzondering is voor een bepaald type dan is deze, omdat er een aparte methode is, veel gemakkelijker aanpasbaar.
+Het is wel nadelig dat voor een nieuw type verschillende methodes moeten bijgemaakt worden. Indien er 20 types medische testen dan kan het overzicht in de code verdwijnen.
 
-Dit is misschien meer werk om een eenvoudig object toe te voegen maar indien een soort uitzondering nodig is. Bijvoorbeeld een object die data nodig heeft die niet direct beschikbaar is, dan moet er geen nieuw argument-type aangemaakt worden. 
-En is de plaats duidelijk waar de code moet staan die deze informatie zoekt.
+Dit is misschien meer werk om een eenvoudig object toe te voegen maar indien een soort uitzondering nodig is. 
+Bijvoorbeeld een object die data nodig heeft die niet direct beschikbaar is, dan moet er geen nieuw argument-type aangemaakt worden. 
+En de code heeft een duidelijke plaats waar deze moet staan.
 
 \subsection{Voorbeeld}
 In figuur \ref{fig:makeUltraSound} kan men zien hoe zo'n factory-method werkt. 
-Hier wordt een nieuwe UltraSoundScan aangemaakt voor een bepaalde patient. 
-Dit is een medische test, voor treatments, personen en machines werkt dit analoog. 
+Hier wordt een nieuwe UltraSoundScan aangemaakt voor een bepaalde patient, dit is een medische test. 
+Voor treatments, personen en machines werkt dit analoog. 
 De Controller wordt aangeroepen met de nodige parameters: de informatie die nodig is voor die medische test. 
 
 De Controller delegeert de oproep aan de juiste factory-methode. 
 Deze maakt de medische test aan en laat deze dan afhandelen door de handleCorrectness-methode, zoals alle andere medische testen. 
-Dit werd vroeger in de Controller zelf gedaan wat een verkeerde verantwoordelijkheid was.
+Het afhandelen werd vroeger in de Controller zelf gedaan. 
+Dit is een verkeerde verantwoordelijkheid want de Controllers mogen normaal geen code bevatten die de correctheid van het systeem moet garanderen.
 
 De handleCorrectness-methode heeft de verantwoordelijkheid om de medische testen juist in de wereld toe te voegen. 
 Er wordt een MedicalTestCommand aangemaakt met de medische test die moet toegevoegd worden en deze wordt toegevoegd aan de geschiedenis van de doctor die deze aanmaakt. 
 Tijdens het toevoegen wordt deze ook uitgevoerd, het uitvoeren en ongedaanmaken van commando's is de verantwoordelijkheid van de CommandHistory-klasse.
+Dit was vroeger ook de verantwoordelijkheid van de Controllers. 
+Er konden dus Commando's toegevoegd worden aan de lijst van uitgevoerde Commando's zonder dat deze uitgevoerd waren.
 
 
 \section{Scheduling}
 \subsection{TimeFrameConstraint}
 \subsubsection{Origineel}
 Het originele design van de Constraints kan men zien op figuur: \ref{fig:constraints_old}. 
-Men kan duidelijk zien dat de "hulp"-hierarchie die bepaalde hulp-methodes instantieerd overbodig is. 
+Men kan duidelijk zien dat de "hulp"-hierarchie die bepaalde hulp-methodes instantieerd nodeloos complex is. 
 Een ander probleem is dat de beslissing binair is: men kan ofwel de afspraak aanvaarden of niet. 
 
-Dit heeft twee sterke nadelen: als de eerst mogelijke afspraak ver weg is kan dit lang duren indien iedere minuut/ iedere seconde voor een heel jaar overlopen moet worden. 
+Dit heeft twee sterke nadelen: als de eerst mogelijke afspraak ver weg is kan dit lang duren indien iedere minuut/ iedere seconde voor een heel jaar overlopen wordt. 
 Het andere nadeel is dat er geen enkele controle is die de berekening stopt indien er nooit een afspraak kan gemaakt worden. 
-Eén van de voordelen is wel dat nog alle vrijheid behouden wordt om nieuwe Constraints te maken, dit zou bij een aangepast design behouden moeten worden.
+Eén van de voordelen is wel dat nog alle vrijheid behouden wordt om nieuwe Constraints te maken. 
+Bij een aangepast design zou dit behouden moeten worden.
 
 \subsubsection{Aanpassingen}
 Het nieuwe design van de TimeFrameConstraints kan men zien in figuur: \ref{fig:constraints}. 
-Hier is de hierarchie verwijderd en blijft enkel een interface over om abstractie te kunnen doen. 
-Een nieuwe Constraint maken zou dus eenvoudiger moeten zijn. Ook de gelinkte structuur is gewisseld voor een lijst, waardoor de grootste verwarring verdwenen is. 
+Hier is de hierarchie verwijderd en blijft enkel een interface over die de nodige methodes aanbied. 
+Een nieuwe Constraint maken zou dus eenvoudiger moeten zijn. 
+Ook de gelinkte structuur is gewisseld voor een lijst, waardoor de grootste verwarring verdwenen is. 
 
 De beslissing of een Constraint aanvaard wordt of niet wordt nu gedaan door een Time-object terug te geven, het eerstvolgende moment waarop deze Constraint aanvaard kan worden. 
 Indien de huidige tijd aanvaard wordt wordt de huidige tijd teruggegeven. 
 Indien er een probleem is wordt een ScheduleException gegooid. 
 
 De tijd die teruggegeven wordt moet een conservatieve schatting zijn, indien er mogelijks momenten zijn die onzeker zijn mag men deze niet overslaan. 
-Desnoods geeft men de volgende minuut terug zoals in het vorige design. 
-Met deze aanpassing is er met een goede implementatie van de meeste Constraints er geen probleem meer met een lange rekentijd. 
+Desnoods stapt men naar de volgende minuut zoals in het vorige design. 
+Met deze aanpassing is er bij een goede implementatie van de meeste Constraints er geen probleem meer met een lange rekentijd. 
 Indien alle Constraints terug de volgende minuut teruggeven zal er natuurlijk geen tijdswinst zijn. 
 
 \subsection{Voorbeeld}
 Figuur \ref{fig:PriorityConstraint} toont hoe de PriorityConstaint werkt, dit is een typische TimeFrameConstraint. 
 Een TimeFrameConstraint wordt bezocht door iedere aanwezige als ieder type in zijn hierarchie om te beslissen of een bepaald moment in orde is. 
-Bij een PriorityConstraint worden alle aganda's van de aanwezigen onthouden. 
+Bij een PriorityConstraint worden alle agenda's van de aanwezigen onthouden. 
 Wanneer de isAccepted() methode aangeroepen wordt, kijkt deze voor iedere agenda alle afspraken op hetzelfde moment na of deze een hogere prioriteit hebben. 
-Indien er een conflict is dan is de eindtijd van de afspraak het eerstvolgende moment na de afspraak die al gepland is.
+Indien er een conflict is dan is de eindtijd van de afspraak het eerstvolgende moment die getest zal worden.
 
 Andere TimeFrameConstraints werken analoog: ze worden bezocht door de aanwezigen, ze vragen de nodige informatie op en maken aan de hand daarvan een beslissing. 
-PreferenceConstraint, de constraint die bepaald hoe een Doctor tussen de campussen beweegt, vraagt de preferentie op aan de Doctor en delegeert die dan.
+PreferenceConstraint, de Constraint die bepaald hoe een Doctor tussen de campussen beweegt, vraagt de preferentie op aan de Doctor en laat de beslissing dan over aan de Preference-interface. 
+Door het polymorfisme is het normaal niet meer nodig om de Constraint aan te passen voor nieuwe preferentie-types. 
 
-\subsection{GetCampusDecider}
+
+\subsection{CampusDecider}
 \subsubsection{Probleem}
 Deze interface breidde de interface van TimeFrameConstraint uit om de Campus te bepalen. 
 De interface Appointable gaf een lijst van TimeFrameConstraints terug met als eerste Constraint een GetCampusConstraint die de Campus moest bepalen. 
 Klassen die deze interface implementeerden hadden een dubbele verantwoordelijkheid: 
-de Campus bepalen en hun Constraint evalueren. Dit ging tegen Responsability-Driven-Design in en dit verlaagt de cohesie en verhoogt de koppeling.
+de Campus bepalen en hun Constraint evalueren. Dit ging tegen Responsibility-driven design in en dit verlaagt de cohesie en verhoogt de koppeling.
 
 \subsubsection{Aanpasssing}
 De interface werd losgekoppeld van de TimeFrameConstraint-interface. 
 De TimeFrameConstraint-interface heeft een nieuwe methode setCampus(Campus c). 
 Een Appointable heeft hier nu een aparte methode voor die de implementatie hiervan kiest. 
+De verantwoordelijkheden van het bepalen van de Campus hoort nu toe aan een nieuwe CampusDecider-klasse.
+Appointable bepaald hoe de Campus beslist wordt(NurseDecides, PatientDecides) en dit object wordt doorgegeven aan de AppointmentConstraintSolver. 
 
 \subsubsection{Voorbeeld}
-Medische testen en behandelingen zijn altijd op de campus van de verpleegster die deze toedient (figuur \ref{fig:nurseDecides}. Wanneer de NurseDecider bezocht wordt door een verpleegster, wordt de campus opgevraagd en opgeslagen. Dit is dan de besliste campus. Dit gebeurt analoog bij een DoctorPatientAppointment: de patient beslist hier en deze onthoudt de campus van de patient.
+Medische testen en behandelingen zijn altijd op de campus van de verpleegster die deze toedient (figuur \ref{fig:nurseDecides}. Wanneer het NurseDecides object bezocht wordt door een verpleegster, wordt de campus opgevraagd en opgeslagen. Dit is dan de besliste campus. Dit gebeurt analoog bij een PatientDecides: de patient beslist hier en het object onthoud de campus van de patient.
 
 \subsubsection{Uitbreidingen}
 Het is niet moeilijk om andere beslissingsmethodes te implementeren. 
 Men kan eventueel beslissen aan de hand van een voorkeurs Campus, waarbij de meerderheid wint. 
-Of zodat er zo weinig mogelijk verplaatsingstijd is aan de hand van de huidige agenda's. 
-Het is wel nodig dat alle informatie beschikbaar is, desnoods moet er een data-pad aangelegd worden in de AppointmentConstraintSolver.
+Of aan de hand van bepaalde heuristieken, zoals minimale verplaatsingstijd.
+Het is wel nodig dat alle informatie beschikbaar is.
 
 \subsection{TimeFrame}
 \subsubsection{Probleem}
 De klasse TimeFrame wordt gebruikt een Time-object en een lengte te communiceren. 
-De enige reden dat deze klasse bestond is omdat java maar één return-type ondersteund. 
+De enige reden dat deze klasse bestond is omdat Java maar één return-type ondersteund. 
 Aangezien deze op te veel plaatsen gebruikt werd was zowel de koppeling met deze klasse als de cohesie hierdoor lager. 
 In het nieuwe design waren de plaatsen waar dit object voor zijn originele reden gebruikt werd bijna verdwenen. 
 
@@ -115,6 +132,9 @@ In het nieuwe design waren de plaatsen waar dit object voor zijn originele reden
 Deze klasse is hernoemd naar een AppointmentResult en bezit alle informatie van een geldige afspraak. 
 Op de plaatsen waar dit niet van toepassing was, is de TimeFrame opgesplitst in zijn twee delen: Time en length.
 
+\subsubsection{Voordelen}
+Dit vergroot de duidelijkheid en de eenvoud van dit subsysteem, vooral bij de TimeFrameConstaint-interface. 
+De code zelf is ook simpeler en leesbaarder. 
 
 \subsection{AppointmentConstraintSolver en AppointmentCommand}
 Deze klassen was sterk gekoppeld met elkaar. Aangezien deze alletwee een grote verantwoordelijkheid hebben zijn deze instabieler en worden deze best zo veel mogelijk losgekoppeld. 
@@ -133,25 +153,32 @@ Figuur \ref{fig:Constraints} toont aan van welke klassen de Constraints informat
 Het andere klassediagramma (figuur \ref{fig:}) toont welke informatie nodig is om een afspraak te kunnen maken. 
 De AppointmentCommand verzameld de CampusDecider, de DelayedTimeLength, alle Constraints en alle ScheduleGroups. 
 Door gebruik te maken van solve-methode wordt een AppointmentResult gegenereerd die gebruikt wordt door het AppointmentCommand om de Appointment te instantiëren. 
-Een interactiediagramma hiervan vind je in figuur \ref{fig: AppCretion}. 
+Een interactiediagramma hiervan vind je in figuur \ref{fig: AppCretion}.
+\newline
+\newline
 
 De Solver werkt als volgt: eerst worden alle combinaties van personen gemaakt die nodig zijn voor de afspraak, één per groep. 
 Daarna wordt voor iedere combinatie het eerste moment berekend dat er een afspraak kan gemaakt worden, dit gebeurt in schema \ref{fig:}. 
 Het vroegste moment wordt onthouden en uiteindelijk gebruikt. 
 Om de uitbreidbaarheid zo groot mogelijk te houden is er een afscheiding gemaakt tussen de welke aanwezigen er kunnen zijn, en waar deze informatie opgeslagen is. 
 Hierdoor is de koppeling tussen belangrijke systemen tot een minimum gehouden en is de cohesie hoger: 
-De solver moet zelf moet geen enkele informatie gebruiken van de rest van de wereld om een afspraak te plannen. 
+De solver moet zelf moet geen enkele informatie gebruiken van de rest van de wereld om een afspraak te plannen.
+\newline
+\newline
 
 Het berekenen van de eerstvolgende afspraak voor een bepaalde combinatie gebeurt als volgt: alle TimeFrameConstraints worden opgevraagd: van de Appointable, en alle aanwezigen. 
 Daarna bezoeken alle aanwezigen de CampusDecider, die de plaats bepaald. 
 Als laatste voorbereidingsstap worden alle TimeFrameConstraints bezocht door alle aanwezigen en de Campus.
 Dit is de bovenste helft van \ref{fig:cartesianProduct}. 
-Dit design is om dezelfde redenen gekozen als de groepen, dezelfde GRASP-principes zijn van toepassing. 
+Dit design is om dezelfde redenen gekozen als de groepen, dezelfde GRASP-principes zijn van toepassing. \\
 
 De eerst mogelijke tijd dat een afspraak mag gebeuren, een medische test heeft bijvoorbeeld een vertraging van één uur, wordt opgevraagd. 
-Vanaf dan worden de TimeFrameConstraints de tijd en de lengte van de mogelijke afspraak aangeboden en wordt deze iedere keer verlaat tot alle TimeFrameConstraints akkoord zijn. 
+Vanaf dan worden de TimeFrameConstraints de tijd en de lengte van de mogelijke afspraak aangeboden en wordt de afspraak iedere keer uitgesteld tot alle TimeFrameConstraints akkoord zijn. 
+Vooral het gebruik van polymorfisme laat hier toe om de cohesie van de Solver en de Constraints hoog te houden. 
 Door het gebruik van de TimeFrameConstraints kunnen verschillende aanwezigen elk hun eigen informatie op een veilige delen. 
-Op basis hiervan is de koppeling tussen de Solver en de domeinlaag veel kleiner, ook de cohesie is hoger: de Constraints schermen al hun informatie af en maken enkel beslissingen, hierdoor is de Solver beschermd tegen veranderingen in de minder stabiele domein-laag.
+Op basis hiervan is de koppeling tussen de Solver en de domeinlaag veel kleiner. 
+De klassen die de interface Schedulable implementeren kunnen niet rechtstreeks aangesproken worden in de Solver. 
+Hierdoor is de Solver beschermd tegen veranderingen in de minder stabiele domein-laag.
 
 \section{Andere problemen}
 \subsection{Controllers}

@@ -1,0 +1,42 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[margin=2.9cm]{geometry} 
+\usepackage[final]{pdfpages}
+\usepackage[dutch]{babel}
+\usepackage{hyperref}
+
+\title{SWOP: Iteratie 4}
+\author{Ruben Lapauw}
+\date{}
+
+\pdfinfo{%
+  /Title    ()
+  /Author   ()
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+\maketitle
+\newpage
+\section{Inleiding}
+Voor iteratie 4 werd er gevraagd om het design van sommige delen van het systeem te herwerken. 
+Dit was nodig omdat op sommige plaatsen het design niet uitbreidbaar genoeg was. 
+Ook waren er verkeerde verantwoordelijkheden toegekend waren aan bepaalde klassen. 
+Of was het design gewoon onduidelijk en nodeloos complex. \\
+
+Dit was het geval bij zowel de Factory-klassen als bij het plannen van afspraken. 
+Bij Factory was het design te generisch waardoor er problemen waren met de begrijpbaarheid en het gebruik.
+Bij het plannen was er een nodeloze complexiteit in de hiërarchie van TimeFrameConstraint.\\
+
+Deze twee systemen werden herwerkt om deze problemen op te lossen. 
+In sectie \ref{Factory} en sectie \ref{scheduling} staat een volledige uitleg wat er aangepast is, en welke voordelen dit had.
+In sectie \ref{Volledig} staat een volledige beschrijving van het design samen met een uitleg van de Use-cases die veranderd zijn.
+In sectie \ref{rest} staat een korte uitleg van de andere, niet besproken usecases.
+
+\input{hospital.tex}
+\end{document}

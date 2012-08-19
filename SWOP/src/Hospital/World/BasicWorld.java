@@ -8,7 +8,6 @@ import Hospital.Machine.SurgicalEquipment;
 import Hospital.Machine.UltraSoundMachine;
 import Hospital.Machine.XRayMachine;
 import Hospital.Patient.Patient;
-import Hospital.Patient.PatientFactory;
 import Hospital.People.Doctor;
 import Hospital.People.HospitalAdministrator;
 import Hospital.People.Nurse;
@@ -46,7 +45,6 @@ public class BasicWorld {
     private static World getEmptyWorld() {
         World w = new World();
 
-        w.addFactory(new PatientFactory());
         w.addMachineFactory(new XRayMachine("Singleton ProtoType 1", null));
         w.addMachineFactory(new UltraSoundMachine("Singleton ProtoType 2", null));
         w.addMachineFactory(new BloodAnalyzer("Singleton ProtoType 3", null));

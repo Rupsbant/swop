@@ -23,8 +23,6 @@ import Hospital.WareHouse.ItemInfo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Provides common functionality and an interface for the different kinds of treatment provided in the hospital.
@@ -148,7 +146,6 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
         try {
             itemReservationCommand.use();
         } catch (NotDoneException ex) {
-            Logger.getLogger(Treatment.class.getName()).log(Level.SEVERE, null, ex);
             throw new Error(ex);
         } catch (CannotDoException ex) {
             throw new Error("Command can only be done if appointment was scheduled!!!");
