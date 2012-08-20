@@ -1,7 +1,6 @@
 package Hospital.MedicalTest;
 
 import Hospital.Argument.PublicArgument;
-import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -79,6 +78,7 @@ public class UltraSoundScan extends MedicalTest {
         this.setResultEntered(true);
     }
 
+    @Override
     public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
@@ -87,9 +87,9 @@ public class UltraSoundScan extends MedicalTest {
             throw new WrongArgumentListException("Wrong argument length: " + args.length + " should be 2");
         }
         Utils.getAnswer(StringArgument.class, "ScanInformation", args[0]);
-        String nature = (String) Utils.getAnswer(StringArgument.class, "The nature of the mass", args[1]);
-        if (!checkNature(nature)) {
-            throw new ArgumentConstraintException("Nature can't be " + nature);
+        String nat = (String) Utils.getAnswer(StringArgument.class, "The nature of the mass", args[1]);
+        if (!checkNature(nat)) {
+            throw new ArgumentConstraintException("Nature can't be " + nat);
         }
         return true;
     }
@@ -207,6 +207,7 @@ public class UltraSoundScan extends MedicalTest {
      * Returns the length of the appointment this MedicalTest needs.
      * @return 30 minutes
      */
+    @Override
     public int getLength() {
         return 30;
     }
@@ -216,6 +217,7 @@ public class UltraSoundScan extends MedicalTest {
      * @param <S> The type op the machine.
      * @return UltraSoundMachine.class
      */
+    @Override
     public <S extends Machine> Class<S> getRequiredMachine() {
         return (Class<S>) UltraSoundMachine.class;
     }

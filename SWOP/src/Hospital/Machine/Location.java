@@ -8,7 +8,7 @@ public class Location {
     /**
      * The location held in this object.
      */
-    String location;
+    private String location;
 
     /**
      * Constructor 

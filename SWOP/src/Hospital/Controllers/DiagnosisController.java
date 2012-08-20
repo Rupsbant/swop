@@ -1,7 +1,6 @@
 package Hospital.Controllers;
 
 import Hospital.SystemAPI;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Exception.Patient.InvalidDiagnosisException;
 import Hospital.Exception.Patient.PatientIsDischargedException;
@@ -10,7 +9,6 @@ import Hospital.Patient.DiagnosisInfo;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
-import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Patient.Diagnosis;
 import Hospital.Patient.DiagnosisApproveCommand;
@@ -81,9 +79,9 @@ public class DiagnosisController {
                 throw new NoPersonWithNameAndRoleException();
             }
             secondDoc = wc.getWorld().getPersonByName(Doctor.class, secondOpinion.getName());
-            return DiagnosisCreator.SINGLETON.makeSecondOpinionDiagnosis(wc.getWorld(), content, dc.getUser(), secondDoc);
+            return DiagnosisCreator.SINGLETON.makeSecondOpinionDiagnosis(content, dc.getUser(), secondDoc);
         } else {
-            return DiagnosisCreator.SINGLETON.makeNormalDiagnosis(wc.getWorld(), content, dc.getUser());
+            return DiagnosisCreator.SINGLETON.makeNormalDiagnosis(content, dc.getUser());
         }
     }
 
@@ -127,6 +125,7 @@ public class DiagnosisController {
      * @throws InvalidDiagnosisException the diagnosis could not be found
      * @throws NoPersonWithNameAndRoleException somehow something went wrong in finding the original doctor
      * @throws InvalidArgumentException if the details were null
+     * @throws PatientIsDischargedException  
      */
     @SystemAPI
     public String disapproveDiagnosis(DiagnosisInfo diag, String details)
@@ -148,7 +147,7 @@ public class DiagnosisController {
         }
         dc.getUser().removeSecondOpinion(diagsec);
         diagsec.setApproved(false);
-        return DiagnosisCreator.SINGLETON.makeSecondOpinionDiagnosis(wc.getWorld(), details, dc.getUser(), diagsec.getOriginalDoctor());
+        return DiagnosisCreator.SINGLETON.makeSecondOpinionDiagnosis(details, dc.getUser(), diagsec.getOriginalDoctor());
     }
 
     /**

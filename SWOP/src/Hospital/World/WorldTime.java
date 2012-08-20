@@ -4,6 +4,9 @@ import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.InvalidTimeException;
 import java.util.ArrayList;
 
+/**
+ * A composite of world. Handles time and it's observers
+ */
 public class WorldTime implements TimeSubject {
 
     /**
@@ -15,6 +18,9 @@ public class WorldTime implements TimeSubject {
      */
     private ArrayList<TimeObserver> timeObservers;
 
+    /**
+     * Creates a new WorldTime with the default time
+     */
     public WorldTime() {
         timeObservers = new ArrayList<TimeObserver>();
         time = new Time();

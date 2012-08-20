@@ -6,12 +6,15 @@ import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedule;
 import Hospital.World.Time;
 
+/**
+ * Nurses can only have appointments directly after a previous appointment, or at a full hour
+ */
 public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint {
 
     private Nurse nurse;
     private Time startTime;
-    private int length;
 
+    @Override
     public Time isAccepted() {
         if(startTime == null || nurse == null){
             return null;
@@ -33,6 +36,7 @@ public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint {
 
     }
 
+    @Override
     public void reset() {
         this.nurse = null;
         this.startTime = null;
@@ -41,7 +45,6 @@ public class NurseAppointmentBackToBackConstraint extends TimeFrameConstraint {
     @Override
     public void setTime(Time tf, int length) {
         this.startTime = tf;
-        this.length = length;
     }
 
     @Override

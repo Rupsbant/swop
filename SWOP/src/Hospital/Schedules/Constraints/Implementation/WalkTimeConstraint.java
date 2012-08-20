@@ -9,6 +9,11 @@ import Hospital.World.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Defines the constraint that every schedule needs to have enough time to walk campusses.
+ * The previous appointment and the tested appointment and the next appointment and the tested appointment are checked.
+ * @author Rupsbant
+ */
 public class WalkTimeConstraint extends TimeFrameConstraint {
 
     private Campus campus;

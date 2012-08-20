@@ -46,16 +46,12 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
      */
     private ItemReservationCommand itemReservationCommand;
 
-    /**
-     * @see Hospital.Schedules.Appointable#getAppointment()
-     */
+    @Override
     public Appointment getAppointment() {
         return appointment;
     }
 
-    /**
-     * @see Hospital.Schedules.Appointable#setAppointment(Hospital.Schedules.Appointment)
-     */
+    @Override
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
     }
@@ -81,9 +77,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
      */
     public abstract int getLength();
 
-    /**
-     * @see Hospital.Schedules.Appointable#getConstraints()
-     */
+    @Override
     public List<TimeFrameConstraint> getConstraints() {
         NurseAppointmentBackToBackConstraint nurseConstraint = new NurseAppointmentBackToBackConstraint();
         List<TimeFrameConstraint> out = new ArrayList<TimeFrameConstraint>();
@@ -96,6 +90,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
      * The Nurse is unmovable and decides where the appointment is.
      * @return new NurseDecides();
      */
+    @Override
     public CampusDecider getCampusDecider() {
         return new NurseDecides();
     }
@@ -104,6 +99,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
      * @return the group of Nurses
      * @see Hospital.Schedules.Appointable#getScheduleGroups()
      */
+    @Override
     public List<MultiScheduleGroup> getScheduleGroups() {
         try {
             return Collections.singletonList(new MultiScheduleGroup(Nurse.class));
@@ -116,6 +112,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
      * @return a TimeFrameDelay with a delay of 60 and the length specified this.getLength()
      * @see Hospital.Schedules.Appointable#getTimeFrameDelay()
      */
+    @Override
     public DelayedTimeLength getDelayedTimeLength() {
         try {
             return new DelayedTimeLength(60, getLength());
@@ -132,9 +129,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
         return delayedCommand.isDone();
     }
 
-    /**
-     * @see Hospital.Factory.Result#isResultEntered()
-     */
+    @Override
     public boolean isResultEntered() {
         return resultEntered;
     }
@@ -153,6 +148,10 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
         resultEntered = true;
     }
 
+    /**
+     * Sets the ItemReservationCommand so that the reserved items can be used during the appointment
+     * @param itemReservationCommand the command to set
+     */
     public void setItemReservationCommand(ItemReservationCommand itemReservationCommand) {
         this.itemReservationCommand = itemReservationCommand;
     }
@@ -184,6 +183,7 @@ public abstract class Treatment implements Result, Appointable, NeedsItems {
 
     /**
      * Remove the scheduling for this treatment
+     * @return a description of the unscheduled treatment
      * @throws CannotDoException the treatment could not be unscheduled
      */
     public String unSchedule() throws CannotDoException {

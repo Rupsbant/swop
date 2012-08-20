@@ -1,6 +1,5 @@
 package Hospital.Schedules;
 
-import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.World.Time;
 import Hospital.World.WorldTime;
@@ -60,6 +59,7 @@ public class DelayedTimeLength {
     
     /**
      * returns the length of the appointment to be made
+     * @return the length of the appointment to be made
      */
     public int getLength(){
         return this.length;

@@ -51,12 +51,16 @@ public class Nurse extends Staff implements Unmovable {
      * Returns the permanent campus of this nurse.
      * @return campus.
      */
+    @Override
     public Campus getCampus() {
         return campus;
     }
 
     /**
-     * Sets the campus one time.
+     * Sets the campus of this nurse
+     * @param campus the campus to set
+     * @return this object
+     * @throws CannotChangeException if the campus was already set
      */
     public Nurse setCampus(Campus campus) throws CannotChangeException {
         if (this.campus != null) {
@@ -70,21 +74,15 @@ public class Nurse extends Staff implements Unmovable {
      * Returns the constraints a appointment needs to satisfy in order to be accepted.
      * @return UnmovableConstraint(), nurses do not move.
      */
+    @Override
     public List<TimeFrameConstraint> getConstraints() {
         List<TimeFrameConstraint> temp = super.getConstraints();
         temp.add(new UnmovableConstraint(this));
         return temp;
     }
 
-
-    /**
-     * This method makes this object visit the constraints to approve them as a Schedulable and as a Staffmember.
-     * @param tf The TimeFrame during which the constraints must be checked.
-     * @param tfContstraints The list of constraints.
-     * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
-     */
     @Override
-    public void visitConstraint(SchedulableVisitor tfContstraints){
+    public void visitConstraint(SchedulableVisitor tfContstraints) {
         super.visitConstraint(tfContstraints);
         tfContstraints.setNurse(this);
     }

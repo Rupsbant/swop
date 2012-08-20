@@ -10,13 +10,30 @@ import Hospital.World.Campus;
 import Hospital.World.CampusInfo;
 import Hospital.World.World;
 
+/**
+ * This class creates staffmembers and introduces them safely in the world
+ * @author Rupsbant
+ */
 public class PeopleCreator {
 
+    /**
+     * The singleton
+     */
     public static final PeopleCreator SINGLETON = new PeopleCreator();
 
     private PeopleCreator() {
     }
 
+    /**
+     * Creates a new staffmember of the given role
+     * @param role
+     * @param w The world to introduce the nem staffmember in
+     * @param name the name of the staffmember
+     * @param info the campus to member is stationed at, ingored for doctors
+     * @return a description of the created staffmember
+     * @throws SchedulableAlreadyExistsException
+     * @throws InvalidArgumentException if some parameter was not as expected
+     */
     public String makeStaff(StaffRole role, World w, String name, CampusInfo info) throws SchedulableAlreadyExistsException, InvalidArgumentException {
         Staff made = null;
         switch (role) {

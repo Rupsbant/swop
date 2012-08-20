@@ -12,7 +12,7 @@ public class SingleSchedulableGroup implements ScheduleGroup {
     /**
      * The represented Schedulable
      */
-    Schedulable sched;
+    private Schedulable sched;
 
     /**
      * Constructor
@@ -27,10 +27,9 @@ public class SingleSchedulableGroup implements ScheduleGroup {
     }
 
     /**
-     * @return the represented schedule as a singleton list
-     *         or an empty list if the schedule isn't free
-     * @see Hospital.Schedules.ScheduleGroup#getSchedulesFreeOnTimeFrame(Hospital.Schedules.TimeFrame)
+     * @return the represented schedule as a list with one element
      */
+    @Override
     public List<Schedulable> getSchedulables() {
         return Collections.singletonList(sched);
     }

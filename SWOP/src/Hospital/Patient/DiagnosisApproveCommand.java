@@ -35,8 +35,8 @@ public class DiagnosisApproveCommand implements Command {
 
     /**
      * Approves the diagnosis and schedules its associated treatment (if any)
-     * @see Hospital.Factory.Command#execute()
      */
+    @Override
     public String execute() throws CannotDoException {
         if (done) {
             throw new CannotDoException("Cannot do twice!");
@@ -49,9 +49,7 @@ public class DiagnosisApproveCommand implements Command {
         return s + "\n" + diagsec.toString();
     }
 
-    /**
-     * @see Hospital.Factory.Command#undo()
-     */
+    @Override
     public String undo() throws CannotDoException {
         if (!done) {
             throw new CannotDoException("Not yet done!");
@@ -64,9 +62,7 @@ public class DiagnosisApproveCommand implements Command {
         return "Undone:\n" + this.toString() + "\n" + s;
     }
 
-    /**
-     * @see Hospital.Factory.Command#isDone()
-     */
+    @Override
     public boolean isDone() {
         return done;
     }

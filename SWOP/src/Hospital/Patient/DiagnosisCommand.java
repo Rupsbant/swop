@@ -1,17 +1,12 @@
 package Hospital.Patient;
 
-import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
-import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.Patient.PatientIsDischargedException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Interfaces.Command;
 import Hospital.People.Doctor;
-import Hospital.World.World;
 
 /**
  * Creates a diagnosis (with or without second opinion), and undoes that later if necessary
@@ -36,21 +31,15 @@ public class DiagnosisCommand implements Command {
     private boolean done = false;
 
     /**
-     * Constructor
-     * @param world the world to which this diagnosis applies
+     * Constructor: Create a diagnosisCommand with a possible second opinion
      * @param doctor the doctor making the diagnosis
-     * @param factoryName the type of diagnosis to be created
-     * @param secondDoc the doctor to ask a second opinion from (if needed)
-     * @param args the arguments to the creation of the new diagnosis
+     * @param diagnosis the diagnosis that must be added to the patient
+     * @param approvalOf the doctor that must approve the diagnosis, null if no approval is needed
      * @throws NoOpenedPatientFileException the creating doctor has no patient file opened
      * @throws PatientIsDischargedException the patient this diagnosis applies to is not checked in
-     * @throws NotAFactoryException an invalid type of diagnosis was given
-     * @throws WrongArgumentListException somehow the list of arguments used to create the diagnosis was wrong
-     * @throws ArgumentNotAnsweredException the given argument was not answered
-     * @throws ArgumentConstraintException the given argument was incorrect
-     * @throws ArgumentIsNullException the given argument was null
+     * @throws InvalidArgumentException if the given doctor was null
      */
-    public DiagnosisCommand(World world, Doctor doctor, Diagnosis diagnosis, Doctor approvalOf)
+    public DiagnosisCommand(Doctor doctor, Diagnosis diagnosis, Doctor approvalOf)
             throws NoOpenedPatientFileException,
             PatientIsDischargedException,
             InvalidArgumentException {
@@ -65,15 +54,27 @@ public class DiagnosisCommand implements Command {
         this.diagnosis = diagnosis;
         toAdd = doctor.getOpenedPatient();
     }
-    public DiagnosisCommand(World world, Doctor doctor, Diagnosis diagnosis) 
-            throws NoOpenedPatientFileException, PatientIsDischargedException, InvalidArgumentException{
-        this(world, doctor, diagnosis, null);
+
+    /**
+     *  Create a DiagnosisCommand that doesn't need a second opinion
+     * @param doctor The doctor that makes the diagnosis
+     * @param diagnosis The diagnosis that must be introduced
+     * @throws NoOpenedPatientFileException if no patient was opened
+     * @throws PatientIsDischargedException if the patient that gets the diagnosis is already discharged
+     * @throws InvalidArgumentException if the given doctor was null
+     */
+    public DiagnosisCommand(Doctor doctor, Diagnosis diagnosis)
+            throws NoOpenedPatientFileException, PatientIsDischargedException, InvalidArgumentException {
+        this(doctor, diagnosis, null);
     }
 
     /**
-     * Adds the created diagnosis to the patient and the second opinion doctor
-     * @see Hospital.Factory.Command#execute()
+     * Adds the diagnosis to the patient
+     * Adds the diagnosis to the list of second opinions of the doctor that needs to approve the diagnosis
+     * @return a description of the executed command
+     * @throws CannotDoException if something went wrong
      */
+    @Override
     public String execute() throws CannotDoException {
         if (done) {
             throw new CannotDoException("Already done!");
@@ -87,8 +88,12 @@ public class DiagnosisCommand implements Command {
     }
 
     /**
-     * @see Hospital.Factory.Command#undo()
+     * Removes the diagnosis from the patient
+     * This cannot be done when a treatment was added.
+     * @return a description of the undone command
+     * @throws CannotDoException if something went wrong
      */
+    @Override
     public String undo() throws CannotDoException {
         if (!done) {
             throw new CannotDoException("Not yet done!");
@@ -103,9 +108,7 @@ public class DiagnosisCommand implements Command {
         return "Undone:\n" + this.toString();
     }
 
-    /**
-     * @see Hospital.Factory.Command#isDone()
-     */
+    @Override
     public boolean isDone() {
         return done;
     }

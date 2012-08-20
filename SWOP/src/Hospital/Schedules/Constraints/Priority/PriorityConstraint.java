@@ -9,6 +9,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This constraint checks that all colliding appointments of all attendees have a lower priority and can be preempted
+ */
 public class PriorityConstraint extends TimeFrameConstraint {
 
     private Priority priority;
@@ -16,10 +19,15 @@ public class PriorityConstraint extends TimeFrameConstraint {
     private int length;
     private Set<Schedule> attendeeSchedules = new HashSet<Schedule>();
 
+    /**
+     * Creates a new PriorityConstraint with the given priority
+     * @param priority the priority this appointment will have
+     */
     public PriorityConstraint(Priority priority) {
         this.priority = priority;
     }
 
+    @Override
     public Time isAccepted() {
         if (tf == null) {
             return null;
@@ -28,7 +36,7 @@ public class PriorityConstraint extends TimeFrameConstraint {
             List<Appointment> collidingSchedules = 
                     schedule.getCollidingAppointments(tf, length);
             for (Appointment p : collidingSchedules) {
-                if (!priority.canPreempt(p.getPriority())) {
+                if (!priority.thisCanPreempt(p.getPriority())) {
                     Time start = p.getEndTime();
                     return start;
                 }
@@ -48,6 +56,7 @@ public class PriorityConstraint extends TimeFrameConstraint {
         this.length = length;
     }
 
+    @Override
     public void reset() {
         this.tf = null;
         attendeeSchedules.clear();

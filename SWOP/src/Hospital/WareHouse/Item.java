@@ -61,9 +61,7 @@ public abstract class Item implements Cloneable, ItemFactory {
     @Override
     public abstract Item clone();
 
-    /**
-     * @see Hospital.WareHouse.ItemFactory#getArguments()
-     */
+    @Override
     public PublicArgument[] getArguments() {
         return new PublicArgument[0];
     }

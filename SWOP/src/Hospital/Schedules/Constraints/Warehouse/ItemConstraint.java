@@ -7,16 +7,24 @@ import Hospital.WareHouse.ItemInfo;
 import Hospital.World.Campus;
 import Hospital.World.Time;
 
+/**
+ * Creates a constraint on the warehouse of the tested campus so that all items are available on the appointment's starttime
+ */
 public class ItemConstraint extends TimeFrameConstraint {
 
     private Time tf;
     private Campus campus;
     private final Treatment app;
 
+    /**
+     * Creates a new ItemCronstraint for the given treatment.
+     * @param app
+     */
     public ItemConstraint(Treatment app) {
         this.app = app;
     }
 
+    @Override
     public Time isAccepted() {
         if (tf == null || campus == null) {
             return null;
@@ -37,6 +45,7 @@ public class ItemConstraint extends TimeFrameConstraint {
         return tf;
     }
 
+    @Override
     public void reset() {
         tf = null;
     }
@@ -46,6 +55,7 @@ public class ItemConstraint extends TimeFrameConstraint {
         this.campus = c;
     }
 
+    @Override
     public void setTime(Time tf, int length) {
         this.tf = tf;
     }

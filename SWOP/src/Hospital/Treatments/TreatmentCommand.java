@@ -62,8 +62,9 @@ public class TreatmentCommand implements Command {
     /**
      * Executes this command by adding the treatment to the diagnosis
      * @throws CannotDoException the command was already executed or the diagnosis already had a treatment
-     * @see Hospital.Factory.Command#execute()
+     * @see Hospital.Interfaces.Command#execute()
      */
+    @Override
     public String execute() throws CannotDoException {
         if (done) {
             throw new CannotDoException("Treatment was already executed");
@@ -79,10 +80,7 @@ public class TreatmentCommand implements Command {
         }
     }
 
-    /**
-     * @throws CannotDoException the command was not yet executed or the treatment is already done
-     * @see Hospital.Factory.Command#undo()
-     */
+    @Override
     public String undo() throws CannotDoException {
         if (!done) {
             throw new CannotDoException("Treatment was not executed");
@@ -99,9 +97,7 @@ public class TreatmentCommand implements Command {
         }
     }
 
-    /**
-     * @see Hospital.Factory.Command#isDone()
-     */
+    @Override
     public boolean isDone() {
         return done;
     }

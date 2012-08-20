@@ -5,11 +5,16 @@ import Hospital.People.Doctor;
 import Hospital.People.Nurse;
 import Hospital.People.Staff;
 
+/**
+ * The class that defines a visitor for the whole Schedulable hierarchy.
+ * Add visitor methods as needed.
+ * @author Rupsbant
+ */
 public class SchedulableVisitor {
 
     /**
      * (in)validates the constraint based on a given TimeFrame for a Doctor
-     * @param n the Doctor-object
+     * @param d the Doctor-object
      */
     public void setDoctor(Doctor d) {
     }

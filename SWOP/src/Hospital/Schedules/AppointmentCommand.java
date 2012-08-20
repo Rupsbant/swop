@@ -1,7 +1,5 @@
 package Hospital.Schedules;
 
-import Hospital.Argument.PriorityArgument;
-import Hospital.Argument.PublicArgument;
 import Hospital.Schedules.ScheduleGroups.MultiScheduleGroup;
 import Hospital.Schedules.ScheduleGroups.ScheduleGroup;
 import Hospital.Schedules.Constraints.Priority.Priority;
@@ -27,9 +25,6 @@ import java.util.Set;
  */
 public class AppointmentCommand implements Command {
 
-    public static PublicArgument[] getArguments() {
-        return new PublicArgument[]{new PriorityArgument("Enter the priority of the appointment")};
-    }
     /**
      * The minimal delay before the appointment can be scheduled
      */
@@ -58,6 +53,7 @@ public class AppointmentCommand implements Command {
      * @param world the world in which to schedule the appointment
      * @param coreSchedules the attendees which have to be specifically present (eg. a specific patient, as opposed to any nurse)
      * @param app the Appointable-object associated with the Appointment that will be created
+     * @param priority the priority at which the appointment must be scheduled
      * @throws ArgumentIsNullException world, coreSchedules and/or app was null
      */
     public AppointmentCommand(World world, Appointable app, List<ScheduleGroup> coreSchedules, Priority priority) throws ArgumentIsNullException {
@@ -88,8 +84,9 @@ public class AppointmentCommand implements Command {
 
     /**
      * Executes the command by making and scheduling an appointment between the attendees given in the constructor
-     * @see Hospital.Factory.Command#execute()
+     * @see Hospital.Interfaces.Command#execute()
      */
+    @Override
     public String execute() throws CannotDoException {
         if (appointment != null) {
             throw new CannotDoException("Appointment already planned");
@@ -115,7 +112,8 @@ public class AppointmentCommand implements Command {
     }
 
     /**
-     * @see Hospital.Factory.Command#undo()
+     * Removes the scheduled appointment from existence
+     * @see Hospital.Interfaces.Command#undo()
      */
     public String undo() throws CannotDoException {
         if (appointment == null) {
@@ -128,7 +126,7 @@ public class AppointmentCommand implements Command {
     }
 
     /**
-     * @see Hospital.Factory.Command#isDone()
+     * @see Hospital.Interfaces.Command#isDone()
      */
     public boolean isDone() {
         return appointment != null;
@@ -143,6 +141,10 @@ public class AppointmentCommand implements Command {
         return "AppointmentCommand of " + appointable;
     }
 
+    /**
+     * set a command to execute when the appointment is scheduled
+     * @param next the next command to execute
+     */
     public void setNext(Command next) {
         if (next == null) {
             next = NullCommand.singleton;
@@ -150,7 +152,7 @@ public class AppointmentCommand implements Command {
         this.next = next;
     }
 
-    static String redoPreempted(Set<AppointmentCommand> preempted) {
+    private static String redoPreempted(Set<AppointmentCommand> preempted) {
         String s = "";
         for (AppointmentCommand appC : preempted) {
             //TODO: make this better!
@@ -167,7 +169,7 @@ public class AppointmentCommand implements Command {
         return s;
     }
 
-    static String undoPreempted(Set<AppointmentCommand> preempted) {
+    private static String undoPreempted(Set<AppointmentCommand> preempted) {
         String s = "";
         for (AppointmentCommand appC : preempted) {
             //TODO: make this better!
@@ -184,7 +186,7 @@ public class AppointmentCommand implements Command {
         return s;
     }
 
-    static Set<AppointmentCommand> getPreempted(List<Schedule> chosenSchedules, Appointment chosenTimeFrame) {
+    private static Set<AppointmentCommand> getPreempted(List<Schedule> chosenSchedules, Appointment chosenTimeFrame) {
         Set<AppointmentCommand> preempted = new HashSet<AppointmentCommand>();
         for (Schedule s : chosenSchedules) {
             for (Appointment app : s.getCollidingAppointments(chosenTimeFrame)) {

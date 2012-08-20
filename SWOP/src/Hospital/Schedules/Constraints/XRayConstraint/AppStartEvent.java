@@ -5,7 +5,7 @@ import Hospital.World.TimeUtils;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
-public class AppStartEvent extends AppEvent {
+class AppStartEvent extends AppEvent {
     private int plannedChange;
 
     public AppStartEvent(Time time, int plannedChange) {

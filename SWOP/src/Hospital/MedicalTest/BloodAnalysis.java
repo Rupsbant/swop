@@ -103,6 +103,7 @@ public class BloodAnalysis extends MedicalTest {
         this.setResultEntered(true);
     }
 
+    @Override
     public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
@@ -160,6 +161,7 @@ public class BloodAnalysis extends MedicalTest {
      * Returns the length this MedicalTest takes.
      * @return 45
      */
+    @Override
     public int getLength() {
         return 45;
     }
@@ -169,6 +171,7 @@ public class BloodAnalysis extends MedicalTest {
      * @param <S> The machineType
      * @return BloocAnalyze.class
      */
+    @Override
     public <S extends Machine> Class<S> getRequiredMachine() {
         return (Class<S>) BloodAnalyzer.class;
     }

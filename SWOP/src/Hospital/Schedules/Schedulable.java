@@ -14,17 +14,17 @@ public interface Schedulable {
     Schedule getSchedule();
 
     /**
-     * This makes this object visit the TimeFrameConstraints during scheduling.
-     * @param tfContstraints The constraints that must be satisfied.
-     * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).isAccepted();.
+     * This makes this object visit the givenSchedulableVisitor object.
+     * @param visitor the object that must be visited
      */
-    void visitConstraint(SchedulableVisitor tfContstraints);
+    void visitConstraint(SchedulableVisitor visitor);
 
     /**
      * This returns the constraints this schedulable has for new appointments.
      * These include BackToBackConstraints and PreferenceConstraint.
      *
      * Warning: Always create new list, otherwise not thread safe.
+     * @return a list of Constraints
      */
     List<TimeFrameConstraint> getConstraints();
 }

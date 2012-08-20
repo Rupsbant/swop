@@ -1,13 +1,8 @@
 package Hospital.MedicalTest;
 
 import Hospital.Interfaces.Command;
-import Hospital.Exception.Arguments.ArgumentConstraintException;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Command.CannotDoException;
-import Hospital.Exception.NotAFactoryException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Patient.Patient;
 import Hospital.Schedules.AppointmentCommand;
 import Hospital.Schedules.Constraints.Priority.Priority;
@@ -42,13 +37,9 @@ public class MedicalTestCommand implements Command {
      * Constructor
      * @param world the world in which this command must be executed
      * @param openedPatient the patient for whom the test must be created
-     * @param medicalTestName the type of test to be created
-     * @param args arguments to the creation of this test
-     * @throws WrongArgumentListException the given arguments do not match the test to be created
-     * @throws ArgumentNotAnsweredException one or more of the arguments are not answered
-     * @throws ArgumentConstraintException one or more of the arguments are incorrect
-     * @throws ArgumentIsNullException the array of PublicArguments is null
-     * @throws NotAFactoryException the given type of medical test does not exist in the world
+     * @param med  The medicaltest to add to the patient
+     * @param priority The priority at which the Appointment must be made
+     * @throws InvalidArgumentException If some parameter was not as expected: null or some constraint 
      */
     public MedicalTestCommand(World world, Patient openedPatient, MedicalTest med, Priority priority)
             throws InvalidArgumentException {
@@ -63,6 +54,7 @@ public class MedicalTestCommand implements Command {
      * @return the details of the created medical test
      * @throws CannotDoException the command was already executed
      */
+    @Override
     public String execute() throws CannotDoException {
         if (done) {
             throw new CannotDoException("Cannot undo command, not done yet.");
@@ -81,6 +73,7 @@ public class MedicalTestCommand implements Command {
      * @throws CannotDoException the command was not yet executed
      * @see Hospital.Factory.Command#undo()
      */
+    @Override
     public String undo() throws CannotDoException {
         if (!done) {
             throw new CannotDoException("Cannot undo Command");

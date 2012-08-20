@@ -93,6 +93,7 @@ public class Diagnosis {
     /**
      * Sets the treatment for this diagnosis.
      * @param treatment The treatment to set.
+     * @return a description of the updated state
      * @throws ArgumentIsNullException If the treatment was null.
      * @throws CannotChangeException If the treatment was already set.
      * @throws CannotDoException the associated treatment was already scheduled
@@ -113,6 +114,7 @@ public class Diagnosis {
 
     /**
      * (Un)Schedules the treatment depending on whether the treatment can be started
+     * @return a description of the updated state, "" if nothing happened
      * @throws CannotDoException the treatment could not be (un)scheduled
      */
     protected String updateState() throws CannotDoException {
@@ -128,6 +130,7 @@ public class Diagnosis {
     /**
      * Removes the treatment. The treatment to remove must be known.
      * @param t The treatment to try to remove.
+     * @return a description of the new state
      * @throws WrongTreatmentException If the Treatment that tried to be removed was not set in this diagnosis.
      * @throws CannotDoException the treatment was not yet scheduled
      */

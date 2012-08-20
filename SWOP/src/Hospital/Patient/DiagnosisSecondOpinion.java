@@ -3,8 +3,6 @@ package Hospital.Patient;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.People.Doctor;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * A diagnosis which requires a second opinion
@@ -67,7 +65,7 @@ public class DiagnosisSecondOpinion extends Diagnosis {
     /**
      * Sets whether this Diagnosis is valid or not.
      * @param valid whether The diagnosis is approved or not.
-     * @throws CannotDoException the associated treatment could not be (un)scheduled
+     * @return a description of the new state approving brings
      */
     public final String setApproved(Boolean valid) {
         this.approved = valid;

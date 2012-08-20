@@ -5,7 +5,7 @@ import Hospital.World.Time;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
-public abstract class AppEvent implements HasTime {
+abstract class AppEvent implements HasTime {
 
     private Time time;
 

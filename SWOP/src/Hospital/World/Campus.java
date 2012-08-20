@@ -18,6 +18,11 @@ public class Campus {
      */
     private Warehouse warehouse;
 
+    /**
+     * Creates a new campus with the given name in the given world
+     * @param name the name of the campus
+     * @param w the world the campus must be added in
+     */
     public Campus(String name, World w) {
         this.name = name;
         this.warehouse = WarehouseMaker.getWarehouse(w, this);

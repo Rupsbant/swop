@@ -1,10 +1,6 @@
 package Hospital.Machine;
 
-import Hospital.Exception.Arguments.ArgumentConstraintException;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.World.CampusInfo;
@@ -17,6 +13,9 @@ import java.util.logging.Logger;
  */
 public class SurgicalEquipment extends Machine implements MachineAbstractFactory {
 
+    /**
+     * the description of this MachineFactory
+     */
     public static final String SURGICAL_EQUIPMENT_FACTORY = "New SurgicalEquipment";
 
     /**
@@ -39,12 +38,7 @@ public class SurgicalEquipment extends Machine implements MachineAbstractFactory
 
     /**
      * Makes a new SurgicalEquipment with the given arguments.
-     * @param args The arguments to make this machine with: id and location.
      * @return A new SurgicalEquipment
-     * @throws WrongArgumentListException If the list is of the wrong length or contains the wrong types.
-     * @throws ArgumentNotAnsweredException If an Argument was not answered.
-     * @throws ArgumentConstraintException If an Argument did not satisfy it's constraints.
-     * @throws ArgumentIsNullException If an Argument was null.
      */
     @Override
     public Machine make(World w, CampusInfo info, Location location, String id) throws InvalidArgumentException, SchedulableAlreadyExistsException {

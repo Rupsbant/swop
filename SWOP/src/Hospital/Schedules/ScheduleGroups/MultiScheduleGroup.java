@@ -51,8 +51,9 @@ public class MultiScheduleGroup<S extends Schedulable> implements ScheduleGroup 
 
     /**
      * Gets a list of all objects of the class defined by resource in this world
-     * @return the list of resource-objects as Schedulable
+     * @return the list of resource-objects of the set class
      */
+    @Override
     public List<Schedulable> getSchedulables() {
         return (List<Schedulable>) world.getResourceOfClass(resource);
     }

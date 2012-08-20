@@ -7,6 +7,10 @@ import Hospital.Interfaces.Command;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This object holds a history of commands that were done and undone
+ * @author Rupsbant
+ */
 public class CommandHistory {
 
     /**
@@ -35,8 +39,10 @@ public class CommandHistory {
     }
 
     /**
-     * adds a command to recent commands
+     * adds a command to recent commands and execute it
      * @param comm command to be added
+     * @return a description of the added and executed command
+     * @throws CannotDoException if the command could not be executed 
      */
     public String addCommand(Command comm) throws CannotDoException {
         recent.add(new CommandInfo(comm));

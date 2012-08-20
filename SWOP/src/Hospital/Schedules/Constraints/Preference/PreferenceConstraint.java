@@ -5,6 +5,9 @@ import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
 import Hospital.World.Time;
 
+/**
+ * Checks with the preference of the doctors if the appointment can be scheduled at the given campus
+ */
 public class PreferenceConstraint extends TimeFrameConstraint {
 
     private Preference preference;
@@ -28,6 +31,7 @@ public class PreferenceConstraint extends TimeFrameConstraint {
         this.length = length;
     }
 
+    @Override
     public Time isAccepted() {
         if (preference == null || tf == null || campus == null) {
             return null;
@@ -39,6 +43,7 @@ public class PreferenceConstraint extends TimeFrameConstraint {
         }
     }
 
+    @Override
     public void reset() {
         campus = null;
         preference = null;

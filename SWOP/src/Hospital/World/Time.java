@@ -67,24 +67,6 @@ public class Time implements HasTime, Cloneable {
     }
 
     /**
-     * Sets this object to a specific time
-     * @param year the year to set
-     * @param month the month to set
-     * @param day the day of the month to set
-     * @param hour the hour to set
-     * @param minute the minutes into the hour to set 
-     */
-    private void setTime(int year, int month, int day, int hour, int minute) {
-        time.clear();
-        time.set(year, month, day, hour, minute);
-    }
-
-    protected void copyTime(Time t) {
-        time = t.time;
-        notify();
-    }
-
-    /**
      * Returns a clone of this Time.
      * @return new Time(getTime());
      */
@@ -93,6 +75,7 @@ public class Time implements HasTime, Cloneable {
         return new Time(getGregorianTime());
     }
 
+    @Override
     public Time getTime() {
         return this;
     }
@@ -104,6 +87,7 @@ public class Time implements HasTime, Cloneable {
      * 			less than 0 if this object comes before t in time
      * 			more than 0 if this object comes after t in time
      */
+    @Override
     public int compareTo(HasTime t) {
         return getGregorianTime().compareTo(t.getTime().getGregorianTime());
     }

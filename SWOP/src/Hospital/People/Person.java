@@ -36,10 +36,7 @@ public abstract class Person implements Schedulable {
         this.schedule = new Schedule();
     }
 
-    /**
-     * Returns this Person's schedule
-     * @return schedule
-     */
+    @Override
     public Schedule getSchedule() {
         return schedule;
     }
@@ -90,15 +87,12 @@ public abstract class Person implements Schedulable {
         return this.getName();
     }
 
-    /**
-     * This makes this object visit the TimeFrameConstraints during scheduling.
-     * @param tfContstraints The constraints that must be satisfied.
-     * @return The constraints for simpler code : schedulable.setValidTimeFrame(tf, tfc).isAccepted();.
-     */
+    @Override
     public void visitConstraint(SchedulableVisitor tfContstraints) {
         tfContstraints.setSchedulable(this);
     }
 
+    @Override
     public List<TimeFrameConstraint> getConstraints() {
         return new ArrayList<TimeFrameConstraint>();
     }

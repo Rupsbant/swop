@@ -35,7 +35,6 @@ public class World {
      * the machines that exist in this world
      */
     private Map<String, MachineAbstractFactory> machineFactories;
-    
     /**
      * this worldTime
      */
@@ -144,6 +143,7 @@ public class World {
 
     /**
      * Gets all resources of the given class
+     * @param <S> The type of the class as output
      * @param clazz the class to search
      * @return a List containing all resources in this world of the given class
      */
@@ -154,6 +154,7 @@ public class World {
     /**
      * Gets all resources of the given class on the given campus
      * In the case of patients, patients that were last checked in on the given campus, but are now discharged, are also included.
+     * @param <S> The type of the class as output
      * @param clazz the class to search
      * @param campus the campus to filter by
      * @return a List containing all resources in this campus of the given class
@@ -178,6 +179,7 @@ public class World {
 
     /**
      * Gets a specific person in this world
+     * @param <S> The type of the class as output
      * @param clazz the class of the person
      * @param name the name of the person
      * @return the person of the given class in this world with the given name
@@ -199,10 +201,6 @@ public class World {
      */
     public WorldTime getWorldTime() {
         return worldTime;
-    }
-
-    public void setWorldTime(WorldTime worldTime) {
-        this.worldTime = worldTime;
     }
 
     /**
@@ -230,30 +228,50 @@ public class World {
      * This method adds a new preference to the world
      * @param pref : The preference
      */
-    public void addPreference(Preference pref){
+    public void addPreference(Preference pref) {
         preferences.add(pref);
     }
 
+    /**
+     * Returns a list of available preferences in this world
+     * @return List of preferences
+     */
     public List<Preference> getPreferences() {
         return new ArrayList<Preference>(preferences);
     }
 
+    /**
+     * Returns a preference based on description
+     * @param answer
+     * @return
+     * @throws CannotFindException
+     */
     public Preference getPreference(String answer) throws CannotFindException {
-        for(Preference p : preferences){
-            if(p.getDescription().equals(answer)){
+        for (Preference p : preferences) {
+            if (p.getDescription().equals(answer)) {
                 return p;
             }
         }
         throw new CannotFindException("Preference");
     }
 
+    /**
+     * Returns a list of names of MachineFactories
+     * @return
+     */
     public String[] getMachineFactories() {
         return machineFactories.keySet().toArray(new String[0]);
     }
 
+    /**
+     * Returns a machineFactory by name
+     * @param machineType the name of the machine
+     * @return The MachineFactory with the given name
+     * @throws NotAFactoryException if the name was not found.
+     */
     public MachineAbstractFactory getMachineFactory(String machineType) throws NotAFactoryException {
         MachineAbstractFactory out = machineFactories.get(machineType);
-        if(out == null){
+        if (out == null) {
             throw new NotAFactoryException();
         }
         return out;
@@ -262,6 +280,4 @@ public class World {
     void addMachineFactory(MachineAbstractFactory machine) {
         machineFactories.put(machine.getType(), machine);
     }
-
-
 }

@@ -5,11 +5,22 @@ import Hospital.WareHouse.OrderPlacers.OrderPlacer;
 import Hospital.World.Time;
 import Hospital.World.TimeUtils;
 import java.util.PriorityQueue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+/**
+ * A static class to simulate the time and check if all reservations are valid and no overstock or understock happens
+ * @author Rupsbant
+ */
 public class StockConsistency {
 
+    /**
+     * Calculates the simulated future given the current knownledge of appointments
+     * @param events The events that change the stock
+     * @param items the current number of items in stock
+     * @param order the current number of orders
+     * @param maxStock the maximum stock
+     * @param o the orderplacer for this stock
+     * @return false if errors happen
+     */
     public static boolean evaluateEvents(PriorityQueue<StockChangeEvent> events, int items, int order, int maxStock, OrderPlacer o) {
         try {
             while (!events.isEmpty()) {
@@ -26,7 +37,7 @@ public class StockConsistency {
                 }
             }
         } catch (ArgumentConstraintException ex) {
-            Logger.getLogger(StockConsistency.class.getName()).log(Level.SEVERE, null, ex);
+            throw new Error(ex);
         }
         return true;
     }

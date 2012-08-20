@@ -57,6 +57,9 @@ public class WarehouseManager extends Staff {
 
     /**
      * Sets the campus one time.
+     * @param campus the campus to set
+     * @return this
+     * @throws CannotChangeException  if the campus was already set 
      */
     public WarehouseManager setCampus(Campus campus) throws CannotChangeException {
         if (this.campus != null) {
@@ -66,6 +69,7 @@ public class WarehouseManager extends Staff {
         return this;
     }
 
+    @Override
     public List<TimeFrameConstraint> getConstraints() {
         throw new UnsupportedOperationException("Warehousemanager has no appointments");
     }

@@ -1,7 +1,6 @@
 package Hospital.Treatments;
 
 import Hospital.Argument.PublicArgument;
-import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;

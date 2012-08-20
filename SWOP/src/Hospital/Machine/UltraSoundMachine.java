@@ -1,11 +1,8 @@
 package Hospital.Machine;
 
-import Hospital.Exception.Arguments.ArgumentConstraintException;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.CannotChangeException;
+import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.World.CampusInfo;
 import Hospital.World.World;
 
@@ -14,9 +11,12 @@ import Hospital.World.World;
  */
 public class UltraSoundMachine extends Machine implements MachineAbstractFactory {
 
+    /**
+     * The description of this MachineFactory
+     */
     public static final String ULTRA_SOUND_MACHINE_FACTORY = "New UltraSoundMachine";
 
-	/**
+    /**
      * Constructor
      * @param id a unique identifier
      * @param location the location of this Ultrasound machine
@@ -36,17 +36,15 @@ public class UltraSoundMachine extends Machine implements MachineAbstractFactory
 
     /**
      * Makes a new UltraSoundMachine with the given arguments
-     * @param args The arguments : id and location
      * @return The new UltraSound
-     * @throws WrongArgumentListException If the length of the list was wrong or one of it's types.
-     * @throws ArgumentNotAnsweredException If one of the arguments was not answered.
-     * @throws ArgumentConstraintException If one of the arguments did not satisfy it's constraints.
-     * @throws ArgumentIsNullException If one of the arguments was null.
      */
     @Override
-    public Machine make(World w, CampusInfo info, Location location, String id) throws InvalidArgumentException {
+    public Machine make(World w, CampusInfo info, Location location, String id) throws InvalidArgumentException, SchedulableAlreadyExistsException {
         try {
-            return new UltraSoundMachine(id, location).setCampus(w.getCampusFromInfo(info));
+            final UltraSoundMachine ultraSoundMachine = new UltraSoundMachine(id, location);
+            ultraSoundMachine.setCampus(w.getCampusFromInfo(info));
+            w.addSchedulable(ultraSoundMachine);
+            return ultraSoundMachine;
         } catch (CannotChangeException ex) {
             throw new Error("Cannot happen");
         }

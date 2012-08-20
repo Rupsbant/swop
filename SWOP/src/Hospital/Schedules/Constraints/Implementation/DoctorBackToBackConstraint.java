@@ -7,12 +7,14 @@ import Hospital.Schedules.Schedule;
 import Hospital.World.Campus;
 import Hospital.World.Time;
 
+/**
+ * Constraints doctors so that they can only have appointments on the full hour or directly after a previous appointment (including walking time).
+ */
 public class DoctorBackToBackConstraint extends TimeFrameConstraint {
 
     private Campus campus;
     private Schedule schedule;
     private Time time;
-    private int length;
 
     @Override
     public Time isAccepted() {
@@ -36,6 +38,7 @@ public class DoctorBackToBackConstraint extends TimeFrameConstraint {
         return time.getLaterTime(1);
     }
 
+    @Override
     public void reset() {
         time = null;
         campus = null;

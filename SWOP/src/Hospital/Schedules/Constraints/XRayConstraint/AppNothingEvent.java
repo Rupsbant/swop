@@ -4,7 +4,7 @@ import Hospital.World.Time;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
-public class AppNothingEvent extends AppEvent {
+class AppNothingEvent extends AppEvent {
 
     public AppNothingEvent(Time time) {
         super(time);

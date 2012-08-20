@@ -6,19 +6,29 @@ import Hospital.World.Campus;
 import Hospital.World.Time;
 import Hospital.World.TimeUtils;
 
+/**
+ * The user of this preference only changes between campusses 4 times during the day.
+ * Every new appointment is tested if it still fits this constraint.
+ */
 public class ChangeLocationPreference implements Preference {
 
-    public static final int MAX_CHANGES = 4;
-    HasPreference schedulable;
+    private static final int MAX_CHANGES = 4;
+    private HasPreference schedulable;
 
-    public ChangeLocationPreference(HasPreference schedulable) {
-        this.schedulable = schedulable;
+    /**
+     * Creates a new ChangeLocationPreference with the given HasPreference
+     * @param hasPreference the Schedulable to check canAddAppointment with
+     */
+    public ChangeLocationPreference(HasPreference hasPreference) {
+        this.schedulable = hasPreference;
     }
 
+    @Override
     public void makeThisAsPreference(HasPreference d) {
         d.setPreference(new ChangeLocationPreference(d));
     }
 
+    @Override
     public boolean canAddAppointment(Time tf, int length, Campus campus) {
         Time start = TimeUtils.getStartOfDay(tf.getTime());
         Time end = TimeUtils.addDay(start);
@@ -86,6 +96,7 @@ public class ChangeLocationPreference implements Preference {
         return changeCount;
     }
 
+    @Override
     public String getDescription() {
         return "ChangeLocationPreference\n"
                 + "Change at most four times of location during the day.";

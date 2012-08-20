@@ -32,14 +32,15 @@ public abstract class TimeFrameConstraint extends SchedulableVisitor {
     public abstract void reset();
 
     /**
-     * Sets the Campus the appointment is taking place at.
-     * @param c, The Campus where the appointment is.
+     * Sets the Campus the appointment is taking place at. 
+     * @param c The Campus where the appointment is.
      */
     public void setCampus(Campus c){}
 
     /**
      * Sets the TimeFrame of the appointment that is being made.
-     * @param tf, The TimeFrame during which the appointment happens.
+     * @param time the time at which the appointment is tried to be scheduled
+     * @param length the length of the tested appointment
      */
-    public abstract void setTime(Time tf, int length);
+    public abstract void setTime(Time time, int length);
 }

@@ -4,6 +4,9 @@ import Hospital.People.Nurse;
 import Hospital.Schedules.CampusDecider;
 import Hospital.World.Campus;
 
+/**
+ * Visiting nurses choose the campus.
+ */
 public class NurseDecides extends CampusDecider {
     private Campus campus;
 

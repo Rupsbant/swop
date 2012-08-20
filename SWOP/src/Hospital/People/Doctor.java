@@ -142,12 +142,6 @@ public class Doctor extends Staff implements HasPreference {
         return (ArrayList<DiagnosisSecondOpinion>) secondOpinions.clone();
     }
 
-    /**
-     * This method makes this object visit the constraints to approve them as a Schedulable and as a Doctor.
-     * @param tf The TimeFrame during which the constraints must be checked.
-     * @param tfContstraints The list of constraints.
-     * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
-     */
     @Override
     public void visitConstraint(SchedulableVisitor tfConstraints) {
         super.visitConstraint(tfConstraints);
@@ -165,18 +159,12 @@ public class Doctor extends Staff implements HasPreference {
         return constraints;
     }
 
-    /**
-     * sets the preference of this doctor
-     */
-    public Doctor setPreference(Preference preference) {
+    @Override
+    public void setPreference(Preference preference) {
         this.preference = preference;
-        return this;
     }
 
-    /**
-     * returns the preference of this doctor.
-     * @return Prefecence, the current preference for handling moving between campuses
-     */
+    @Override
     public Preference getPreference() {
         return preference;
     }

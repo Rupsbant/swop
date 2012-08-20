@@ -53,9 +53,13 @@ public class Appointment implements HasTime {
     private Priority priority;
 
     /**
-     * Constructor
-     * @param timeFrame the starting time and length of the appointment as TimeFrame object
-     * @param attendees the schedules of the attendees
+     * Creates a new Appointment
+     * @param startTime the startTime of the appointment
+     * @param length the length of the appointment
+     * @param attendees the list of attendees
+     * @param appC the Command that created the appointment
+     * @param campus the campus where the appointment takes place
+     * @param priority the priority the appointment is scheduled at
      */
     public Appointment(Time startTime, int length, List<Schedule> attendees, AppointmentCommand appC, Campus campus, Priority priority) {
         this.campus = campus;
@@ -87,6 +91,7 @@ public class Appointment implements HasTime {
      * Returns the Time this appointment starts
      * @return The Time this appointment starts
      */
+    @Override
     public Time getTime() {
         return this.time;
     }
@@ -97,29 +102,31 @@ public class Appointment implements HasTime {
      * @return true if TimeFrames collide.
      */
     public boolean collides(Appointment tf) {
-        return (getTime().compareTo(tf.getTime()) <= 0 && tf.getTime().compareTo(getEndTime()) < 0) || (tf.getTime().compareTo(getTime()) <= 0 && getTime().compareTo(tf.getEndTime()) < 0);
+        return collides(tf.getTime(), tf.getLength());
     }
 
     /**
      * Returns true if the two TimeFrame falls during the same time.
-     * @param tf Other TimeFrame to test.
+     * @param time The startttime of the interval to test
+     * @param length the length of the interval
      * @return true if TimeFrames collide.
      */
-    public boolean collides(Time tf, int length) {
-        Time endTime = tf.getLaterTime(length);
-        return (getTime().compareTo(tf.getTime()) <= 0
-                && tf.getTime().compareTo(getEndTime()) < 0)
-                || (tf.getTime().compareTo(getTime()) <= 0
+    public boolean collides(Time time, int length) {
+        Time endTime = time.getLaterTime(length);
+        return (getTime().compareTo(time.getTime()) <= 0
+                && time.getTime().compareTo(getEndTime()) < 0)
+                || (time.getTime().compareTo(getTime()) <= 0
                 && getTime().compareTo(endTime) < 0);
     }
 
     /**
-     * Compares the HasTime with the TimeFrame of this appointment
+     * Compares the HasTime with the startTime of this appointment
      * @param o The appointment to check.
      * @return  < 0 : if the given HasTime falls after the Appointment. <br>
      *          == 0: if they start at the same moment. <br>
      *          > 0 : if the given HasTime falls before the Appointment.
      */
+    @Override
     public int compareTo(HasTime o) {
         return getTime().compareTo(o.getTime());
     }
@@ -210,14 +217,26 @@ public class Appointment implements HasTime {
         }
     }
 
+    /**
+     * Returns the appointmentCommand that created this appointment
+     * @return AppointmentCommand
+     */
     public AppointmentCommand getAppCommand() {
         return this.appCommand;
     }
 
+    /**
+     * Returns the priority of this Appointment
+     * @return the priority
+     */
     public Priority getPriority() {
         return this.priority;
     }
 
+    /**
+     * The campus where this Appointment takes place
+     * @return the campus
+     */
     public Campus getCampus() {
         return this.campus;
     }

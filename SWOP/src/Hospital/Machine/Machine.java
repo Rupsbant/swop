@@ -48,6 +48,7 @@ public abstract class Machine implements Schedulable, Unmovable {
      * Returns this Machine's schedule
      * @return schedule
      */
+    @Override
     public Schedule getSchedule() {
         return schedule;
     }
@@ -100,31 +101,36 @@ public abstract class Machine implements Schedulable, Unmovable {
 
     /**
      * This makes this object visit the TimeFrameConstraints during scheduling.
-     * @param tf The timeFrame during which the constraints need to be satisfied.
-     * @param tfContstraints The constraints that must be satisfied.
+     * @param schedulableVisitor The object that must be visited by this schedulable
      */
-    public void visitConstraint(SchedulableVisitor tfContstraint) {
-        tfContstraint.setSchedulable(this);
+    @Override
+    public void visitConstraint(SchedulableVisitor schedulableVisitor) {
+        schedulableVisitor.setSchedulable(this);
     }
 
     /**
      * Returns the constraints apppointments needs to satifsfy.
      * @return
      */
+    @Override
     public List<TimeFrameConstraint> getConstraints() {
         return Arrays.asList((TimeFrameConstraint)new UnmovableConstraint(this));
     }
 
     /**
      * Returns the campus this machine is at.
-     * @return
+     * @return the campus this machine is stationed at
      */
+    @Override
     public Campus getCampus() {
         return campus;
     }
 
     /**
      * Sets the campus one time.
+     * @param campus The campus this machine must be placed on
+     * @return this
+     * @throws CannotChangeException if the campus was already set 
      */
     public Machine setCampus(Campus campus) throws CannotChangeException {
         if (this.campus != null) {

@@ -1,7 +1,6 @@
 package Hospital.Machine;
 
 import Hospital.Exception.Arguments.InvalidArgumentException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.World.CampusInfo;
@@ -9,9 +8,13 @@ import Hospital.World.World;
 
 /**
  * X-ray machine used in medical tests
+ * The XRaymachine is self-replicating, a new XRayMachine can always be made from it's own object.
  */
 public class XRayMachine extends Machine implements MachineAbstractFactory {
 
+    /**
+     * The description of this MachineFactory
+     */
     public static final String X_RAY_MACHINE_FACTORY = "New XRayMachine";
 
     /**
@@ -34,11 +37,15 @@ public class XRayMachine extends Machine implements MachineAbstractFactory {
 
     /**
      * Makes a new factory with the given arguments: id and location
-     * @param args The arguments to make the machine with
+     * @param w The world this machine must be added to
+     * @param info the Campus this machine is stationed at
+     * @param location The location of this machine
+     * @param id A unique id of this machine
      * @return The new XRayMachine
-     * @throws WrongArgumentListException If the length of the list is wrong or one of the argumentTypes in the list.
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
+     * @throws SchedulableAlreadyExistsException thrown if a machine with the same id already exists 
      */
+    @Override
     public Machine make(World w, CampusInfo info, Location location, String id) throws InvalidArgumentException, SchedulableAlreadyExistsException {
         try {
             XRayMachine xRayMachine = new XRayMachine(id, location);

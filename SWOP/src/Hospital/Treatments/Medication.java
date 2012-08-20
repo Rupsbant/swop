@@ -1,6 +1,5 @@
 package Hospital.Treatments;
 
-import Hospital.Argument.PublicArgument;
 import Hospital.Argument.BooleanArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;

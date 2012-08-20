@@ -5,7 +5,7 @@ import Hospital.World.Time;
 import Hospital.World.TimeUtils;
 
 /**
- * Defines the constraint on the availability of nurses
+ * Defines the constraint that appointments can only happen between 9:00 and 17:00
  */
 public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
 
@@ -14,6 +14,7 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
     private Time tf;
     private int length;
 
+    @Override
     public Time isAccepted() {
         if (tf == null) {
             return null;
@@ -44,6 +45,7 @@ public class WorkingHoursTimeConstraint extends TimeFrameConstraint {
         this.length = length;
     }
 
+    @Override
     public void reset() {
         tf = null;
     }

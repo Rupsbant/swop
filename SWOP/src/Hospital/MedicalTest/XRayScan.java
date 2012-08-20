@@ -1,6 +1,5 @@
 package Hospital.MedicalTest;
 
-import Hospital.Argument.PublicArgument;
 import Hospital.Argument.IntegerArgument;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
@@ -64,6 +63,7 @@ public class XRayScan extends MedicalTest {
     /**
      * @see Hospital.Factory.Result#getResultArguments()
      */
+    @Override
     public PublicArgument[] getEmptyResultArgumentList() {
         PublicArgument[] out = new PublicArgument[2];
         out[0] = new IntegerArgument("Enter the number of images taken: ");
@@ -74,6 +74,7 @@ public class XRayScan extends MedicalTest {
     /**
      * @see Hospital.Factory.Result#enterResult(Hospital.Argument.PublicArgument[])
      */
+    @Override
     public void enterResult(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
@@ -87,6 +88,7 @@ public class XRayScan extends MedicalTest {
     }
 
 
+    @Override
     public boolean validateResults(PublicArgument[] args) throws WrongArgumentListException, InvalidArgumentException {
         if (args == null) {
             throw new ArgumentIsNullException("No arguments given");
@@ -94,8 +96,8 @@ public class XRayScan extends MedicalTest {
         if (args.length != 2) {
             throw new WrongArgumentListException("Wrong argument length: " + args.length + " should be 2");
         }
-        int numberOfImagesTaken = (Integer) Utils.getAnswer(IntegerArgument.class, "The number of images", args[0]);
-        if (!isValidNumberImages(numberOfImagesTaken)) {
+        int imagesTaken = (Integer) Utils.getAnswer(IntegerArgument.class, "The number of images", args[0]);
+        if (!isValidNumberImages(imagesTaken)) {
             throw new ArgumentConstraintException("Number of images taken must be > 0 !");
         }
         Utils.getAnswer(StringArgument.class, "Abnormalities.", args[1]);
@@ -129,6 +131,7 @@ public class XRayScan extends MedicalTest {
      * Returns a textual representation of the entered result.
      * @return "No result entered" if nothing was entered. <br> "Number of images taken: $numberOfImagesTaken <br> Abnormalities: $abnormalities" if a result was entered
      */
+    @Override
     public String getResultString() {
         if (!isResultEntered()) {
             return "No result entered";
@@ -188,8 +191,9 @@ public class XRayScan extends MedicalTest {
     /**
      * This returns the length it takes to complete the scan.
      * This is needed to plan the Appointment.
-     * @return The number of minutes the MedicalTest takes.
+     * @return 15 minutes
      */
+    @Override
     public int getLength() {
         return 15;
     }

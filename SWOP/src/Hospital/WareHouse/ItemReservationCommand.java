@@ -10,12 +10,19 @@ import Hospital.Interfaces.NeedsItems;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A command that reserves the items needed at an appointment. 
+ */
 public class ItemReservationCommand implements Command {
 
     private NeedsItems appointable;
     private ArrayList<ItemReservation> reservations = new ArrayList<ItemReservation>();
     private int state = 0;
 
+    /**
+     * Creates a ItemReservationCommand with the given Appiontment that needs items
+     * @param appointable
+     */
     public ItemReservationCommand(NeedsItems appointable) {
         this.appointable = appointable;
     }
@@ -62,6 +69,11 @@ public class ItemReservationCommand implements Command {
         return out;
     }
 
+    /**
+     * Uses the items that were reserved
+     * @throws CannotDoException
+     * @throws NotDoneException
+     */
     public void use() throws CannotDoException, NotDoneException {
         if (!isDone()) {
             throw new NotDoneException();

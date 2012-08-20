@@ -50,6 +50,12 @@ public class TimeUtils {
         return t.getDiffTime(1, 0, 0, 0, 0);
     }
 
+    /**
+     * Copies the day from one time and the hour from another.
+     * @param day
+     * @param hours
+     * @return A new Time object.
+     */
     public static Time copyDay(Time day, Time hours) {
         return new Time(day.getYear(), day.getMonth(), day.getDay(), hours.getHour(), hours.getMinute());
     }

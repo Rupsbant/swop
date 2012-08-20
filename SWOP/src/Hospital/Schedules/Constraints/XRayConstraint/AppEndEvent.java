@@ -5,7 +5,7 @@ import Hospital.World.TimeUtils;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
-public class AppEndEvent extends AppEvent {
+class AppEndEvent extends AppEvent {
 
     private static final int CHANGE_DIRECTION = 1;
     private int plannedChange;

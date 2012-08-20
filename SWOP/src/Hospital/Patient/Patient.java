@@ -182,6 +182,7 @@ public class Patient extends Person {
 
     /**
      * Checks a patient in the hospital.
+     * @param campus The campus where the patient must be checked in
      * @throws PatientIsCheckedInException If the patient was already checked in.
      * @throws InvalidArgumentException the given campus was null
      */
@@ -243,12 +244,6 @@ public class Patient extends Person {
         return getName().hashCode() * 43;
     }
 
-    /**
-     * This method makes this object visit the constraints to approve them as a Schedulable and as a Patient.
-     * @param tf The TimeFrame during which the constraints must be checked.
-     * @param tfContstraints The list of constraints.
-     * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
-     */
     @Override
     public void visitConstraint(SchedulableVisitor tfContstraints) {
         super.visitConstraint(tfContstraints);

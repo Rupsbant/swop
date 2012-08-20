@@ -46,15 +46,18 @@ public class XRayConstraint extends TimeFrameConstraint {
         this.patient = p;
     }
 
+    @Override
     public void setTime(Time tf, int length) {
         this.tf = tf;
     }
 
+    @Override
     public void reset() {
         this.patient = null;
         this.tf = null;
     }
 
+    @Override
     public Time isAccepted() {
         if (tf == null || patient == null) {
             return null;

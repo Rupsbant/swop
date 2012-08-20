@@ -29,6 +29,10 @@ public class Warehouse {
 
     }
 
+    /**
+     * Add a stock to this warehouse
+     * @param st the stock to add
+     */
     public void addStock(Stock st) {
         stocks.add(st);
     }
@@ -58,7 +62,7 @@ public class Warehouse {
      * Gets a specific stock
      * @param name the name of the stock to search for
      * @return the Stock with the given name
-     * @throws StockNotFoundException there was not stock with the given name in this warehouse
+     * @throws StockException there was not stock with the given name in this warehouse
      */
     public Stock getStock(String name) throws StockException {
         for (Stock st : stocks) {
@@ -83,6 +87,7 @@ public class Warehouse {
 
     /**
      * Gets the stocks which holds items of a given class
+     * @param <I> The class of the stock
      * @param clazz the item-class
      * @return a list of stocks which hold items of this class
      */
@@ -98,6 +103,7 @@ public class Warehouse {
 
     /**
      * Gets the names of the stocks which holds items of a given class
+     * @param <I> The class of the stock
      * @param clazz the item-class
      * @return a list strings which contain the name of stocks which hold items of this class
      */
@@ -113,6 +119,7 @@ public class Warehouse {
 
     /**
      * Gets all the orders for a given type of item
+     * @param <I> The class of the stock
      * @param clazz the type of item to search orders for
      * @return a list of orders
      */
@@ -144,7 +151,7 @@ public class Warehouse {
      * Gets the arguments needed to process this order
      * @param o the order to process
      * @return an array of PublicArguments which, when answered, can be used for processing this order
-     * @throws StockNotFoundException there was no stock in this warehouse which holds this order
+     * @throws StockException there was no stock in this warehouse which holds this order
      */
     public PublicArgument[] getOrderArguments(Order o) throws StockException {
         return getStockOfOrder(o).getArguments();

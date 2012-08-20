@@ -4,7 +4,7 @@ import Hospital.World.Time;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
-public class AppRemoveSetEvent extends AppEvent {
+class AppRemoveSetEvent extends AppEvent {
 
     private int countToRemove;
 

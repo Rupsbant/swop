@@ -83,12 +83,6 @@ public abstract class Staff extends Person {
         return getName().hashCode() * 47;
     }
 
-    /**
-     * This method makes this object visit the constraints to approve them as a Schedulable and as a Staffmember.
-     * @param tf The TimeFrame during which the constraints must be checked.
-     * @param tfContstraints The list of constraints.
-     * @return The constraints for simpler code : doctor.setValidTimeFrame(tf, tfc).isAccepted();.
-     */
     @Override
     public void visitConstraint(SchedulableVisitor tfContstraints){
         super.visitConstraint(tfContstraints);

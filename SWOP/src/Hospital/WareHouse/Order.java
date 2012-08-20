@@ -93,18 +93,22 @@ public class Order implements StockChangeEvent {
         hasArrived = true;
     }
 
+    @Override
     public int stockChange(int old) {
         return old + amount;
     }
 
+    @Override
     public int orderChange(int old) {
         return old - amount;
     }
 
+    @Override
     public Time getTime() {
         return arrival;
     }
 
+    @Override
     public int compareTo(HasTime o) {
         return arrival.compareTo(o);
     }

@@ -6,12 +6,19 @@ import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
 import Hospital.World.Time;
 
+/**
+ * Constraints the fact that some resources can't move to the decided campus.
+ */
 public class UnmovableConstraint extends TimeFrameConstraint {
 
     private Unmovable unmovable;
     private Campus campus;
     private Time startTime;
 
+    /**
+     * Creates the constraint for the given unmovable recource
+     * @param unmovable The resource that is tested to attend a appointment but cannot move
+     */
     public UnmovableConstraint(Unmovable unmovable) {
         this.unmovable = unmovable;
     }

@@ -54,31 +54,12 @@ public class Schedule {
     }
 
     /**
-     * Outputs an appointment that fits in the schedule starting with the given appointment
-     * @param tf the timeframe for which a free spot is to be found
-     * @return a TimeFrame-object with the same length as tf and its starting time set to the first fitting time after the time in tf
-     */
-    public Time getNextFreeSpot(Time tf, int length) {
-        for (Appointment app : appointments) {
-            if (app.collides(tf, length)) {
-                tf = app.getEndTime();
-            }
-        }
-        return tf;
-    }
-
-    /**
      * Checks whether there is free space to add an appointment with the given timeframe in this schedule
      * @param tf the timeframe to check
      * @return true if the timeframe can be added without creating time-conflicts, false otherwise
      */
     public boolean isFree(Appointment tf) {
-        for (Appointment app : this.appointments) {
-            if (app.collides(tf)) {
-                return false;
-            }
-        }
-        return true;
+        return getCollidingAppointments(tf).isEmpty();
     }
 
     /**
@@ -100,18 +81,13 @@ public class Schedule {
      * @return List of all appointments that collide
      */
     public List<Appointment> getCollidingAppointments(Appointment tf) {
-        List<Appointment> out = new ArrayList<Appointment>();
-        for (Appointment app : appointments) {
-            if (app.collides(tf)) {
-                out.add(app);
-            }
-        }
-        return out;
+        return getCollidingAppointments(tf.getTime(), tf.getLength());
     }
 
     /**
      * This returns all appointments that are colliding with the given TimeFrame
-     * @param tf , The TimeFrame to check the appointments against.
+     * @param tf , the startTime of the interval to check with
+     * @param length , the length of the interval
      * @return List of all appointments that collide
      */
     public List<Appointment> getCollidingAppointments(Time tf, int length) {
@@ -125,8 +101,8 @@ public class Schedule {
     }
 
     /**
-     * Returns the first appointment that ends before the given time.
-     * @param time, The time to start checking from
+     * Returns the first appointment that ends before the given time. 
+     * @param time The time to start checking from
      * @return The first appointment before time.
      */
     public Appointment getAppointmentBefore(HasTime time) {
@@ -145,7 +121,7 @@ public class Schedule {
 
     /**
      * Returns the first appointment that starts after the given time.
-     * @param time, The time to start checking from
+     * @param time The time to start checking from
      * @return The first appointment after time.
      */
     public Appointment getAppointmentAfter(HasTime time) {

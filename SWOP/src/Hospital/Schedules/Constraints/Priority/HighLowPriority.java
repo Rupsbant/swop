@@ -1,23 +1,33 @@
 package Hospital.Schedules.Constraints.Priority;
 
+/**
+ * 
+ * Defines a priorityscheme with to prioritylevels: high and low
+ * Only high can preempt low.
+ */
 public class HighLowPriority implements Priority<HighLowPriority> {
 
-    private boolean high;
+    private boolean isHigh;
 
-    public HighLowPriority(boolean high) {
-        this.high = high;
+    /**
+     * Creates a priority that is high or low
+     * @param isHigh true if high, otherwise low
+     */
+    public HighLowPriority(boolean isHigh) {
+        this.isHigh = isHigh;
     }
 
+    /**
+     * returns if this priority is high or low
+     * @return true if high
+     */
     public boolean isHigh() {
-        return high;
+        return isHigh;
     }
 
-    public boolean canPreempt(HighLowPriority t) {
+    @Override
+    public boolean thisCanPreempt(HighLowPriority t) {
         return this.isHigh() && !t.isHigh();
-    }
-
-    public boolean canBePreemptedBy(HighLowPriority t) {
-        return t.isHigh() && !this.isHigh();
     }
 
     @Override
