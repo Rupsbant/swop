@@ -43,14 +43,12 @@ public class CommandInfo {
 
     @Override
     public boolean equals(Object obj) {
-        if(super.equals(obj)){
+        if (super.equals(obj)) {
             return true;
         }
-        if(obj instanceof CommandInfo){
-            return original.equals(((CommandInfo)obj).original);
+        if (obj instanceof CommandInfo) {
+            return original.equals(((CommandInfo) obj).original);
         }
         return original.equals(obj);
     }
-    
-    
 }

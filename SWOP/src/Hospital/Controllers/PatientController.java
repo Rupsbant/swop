@@ -10,6 +10,8 @@ import Hospital.SystemAPI;
 
 /**
  * Used for patient-related actions that are handled by a nurse
+ * This controller enables the following usecases:
+ * Register patient: register the patient
  */
 @SystemAPI
 public class PatientController {
@@ -60,13 +62,11 @@ public class PatientController {
 
     /**
      * This creates a new Patient and adds it to the hospital.
-     * @param factoryName The factoryName to add a person with.
-     * @param args The name of the patient in a StringArgument.
-     * @return The name of the patient that was made.
+     * @param name the name of the patient
+     * @return a description of the new patient
      * @throws NotLoggedInException If the nurse was logged out.
-     * @throws NotAFactoryException If the factory's name was not found.
-     * @throws SchedulableAlreadyExistsException If the patient already existed.
-     * @throws InvalidArgumentException If the ArgumentList was of the wrong size, null, not answered or of the wrong type
+     * @throws SchedulableAlreadyExistsException If a patient with the same name already existed.
+     * @throws InvalidArgumentException if name was null
      */
     @SystemAPI
     public String registerPatient(String name)

@@ -4,11 +4,9 @@ import Hospital.SystemAPI;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.WareHouse.Items.MedicationItem;
 import Hospital.World.World;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- * This class supports the adding of the name of a item to the argumentList
+ * This class is used to enter one or multiple comma seperated itemnames to a answer
  */
 @SystemAPI
 public class ItemArgument extends StringArgument implements WorldPopulatedArgument {
@@ -28,15 +26,14 @@ public class ItemArgument extends StringArgument implements WorldPopulatedArgume
      * Populates the Argument with the names of all MedicationItems.
      * Since all warehouses are the same we can get these from just one.
      * @param w The world to get the MedicationItem names from
-     * @return this
      */
-    public WorldPopulatedArgument setWorld(World w) {
+    @Override
+    public void setWorld(World w) {
         try {
             items = w.getCampusFromInfo(w.getCampuses().get(0)).getWarehouse().getStockNamesByType(MedicationItem.class).toArray(new String[0]);
         } catch (ArgumentConstraintException ex) {
-            Logger.getLogger(ItemArgument.class.getName()).log(Level.SEVERE, "The campus exists always", ex);
+            throw new Error("The campus always exists");
         }
-        return this;
     }
 
     /**

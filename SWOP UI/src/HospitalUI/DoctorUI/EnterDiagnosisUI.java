@@ -1,16 +1,13 @@
 package HospitalUI.DoctorUI;
 
-import Hospital.Controllers.ArgumentList;
 import Hospital.Controllers.DiagnosisController;
 import Hospital.Controllers.DoctorController;
 import Hospital.Controllers.WorldController;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
-import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Patient.PatientIsDischargedException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.People.LoginInfo;
 import HospitalUI.MainUI.UtilsUI;
 

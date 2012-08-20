@@ -9,9 +9,10 @@ import Hospital.Patient.Patient;
  */
 @SystemAPI
 public final class PatientFile {
-	/**
-	 * the patient to which this file belongs
-	 */
+
+    /**
+     * the patient to which this file belongs
+     */
     private Patient patient;
 
     /**
@@ -30,7 +31,7 @@ public final class PatientFile {
      * @throws ArgumentIsNullException the given patient was null
      */
     private void setPatient(Patient patient) throws ArgumentIsNullException {
-        if(patient == null){
+        if (patient == null) {
             throw new ArgumentIsNullException("Given patient was null");
         }
         this.patient = patient;
@@ -52,12 +53,12 @@ public final class PatientFile {
      */
     @SystemAPI
     public String[] getPatientFileList() {
-        String[] output = new String[patient.getDiagnoses().size()+patient.getMedicalTests().size()];
-        for(int i = 0; i<patient.getDiagnoses().size(); i++){
+        String[] output = new String[patient.getDiagnoses().size() + patient.getMedicalTests().size()];
+        for (int i = 0; i < patient.getDiagnoses().size(); i++) {
             output[i] = patient.getDiagnoses().get(i).toString();
         }
-        for(int i = 0; i<patient.getMedicalTests().size(); i++){
-            output[patient.getDiagnoses().size()+i] = patient.getMedicalTests().get(i).toString();
+        for (int i = 0; i < patient.getMedicalTests().size(); i++) {
+            output[patient.getDiagnoses().size() + i] = patient.getMedicalTests().get(i).toString();
         }
         return output;
     }
@@ -68,12 +69,11 @@ public final class PatientFile {
      * @return The full output.
      */
     @SystemAPI
-    public String getAdvancedInformation(int pos){
-        if(pos<patient.getDiagnoses().size()){
+    public String getAdvancedInformation(int pos) {
+        if (pos < patient.getDiagnoses().size()) {
             return patient.getDiagnoses().get(pos).advancedString();
         } else {
-            return patient.getMedicalTests().get(pos-patient.getDiagnoses().size()).advancedString();
+            return patient.getMedicalTests().get(pos - patient.getDiagnoses().size()).advancedString();
         }
     }
-
 }

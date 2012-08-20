@@ -1,5 +1,6 @@
 package Hospital.Controllers;
 
+import Hospital.Argument.PublicArgument;
 import Hospital.SystemAPI;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
@@ -15,13 +16,17 @@ import java.util.logging.Logger;
 
 /**
  * This controller adds the function to enter treatment-results to the main public API
+ * This controller enables the following usecases: 
+ * Enter TreatmentResults: 
+ *      return the list of Arguments that must be answered
+ *      enter the list of Arguments as results in the treatment
  */
 @SystemAPI
 public class TreatmentResultController {
 
-	/**
-	 * the world in which this controller works
-	 */
+    /**
+     * the world in which this controller works
+     */
     private WorldController wc;
     /**
      * the nurse using this controller
@@ -46,7 +51,7 @@ public class TreatmentResultController {
      * @throws ArgumentIsNullException nc was null
      */
     private void setNurseController(NurseController nc) throws ArgumentIsNullException {
-        if(nc == null){
+        if (nc == null) {
             throw new ArgumentIsNullException("NurseController was null");
         }
         this.nc = nc;
@@ -58,7 +63,7 @@ public class TreatmentResultController {
      * @throws ArgumentIsNullException wc was null
      */
     private void setWorldController(WorldController wc) throws ArgumentIsNullException {
-        if(wc == null){
+        if (wc == null) {
             throw new ArgumentIsNullException("WorldController was null");
         }
         this.wc = wc;
@@ -70,11 +75,11 @@ public class TreatmentResultController {
      * @throws NotLoggedInException the nurse is not logged in
      */
     @SystemAPI
-    public TreatmentInfo[] getOpenTreatments() throws NotLoggedInException{
+    public TreatmentInfo[] getOpenTreatments() throws NotLoggedInException {
         nc.checkLoggedIn();
         List<Patient> patients = wc.getWorld().getResourceOfClass(Patient.class);
         ArrayList<TreatmentInfo> out = new ArrayList<TreatmentInfo>();
-        for(Patient p : patients){
+        for (Patient p : patients) {
             out.addAll(p.getOpenTreatments());
         }
         return out.toArray(new TreatmentInfo[0]);
@@ -87,14 +92,9 @@ public class TreatmentResultController {
      * @throws IllegalInfo if the treatment was not found in the world
      */
     @SystemAPI
-    public ArgumentList getArguments(TreatmentInfo m) throws IllegalInfo{
+    public PublicArgument[] getArguments(TreatmentInfo m) throws IllegalInfo {
         Treatment t = getTreatment(m);
-        try {
-            return new ArgumentList(t.getEmptyResultArgumentList());
-        } catch (ArgumentIsNullException ex) {
-            Logger.getLogger(TreatmentResultController.class.getName()).log(Level.SEVERE, null, ex);
-            throw new Error("ResultArgumentList should never be null");
-        }
+        return t.getEmptyResultArgumentList();
     }
 
     /**
@@ -107,13 +107,13 @@ public class TreatmentResultController {
      * @throws NotLoggedInException If the nurse was logged out.
      */
     @SystemAPI
-    public String enterResult(TreatmentInfo m, ArgumentList args)
+    public String enterResult(TreatmentInfo m, PublicArgument[] args)
             throws InvalidArgumentException, IllegalInfo, NotLoggedInException {
         Treatment t = getTreatment(m);
-        if(args == null){
+        if (args == null) {
             throw new ArgumentIsNullException("ArgumentList was null");
         }
-        t.enterResult(args.getAllArguments());
+        t.enterResult(args);
         return m.toString();
     }
 
@@ -140,5 +140,4 @@ public class TreatmentResultController {
         }
         return t;
     }
-
 }

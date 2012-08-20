@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.StringArgument;
-import Hospital.Controllers.ArgumentList;
 import Hospital.Controllers.DiagnosisController;
 import Hospital.Controllers.DoctorController;
 import Hospital.Controllers.NurseController;
@@ -47,10 +46,11 @@ public class PatientTest {
             SchedulingException, NotLoggedInException, NotAFactoryException, SchedulableAlreadyExistsException, WrongArgumentListException, NoOpenedPatientFileException, PatientIsDischargedException, ArgumentIsNullException, ArgumentConstraintException, NotEnoughItemsAvailableException {
         LoginInfo login = login("Nurse", "Verpleegster");
         NurseController nc = null;
-        nc = (NurseController) w.login(w.getCampuses().get(0),login);
+        nc = (NurseController) w.login(w.getCampuses().get(0), login);
         PatientController pc = new PatientController(w, nc);
         PublicArgument[] args = new PublicArgument[1];
-        args[0] = new StringArgument("name").enterAnswer("Jef");
+        args[0] = new StringArgument("name");
+        args[0].enterAnswer("Jef");
         try {
             pc.registerPatient("Jef");
             System.out.println(nc.checkIn("Jef", "Doktoor", w));
@@ -58,7 +58,7 @@ public class PatientTest {
         } catch (PatientIsCheckedInException e) {
         }
         login = login("Doctor", "Doktoor");
-        DoctorController dc = (DoctorController) w.login(w.getCampuses().get(0),login);
+        DoctorController dc = (DoctorController) w.login(w.getCampuses().get(0), login);
         dc.consultPatientFile("Jeroen", w);
         DiagnosisController diag = new DiagnosisController(w, dc);
         System.out.println(diag.enterDiagnosis("details blabla", null));

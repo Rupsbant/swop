@@ -11,16 +11,15 @@ import Hospital.SystemAPI;
  */
 @SystemAPI
 public interface PublicArgument<T extends Object> {
-	
+
     /**
      * This method parses a String input to the correct ArgumentType
      * @param ans String to be parsed
-     * @return this object as an object of the type PublicArgument
      * @throws CannotChangeException if the answer was already set
      * @throws IllegalArgumentException if the answer was invalid
      */
-	@SystemAPI
-    PublicArgument enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException;
+    @SystemAPI
+    void enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException;
 
     /**
      * This returns the answer that was entered, null if no answer was given.

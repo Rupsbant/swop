@@ -17,15 +17,13 @@ public class IntegerArgument extends BasicArgument<Integer> implements PublicArg
 
     /**
      * This parses a String to an Integer as answer
-     * @param ans The answer to enter
-     * @return This object if the answer is valid
+     * @param ans The number to parse
      * @throws CannotChangeException if the answer was already set
      * @throws IllegalArgumentException if the answer was invalid
      */
     @Override
-    public IntegerArgument enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
+    public void enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
         Integer answer = Integer.parseInt(ans);
         setAnswer(answer);
-        return this;
     }
 }

@@ -1,6 +1,6 @@
 package HospitalUI.NurseUI;
 
-import Hospital.Controllers.ArgumentList;
+import Hospital.Argument.PublicArgument;
 import Hospital.Controllers.MedicalTestInfo;
 import Hospital.Controllers.MedicalTestResultController;
 import Hospital.Controllers.NurseController;
@@ -31,13 +31,13 @@ public class EnterMedicalTestResultUI {
             return;
         }
 
-        ArgumentList args;
+        PublicArgument[] args;
         try {
             args = mc.getArguments(infos[chosen - 1]);
         } catch (IllegalInfo ex) {
             throw new Error("This should not happen, UI should be build solid, check code:\n" + ex);
         }
-        UtilsUI.answerArguments(sc, args.getPublicArguments());
+        UtilsUI.answerArguments(sc, args);
 
         try {
             String str = mc.enterResult(infos[chosen - 1], args);

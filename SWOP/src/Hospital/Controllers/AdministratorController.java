@@ -8,6 +8,8 @@ import Hospital.World.Time;
 
 /**
  * LoginController for the Hospital Administrator.
+ * This enables the following usecase:
+ * Advance Time.
  */
 @SystemAPI
 public class AdministratorController extends LoginController<HospitalAdministrator> {

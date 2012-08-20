@@ -43,17 +43,15 @@ public class BooleanArgument extends BasicArgument<Boolean> implements PublicArg
      * This parses the answer to a boolean. All accepted answers can be found in getBooleanMap().
      * The accepted answers are case insensitive.
      * @param ans The answer to enter.
-     * @return This object if the answer is valid.
      * @throws CannotChangeException if the answer was already set.
-     * @throws IllegalArgumentException if the answer was invalid.
+     * @throws IllegalArgumentException if the answer was invalid, not found in the map.
      */
     @Override
-    public BooleanArgument enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
+    public void enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
         Boolean answer = booleanMap.get(ans.toLowerCase());
         if (answer == null) {
             throw new IllegalArgumentException();
         }
         setAnswer(answer);
-        return this;
     }
 }

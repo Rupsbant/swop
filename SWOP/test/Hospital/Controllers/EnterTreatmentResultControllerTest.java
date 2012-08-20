@@ -11,6 +11,7 @@ import Hospital.Exception.Patient.PatientIsDischargedException;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Argument.StringArgument;
 import Hospital.Argument.BooleanArgument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Patient.DiagnosisInfo;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
@@ -94,11 +95,11 @@ public class EnterTreatmentResultControllerTest {
     	DiagnosisInfo[] infos = tc.getUntreatedDiagnoses();
         tc.makeMedication(infos[0], "description", true, "", new HighLowPriority(true));
     	assertTrue("Treatments are not correctly filtered", trc.getOpenTreatments().length == 1);
-        ArgumentList args = trc.getArguments(trc.getOpenTreatments()[0]);
-        assertTrue("Arguments not right type", args.getPublicArguments()[0].getClass().equals(BooleanArgument.class));
-        assertTrue("Arguments not right type", args.getPublicArguments()[1].getClass().equals(StringArgument.class));
-        args.getPublicArguments()[0].enterAnswer("true");
-        args.getPublicArguments()[1].enterAnswer("report");
+        PublicArgument[] args = trc.getArguments(trc.getOpenTreatments()[0]);
+        assertTrue("Arguments not right type", args[0].getClass().equals(BooleanArgument.class));
+        assertTrue("Arguments not right type", args[1].getClass().equals(StringArgument.class));
+        args[0].enterAnswer("true");
+        args[1].enterAnswer("report");
         String out = trc.enterResult(trc.getOpenTreatments()[0], args);
         assertEquals("Outputted string wrong", "MedicationTreatment: description\nNo medication items!\nSensitive: true\nAbnormal reaction: true\nReport: report\nAppointment from 2011/11/8 9:00 of 20 minutes, until 2011/11/8 9:20 with 2 attendees.", out);
     }
@@ -109,9 +110,9 @@ public class EnterTreatmentResultControllerTest {
             IllegalInfo, ArgumentConstraintException, CannotDoException, NotAFactoryException, InvalidDiagnosisException, NoOpenedPatientFileException, StockException, ItemNotReservedException, ItemNotFoundException {
     	DiagnosisInfo[] infos = tc.getUntreatedDiagnoses();
         tc.makeMedication(infos[0], "description", true, "", new HighLowPriority(true));
-    	ArgumentList args = trc.getArguments(trc.getOpenTreatments()[0]);
-        args.getPublicArguments()[0].enterAnswer("true");
-        args.getPublicArguments()[1].enterAnswer("report");
+    	PublicArgument[] args = trc.getArguments(trc.getOpenTreatments()[0]);
+        args[0].enterAnswer("true");
+        args[1].enterAnswer("report");
         try {
             String out = trc.enterResult(null, args);
             fail("Exception should be thrown");

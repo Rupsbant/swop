@@ -11,7 +11,6 @@ public interface WorldPopulatedArgument {
     /**
      * Populate this object with all the information from the world w
      * @param w the world to populate with
-     * @return this for chaining
      */
-    WorldPopulatedArgument setWorld(World w);
+    void setWorld(World w);
 }

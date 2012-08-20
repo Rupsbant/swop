@@ -1,27 +1,27 @@
 package Hospital.Controllers;
 
+import Hospital.Argument.PublicArgument;
 import Hospital.SystemAPI;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.IllegalInfo;
 import Hospital.Exception.NotLoggedInException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.MedicalTest.MedicalTest;
 import Hospital.Patient.Patient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Used to perform MedicalTestResult-related actions.
+ * This controller enables the following usecases:
+ * Enter medicaltest result
  */
 @SystemAPI
 public class MedicalTestResultController {
 
-	/**
-	 * the nurse performing these actions
-	 */
+    /**
+     * the nurse performing these actions
+     */
     private NurseController nc;
     /**
      * the world in which these actions are performed
@@ -67,14 +67,9 @@ public class MedicalTestResultController {
      * @throws IllegalInfo the given MedicalTestInfo did not represent an existing MedicalTest in this world
      */
     @SystemAPI
-    public ArgumentList getArguments(MedicalTestInfo m) throws IllegalInfo {
+    public PublicArgument[] getArguments(MedicalTestInfo m) throws IllegalInfo {
         MedicalTest med = getMedicalTest(m);
-        try {
-            return new ArgumentList(med.getEmptyResultArgumentList());
-        } catch (ArgumentIsNullException ex) {
-            Logger.getLogger(MedicalTestResultController.class.getName()).log(Level.SEVERE, null, ex);
-            throw new Error("ArgumentList should not give null");
-        }
+        return med.getEmptyResultArgumentList();
     }
 
     /**
@@ -85,7 +80,7 @@ public class MedicalTestResultController {
      */
     @SystemAPI
     private MedicalTest getMedicalTest(MedicalTestInfo m) throws IllegalInfo {
-        if(m == null){
+        if (m == null) {
             throw new IllegalInfo("MedicalTest is null");
         }
         MedicalTest med = null;
@@ -96,7 +91,7 @@ public class MedicalTestResultController {
                 }
             }
         }
-        if(med == null){
+        if (med == null) {
             throw new IllegalInfo("MedicalTest not found");
         }
         return med;
@@ -112,13 +107,13 @@ public class MedicalTestResultController {
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
     @SystemAPI
-    public String enterResult(MedicalTestInfo m, ArgumentList args)
+    public String enterResult(MedicalTestInfo m, PublicArgument[] args)
             throws InvalidArgumentException, NotLoggedInException, IllegalInfo {
         nc.checkLoggedIn();
-        if(args == null){
+        if (args == null) {
             throw new ArgumentIsNullException("ArgumentList was null");
         }
-        getMedicalTest(m).enterResult(args.getAllArguments());
+        getMedicalTest(m).enterResult(args);
         return getMedicalTest(m).advancedString();
     }
 }

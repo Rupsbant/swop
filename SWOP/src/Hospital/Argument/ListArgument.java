@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * This is a Argument to select a object from a list.
  * @author SWOP-12
- * @param <E> the
+ * @param <E> the Type of the Object that is selected
  */
 public class ListArgument<E extends Object> implements PublicArgument<E> {
 
@@ -65,16 +65,15 @@ public class ListArgument<E extends Object> implements PublicArgument<E> {
     }
 
     /**
-     * This parses a String to the positionnumber
-     * @param ans The answer to enter
-     * @return This object if the answer is valid
+     * This parses the String to the index of the chosen item in the list
+     * @param ans The number to parse, the index of the list
      * @throws CannotChangeException if the answer was already set
      * @throws IllegalArgumentException if the answer was invalid or out of range.
      */
     @Override
-    public ListArgument<E> enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
+    public void enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
         if (possible == null) {
-            return this;
+            return;
         }
         if (position != -1) {
             throw new CannotChangeException();
@@ -84,7 +83,6 @@ public class ListArgument<E extends Object> implements PublicArgument<E> {
             position = -1;
             throw new IllegalArgumentException("The entered number was not a valid position");
         }
-        return this;
     }
 
     /**

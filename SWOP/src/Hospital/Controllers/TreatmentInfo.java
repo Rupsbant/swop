@@ -5,14 +5,16 @@ import Hospital.Treatments.Treatment;
 import Hospital.World.HasTime;
 
 /**
- * Represents a Treatment-object
+ * Represents a Treatment-object in the public world.
  */
 @SystemAPI
 public class TreatmentInfo {
-	/**
-	 * the represented treatment
-	 */
+
+    /**
+     * the represented treatment
+     */
     private Treatment treatment;
+
     /**
      * Constructor
      * @param aThis the treatment to be represented
@@ -28,7 +30,7 @@ public class TreatmentInfo {
      */
     @Override
     @SystemAPI
-    public String toString(){
+    public String toString() {
         return treatment.toString();
     }
 
@@ -40,19 +42,19 @@ public class TreatmentInfo {
     @Override
     @SystemAPI
     public boolean equals(Object obj) {
-        if(obj == null){
+        if (obj == null) {
             return false;
         }
-        if(super.equals(obj)){
+        if (super.equals(obj)) {
             return true;
         }
-        if(obj instanceof Treatment){
-            if(treatment.equals(((Treatment) obj))){
+        if (obj instanceof Treatment) {
+            if (treatment.equals(((Treatment) obj))) {
                 return true;
             }
         }
-        if(obj instanceof TreatmentInfo){
-            if(treatment.equals(((TreatmentInfo) obj).treatment)){
+        if (obj instanceof TreatmentInfo) {
+            if (treatment.equals(((TreatmentInfo) obj).treatment)) {
                 return true;
             }
         }
@@ -68,16 +70,14 @@ public class TreatmentInfo {
     public int hashCode() {
         return (this.treatment == null ? 0 : this.treatment.hashCode());
     }
+
     /**
      * Returns an ordering of the Appointment of the Treatment and the Time
      * @param t the time to compare with.
      * @return The ordering based on the startTime of the Appointment.
      */
     @SystemAPI
-    public int compareTimeAppointment(HasTime t){
-    	return treatment.getAppointment().compareTo(t);
+    public int compareTimeAppointment(HasTime t) {
+        return treatment.getAppointment().compareTo(t);
     }
-
-
-
 }

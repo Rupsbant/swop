@@ -1,7 +1,7 @@
 package HospitalUI.NurseUI;
 
+import Hospital.Argument.PublicArgument;
 import Hospital.Controllers.TreatmentResultController;
-import Hospital.Controllers.ArgumentList;
 import Hospital.Controllers.NurseController;
 import Hospital.Controllers.TreatmentInfo;
 import Hospital.Controllers.WorldController;
@@ -48,13 +48,13 @@ public class EnterTreatmentResultUI {
             return;
         }
 
-        ArgumentList args;
+        PublicArgument[] args;
         try {
             args = mc.getArguments(infos[chosen - 1]);
         } catch (IllegalInfo ex) {
             throw new Error("This should not happen, UI should be build solid, check code:\n" + ex);
         }
-        UtilsUI.answerArguments(sc, args.getPublicArguments());
+        UtilsUI.answerArguments(sc, args);
         
         String str;
         try {

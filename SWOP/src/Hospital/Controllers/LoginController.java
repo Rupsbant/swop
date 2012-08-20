@@ -10,6 +10,9 @@ import Hospital.People.StaffRole;
  * this user for the duration of his/her session.
  *
  * @param <T> The type of user, must be a child of the Staff-class (Doctor,Nurse,...)
+ * This controller enables the following usecases: 
+ * Login: the existence of this controller represnets the logged in state
+ * All others: check if the person is still logged in
  */
 @SystemAPI
 public abstract class LoginController<T extends Staff> {

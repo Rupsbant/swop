@@ -1,6 +1,5 @@
 package Hospital.ScenarioTest;
 
-import Hospital.Controllers.ArgumentList;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Warehouse.NotEnoughItemsAvailableException;
 import static org.junit.Assert.*;
@@ -16,9 +15,7 @@ import Hospital.Controllers.PatientController;
 import Hospital.Controllers.WorldController;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
-import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Patient.PatientIsCheckedInException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;

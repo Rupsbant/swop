@@ -1,6 +1,6 @@
 package HospitalUI.WareHouseUI;
 
-import Hospital.Controllers.ArgumentList;
+import Hospital.Argument.PublicArgument;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +10,6 @@ import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Warehouse.OrderUnavailableException;
 import Hospital.Exception.Warehouse.StockException;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.World.Time;
 import HospitalUI.MainUI.UtilsUI;
 
@@ -41,10 +40,10 @@ public class FillStockUI {
         }
         String order = orders[chosenOrder - 1];
         Time time = null;
-        ArgumentList args = null;
+        
         try {
-            args = wh.getOrderArguments(order);
-            UtilsUI.answerArguments(sc, args.getPublicArguments());
+            PublicArgument[] args = wh.getOrderArguments(order);
+            UtilsUI.answerArguments(sc, args);
             String ans = wh.processOrder(order, args);
             System.out.println(ans);
         } catch (InvalidArgumentException ex) {

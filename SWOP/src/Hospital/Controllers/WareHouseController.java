@@ -1,7 +1,7 @@
 package Hospital.Controllers;
 
+import Hospital.Argument.PublicArgument;
 import Hospital.SystemAPI;
-import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Warehouse.OrderUnavailableException;
@@ -14,12 +14,12 @@ import Hospital.WareHouse.WarehouseManager;
 
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This controller handles the login of a warehousemanager.
- * StaffController and MachineController extends the functions to the usecases.
+ * This Controller enables the following usecases:
+ * Process orders : get a list of all orders and process them
+ * List orders : returns a list of all current orders
  */
 @SystemAPI
 public class WareHouseController extends LoginController<WarehouseManager> {
@@ -62,15 +62,10 @@ public class WareHouseController extends LoginController<WarehouseManager> {
      * @throws StockException this order was not in the correct warehouse
      */
     @SystemAPI
-    public ArgumentList getOrderArguments(String order) throws NotLoggedInException, OrderUnavailableException, StockException {
+    public PublicArgument[] getOrderArguments(String order) throws NotLoggedInException, OrderUnavailableException, StockException {
         checkLoggedIn();
         Order o = getOrder(order);
-        try {
-            return new ArgumentList(this.getCampusController().getCampus().getWarehouse().getOrderArguments(o));
-        } catch (ArgumentIsNullException ex) {
-            Logger.getLogger(WareHouseController.class.getName()).log(Level.SEVERE, null, ex);
-            throw new Error("getOrderArguments should not be null");
-        }
+        return this.getCampusController().getCampus().getWarehouse().getOrderArguments(o);
     }
 
     /**
@@ -104,7 +99,7 @@ public class WareHouseController extends LoginController<WarehouseManager> {
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
     @SystemAPI
-    public String processOrder(String order, ArgumentList arg) throws
+    public String processOrder(String order, PublicArgument[] arg) throws
             OrderUnavailableException,
             StockException,
             WrongArgumentListException,
@@ -113,7 +108,7 @@ public class WareHouseController extends LoginController<WarehouseManager> {
         checkLoggedIn();
         Order o = getOrder(order);
         Warehouse w = this.getCampusController().getCampus().getWarehouse();
-        w.processOrder(o, arg.getAllArguments());
+        w.processOrder(o, arg);
         return "Order was processed.";
     }
 

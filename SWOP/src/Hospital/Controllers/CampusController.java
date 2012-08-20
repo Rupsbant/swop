@@ -9,6 +9,9 @@ import Hospital.World.Campus;
 
 /**
  * Provides controlled access to campuses and campus-related functionality
+ * This enables the following usecases: 
+ * check in : has enough food to register a new patient
+ * login : states that a loginController is logged in at the given campus
  */
 @SystemAPI
 public class CampusController {

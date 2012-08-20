@@ -5,9 +5,6 @@ import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Warehouse.StockException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
-import Hospital.Exception.NotAFactoryException;
-import Hospital.Exception.NotLoggedInException;
-import Hospital.Factory.Factory;
 import Hospital.Patient.Patient;
 import Hospital.People.LoginInfo;
 import Hospital.Schedules.Constraints.Preference.Preference;
@@ -21,12 +18,17 @@ import Hospital.World.Time;
 import Hospital.World.World;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * This controller gives controlled access to the world it represents.
+ * This controllers enables the following use-cases:
+ * Login : gives the necessary information to the UI and the login-function
+ * Register Patient: returns the list of all registered Patients
+ *                   returns the list of all Campusses that have food for the patient
+ * setPreference: gives a list of all preference types.
+ * openPatientFile: gives a list of all undischarged patients
  */
 @SystemAPI
 public class WorldController {
@@ -56,20 +58,6 @@ public class WorldController {
             throw new ArgumentIsNullException("World can't be null");
         }
         this.world = w;
-    }
-
-    /**
-     * This method returns the arguments of a factory
-     * @param clazz The factoryClass to filter on
-     * @param factoryName The name of the factory
-     * @return An array of arguments to be answered
-     * @throws NotLoggedInException if this controller was logged out.
-     * @throws ArgumentIsNullException if a null class was entered
-     * @throws NotAFactoryException if the factory with the given name did not exist
-     */
-    ArgumentList getFactoryArguments(Class<? extends Factory> clazz, String factoryName)
-            throws NotLoggedInException, ArgumentIsNullException, NotAFactoryException {
-        return new ArgumentList(getWorld().getFactory(clazz, factoryName).getEmptyArgumentList()).setWorld(world);
     }
 
     /**
@@ -152,16 +140,6 @@ public class WorldController {
      */
     World getWorld() {
         return world;
-    }
-
-    /**
-     * Returns a set of all names of available factories.
-     * @param clazz The type of factories that should be filtered
-     * @return The names of the factories of type clazz.
-     * @throws ArgumentIsNullException If clazz is null
-     */
-    protected Set<String> getAvailableFactories(Class<? extends Factory> clazz) throws ArgumentIsNullException {
-        return world.getFactoriesOfType(clazz).keySet();
     }
 
     /**

@@ -3,7 +3,6 @@ package Hospital.MedicalTest;
 import Hospital.Schedules.Constraints.Priority.HighLowPriority;
 import Hospital.Argument.IntegerArgument;
 import Hospital.Argument.StringArgument;
-import Hospital.Controllers.ArgumentList;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.IllegalInfo;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
@@ -56,8 +55,8 @@ public class EnterMedicalTestResultTest {
     public void testBasic() throws NotLoggedInException, WrongArgumentListException, ArgumentNotAnsweredException,
             ArgumentIsNullException, IllegalInfo, CannotChangeException, ArgumentConstraintException, InvalidArgumentException {
         assertTrue("Treatments are not correctly filtered", mrc.getOpenMedicalTests().length == 1);
-        final ArgumentList resultArgs = mrc.getArguments(mrc.getOpenMedicalTests()[0]);
-        PublicArgument[] args = resultArgs.getPublicArguments();
+        PublicArgument[] resultArgs = mrc.getArguments(mrc.getOpenMedicalTests()[0]);
+        PublicArgument[] args = resultArgs;
         assertTrue("Arguments not right type", args[0].getClass().equals(IntegerArgument.class));
         assertTrue("Arguments not right type", args[1].getClass().equals(StringArgument.class));
         args[0].enterAnswer("5");
@@ -74,8 +73,8 @@ public class EnterMedicalTestResultTest {
     public void testBreaking() throws CannotChangeException, NotLoggedInException,
             WrongArgumentListException, ArgumentNotAnsweredException, ArgumentIsNullException,
             IllegalInfo, ArgumentConstraintException, InvalidArgumentException {
-        final ArgumentList resultArgs = mrc.getArguments(mrc.getOpenMedicalTests()[0]);
-        PublicArgument[] args = resultArgs.getPublicArguments();
+        final PublicArgument[] resultArgs = mrc.getArguments(mrc.getOpenMedicalTests()[0]);
+        PublicArgument[] args = resultArgs;
         args[0].enterAnswer("5");
         args[1].enterAnswer("string");
         try {

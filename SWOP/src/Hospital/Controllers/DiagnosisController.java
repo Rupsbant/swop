@@ -14,17 +14,13 @@ import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Patient.Diagnosis;
 import Hospital.Patient.DiagnosisApproveCommand;
-import Hospital.Patient.DiagnosisCommand;
 import Hospital.Patient.DiagnosisCreator;
 import Hospital.Patient.DiagnosisSecondOpinion;
-import Hospital.Patient.Patient;
 import Hospital.People.Doctor;
 import Hospital.People.LoginInfo;
 import Hospital.People.StaffRole;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The DiagnosisController is used by DoctorControllers to perform
@@ -61,18 +57,15 @@ public class DiagnosisController {
     }
 
     /**
-     * This creates a diagnosis in the system with the given Arguments
-     * @param content The type of diagnosis to be created
-     * @param args The arguments needed to instantiate the diagnosis
-     * @param secondOpinion the LoginInfo of the doctor to ask a second opinion from
-     * @return The details of the created diagnosis
-     * @throws NoPersonWithNameAndRoleException The name of the second opinion doctor was not found in the world
-     * @throws NoOpenedPatientFileException the doctor currently has no patientfile opened to enter this diagnosis in
-     * @throws PatientIsDischargedException the patient for which we're entering this diagnosis is already discharged
-     * @throws NotLoggedInException the doctor is not logged in
-     * @throws NotAFactoryException the given factoryName did not lead to an existing type of diagnosis
-     * @throws WrongArgumentListException the given list of arguments was invalid
-     * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
+     * This creates a diagnosis with the given content and the optional secondOpinion doctor
+     * @param content The content of this diagnosis
+     * @param secondOpinion The doctor that must approve the diagnosis
+     * @return a description of the created diagnosis
+     * @throws InvalidArgumentException if the content was null and shouldn't be
+     * @throws NoPersonWithNameAndRoleException the given logininfo was not found in the system
+     * @throws NoOpenedPatientFileException no patientfile was opened
+     * @throws PatientIsDischargedException the patient was already discharged
+     * @throws NotLoggedInException the doctor has logged out
      */
     @SystemAPI
     public String enterDiagnosis(String content, LoginInfo secondOpinion)
@@ -126,16 +119,14 @@ public class DiagnosisController {
     /**
      * Disapproves a diagnosis
      * @param diag the diagnosis to disapprove
-     * @param details no use
+     * @param details to use
      * @return the details of the new diagnosis made to correct the original
      * @throws CannotChangeException if this happens, a newly created argument was somehow already answered
      * @throws NoOpenedPatientFileException the doctor has no patientfile opened
      * @throws NotLoggedInException the doctor is not logged in
      * @throws InvalidDiagnosisException the diagnosis could not be found
-     * @throws WrongArgumentListException the arguments to the corrected diagnosis somehow became invalid
      * @throws NoPersonWithNameAndRoleException somehow something went wrong in finding the original doctor
-     * @throws NotAFactoryException somehow the "Diagnosis with secondOpinion"-factory disappeared from the world
-     * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
+     * @throws InvalidArgumentException if the details were null
      */
     @SystemAPI
     public String disapproveDiagnosis(DiagnosisInfo diag, String details)
@@ -144,7 +135,7 @@ public class DiagnosisController {
             NoOpenedPatientFileException,
             InvalidDiagnosisException,
             NotLoggedInException,
-            InvalidArgumentException, 
+            InvalidArgumentException,
             PatientIsDischargedException {
         dc.checkLoggedIn();
         if (dc.getUser().getOpenedPatient().isDischarged()) {

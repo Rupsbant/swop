@@ -146,10 +146,12 @@ public class DischargePatientTest {
         tc.makeSurgery(diagnosisinfo, "report blabla", new HighLowPriority(true));
         TreatmentInfo treatmentinfo = new TreatmentInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0).getTreatment());
         PublicArgument[] args2 = new PublicArgument[2];
-        args2[0] = new StringArgument("Enter the report: ").enterAnswer("reportje");
-        args2[1] = new StringArgument("Enter the special aftercare: ").enterAnswer("no special aftercare");
+        args2[0] = new StringArgument("Enter the report: ");
+        args2[0].enterAnswer("reportje");
+        args2[1] = new StringArgument("Enter the special aftercare: ");
+        args2[1].enterAnswer("no special aftercare");
 
-        trC.enterResult(treatmentinfo, new ArgumentList(args2));
+        trC.enterResult(treatmentinfo, args2);
         dc.dischargePatient();
         assertTrue(dc.getUser().getOpenedPatient().isDischarged());
     }
@@ -174,9 +176,9 @@ public class DischargePatientTest {
             }
         }
 
-        ArgumentList args = mtrC.getArguments(medTest);
-        args.getPublicArguments()[0].enterAnswer("1");
-        args.getPublicArguments()[1].enterAnswer("Bar");
+        PublicArgument[] args = mtrC.getArguments(medTest);
+        args[0].enterAnswer("1");
+        args[1].enterAnswer("Bar");
         mtrC.enterResult(medTest, args);
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
         dc.dischargePatient();
@@ -217,9 +219,9 @@ public class DischargePatientTest {
         diagnose("Foo", false);
 
         tc.makeMedication(tc.getUntreatedDiagnoses()[0], "Medication", false, "", new HighLowPriority(true));
-        ArgumentList args2 = trC.getArguments(trC.getOpenTreatments()[0]);
-        args2.getPublicArguments()[0].enterAnswer("no");
-        args2.getPublicArguments()[1].enterAnswer("Bar");
+        PublicArgument[] args2 = trC.getArguments(trC.getOpenTreatments()[0]);
+        args2[0].enterAnswer("no");
+        args2[1].enterAnswer("Bar");
         trC.enterResult(trC.getOpenTreatments()[0], args2);
         assertFalse(dc.getUser().getOpenedPatient().isDischarged());
         dc.dischargePatient();

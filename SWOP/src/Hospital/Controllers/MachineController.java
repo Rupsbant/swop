@@ -16,6 +16,8 @@ import Hospital.World.CampusInfo;
 
 /**
  * Used to perform Machine-related actions.
+ * This controller enables the following usecase:
+ * Create new machine
  */
 @SystemAPI
 public class MachineController {

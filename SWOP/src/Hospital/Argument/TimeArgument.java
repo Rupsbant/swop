@@ -1,7 +1,5 @@
 package Hospital.Argument;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.CannotChangeException;
@@ -26,7 +24,7 @@ public class TimeArgument extends BasicArgument<Time> implements PublicArgument<
      * @param ans A string containing year,month,day of month,hour,minutes with <i>[ ,/:]</i> as valid separators
      * @see Hospital.Argument.PublicArgument#enterAnswer(java.lang.String)
      */
-    public TimeArgument enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
+    public void enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
         String[] args = ans.split("[ ,/:]");
         int[] numbers = new int[args.length];
         for(int i = 0; i < numbers.length; i++){
@@ -39,7 +37,6 @@ public class TimeArgument extends BasicArgument<Time> implements PublicArgument<
         } catch (WrongArgumentListException ex) {
                 throw new IllegalArgumentException(ex);
         }
-        return this;
     }
 
 }

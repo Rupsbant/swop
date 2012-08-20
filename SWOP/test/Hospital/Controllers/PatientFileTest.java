@@ -161,9 +161,11 @@ public class PatientFileTest {
         tc.makeSurgery(diagnosisinfo, "report blabla", new HighLowPriority(true));
         TreatmentInfo treatmentinfo = new TreatmentInfo(dc.getUser().getOpenedPatient().getDiagnoses().get(0).getTreatment());
         PublicArgument[] args2 = new PublicArgument[2];
-        args2[0] = new StringArgument("Enter the report: ").enterAnswer("reportje");
-        args2[1] = new StringArgument("Enter the special aftercare: ").enterAnswer("no special aftercare");
-        trC.enterResult(treatmentinfo, new ArgumentList(args2));
+        args2[0] = new StringArgument("Enter the report: ");
+        args2[0].enterAnswer("reportje");
+        args2[1] = new StringArgument("Enter the special aftercare: ");
+        args2[1].enterAnswer("no special aftercare");
+        trC.enterResult(treatmentinfo, args2);
         //p.getDiagnoses().get(0).setTreatment(new Medication("medicatie", true,new String[0]));
         assertFalse(dc.openedPatientHasUntreatedDiagnosis());
     }

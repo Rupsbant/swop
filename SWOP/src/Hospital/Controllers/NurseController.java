@@ -26,6 +26,8 @@ import Hospital.World.World;
 
 /**
  * LoginController for Nurses
+ * This controller enables the following usecases:
+ * check in : check the given patient in, the patient must exist
  */
 @SystemAPI
 public class NurseController extends LoginController<Nurse> {

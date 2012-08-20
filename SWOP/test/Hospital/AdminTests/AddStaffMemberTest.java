@@ -1,7 +1,5 @@
 package Hospital.AdminTests;
 
-import Hospital.Argument.CampusInfoArgument;
-import Hospital.Controllers.ArgumentList;
 import static org.junit.Assert.*;
 
 import java.util.List;
@@ -9,14 +7,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import Hospital.Argument.StringArgument;
 import Hospital.Controllers.AdministratorController;
 import Hospital.Controllers.StaffController;
 import Hospital.Controllers.TestUtil;
 import Hospital.Controllers.WorldController;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
@@ -25,7 +21,6 @@ import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
 import Hospital.People.Doctor;
-import Hospital.People.HospitalAdministrator;
 import Hospital.People.LoginInfo;
 import Hospital.People.Nurse;
 import Hospital.People.StaffRole;

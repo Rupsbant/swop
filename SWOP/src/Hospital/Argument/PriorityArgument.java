@@ -46,17 +46,16 @@ public class PriorityArgument extends BasicArgument<Priority> implements PublicA
 
     /**
      * The interpreter of the answer
-     * @param ans
-     * @return this
+     * @param ans the answer to parse to a Priority
      * @throws CannotChangeException if the Argument was already answered
      * @throws IllegalArgumentException if the answer was invalid
      */
-    public PriorityArgument enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
+    @Override
+    public void enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
         Boolean answer = booleanMap.get(ans.toLowerCase());
         if (answer == null) {
             throw new IllegalArgumentException("Not a good answer, possible answers are: normal, urgent.");
         }
         setAnswer(new HighLowPriority(answer));
-        return this;
     }
 }

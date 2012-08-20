@@ -20,10 +20,9 @@ public final class CampusInfoArgument extends ListArgument<CampusInfo> implement
     /**
      * Retrieves all CampusInfo objects from the world to select the Campus from
      * @param w The world that has the Campuses
-     * @return this
      */
-    public CampusInfoArgument setWorld(World w) {
+    @Override
+    public void setWorld(World w) {
         setPossible(w.getCampuses());
-        return this;
     }
 }

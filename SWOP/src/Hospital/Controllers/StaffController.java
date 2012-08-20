@@ -13,7 +13,8 @@ import Hospital.People.StaffRole;
 import Hospital.World.CampusInfo;
 
 /**
- * Used for staff-related actions.
+ * This controller enables the following usecases:
+ * Create new staffmembers, a single API call is enough.
  */
 @SystemAPI
 public class StaffController {
@@ -40,16 +41,14 @@ public class StaffController {
     }
 
     /**
-     * Creates a new staff member
-     * @param staff the type of staff to be created
-     * @param argv the arguments to the creation of the new staff member
-     * @return the details of newly created staff member
-     * @throws NotAFactoryException the given type does not exist in this world
-     * @throws NotLoggedInException the admin is not logged in
-     * @throws WrongArgumentListException the given arguments did not match the type of staff
-     * @throws SchedulableAlreadyExistsException this staff member already exists in this world
-     * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
-     * @throws CannotChangeException 
+     * Creates a new staff-member
+     * @param role the type of the staff-member to create
+     * @param name the name of the new staffmember
+     * @param info the campus the staffmemebr is stationed at, not null for nurse and warehousemanager
+     * @return the details of the created staffmember
+     * @throws InvalidArgumentException thrown if soma parameters were null and expected
+     * @throws NotLoggedInException thrown if the hospitaladmin was logged out or something
+     * @throws SchedulableAlreadyExistsException  thrown if the name of the new staffmember already exists
      */
     @SystemAPI
     public String makeStaffMember(StaffRole role, String name, CampusInfo info) throws InvalidArgumentException, NotLoggedInException, SchedulableAlreadyExistsException {

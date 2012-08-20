@@ -6,7 +6,6 @@ import java.util.Scanner;
 import Hospital.Argument.PublicArgument;
 import Hospital.Argument.TimeArgument;
 import Hospital.Controllers.AdministratorController;
-import Hospital.Controllers.ArgumentList;
 import Hospital.Controllers.MedicalTestInfo;
 import Hospital.Controllers.MedicalTestResultController;
 import Hospital.Controllers.NurseController;
@@ -70,7 +69,7 @@ public class AdvanceTimeUI {
     }
 
     private void enterTreatmentResults(Scanner sc, NurseController nc) throws NotLoggedInException, IllegalInfo, InvalidArgumentException {
-        ArgumentList args2;
+        PublicArgument[] args2;
         Time time = wc.getTime();
         Time startDay = TimeUtils.getStartOfDay(time);
         TreatmentResultController mc = new TreatmentResultController(wc, nc);
@@ -83,7 +82,7 @@ public class AdvanceTimeUI {
                 System.out.println("Press enter");
 
                 args2 = mc.getArguments(infos[i]);
-                UtilsUI.answerArguments(sc, args2.getPublicArguments());
+                UtilsUI.answerArguments(sc, args2);
                 try {
                     String str = mc.enterResult(infos[i], args2);
                     System.out.println(str);
@@ -96,7 +95,7 @@ public class AdvanceTimeUI {
     }
 
     private void enterMedicalTestResults(Scanner sc, NurseController nc) throws InvalidArgumentException, NotLoggedInException, IllegalInfo {
-        ArgumentList args2;
+        PublicArgument[] args2;
         Time time = wc.getTime();
         Time startDay = TimeUtils.getStartOfDay(time);
         MedicalTestResultController mc = new MedicalTestResultController(wc, nc);
@@ -109,15 +108,10 @@ public class AdvanceTimeUI {
                 System.out.println("Press enter");
 
                 args2 = mc.getArguments(medicalTests[i]);
-                UtilsUI.answerArguments(sc, args2.getPublicArguments());
+                UtilsUI.answerArguments(sc, args2);
 
-                try {
-                    String str = mc.enterResult(medicalTests[i], args2);
-                    System.out.println(str);
-                } catch (ArgumentConstraintException ex) {
-                    System.out.println("ArgumentConstraintException: " + ex);
-                    i--;
-                }
+                String str = mc.enterResult(medicalTests[i], args2);
+                System.out.println(str);
             }
         }
     }

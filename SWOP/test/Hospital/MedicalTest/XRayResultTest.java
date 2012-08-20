@@ -9,33 +9,10 @@ import Hospital.Exception.Arguments.ArgumentNotAnsweredException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.CannotChangeException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class XRayResultTest {
-
-    public XRayResultTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void arguments()
@@ -113,7 +90,8 @@ public class XRayResultTest {
         XRayScan xray = new XRayScan(3, 2, "Armen");
         PublicArgument[] args = new PublicArgument[2];
         args[0] = new StringArgument("Test");
-        args[1] = new StringArgument("Test2").enterAnswer("abc");
+        args[1] = new StringArgument("Test2");
+        args[1].enterAnswer("abc");
         try {
             xray.enterResult(args);
             fail("Exception should be thrown");
@@ -121,7 +99,8 @@ public class XRayResultTest {
             assertEquals("Exceptionmessage is wrong", "Argument is of the wrong type, it should be IntegerArgument", e.getMessage());
         }
 
-        args[0] = new IntegerArgument("Test").enterAnswer("3");
+        args[0] = new IntegerArgument("Test");
+        args[0].enterAnswer("3");
         args[1] = new IntegerArgument("Test2");
         try {
             xray.enterResult(args);
@@ -140,14 +119,16 @@ public class XRayResultTest {
         PublicArgument[] args = new PublicArgument[2];
 
         args[0] = new IntegerArgument("Test");
-        args[1] = new StringArgument("Test2").enterAnswer("String");
+        args[1] = new StringArgument("Test2");
+        args[1].enterAnswer("String");
         try {
             xray.enterResult(args);
             fail("Exception should be thrown");
         } catch (ArgumentNotAnsweredException e) {
             assertEquals("Exceptionmessage is wrong", "Argument-answer of \"The number of images\" was null", e.getMessage());
         }
-        args[0] = new IntegerArgument("Test").enterAnswer("3");
+        args[0] = new IntegerArgument("Test");
+        args[0].enterAnswer("3");
         args[1] = new StringArgument("Test2");
         try {
             xray.enterResult(args);

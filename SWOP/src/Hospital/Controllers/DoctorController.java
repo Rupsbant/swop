@@ -21,6 +21,11 @@ import Hospital.Schedules.Constraints.Preference.Preference;
  * As the LoginController for a Doctor, this class represents the Doctor
  * when he/she is logged in and provides access to functionality related to
  * this Doctor.
+ * 
+ * This controller enables the following usecases : 
+ * Open patientfile.
+ * Set preference.
+ * Undo and redo actions.
  */
 @SystemAPI
 public class DoctorController extends LoginController<Doctor> {

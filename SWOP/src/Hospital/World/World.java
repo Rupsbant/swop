@@ -7,7 +7,6 @@ import Hospital.Exception.CannotFindException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.NotAFactoryException;
-import Hospital.Factory.Factory;
 import Hospital.Machine.MachineAbstractFactory;
 import Hospital.Schedules.Schedulable;
 import Hospital.Patient.Patient;
@@ -33,10 +32,6 @@ public class World {
      */
     private ArrayList<Schedulable> resources;
     /**
-     * the factories in this world (for creating machines, diagnoses, etc...)
-     */
-    private Map<String, Factory> factories;
-    /**
      * the machines that exist in this world
      */
     private Map<String, MachineAbstractFactory> machineFactories;
@@ -59,7 +54,6 @@ public class World {
      */
     public World() {
         resources = new ArrayList<Schedulable>();
-        factories = new HashMap<String, Factory>();
         worldTime = new WorldTime();
         campuses = new ArrayList<Campus>();
         preferences = new ArrayList<Preference>();
@@ -200,42 +194,9 @@ public class World {
     }
 
     /**
-     * Gets all factories of the given type in this world
-     * @param clazz the class to search for
-     * @return a Map containing the factories of type clazz
-     * @throws ArgumentIsNullException the given class was null
+     * Returns the time-composite of this world
+     * @return WorldTime the WorldTime of this object
      */
-    public <T extends Factory> Map<String, T> getFactoriesOfType(Class<T> clazz) throws ArgumentIsNullException {
-        if (clazz == null) {
-            throw new ArgumentIsNullException();
-        }
-        return Utils.filter(factories, clazz);
-    }
-
-    /**
-     * Gets a factory of the given class with a certain name
-     * @param clazz the class of the factory
-     * @param name the name of the factory
-     * @return the factory of class <i>clazz</i> and with name <i>name</i>
-     * @throws ArgumentIsNullException the given class was null
-     * @throws NotAFactoryException the factory was not found
-     */
-    public <T extends Factory> T getFactory(Class<T> clazz, String name) throws ArgumentIsNullException, NotAFactoryException {
-        T factory = this.getFactoriesOfType(clazz).get(name);
-        if (factory == null) {
-            throw new NotAFactoryException();
-        }
-        return factory;
-    }
-
-    /**
-     * Adds a new factory to this world
-     * @param f the factory to add
-     */
-    public void addFactory(Factory f) {
-        factories.put(f.getName(), f);
-    }
-
     public WorldTime getWorldTime() {
         return worldTime;
     }

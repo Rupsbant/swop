@@ -18,12 +18,10 @@ public class NoneArgument extends BasicArgument<Object> implements PublicArgumen
 
     /**
      * Does nothing
-     * @param ans not important
-     * @return this
+     * @param ans is unused
      * @throws CannotChangeException never
      * @throws IllegalArgumentException never
      */
-    public PublicArgument enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
-        return this;
+    public void enterAnswer(String ans) throws CannotChangeException, IllegalArgumentException {
     }
 }

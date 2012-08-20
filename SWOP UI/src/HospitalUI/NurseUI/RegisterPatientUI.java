@@ -1,14 +1,9 @@
 package HospitalUI.NurseUI;
 
-import Hospital.Controllers.ArgumentList;
-import Hospital.Exception.Arguments.WrongArgumentListException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import Hospital.Argument.PublicArgument;
 import Hospital.Controllers.NurseController;
 import Hospital.Controllers.PatientController;
 import Hospital.Controllers.WorldController;
@@ -17,7 +12,6 @@ import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
-import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Exception.Patient.PatientIsCheckedInException;
 import Hospital.Exception.Scheduling.SchedulingException;

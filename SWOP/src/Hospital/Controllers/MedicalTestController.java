@@ -11,6 +11,8 @@ import Hospital.SystemAPI;
 
 /**
  * Used to perform MedicalTest-related actions
+ * This controller enables the following usecases:
+ * Order medicaltest.
  */
 @SystemAPI
 public class MedicalTestController {
