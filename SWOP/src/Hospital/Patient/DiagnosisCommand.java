@@ -9,7 +9,7 @@ import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.Patient.PatientIsDischargedException;
 import Hospital.Exception.Arguments.WrongArgumentListException;
-import Hospital.Factory.Command;
+import Hospital.Interfaces.Command;
 import Hospital.People.Doctor;
 import Hospital.World.World;
 

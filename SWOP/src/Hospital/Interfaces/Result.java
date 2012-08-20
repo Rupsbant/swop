@@ -1,4 +1,4 @@
-package Hospital.Factory;
+package Hospital.Interfaces;
 
 import Hospital.Argument.PublicArgument;
 import Hospital.Exception.Arguments.InvalidArgumentException;

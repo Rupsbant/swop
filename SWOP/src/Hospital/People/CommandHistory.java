@@ -3,7 +3,7 @@ package Hospital.People;
 import Hospital.Controllers.CommandInfo;
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Exception.Command.NotDoneException;
-import Hospital.Factory.Command;
+import Hospital.Interfaces.Command;
 import java.util.ArrayList;
 import java.util.Arrays;
 

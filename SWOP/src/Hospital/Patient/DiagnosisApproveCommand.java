@@ -1,7 +1,7 @@
 package Hospital.Patient;
 
 import Hospital.Exception.Command.CannotDoException;
-import Hospital.Factory.Command;
+import Hospital.Interfaces.Command;
 import Hospital.People.Doctor;
 
 /**

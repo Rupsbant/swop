@@ -1,7 +1,7 @@
 package Hospital.Controllers;
 
 import Hospital.SystemAPI;
-import Hospital.Factory.Command;
+import Hospital.Interfaces.Command;
 
 /**
  * Identifies a command in the system

@@ -5,8 +5,8 @@ import Hospital.Exception.Command.NotDoneException;
 import Hospital.Exception.Warehouse.ItemNotReservedException;
 import Hospital.Exception.Warehouse.NotEnoughItemsAvailableException;
 import Hospital.Exception.Warehouse.StockException;
-import Hospital.Factory.Command;
-import Hospital.Factory.NeedsItems;
+import Hospital.Interfaces.Command;
+import Hospital.Interfaces.NeedsItems;
 import java.util.ArrayList;
 import java.util.List;
 

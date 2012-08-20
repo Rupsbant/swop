@@ -11,7 +11,7 @@ import Hospital.Exception.Patient.CannotDischargeException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.NotLoggedInException;
-import Hospital.Factory.Command;
+import Hospital.Interfaces.Command;
 import Hospital.Patient.DiagnosisSecondOpinion;
 import Hospital.Patient.Patient;
 import Hospital.People.Doctor;

@@ -3,7 +3,7 @@ package Hospital.MedicalTest;
 import Hospital.Controllers.MedicalTestInfo;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Factory.Result;
+import Hospital.Interfaces.Result;
 import Hospital.Machine.Machine;
 import Hospital.People.Nurse;
 import Hospital.Schedules.Appointable;

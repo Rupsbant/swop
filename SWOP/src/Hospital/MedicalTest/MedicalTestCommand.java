@@ -1,6 +1,6 @@
 package Hospital.MedicalTest;
 
-import Hospital.Factory.Command;
+import Hospital.Interfaces.Command;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.ArgumentNotAnsweredException;

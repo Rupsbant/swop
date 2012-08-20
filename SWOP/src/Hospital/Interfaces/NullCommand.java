@@ -1,4 +1,4 @@
-package Hospital.Factory;
+package Hospital.Interfaces;
 
 import Hospital.Exception.Command.CannotDoException;
 import Hospital.Exception.Command.NotDoneException;

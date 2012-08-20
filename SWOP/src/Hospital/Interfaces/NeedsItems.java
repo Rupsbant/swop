@@ -1,4 +1,4 @@
-package Hospital.Factory;
+package Hospital.Interfaces;
 
 import Hospital.Schedules.Appointable;
 import Hospital.WareHouse.ItemInfo;
