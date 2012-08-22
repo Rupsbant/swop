@@ -10,6 +10,7 @@ import Hospital.Exception.Patient.InvalidDiagnosisException;
 import Hospital.Exception.Patient.PatientIsCheckedInException;
 import Hospital.MedicalTest.MedicalTest;
 import Hospital.Schedules.SchedulableVisitor;
+import Hospital.Schedules.TimeFrameConstraint;
 import java.util.ArrayList;
 import Hospital.People.Person;
 import Hospital.World.Campus;

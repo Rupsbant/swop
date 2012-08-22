@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="11.5.1">
-  <zoom_level>5</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>350</x>
-      <y>400</y>
-      <w>125</w>
-      <h>15</h>
+      <x>630</x>
+      <y>279</y>
+      <w>225</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>_SINGLETON:MedicalTestCreator_</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>160</x>
-      <y>400</y>
-      <w>95</w>
-      <h>15</h>
+      <x>441</x>
+      <y>279</y>
+      <w>171</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>_:MedicalTestController_</panel_attributes>
     <additional_attributes/>
@@ -26,32 +26,32 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>405</x>
-      <y>400</y>
-      <w>24</w>
-      <h>244</h>
+      <x>729</x>
+      <y>279</y>
+      <w>44</w>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>15;15;15;235</additional_attributes>
+    <additional_attributes>27;27;27;423</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>190</x>
-      <y>400</y>
-      <w>24</w>
-      <h>244</h>
+      <x>495</x>
+      <y>279</y>
+      <w>44</w>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>15;15;15;235</additional_attributes>
+    <additional_attributes>27;27;27;423</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>585</x>
-      <y>455</y>
-      <w>110</w>
-      <h>15</h>
+      <x>1053</x>
+      <y>378</y>
+      <w>207</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>_newMedicalTest:UltraSoundScan_</panel_attributes>
     <additional_attributes/>
@@ -59,10 +59,10 @@
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>415</x>
-      <y>450</y>
-      <w>10</w>
-      <h>175</h>
+      <x>747</x>
+      <y>369</y>
+      <w>18</w>
+      <h>315</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -70,10 +70,10 @@
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>200</x>
-      <y>445</y>
-      <w>10</w>
-      <h>180</h>
+      <x>513</x>
+      <y>360</y>
+      <w>18</w>
+      <h>324</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -81,48 +81,48 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>0</x>
-      <y>425</y>
-      <w>209</w>
-      <h>46</h>
+      <x>279</x>
+      <y>324</y>
+      <w>251</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;
-makeUltraSound(String focus, boolean recordImages, 
-          boolean recordVideo, Priority p) : String</panel_attributes>
-    <additional_attributes>200;25;15;25</additional_attributes>
+makeUltraSound(...) : String</panel_attributes>
+    <additional_attributes>234;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>195</x>
-      <y>430</y>
-      <w>229</w>
-      <h>35</h>
+      <x>504</x>
+      <y>333</y>
+      <w>260</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;
-makeUltraSoundScan(World world, Doctor doctor, ...)</panel_attributes>
-    <additional_attributes>220;25;15;25</additional_attributes>
+makeUltraSoundScan
+(World world, Doctor doctor, ...)</panel_attributes>
+    <additional_attributes>243;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>410</x>
-      <y>435</y>
-      <w>184</w>
-      <h>46</h>
+      <x>738</x>
+      <y>342</y>
+      <w>332</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 create(focus, recordImages, 
 		recordVideo) : UltraSoundScan</panel_attributes>
-    <additional_attributes>175;25;15;25</additional_attributes>
+    <additional_attributes>315;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>570</x>
-      <y>510</y>
-      <w>10</w>
-      <h>10</h>
+      <x>1026</x>
+      <y>477</y>
+      <w>18</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -130,34 +130,34 @@ create(focus, recordImages,
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>490</y>
-      <w>159</w>
-      <h>35</h>
+      <x>756</x>
+      <y>441</y>
+      <w>287</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 getOpenedPatient() : Patient p</panel_attributes>
-    <additional_attributes>150;25;15;25</additional_attributes>
+    <additional_attributes>270;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>400</y>
-      <w>24</w>
-      <h>244</h>
+      <x>1008</x>
+      <y>279</y>
+      <w>44</w>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=.
 </panel_attributes>
-    <additional_attributes>15;15;15;235</additional_attributes>
+    <additional_attributes>27;27;27;423</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>545</x>
-      <y>400</y>
-      <w>60</w>
-      <h>15</h>
+      <x>981</x>
+      <y>279</y>
+      <w>108</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>_doctor:Doctor_</panel_attributes>
     <additional_attributes/>
@@ -165,10 +165,10 @@ getOpenedPatient() : Patient p</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>725</x>
-      <y>540</y>
-      <w>100</w>
-      <h>15</h>
+      <x>1305</x>
+      <y>531</y>
+      <w>180</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>_comm:MedicalTestCommand_</panel_attributes>
     <additional_attributes/>
@@ -176,44 +176,44 @@ getOpenedPatient() : Patient p</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>760</x>
-      <y>540</y>
-      <w>24</w>
-      <h>104</h>
+      <x>1368</x>
+      <y>531</y>
+      <w>44</w>
+      <h>188</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>15;15;15;95</additional_attributes>
+    <additional_attributes>27;27;27;171</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>520</y>
-      <w>314</w>
-      <h>35</h>
+      <x>756</x>
+      <y>495</y>
+      <w>566</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 create(world, openedPatient, newMedicalTest, p) : comm</panel_attributes>
-    <additional_attributes>305;25;15;25</additional_attributes>
+    <additional_attributes>549;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>695</x>
-      <y>400</y>
-      <w>24</w>
-      <h>244</h>
+      <x>1251</x>
+      <y>279</y>
+      <w>44</w>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>15;15;15;235</additional_attributes>
+    <additional_attributes>27;27;27;423</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>660</x>
-      <y>400</y>
-      <w>95</w>
-      <h>15</h>
+      <x>1188</x>
+      <y>279</y>
+      <w>171</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>_history:CommandHistory_</panel_attributes>
     <additional_attributes/>
@@ -221,10 +221,10 @@ create(world, openedPatient, newMedicalTest, p) : comm</panel_attributes>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>570</x>
-      <y>570</y>
-      <w>10</w>
-      <h>10</h>
+      <x>1026</x>
+      <y>585</y>
+      <w>18</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -232,22 +232,22 @@ create(world, openedPatient, newMedicalTest, p) : comm</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>550</y>
-      <w>159</w>
-      <h>35</h>
+      <x>756</x>
+      <y>549</y>
+      <w>287</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 getHistory() : history</panel_attributes>
-    <additional_attributes>150;25;15;25</additional_attributes>
+    <additional_attributes>270;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>705</x>
-      <y>600</y>
-      <w>10</w>
-      <h>25</h>
+      <x>1269</x>
+      <y>639</y>
+      <w>18</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -255,22 +255,22 @@ getHistory() : history</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>580</y>
-      <w>294</w>
-      <h>35</h>
+      <x>756</x>
+      <y>603</y>
+      <w>530</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 history.addCommand(comm) : String executedCommand</panel_attributes>
-    <additional_attributes>285;25;15;25</additional_attributes>
+    <additional_attributes>513;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>770</x>
-      <y>605</y>
-      <w>10</w>
-      <h>20</h>
+      <x>1386</x>
+      <y>648</y>
+      <w>18</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -278,57 +278,57 @@ history.addCommand(comm) : String executedCommand</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>700</x>
-      <y>585</y>
-      <w>79</w>
-      <h>35</h>
+      <x>1260</x>
+      <y>612</y>
+      <w>143</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 execute()</panel_attributes>
-    <additional_attributes>70;25;15;25</additional_attributes>
+    <additional_attributes>126;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>195</x>
-      <y>600</y>
-      <w>229</w>
-      <h>35</h>
+      <x>504</x>
+      <y>639</y>
+      <w>260</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 executedCommand</panel_attributes>
-    <additional_attributes>15;25;220;25</additional_attributes>
+    <additional_attributes>27;45;243;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>700</x>
-      <y>605</y>
-      <w>79</w>
-      <h>24</h>
+      <x>1260</x>
+      <y>648</y>
+      <w>143</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>15;15;70;15</additional_attributes>
+    <additional_attributes>27;27;126;27</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>595</y>
-      <w>294</w>
-      <h>35</h>
+      <x>756</x>
+      <y>630</y>
+      <w>530</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 executedCommand</panel_attributes>
-    <additional_attributes>15;25;285;25</additional_attributes>
+    <additional_attributes>27;45;513;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>425</x>
-      <y>495</y>
-      <w>10</w>
-      <h>130</h>
+      <x>765</x>
+      <y>450</y>
+      <w>18</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -336,13 +336,13 @@ executedCommand</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>410</x>
-      <y>465</y>
-      <w>203</w>
-      <h>44</h>
+      <x>738</x>
+      <y>396</y>
+      <w>411</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;
-handleCorrectness(World world, Doctor doctor) : String</panel_attributes>
-    <additional_attributes>25;35;105;35;105;15;15;15</additional_attributes>
+handleCorrectness(World world, Doctor doctor, ...) : String</panel_attributes>
+    <additional_attributes>45;63;216;63;216;27;27;27</additional_attributes>
   </element>
 </diagram>

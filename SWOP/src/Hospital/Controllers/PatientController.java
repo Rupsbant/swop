@@ -3,7 +3,6 @@ package Hospital.Controllers;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Scheduling.SchedulableAlreadyExistsException;
-import Hospital.Exception.NotAFactoryException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.Patient.Patient;
 import Hospital.SystemAPI;

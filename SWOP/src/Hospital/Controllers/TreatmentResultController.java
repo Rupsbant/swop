@@ -11,8 +11,6 @@ import Hospital.Patient.Patient;
 import Hospital.Treatments.Treatment;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This controller adds the function to enter treatment-results to the main public API

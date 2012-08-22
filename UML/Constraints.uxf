@@ -37,7 +37,7 @@
 /+reset()/
 /+isAccepted() : Time/
 /                  {exception ScheduleConstraintException}/
-/+setTimeFrame(Time time, int length)/
+/+setTime(Time time, int length)/
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -407,14 +407,14 @@ get Preference from
     <coordinates>
       <x>973</x>
       <y>847</y>
-      <w>266</w>
+      <w>301</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 Preference
 --
 makeThisAsPreference(HasPreference d)
-canAddAppointment(TimeFrame tf, Campus c) : boolean
+canAddAppointment(Time time, int length, Campus c) : boolean
 String getDescription() : String</panel_attributes>
     <additional_attributes/>
   </element>
@@ -447,14 +447,14 @@ setPreference(Preference pref)</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1218</x>
+      <x>1253</x>
       <y>840</y>
-      <w>76</w>
+      <w>41</w>
       <h>34</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>21;21;63;21</additional_attributes>
+    <additional_attributes>21;21;28;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -540,7 +540,7 @@ isAccepted() : TimeFrame
     <coordinates>
       <x>994</x>
       <y>301</y>
-      <w>241</w>
+      <w>240</w>
       <h>76</h>
     </coordinates>
     <panel_attributes>lt=-
