@@ -6,23 +6,24 @@
 \usepackage[final]{pdfpages}
 \usepackage[dutch]{babel}
 \usepackage{hyperref}
+\usepackage{pdfpages}
 
 \title{SWOP: Iteratie 4}
 \author{Ruben Lapauw}
 \date{}
 
 \pdfinfo{%
-  /Title    ()
-  /Author   ()
-  /Creator  ()
-  /Producer ()
-  /Subject  ()
-  /Keywords ()
+  /Title    (SWOP: Iteratie 4)
+  /Author   (Ruben Lapauw)
+  /Creator  (Ruben Lapauw)
 }
 
 \begin{document}
 \maketitle
+ \thispagestyle{empty}
 \newpage
+ \setcounter{page}{1}
+\pagenumbering{arabic}
 \section{Inleiding}
 Voor iteratie 4 werd er gevraagd om het design van sommige delen van het systeem te herwerken. 
 Dit was nodig omdat op sommige plaatsen het design niet uitbreidbaar genoeg was. 
@@ -35,8 +36,14 @@ Bij het plannen was er een nodeloze complexiteit in de hiërarchie van TimeFrame
 
 Deze twee systemen werden herwerkt om deze problemen op te lossen. 
 In sectie \ref{Factory} en sectie \ref{scheduling} staat een volledige uitleg wat er aangepast is, en welke voordelen dit had.
-In sectie \ref{Volledig} staat een volledige beschrijving van het design samen met een uitleg van de Use-cases die veranderd zijn.
-In sectie \ref{rest} staat een korte uitleg van de andere, niet besproken usecases.
+In sectie \ref{Volledig} staat een volledige beschrijving van de Use Cases die veranderd zijn.
+In sectie \ref{rest} staat een korte uitleg van de andere, onveranderde Use Cases.
 
 \input{hospital.tex}
+
+\section{Appendix}
+\subsection{Klasse diagramma}
+%\includepdf[pages={2,1,4,3}]{./exported/out.pdf} 
+\includepdf[pages=-, angle=270]{./exported/volledigKlasseDiagramma.pdf} 
+
 \end{document}

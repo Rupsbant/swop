@@ -35,7 +35,7 @@ Dit zijn enkele methodes die nu in de Controllers voorzien zijn:
 \[ String\ makeMachine(String\ type,\ String\ id,\ Location\ location,\ CampusInfo\ info)\]
 
 \subsection{Volledig Design}
-In figuur \ref{fig:} kan een interactiediagramma gevonden worden van de creatie van een nieuwe machine. 
+In figuur \ref{fig:makeUltraSound} kan een interactiediagramma gevonden worden van de creatie van een nieuwe medische test. 
 Deze aanpassingen werden gemaakt voor alle klassen die de interface Factory implementeerden. 
 Dit waren alle Factory's die machines aanmaken, die personen aanmaken. 
 Ook werden alle Factory's voor medische testen en behandelingen herwerkt. 
@@ -47,6 +47,15 @@ Hierdoor cohesie groter door de machines zelf verantwoordelijk te maken voor hun
 Ook is de uitbreidbaarheid hier groter.
 De machines hebben zelf heel weinig verantwoordelijkheden, er is dus geen gevaar dat deze klassen te veel verantwoordelijkheden krijgen. 
 Indien de machines later meer verantwoordelijkheden krijgen, of andere attributen kan er nog steeds eenvoudig gekozen worden voor een factory-method patroon.
+
+\begin{figure}
+
+\hspace{-2.5cm}
+ \includegraphics[width=1.3\textwidth]{./exported/interaction/makeUtraSound.pdf}
+ % makeUtraSound.pdf: 1690x520 pixel, 72dpi, 59.62x18.34 cm, bb=0 0 1690 520
+\caption{De creatie van een UltraSoundScan medische test \label{fig:makeUltraSound}}
+
+\end{figure} 
 
 \subsection{Uitbreidbaarheid}
 Indien er een nieuw user-type,een nieuw machine-type,een nieuw type medische test of een nieuwe behandeling wordt aangemaakt, moeten de nodige klassen aangemaakt worden. 
@@ -63,7 +72,7 @@ Dit is misschien meer werk om een eenvoudig object toe te voegen.
 Maar indien een soort uitzondering nodig is, dan moet er geen nieuw Argument-type aangemaakt worden. 
 Bijvoorbeeld een object die data nodig heeft die niet direct beschikbaar is, zou in het vorige design een nieuw type Argument nodig hebben. 
 
-\subsection{Voorbeeld}
+\subsection{Voorbeeld\label{sec:factVB}}
 In figuur \ref{fig:makeUltraSound} kan men zien hoe zo'n factory-method werkt. 
 Hier wordt een nieuwe medische test (UltraSoundScan) aangemaakt voor een bepaalde patiënt(Patient).
 Voor behandelingen, personen en machines werkt dit analoog. 
@@ -85,7 +94,7 @@ Het probleem was dus dat er Commando's konden toegevoegd worden aan de lijst van
 \section{Scheduling\label{scheduling}}
 \subsection{TimeFrameConstraint}
 \subsubsection{Origineel}
-Het originele design van de Constraints kan men zien op figuur: \ref{fig:constraints_old}. 
+Het originele design van de TimeFrameConstraints\footnote{De naam van deze klasse is voor de duidelijkheid behouden, een betere naam is AppointmentConstraint of Constraint} kan men zien op figuur \ref{fig:constraints_old}. 
 Men kan duidelijk zien dat de ``hulp''-hiërarchie die bepaalde hulp-methodes instantieert nodeloos complex is.\\
 
 Een ander probleem is dat de beslissing binair is: men kan ofwel de afspraak aanvaarden of niet.
@@ -94,22 +103,41 @@ Het andere nadeel is dat er geen enkele controle is die de berekening stopt indi
 Eén van de voordelen is wel dat nog alle vrijheid behouden wordt om nieuwe Constraints te maken. 
 Bij een aangepast design zou dit behouden moeten worden.
 
+\begin{figure}
+\vspace{-2cm}
+  \begin{center}
+    \includegraphics[width=1.0\textheight,angle=270]{./exported/Constraints_OLD.pdf}
+    % Constraints_OLD.pdf: 2390x1220 pixel, 72dpi, 84.31x43.04 cm, bb=0 0 2390 1220
+  \end{center}
+\caption{De oude hiërarchie van TimeFrameConstraints\label{fig:constraints_old}}
+\vspace{2cm}
+\end{figure} 
+
 \subsubsection{Aanpassingen}
-Het nieuwe design van de TimeFrameConstraints kan men zien in figuur: \ref{fig:constraints}. 
+Het nieuwe design van de TimeFrameConstraints kan men zien in figuur \ref{fig:Constraints}. 
 Hier is de hierarchie verwijderd en blijft enkel een interface over die de nodige methodes aanbiedt. 
-Een nieuwe Constraint maken zou dus eenvoudiger moeten zijn. 
-Ook de gelinkte structuur is gewisseld voor een lijst, waardoor de grootste verwarring verdwenen is. \\
+Een nieuwe Constraint maken is dus eenvoudiger. 
+Ook de gelinkte structuur is gewisseld voor een lijst, waardoor de grootste complexiteit verdwenen is. \\
 
 De beslissing of een Constraint aanvaard wordt of niet wordt nu gedaan door een Time object terug te geven. 
-Dit is het eerstvolgende moment waarop deze Constraint aanvaard kan worden. 
+Dit is het eerstvolgende moment waarop deze constraint aanvaard kan worden. 
 Indien de huidige tijd aanvaard wordt, wordt de huidige tijd bevestigd. 
 Indien er een probleem is, wordt een ScheduleException gegooid. \\
 
 De tijd die teruggegeven wordt, moet een conservatieve schatting zijn. 
 Dit wil zeggen dat indien er mogelijks momenten zijn die onzeker zijn, mag men deze niet overslaan. 
 Desnoods stapt men naar de volgende minuut zoals in het vorige design. 
-Met deze aanpassing is er bij een goede implementatie van de meeste Constraints geen probleem meer met een lange rekentijd. 
+Met deze aanpassing is er bij een goede implementatie van de meeste constraints geen probleem meer met een lange rekentijd. 
 Indien alle Constraints terug de volgende minuut teruggeven zal er natuurlijk geen tijdswinst zijn. 
+\begin{figure}
+\vspace{-2cm}
+  \begin{center}
+    \includegraphics[width=1.0\textheight,angle=270]{./exported/Constraints.pdf}
+    % Constraints.pdf: 1960x1130 pixel, 72dpi, 69.14x39.86 cm, bb=0 0 1960 1130
+  \end{center}
+  \caption{Het nieuwe design van de Constraints\label{fig:Constraints}}
+\vspace{2cm}
+\end{figure} 
 
 \subsection{Voorbeeld}
 Figuur \ref{fig:PriorityConstraint} toont hoe de PriorityConstraint werkt. Dit is een typische TimeFrameConstraint. 
@@ -122,11 +150,20 @@ Andere TimeFrameConstraints werken analoog: ze worden bezocht door de aanwezigen
 PreferenceConstraint, de Constraint die bepaalt hoe een dokter tussen de campussen beweegt, vraagt de preferentie op aan de Doctor en laat de beslissing dan over aan de Preference-interface. 
 Door het polymorfisme is het normaal niet meer nodig om de Constraint aan te passen voor nieuwe preferentie-types.
 
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{./exported/interaction/PriorityConstraint.pdf}
+    % PriorityConstraint.pdf: 890x690 pixel, 72dpi, 31.40x24.34 cm, bb=0 0 890 690
+  \end{center}
+\vspace{-1cm}
+  \caption{Het interactiediagramma van PriorityConstraint\label{fig:PriorityConstraint}}
+\end{figure} 
+
 
 \subsection{CampusDecider}
 \subsubsection{Probleem}
 Deze interface breidde de interface van TimeFrameConstraint uit om de Campus te bepalen. 
-De interface Appointable gaf een lijst van TimeFrameConstraints terug met als eerste Constraint een GetCampusConstraint die de Campus moest bepalen. 
+De interface Appointable gaf een lijst van TimeFrameConstraints terug met als eerste constraint een GetCampusConstraint die de Campus moest bepalen. 
 Klassen die deze interface implementeerden hadden een dubbele verantwoordelijkheid: 
 de Campus bepalen en hun Constraint evalueren. Dit ging tegen Responsibility-driven design in en dit verlaagt de cohesie en verhoogt de koppeling.
 
@@ -141,6 +178,13 @@ Appointable bepaalt hoe de Campus beslist wordt(NurseDecides, PatientDecides) en
 Medische testen en behandelingen zijn altijd op de campus van de verpleegster die deze toedient (figuur \ref{fig:nurseDecides}). 
 Wanneer het NurseDecides object bezocht wordt door een verpleegster, wordt de Campus opgevraagd en opgeslagen. 
 Dit is dan de besliste Campus. Dit gebeurt analoog bij een PatientDecides: de patiënt beslist hier en het object onthoudt de Campus van de patiënt.
+
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\textwidth]{./exported/interaction/nurseDecides.pdf}
+ % nurseDecides.pdf: 800x310 pixel, 72dpi, 28.22x10.94 cm, bb=0 0 800 310
+ \caption{Hoe een CampusDecider werkt\label{fig:nurseDecides}}
+\end{figure}
 
 \subsubsection{Uitbreidingen}
 Het is niet moeilijk om andere beslissingsmethodes te implementeren. 
@@ -176,15 +220,45 @@ Men kan nooit alle infinte loops herkennen voor een bepaalde verzameling van aan
 Dit kan met de huidige verzameling van Constraints ook niet voorkomen: ofwel herkennen ze direct dat ze nooit zullen voldoen, ofwel is er op een lege dag altijd de mogelijkheid om de afspraak te plannen.
 
 \subsection{Volledig Design}
-De klassediagrammas in figuren \ref{fig:Constraints}, \ref{fig:} en de interactieschemas in \ref{fig:} en \ref{fig:} tonen het volledige design van het scheduling subsysteem. 
+De klassediagrammas in figuren \ref{fig:Constraints}, \ref{fig:fullScheduling} en de interactieschemas in \ref{fig:solver} en \ref{fig:cartesian} tonen het volledige design van het scheduling subsysteem. 
 Figuur \ref{fig:Constraints} toont aan van welke klassen de Constraints informatie halen. 
-Het andere klassediagramma (figuur \ref{fig:}) toont welke informatie nodig is om een afspraak te kunnen maken. 
-De AppointmentCommand verzamelt de CampusDecider, de DelayedTimeLength, alle Constraints en alle ScheduleGroups. 
-Door gebruik te maken van de solve-methode wordt een AppointmentResult gegenereerd die gebruikt wordt door het AppointmentCommand om een Appointment te instantiëren. 
-Een interactiediagramma hiervan vind je in figuur \ref{fig: AppCretion}.\\
+Het andere klassediagramma (figuur \ref{fig:fullScheduling}) toont welke informatie nodig is om een afspraak te kunnen maken. 
+De AppointmentCommand verzamelt de CampusDecider, de DelayedTimeLength, alle Constraints en alle ScheduleGroup's. 
+Door gebruik te maken van de solve-methode wordt een AppointmentResult gegenereerd die gebruikt wordt door het AppointmentCommand om een Appointment te instantieren. 
+%Een interactiediagramma hiervan vind je in figuur \ref{fig: AppCreation}.
+%TODO
+\\
+
+\begin{figure}
+\vspace{-2cm}
+\centering
+ \includegraphics[width=1.05\textheight, angle=270]{./exported/ScheduleGroup_End.pdf}
+ % ScheduleGroup End.pdf: 2350x880 pixel, 72dpi, 82.90x31.04 cm, bb=0 0 2350 880
+ \caption{The full scheduling subsystem.}
+ \label{fig:fullScheduling}
+\vspace{2cm}
+\end{figure}
+
+\begin{figure}
+\hspace{-2cm}
+ \includegraphics[width=1.2\textwidth]{./exported/interaction/Solver.pdf}
+ % Solver.pdf: 1080x590 pixel, 72dpi, 38.10x20.81 cm, bb=0 0 1080 590
+ \caption{Step 1 of the solver}
+ \label{fig:solver}
+\hspace{2cm}
+\end{figure}
+
+\begin{figure}
+\hspace{-2cm}
+ \includegraphics[width=1.2\textwidth]{./exported/interaction/cartesianProduct.pdf}
+ % cartesianProduct.pdf: 1480x820 pixel, 72dpi, 52.21x28.93 cm, bb=0 0 1480 820
+ \caption{Step 2 of the solver}
+ \label{fig:cartesian}
+\end{figure}
+
 
 De AppointmentConstraintSolver(solver) werkt als volgt: eerst worden alle combinaties van personen gemaakt die nodig zijn voor de afspraak, één per ScheduleGroup. 
-Daarna wordt voor iedere combinatie het eerste moment berekend dat er een afspraak kan gemaakt worden, dit gebeurt in schema \ref{fig:}. 
+Daarna wordt voor iedere combinatie het eerste moment berekend dat er een afspraak kan gemaakt worden, dit gebeurt in schema \ref{fig:solver}. 
 Het vroegste moment wordt onthouden en uiteindelijk gebruikt. 
 Om de uitbreidbaarheid zo groot mogelijk te houden is er een afscheiding gemaakt tussen zij die aanwezig kunnen zijn, en waar deze informatie opgeslagen is. 
 Hierdoor is de koppeling tussen belangrijke systemen tot een minimum herleid en is de cohesie hoger:
@@ -193,7 +267,7 @@ de solver heeft geen enkele informatie nodig om een afspraak te plannen.\\
 Het berekenen van de eerstvolgende afspraak voor een bepaalde combinatie gebeurt als volgt: alle TimeFrameConstraints worden opgevraagd: van de Appointable, en alle aanwezigen. 
 Daarna bezoeken alle aanwezigen de CampusDecider, die de plaats bepaalt.
 Als laatste voorbereidingsstap worden alle TimeFrameConstraints bezocht door alle aanwezigen en de Campus.
-Dit is de bovenste helft van diagramma \ref{fig:cartesianProduct}. 
+Dit is de bovenste helft van diagramma \ref{fig:cartesian}. 
 Dit design is om dezelfde redenen gekozen als de ScheduleGroup interface, dezelfde GRASP-principes zijn van toepassing. \\
 
 De eerst mogelijke tijd dat een afspraak mag gebeuren, een medische test heeft bijvoorbeeld een vertraging van één uur, wordt opgevraagd. 
@@ -204,8 +278,26 @@ Op basis hiervan is de koppeling tussen de solver en de domeinlaag veel kleiner.
 De klassen die de interface Schedulable implementeren mogen niet rechtstreeks aangesproken worden in de solver. 
 Hierdoor is de solver beschermd tegen veranderingen in de minder stabiele domein-laag.
 
-\section{Design van het volledige systeem\label{Volledig}}
-In de appendix staat het volledige klassediagramma. Hier kan je zien hoe de verschillende subsystemen samenwerken tot een geheel.
+\subsection{Voorbeeld}
+Stel dat er een afspraak moet gemaakt worden voor een Patient p die een XRayScan moet krijgen. 
+Er is op elke Campus één XRayMachine en op elke Campus is er één verpleegster. 
+Dan wordt een afpsraak op de volgende manier gepland. 
+De klasse AppointmentCommand verzamelt de CampusDecider en de Constraints van de medische test, dit is een NurseDecides object en een lijst met een NurseBackToBackConstraint en een XRayConstraint.
+Een PriorityConstraint wordt toegevoegd door de AppointmentCommand.
+Ook worden alle ScheduleGroup's verzameld: een groep met de Patient p die aanwezig moet zijn en twee MultiSchedulableGroup's voor de aanwezigheid van een Nurse en een XRayMachine. \\
+
+De solver creëert dan alle combinaties van aanwezigen. Dit zijn er hier 4 combinaties van 3 aanwezigen (de patient, een verpleegster en een machine): iedere Patient, Nurse en XRayMachine wordt gecombineerd. 
+Dan wordt voor iedere combinatie de Campus bepaald, dit is de Campus van de Nurse. 
+Ook worden alle Constraints van de aanwezigen opgevraagd: een Machine kan niet bewegen, een Nurse kan niet bewegen, een Nurse werkt tussen 9u en 17u. \\
+
+Dan wordt er voor iedere combinatie het eerste mogelijke moment berekend dat een afspraak mogelijk is. 
+Voor 2 van de 4 combinaties is dit niet mogelijk, de UnmovableConstraint van de XRayMachine zal een SchedulingException gooien en deze berekening zal stoppen. 
+Voor de twee andere combinaties zal er uiteindelijk een afspraak gevonden worden die aan alle voorwaarden voldoet. 
+De vroegste wordt gekozen als uitkomst, alle nodige informatie wordt opgeslagen.
+
+
+
+\section{Aangepaste Use Cases\label{Volledig}}
 
 \subsection{Order MedicalTest\label{use:Med}}
 Door aanpassingen aan de creatie van domein-specifieke objecten kan de UI geen lijst van objecten meer opvragen. 
@@ -213,7 +305,7 @@ Deze lijst is nu ingebouwd in de UI.
 Bij de start van deze usecase wordt aan de gebruiker gevraagd welke medische test hij/zij wil maken. 
 Dan wordt de nodige informatie gevraagd aan de gebruiker. De types en vragen zijn ook ingebouwd in de UI.
 Uiteindelijk wordt de juiste make-methode aangeroepen in de Controller. 
-Dit is ook te zien in diagramma \ref{fig:orderMedicalCase}, de interne werking is beschreven in \ref{sec:factVB}.
+Dit is ook te zien in diagramma \ref{fig:makeUltraSound}, de interne werking is beschreven in \ref{sec:factVB}.
 
 \subsection{Enter Diagnosis}
 Bij het begin van deze usecase wordt er aan de gebruiker gevraagd of deze diagnose een tweede opinie nodig heeft van een andere dokter.
@@ -226,33 +318,47 @@ Door het gebruik van een factory-method is dit eenvoudiger en onderhoudbaarder g
 \subsection{Prescribe Treatment, Add Hospital Staff \& Add Hospital Equipment}
 Dit is analoog aan de usecase ``Order MedicalTest'', zie sectie \ref{use:Med}. 
 
-
-\section{Onbesproken usecases\label{rest}}
-De volgende usecases zijn onveranderd met de vorige iteratie:
-\subsection{Login}
-Bij het inloggen vraagt de UI eerst de namen van personen en hun rol op aan de WorldController. 
-Ook een beschrijving van alle Campussen worden opgevraagd aan de WorldController. 
-Uiteindelijk wordt een LoginController-object gevraagd aan de WorldController met de methode $login(loginInfo, campus)$. 
-Dit stelt een ingelogde persoon voor in het systeem. 
-Ook worden alle de usecases voor een bepaalde rol die als preconditie hebben dat ze ingelogd moeten zijn beschikbaar.
-De uitbreidbaarheid en GRASP-principes zijn hetzelfde gebleven als van de vorige iteratie. 
-Dit is met name: het gebruik van polymorfisme om de koppeling voor het inloggen laag te houden en om uitbreidingen van deze usecase eenvoudig te houden.
-
-\subsection{Logout}
-Dit wordt gedaan door alle Controllers behalve de WorldController niet meer te gebruiken, de sessie wordt effectief verwijderd indien alle referenties vergeten zijn.
-Er is geen enkele aanpassing gebeurt tegenover de vorige iteratie.
-
 \subsection{Register patiënt}
 Een patiënt registreren gebeurt als volgt: de UI vraagt aan de NurseController een lijst van alle patiënten die zich nu niet in het hospitaal bevinden.
 Indien er gekozen wordt voor een nieuwe patiënt wordt zijn naam gevraagd aan de gebruiker en wordt deze gebruikt om een nieuwe patiënt te maken. 
 Uiteindelijk wordt de gekozen patiënt geregistreerd bij de NurseController en wordt er een nieuwe afspraak gemaakt met een dokter.
+Deze usecase is eenvoudig zoals er rekening gehouden wordt met het information expert principe. 
+Het gebruik van een Factory-klasse is ook veranderd ten voordele van een eenvoudiger design.
+
+
+\section{Onbesproken Use Cases\label{rest}}
+De volgende usecases zijn onveranderd met de vorige iteratie:
+\subsection{Login\label{sub:login}}
+Bij het inloggen vraagt de UI eerst de namen van personen en hun rol op aan de WorldController. 
+Ook een beschrijving van alle Campussen worden opgevraagd aan de WorldController. 
+Uiteindelijk wordt een LoginController-object gevraagd aan de WorldController met de methode $login(loginInfo, campus)$. 
+Dit stelt een ingelogde persoon voor in het systeem. 
+Ook worden alle usecases voor een bepaalde rol die als preconditie hebben dat ze ingelogd moeten zijn beschikbaar.\\
+
+De beslissing om het inloggen en uitloggen deel te laten uitmaken van de logica van de controllers is omdat er in het systeem zelf geen notie moet zijn van wie ingelogd is.
+Inloggen en uitloggen maken strikt deel uit van wie het systeem mag gebruiken en dus is het logisch dat dit geen deel uitmaakt van het systeem. 
+Dit laat ook toe om andere software met het systeem te laten communiceren. 
+Het is onlogische dat een systeem dat altijd samenwerkt met dit systeem zou moeten ``inloggen'' om toegang te krijgen.
+Dit laat ook toe om het idee van wat ingelogd zijn betekent te laten variëren tussen toegangssystemen, een website heeft hier bijvoorbeeld andere ideën over. \\
+
+De uitbreidbaarheid en GRASP-principes zijn hetzelfde gebleven als van de vorige iteratie:
+Het gebruik van polymorfisme om de koppeling voor het inloggen laag te houden en om uitbreidingen van deze usecase eenvoudig te houden. 
+Ook cohesie van het systeem wordt groter omdat deze verantwoordelijkheid nu niet in het hele systeem verwoven zit. 
+De koppeling met het domein is ook lager omdat de Controllers de Actor nu niet meer moeten kennen om te controleren of deze weldegelijk ingelogd is. 
+Enkel de logincontroller die de actor voorsteld moet gekend zijn.
+
+\subsection{Logout}
+De methode $logout()$ is voorzien om uit te loggen. Ook deze usecase(zie login \ref{sub:login}) bevindt zich volledig in de controllerlaag vanwege dezelfde redenen.
+Er is geen enkele aanpassing gebeurt tegenover de vorige iteratie.
 
 \subsection{Consult patientfile}
 Een lijst met alle geregistreerde patiënt kan opgevraagd worden aan de DoctorController. De rest van de usecase zou moeten duidelijk zijn.
 Indien er een PatientFile geselecteerd is dan komen er extra usecases beschikbaar voor de gebruiker.
+Het information expert principe zorgt hier weer voor een eenvoudige en duidelijke implementatie.
 
 \subsection{Close patientfile}
-De PatientFile wordt gesloten. De usecases die als preconditie hebben dat er een PatientFile moet geopend zijn verdwijnen uit de lijst met opties.
+De PatientFile wordt gesloten. De usecases die als preconditie hebben dat er een PatientFile moet geopend zijn verdwijnen uit de lijst met opties. 
+Dit is analoog aan de usecase Consult PatientFile, men brengt gewoon de originele toestand terug.
 
 \subsection{Approve Diagnosis}
 De DoctorController bied een methode aan om een lijst van alle niet goedgekeurde diagnoses op te vragen. 
@@ -272,12 +378,41 @@ Indien een bepaald Commando niet kan ongedaan gemaakt worden wordt er een $Canno
 Bijvoorbeeld een diagnose kan niet ongedaan gemaakt worden indien er al een behandeling ingegeven is.
 
 \subsection{Select Location Preference}
-
+De preferentie wordt ingesteld aan de hand van een beschrijving die iedere preferentie heeft. 
+De informatie-expert bepaald wie het prototype heeft en dat de doctor telkens zijn eigen preferentie bijhoud.
 
 \subsection{Advance Time}
-\subsection{Manage Warehouse}
-\subsection{List orders}
+De use-case Advance Time veranderd de tijd. Dit gebeurt door de juiste methode in de AdministratorController aan te roepen. 
+Deze actie informeert ook alle TimeObservers dat de tijd veranderd is. Dit wordt gebruikt door het Warehouse om automatisch alle Items die overdatum zijn weg te gooien. 
+De actie van alle niet-ingevulde behandelingen en medische testen in te laten vullen door de Administrator is een beetje onlogisch. 
+Om dit op te lossen is deze functionaliteit geïmplementeerd in de UI en maakt dit geen deel uit van de domeinlaag. 
+Hierdoor is de code logischer en duidelijker.
 
+\subsection{Fill Stock}
+Deze usecase werkt analoog aan de usecase Enter MedicalTestResults. 
+Er werd gekozen om het invullen van de informatie generisch te houden met het Argument-systeem aangezien er veel types medicijnen bestaan die elk hun eigen informatie hebben. 
+Aangezien alle informatie tot nu toe ingevuld moet worden zich buiten het systeem bevind en er geen enkele verwerking moet gebeuren na de creatie zijn er geen verantwoordelijkheden misplaatst.
+De code blijft logisch en uitbreidbaar. Het gebruik van een factory-methode om de verschillende items in te vullen zou een overvloed aan code genereren. 
+Ook veel uitbreidbaarheid zou verloren raken doordat de verschillende types Stock hardcoded zouden worden, terwijl dit nu ook generisch is.
+
+\subsection{List orders}
+Verschillende methodes zijn voorzien om de juiste informatie op te vragen aan het warenhuis. Met het generische ontwerp van items vormt dit geen enkel probleem.
+
+\section{Test coverage}
+De test-coverage is ongeveer 70\%. Dit is consistent gebleven met de vorige iteratie. Het blijkt dat alle subsystemen goed getest zijn. 
+De ongeteste code zijn, zoals in de vorige iteratie, de Exceptions klassen en de Argument klassen. 
+Aangezien de Exception en Argument klassen weinig code hebben lijkt het niet nuttig om deze uitgebreid te testen.\\
+
+De uitgebreide testen voor het Scheduling systeem zijn goed van pas gekomen. 
+Deze zijn aangepast voor het nieuwe systeem. 
+Bijna alle aanpassingen waren bij het opzetten van de testomgeving: vaak zijn er een aantal voorop gemaakte afspraken nodig om de testen met de nodige precisie te kunnen testen.
+Indien de parameters die deze omgeving opsteld veranderen, dan moeten een hoop testen aangepast worden. 
+Het zou zeer nuttig kunnen zijn om een mock object framework te gebruiken om deze opstelling te vereenvoudigen en duidelijker te maken. 
+Ook zal de koppeling tussen de testen en de effectieve code afnemen en werk besparen.\\
+
+Voor de testen die de werking van het Factory systeem zijn er veel testen verwijderd die de correctheid van de Argument-array testten verwijderd. 
+Hierdoor is de hoeveelheid testen wel verminderd, maar de test-coverage is hierdoor niet verminderd. 
+Het is dus duidelijk dat indien deze testen aangepast werden, men geen test-coverage zou gewonnen hebben.
 
 \section{Extra gedetecteerde problemen}
 Tijdens het herwerken van iteratie 4 werden enkele problemen opgemerkt die eventueel verbeterd kunnen worden. 
