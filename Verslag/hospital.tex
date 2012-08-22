@@ -11,8 +11,6 @@ de methode $Argument[]\ getEmptyArguments()$ geeft een lijst van informatie die 
 Het is dan aan de gebruiker om deze in te vullen met $Argument.enterAnswer(String\ ans)$. 
 Bij ieder argument is er een vraag bij gesteld om de gebruiker te tonen welke invoer verwacht wordt. 
 Uiteindelijk roept de UI de methode $enterResults(Argument[]\ args)$ aan om de resultaten in te vullen. 
-Een interactiediagramma hiervan kan men vinden in figuur \ref{fig:}.
-
 
 \subsection{Problemen}
 Die aanpak introduceerde onnodige complexiteit in het project. 
@@ -79,11 +77,11 @@ Voor behandelingen, personen en machines werkt dit analoog.
 De Controller wordt aangeroepen met de nodige parameters: de informatie die nodig is voor die medische test. \\
 
 De Controller delegeert de oproep aan de juiste factory-methode. 
-Deze maakt de medische test aan en laat deze dan afhandelen door de handleCorrectness-methode, zoals alle andere medische testen. 
+Deze maakt de medische test aan en laat deze dan afhandelen door de $handleCorrectness$ methode, zoals alle andere medische testen. 
 Het afhandelen werd vroeger in de Controller zelf gedaan. \\
 %Dit was een verkeerde verantwoordelijkheid want de Controllers mogen normaal geen code bevatten die de correctheid van het systeem moet garanderen.\\
 
-De handleCorrectness-methode heeft de verantwoordelijkheid om de medische testen juist in de wereld (World) toe te voegen. 
+De $handleCorrectness$ methode heeft de verantwoordelijkheid om de medische testen juist in de wereld (World) toe te voegen. 
 Er wordt een MedicalTestCommand aangemaakt met de medische test die moet toegevoegd worden en deze wordt toegevoegd aan de geschiedenis van de dokter(Doctor) die deze aanmaakt. 
 Tijdens het toevoegen wordt deze ook uitgevoerd. 
 Het uitvoeren en ongedaanmaken van commando's is nu de verantwoordelijkheid van de CommandHistory-klasse.
@@ -143,7 +141,7 @@ Indien alle Constraints terug de volgende minuut teruggeven zal er natuurlijk ge
 Figuur \ref{fig:PriorityConstraint} toont hoe de PriorityConstraint werkt. Dit is een typische TimeFrameConstraint. 
 Een TimeFrameConstraint wordt bezocht door iedere aanwezige als ieder type in zijn hierarchie om te beslissen of een bepaald moment in orde is. 
 Bij een PriorityConstraint worden alle agenda's van de aanwezigen onthouden. 
-Wanneer de $isAccepted$-methode aangeroepen wordt, kijkt deze voor iedere agenda alle afspraken op hetzelfde moment na of deze een hogere prioriteit hebben. 
+Wanneer de $isAccepted()$-methode aangeroepen wordt, kijkt deze voor iedere agenda alle afspraken op hetzelfde moment na of deze een hogere prioriteit hebben. 
 Indien er een conflict is dan is de eindtijd van de afspraak het eerstvolgende moment die getest zal worden. \\
 
 Andere TimeFrameConstraints werken analoog: ze worden bezocht door de aanwezigen, ze vragen de nodige informatie op en maken aan de hand daarvan een beslissing. 
@@ -169,7 +167,7 @@ de Campus bepalen en hun Constraint evalueren. Dit ging tegen Responsibility-dri
 
 \subsubsection{Aanpasssing}
 De interface werd losgekoppeld van de TimeFrameConstraint-interface. 
-De TimeFrameConstraint-interface heeft een nieuwe methode setCampus(Campus c). 
+De TimeFrameConstraint-interface heeft een nieuwe methode $setCampus(Campus c)$. 
 Een Appointable heeft hier nu een aparte methode voor die de implementatie hiervan kiest. 
 De verantwoordelijkheden van het bepalen van de Campus hoort nu toe aan een nieuwe CampusDecider-klasse.
 Appointable bepaalt hoe de Campus beslist wordt(NurseDecides, PatientDecides) en dit object wordt doorgegeven aan de AppointmentConstraintSolver. 
@@ -210,7 +208,7 @@ De code zelf is ook simpeler en leesbaarder.
 \subsection{AppointmentConstraintSolver en AppointmentCommand}
 Deze klassen waren sterk gekoppeld met elkaar. 
 Aangezien deze alletwee een grote verantwoordelijkheid hebben, zijn deze instabieler en worden deze best zo veel mogelijk losgekoppeld. 
-De klasse SolverAdapter bepaalt nu de communicatie tussen deze klassen met een enkele methode solve(...). 
+De klasse SolverAdapter bepaalt nu de communicatie tussen deze klassen met een enkele methode $solve(...)$. 
 Deze maakt een AppointmentResult, deze kan rechtstreeks doorgegeven worden aan de constructor van Appointment zodat de koppeling tussen AppointmentConstraintSolver en AppointmentCommand nog meer daalt. 
 
 \subsection{JumpSolver}
@@ -224,7 +222,7 @@ De klassediagrammas in figuren \ref{fig:Constraints}, \ref{fig:fullScheduling} e
 Figuur \ref{fig:Constraints} toont aan van welke klassen de Constraints informatie halen. 
 Het andere klassediagramma (figuur \ref{fig:fullScheduling}) toont welke informatie nodig is om een afspraak te kunnen maken. 
 De AppointmentCommand verzamelt de CampusDecider, de DelayedTimeLength, alle Constraints en alle ScheduleGroup's. 
-Door gebruik te maken van de solve-methode wordt een AppointmentResult gegenereerd die gebruikt wordt door het AppointmentCommand om een Appointment te instantieren. 
+Door gebruik te maken van de $solve(...)$ methode wordt een AppointmentResult gegenereerd die gebruikt wordt door het AppointmentCommand om een Appointment te instantieren. 
 %Een interactiediagramma hiervan vind je in figuur \ref{fig: AppCreation}.
 %TODO
 \\
@@ -304,19 +302,19 @@ Door aanpassingen aan de creatie van domein-specifieke objecten kan de UI geen l
 Deze lijst is nu ingebouwd in de UI. 
 Bij de start van deze use case wordt aan de gebruiker gevraagd welke medische test hij/zij wil maken. 
 Dan wordt de nodige informatie gevraagd aan de gebruiker. De types en vragen zijn ook ingebouwd in de UI.
-Uiteindelijk wordt de juiste make-methode aangeroepen in de Controller. 
+Uiteindelijk wordt de juiste $make$ methode aangeroepen in de Controller. 
 Dit is ook te zien in diagramma \ref{fig:makeUltraSound}, de interne werking werd beschreven in \ref{sec:factVB}.
 
 \subsection{Enter Diagnosis}
 Bij het begin van deze use case wordt er aan de gebruiker gevraagd of deze diagnose een tweede opinie nodig heeft van een andere dokter.
 Indien dit nodig is, zal de UI de lijst van dokters opvragen. 
-Uiteindelijk wordt bij de Controller de $makeDiagnosis$-methode aangeroepen met de beschrijving van de diagnose en de dokter die zijn de opinie moet geven.
+Uiteindelijk wordt bij de Controller de $makeDiagnosis$ methode aangeroepen met de beschrijving van de diagnose en de dokter die zijn de opinie moet geven.
 De Doctor is null indien er geen tweede opinie nodig is.
-Deze usecase was vroeger ook met een Argument array. Hierdoor was de code onduidelijk en soms zelfs moeilijk handelbaar. 
+Deze use case was vroeger ook met een Argument array. Hierdoor was de code onduidelijk en soms zelfs moeilijk handelbaar. 
 Door het gebruik van een factory-method is dit eenvoudiger en onderhoudbaarder geworden.
 
 \subsection{Prescribe Treatment, Add Hospital Staff \& Add Hospital Equipment}
-Dit is analoog aan de usecase ``Order MedicalTest'', zie sectie \ref{use:Med}. 
+Dit is analoog aan de use case ``Order MedicalTest'', zie sectie \ref{use:Med}. 
 
 \subsection{Register patiënt}
 Een patiënt registreren gebeurt als volgt: de UI vraagt aan de NurseController een lijst van alle patiënten die zich nu niet in het hospitaal bevinden.
@@ -343,7 +341,7 @@ Het is onlogisch dat een systeem dat altijd samenwerkt met dit systeem zou moete
 Dit laat ook toe om het idee van wat ingelogd zijn betekent te laten variëren tussen toegangssystemen, een website heeft hier bijvoorbeeld andere ideëen over. \\
 
 De uitbreidbaarheid en GRASP-principes zijn hetzelfde gebleven als bij de vorige iteratie:
-het gebruik van polymorfisme om de koppeling voor het inloggen laag te houden en om uitbreidingen van deze usecase eenvoudig te houden. 
+het gebruik van polymorfisme om de koppeling voor het inloggen laag te houden en om uitbreidingen van deze use case eenvoudig te houden. 
 Ook de cohesie van het systeem wordt groter omdat deze verantwoordelijkheid nu niet in het hele systeem verweven zit. 
 De koppeling met het domein is ook lager omdat de Controllers de Actor nu niet meer moeten kennen om te controleren of deze wel degelijk ingelogd is. 
 Enkel de LoginController die de Actor voorsteld moet gekend zijn.
@@ -353,8 +351,8 @@ De methode $logout()$ is voorzien om uit te loggen. Ook deze use case (zie login
 Er is geen enkele aanpassing gebeurd tegenover de vorige iteratie.
 
 \subsection{Consult patientfile}
-Een lijst met alle geregistreerde patiënt kan opgevraagd worden aan de DoctorController. De rest van de usecase zou moeten duidelijk zijn.
-Indien er een PatientFile geselecteerd is dan komen er extra usecases beschikbaar voor de gebruiker.
+Een lijst met alle geregistreerde patiënt kan opgevraagd worden aan de DoctorController. De rest van de use case zou moeten duidelijk zijn.
+Indien er een PatientFile geselecteerd is dan komen er extra use cases beschikbaar voor de gebruiker.
 Het information expert principe zorgt hier weer voor een eenvoudige en duidelijke implementatie.
 
 \subsection{Close patientfile}
@@ -365,7 +363,7 @@ Men brengt gewoon de originele toestand terug.
 \subsection{Approve Diagnosis}
 De DoctorController biedt een methode aan om een lijst van alle niet goedgekeurde diagnoses op te vragen. 
 Een diagnose goedkeuren of afwijzen gebeurt met de voorziene methodes. 
-De Commando's(ApproveDiagnosisCommand en DisapproveDiagnosisCommand) handelen deze usecase af. 
+De Commando's(ApproveDiagnosisCommand en DisapproveDiagnosisCommand) handelen deze use case af. 
 
 \subsection{Discharge patient}
 De UI roept de DoctorController op om de patiënt te ontslaan uit het hospitaal. 
@@ -375,9 +373,9 @@ De PatientFile wordt mee gesloten.
 \subsection{Undo/Redo Action}
 Bepaalde acties moeten kunnen ongedaan gemaakt worden. Dit gebeurt aan de hand van een interface Command. 
 Deze heeft onder andere de methodes $execute()$ en $undo()$. 
-Het gebruik van deze usecase roept deze methodes aan zoals verwacht. 
+Het gebruik van deze use case roept deze methodes aan zoals verwacht. 
 Ook wordt het Commando automatisch van lijst verplaatst, zodat deze lijsten altijd consistent blijven.
-Indien een bepaald Commando niet kan ongedaan gemaakt worden wordt er een $CannotDoException$ gegooid. 
+Indien een bepaald Commando niet kan ongedaan gemaakt worden wordt er een CannotDoException gegooid. 
 Bijvoorbeeld een diagnose kan niet ongedaan gemaakt worden indien er al een behandeling ingegeven is.
 
 \subsection{Select Location Preference}
@@ -392,10 +390,10 @@ Om dit op te lossen is deze functionaliteit geïmplementeerd in de UI en maakt d
 Hierdoor is de code logischer en duidelijker.
 
 \subsection{Fill Stock}
-Deze usecase werkt analoog aan de usecase Enter MedicalTestResults. 
+Deze use case werkt analoog aan de use case ``Enter MedicalTestResults''. 
 Er werd gekozen om het invullen van de informatie generisch te houden met het Argument-systeem aangezien er veel types medicijnen bestaan die elk hun eigen informatie bezitten. 
 Aangezien alle informatie die tot nu toe ingevuld moet worden zich buiten het systeem bevindt en er geen enkele verwerking moet gebeuren na de creatie zijn er geen verantwoordelijkheden misplaatst.
-De code blijft logisch en uitbreidbaar. Het gebruik van een factory-methode om de verschillende items in te vullen zou een overvloed aan code genereren. 
+De code blijft logisch en uitbreidbaar. Het gebruik van een factory-method om de verschillende items in te vullen zou een overvloed aan code genereren. 
 Ook veel uitbreidbaarheid zou verloren raken doordat de verschillende types Stock hardcoded zouden worden, terwijl dit nu ook generisch is.
 
 \subsection{List orders}
@@ -427,7 +425,7 @@ Specifiekere Controllers worden gemaakt op basis van bestaande Controllers om de
 De bestaande Controllers zijn nodig om noodzakelijker informatie op te halen, zoals de huidige wereld(World) of de Doctor die de MedicalTestController bedient. 
 Dit verlaagt de cohesie en kan mogelijks de gebruiker rechtstreeks toegang geven tot de domeinlaag.
 Het is dus beter om de creatie door de Controllers zelf te laten doen en de nodige informatie direct mee te geven. 
-De verantwoordelijkheid van de USE-CASE "login" moet dan afgescheiden worden in een gemeenschappelijk object in plaats van met overerving.
+De verantwoordelijkheid van de use case ``Login'' moet dan afgescheiden worden in een gemeenschappelijk object in plaats van met overerving.
 
 \subsection{Commando} 
 Voor het al dan niet plannen van een behandeling zijn er twee voorwaarden: 
@@ -438,4 +436,4 @@ Deze beslissing moet afgescheiden worden van de domein-laag en in een apart obje
 Hierdoor zal de totale koppeling groter worden, maar de cohesie zal hoger zijn en de informatie-expert beter. 
 Ook zal de domein-laag, die onstabieler is, meer losgekoppeld zijn van de beherende laag.
 Een volledige oplossing is waarschijnlijk om een Observer-patroon te gebruiken om Commando's op te volgen.
-Dit is in het huidige geval, waar dit maar voor één use-case wordt gebruikt, overbodig omdat dit onnodige complexiteiten introduceert. 
+Dit is in het huidige geval, waar dit maar voor één use case wordt gebruikt, overbodig omdat dit onnodige complexiteiten introduceert. 

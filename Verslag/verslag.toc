@@ -1,0 +1,50 @@
+\select@language {dutch}
+\contentsline {section}{\numberline {1}Inleiding}{1}{section.1}
+\contentsline {section}{\numberline {2}Factories}{1}{section.2}
+\contentsline {subsection}{\numberline {2.1}Origineel}{1}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Problemen}{1}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Aanpassingen}{1}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Volledig Design}{2}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Uitbreidbaarheid}{2}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Voorbeeld}{3}{subsection.2.6}
+\contentsline {section}{\numberline {3}Scheduling}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}TimeFrameConstraint}{3}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Origineel}{3}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Aanpassingen}{3}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Voorbeeld}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}CampusDecider}{6}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Probleem}{6}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Aanpasssing}{6}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}Voorbeeld}{7}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}Uitbreidingen}{7}{subsubsection.3.3.4}
+\contentsline {subsection}{\numberline {3.4}TimeFrame}{7}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Probleem}{7}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Aanpassingen}{7}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Voordelen}{7}{subsubsection.3.4.3}
+\contentsline {subsection}{\numberline {3.5}AppointmentConstraintSolver en AppointmentCommand}{7}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}JumpSolver}{8}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Volledig Design}{8}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}Voorbeeld}{8}{subsection.3.8}
+\contentsline {section}{\numberline {4}Aangepaste Use Cases}{11}{section.4}
+\contentsline {subsection}{\numberline {4.1}Order MedicalTest}{11}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Enter Diagnosis}{11}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Prescribe Treatment, Add Hospital Staff \& Add Hospital Equipment}{11}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Register pati\IeC {\"e}nt}{11}{subsection.4.4}
+\contentsline {section}{\numberline {5}Onbesproken Use Cases}{11}{section.5}
+\contentsline {subsection}{\numberline {5.1}Login}{11}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Logout}{12}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Consult patientfile}{12}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Close patientfile}{12}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Approve Diagnosis}{12}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Discharge patient}{12}{subsection.5.6}
+\contentsline {subsection}{\numberline {5.7}Undo/Redo Action}{12}{subsection.5.7}
+\contentsline {subsection}{\numberline {5.8}Select Location Preference}{13}{subsection.5.8}
+\contentsline {subsection}{\numberline {5.9}Advance Time}{13}{subsection.5.9}
+\contentsline {subsection}{\numberline {5.10}Fill Stock}{13}{subsection.5.10}
+\contentsline {subsection}{\numberline {5.11}List orders}{13}{subsection.5.11}
+\contentsline {section}{\numberline {6}Test coverage}{13}{section.6}
+\contentsline {section}{\numberline {7}Extra gedetecteerde problemen}{13}{section.7}
+\contentsline {subsection}{\numberline {7.1}Controllers}{14}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Commando}{14}{subsection.7.2}
+\contentsline {section}{\numberline {8}Appendix}{14}{section.8}
+\contentsline {subsection}{\numberline {8.1}Klasse diagramma}{14}{subsection.8.1}

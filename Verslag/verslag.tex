@@ -22,7 +22,10 @@
 \maketitle
  \thispagestyle{empty}
 \newpage
- \setcounter{page}{1}
+ \thispagestyle{empty}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
 \pagenumbering{arabic}
 \section{Inleiding}
 Voor iteratie 4 werd er gevraagd om het design van sommige delen van het systeem te herwerken. 
@@ -43,7 +46,7 @@ In sectie \ref{rest} staat een korte uitleg van de andere, onveranderde use case
 
 \section{Appendix}
 \subsection{Klasse diagramma}
-\includepdf[pages={2,1,4,3}]{./exported/out.pdf} 
 \includepdf[pages=-, angle=270]{./exported/volledigKlasseDiagramma.pdf} 
+\includepdf[pages={2,1,4,3}]{./exported/out.pdf} 
 
 \end{document}
