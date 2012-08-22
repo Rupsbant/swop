@@ -17,7 +17,6 @@ import Hospital.World.Time;
 import Hospital.World.TimeObserver;
 import Hospital.World.TimeSubject;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
 import java.util.logging.Level;
@@ -201,11 +200,14 @@ public class Stock<I extends Item> implements TimeObserver {
         }
         int order = 0;
         for (Order o : getOrderList().getOrders()) {
+            if(o.compareTo(execTime)<0){ // don't calculate with backorders, Warehousemanager should do his job
+                continue;
+            }
             events.add(o);
             order += o.getAmount();
         }
         events.add(new ItemReservation(count, execTime, this));
-        events.addAll(items.getEventList());
+        //events.addAll(items.getEventList()); // doesn't work fully
         int items = getStockCount();
         return StockConsistency.evaluateEvents(events, items, order, getMaxStock(), getOrderPlacer());
     }

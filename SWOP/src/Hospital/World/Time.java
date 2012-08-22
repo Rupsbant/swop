@@ -19,7 +19,7 @@ public class Time implements HasTime, Cloneable {
      * Creates a new time object at 8/11/2011 8:00
      */
     public Time() {
-        time = new GregorianCalendar(2011, 11, 8, 8, 00);
+        this(2011,11,8,8,00);
     }
 
     /**
@@ -31,7 +31,7 @@ public class Time implements HasTime, Cloneable {
      * @param minute the minutes into the hour to set
      */
     public Time(int year, int month, int day, int hour, int minute) {
-        time = new GregorianCalendar(year, month, day, hour, minute);
+        time = new GregorianCalendar(year, month-1, day, hour, minute);
     }
 
     /**
@@ -47,7 +47,7 @@ public class Time implements HasTime, Cloneable {
         if (numbers.length != 5) {
             throw new WrongArgumentListException("Length wrong");
         }
-        time = new GregorianCalendar(numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);
+        time = new GregorianCalendar(numbers[0], numbers[1]-1, numbers[2], numbers[3], numbers[4]);
     }
 
     /**
@@ -135,7 +135,7 @@ public class Time implements HasTime, Cloneable {
      * @return the month of the time represented by this object
      */
     public int getMonth() {
-        return time.get(GregorianCalendar.MONTH);
+        return time.get(GregorianCalendar.MONTH)+1;
     }
 
     /**

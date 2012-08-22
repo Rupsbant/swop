@@ -17,8 +17,6 @@ import Hospital.World.TimeSubject;
 import Hospital.World.TimeUtils;
 import Hospital.World.World;
 import java.util.PriorityQueue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * A stock of a Meal items
@@ -100,10 +98,9 @@ public class FoodStock extends Stock<Meal> {
             String out = "#" + nbPatients + " were fed at " + getCurrentTime()+", "+getFreeStock()+" over.";
             return out;
         } catch (NotEnoughItemsAvailableException ex) {
-            //Logger.getLogger(FoodStock.class.getName()).log(Level.SEVERE, "Not enough food available", ex);
+            final String out = "#" + nbPatients + " were not fed, not enough food available";
+            return out;
         }
-        final String out = "#" + nbPatients + " were not fed, not enough food available";
-        return out;
     }
 
     public int getPatientCapacity() {
