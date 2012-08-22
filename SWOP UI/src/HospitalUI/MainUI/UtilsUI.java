@@ -40,6 +40,8 @@ public class UtilsUI {
      * @return The array-index of the chosen option.
      */
     public static int selectCommand(Scanner sc, Object[] options) {
+        System.out.println("Press enter");
+        sc.nextLine();
         if (options.length == 0) {
             System.out.println("No options available, aborting!");
             return 0;

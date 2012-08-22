@@ -15,7 +15,8 @@ public class EatEvent implements Event {
     }
 
     public boolean doWork(PriorityQueue<Event> pq) {
-        stock.patientsEat();
+        String out = stock.patientsEat();
+        System.err.println(out);
         return false;
     }
 

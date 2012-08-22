@@ -302,17 +302,17 @@ De vroegste wordt gekozen als uitkomst, alle nodige informatie wordt opgeslagen.
 \subsection{Order MedicalTest\label{use:Med}}
 Door aanpassingen aan de creatie van domein-specifieke objecten kan de UI geen lijst van objecten meer opvragen. 
 Deze lijst is nu ingebouwd in de UI. 
-Bij de start van deze usecase wordt aan de gebruiker gevraagd welke medische test hij/zij wil maken. 
+Bij de start van deze use case wordt aan de gebruiker gevraagd welke medische test hij/zij wil maken. 
 Dan wordt de nodige informatie gevraagd aan de gebruiker. De types en vragen zijn ook ingebouwd in de UI.
 Uiteindelijk wordt de juiste make-methode aangeroepen in de Controller. 
-Dit is ook te zien in diagramma \ref{fig:makeUltraSound}, de interne werking is beschreven in \ref{sec:factVB}.
+Dit is ook te zien in diagramma \ref{fig:makeUltraSound}, de interne werking werd beschreven in \ref{sec:factVB}.
 
 \subsection{Enter Diagnosis}
-Bij het begin van deze usecase wordt er aan de gebruiker gevraagd of deze diagnose een tweede opinie nodig heeft van een andere dokter.
+Bij het begin van deze use case wordt er aan de gebruiker gevraagd of deze diagnose een tweede opinie nodig heeft van een andere dokter.
 Indien dit nodig is, zal de UI de lijst van dokters opvragen. 
-Uiteindelijk wordt bij de Controller de $makeDiagnosis$ methode aangeroepen met de beschrijving van de diagnose en de dokter die zijn de opinie moet geven.
+Uiteindelijk wordt bij de Controller de $makeDiagnosis$-methode aangeroepen met de beschrijving van de diagnose en de dokter die zijn de opinie moet geven.
 De Doctor is null indien er geen tweede opinie nodig is.
-Deze usecase was vroeger ook met een Argumentlijst. Hierdoor was de code onduidelijk en soms zelfs moeilijk handelbaar. 
+Deze usecase was vroeger ook met een Argument array. Hierdoor was de code onduidelijk en soms zelfs moeilijk handelbaar. 
 Door het gebruik van een factory-method is dit eenvoudiger en onderhoudbaarder geworden.
 
 \subsection{Prescribe Treatment, Add Hospital Staff \& Add Hospital Equipment}
@@ -322,34 +322,35 @@ Dit is analoog aan de usecase ``Order MedicalTest'', zie sectie \ref{use:Med}.
 Een patiënt registreren gebeurt als volgt: de UI vraagt aan de NurseController een lijst van alle patiënten die zich nu niet in het hospitaal bevinden.
 Indien er gekozen wordt voor een nieuwe patiënt wordt zijn naam gevraagd aan de gebruiker en wordt deze gebruikt om een nieuwe patiënt te maken. 
 Uiteindelijk wordt de gekozen patiënt geregistreerd bij de NurseController en wordt er een nieuwe afspraak gemaakt met een dokter.
-Deze usecase is eenvoudig zoals er rekening gehouden wordt met het information expert principe. 
+Deze use case is eenvoudig zolang er rekening gehouden wordt met het information expert principe. 
 Het gebruik van een Factory-klasse is ook veranderd ten voordele van een eenvoudiger design.
 
 
 \section{Onbesproken Use Cases\label{rest}}
-De volgende usecases zijn onveranderd met de vorige iteratie:
+De volgende use cases zijn onveranderd tegenover de vorige iteratie:
+
 \subsection{Login\label{sub:login}}
 Bij het inloggen vraagt de UI eerst de namen van personen en hun rol op aan de WorldController. 
 Ook een beschrijving van alle Campussen worden opgevraagd aan de WorldController. 
 Uiteindelijk wordt een LoginController-object gevraagd aan de WorldController met de methode $login(loginInfo, campus)$. 
 Dit stelt een ingelogde persoon voor in het systeem. 
-Ook worden alle usecases voor een bepaalde rol die als preconditie hebben dat ze ingelogd moeten zijn beschikbaar.\\
+Ook worden alle use cases voor een bepaalde rol die als preconditie hebben dat ze ingelogd moeten zijn beschikbaar.\\
 
 De beslissing om het inloggen en uitloggen deel te laten uitmaken van de logica van de controllers is omdat er in het systeem zelf geen notie moet zijn van wie ingelogd is.
 Inloggen en uitloggen maken strikt deel uit van wie het systeem mag gebruiken en dus is het logisch dat dit geen deel uitmaakt van het systeem. 
 Dit laat ook toe om andere software met het systeem te laten communiceren. 
-Het is onlogische dat een systeem dat altijd samenwerkt met dit systeem zou moeten ``inloggen'' om toegang te krijgen.
-Dit laat ook toe om het idee van wat ingelogd zijn betekent te laten variëren tussen toegangssystemen, een website heeft hier bijvoorbeeld andere ideën over. \\
+Het is onlogisch dat een systeem dat altijd samenwerkt met dit systeem zou moeten ``inloggen'' om toegang te krijgen.
+Dit laat ook toe om het idee van wat ingelogd zijn betekent te laten variëren tussen toegangssystemen, een website heeft hier bijvoorbeeld andere ideëen over. \\
 
-De uitbreidbaarheid en GRASP-principes zijn hetzelfde gebleven als van de vorige iteratie:
-Het gebruik van polymorfisme om de koppeling voor het inloggen laag te houden en om uitbreidingen van deze usecase eenvoudig te houden. 
-Ook cohesie van het systeem wordt groter omdat deze verantwoordelijkheid nu niet in het hele systeem verwoven zit. 
-De koppeling met het domein is ook lager omdat de Controllers de Actor nu niet meer moeten kennen om te controleren of deze weldegelijk ingelogd is. 
-Enkel de logincontroller die de actor voorsteld moet gekend zijn.
+De uitbreidbaarheid en GRASP-principes zijn hetzelfde gebleven als bij de vorige iteratie:
+het gebruik van polymorfisme om de koppeling voor het inloggen laag te houden en om uitbreidingen van deze usecase eenvoudig te houden. 
+Ook de cohesie van het systeem wordt groter omdat deze verantwoordelijkheid nu niet in het hele systeem verweven zit. 
+De koppeling met het domein is ook lager omdat de Controllers de Actor nu niet meer moeten kennen om te controleren of deze wel degelijk ingelogd is. 
+Enkel de LoginController die de Actor voorsteld moet gekend zijn.
 
 \subsection{Logout}
-De methode $logout()$ is voorzien om uit te loggen. Ook deze usecase(zie login \ref{sub:login}) bevindt zich volledig in de controllerlaag vanwege dezelfde redenen.
-Er is geen enkele aanpassing gebeurt tegenover de vorige iteratie.
+De methode $logout()$ is voorzien om uit te loggen. Ook deze use case (zie login \ref{sub:login}) bevindt zich volledig in de controllerlaag vanwege dezelfde redenen.
+Er is geen enkele aanpassing gebeurd tegenover de vorige iteratie.
 
 \subsection{Consult patientfile}
 Een lijst met alle geregistreerde patiënt kan opgevraagd worden aan de DoctorController. De rest van de usecase zou moeten duidelijk zijn.
@@ -358,15 +359,17 @@ Het information expert principe zorgt hier weer voor een eenvoudige en duidelijk
 
 \subsection{Close patientfile}
 De PatientFile wordt gesloten. De usecases die als preconditie hebben dat er een PatientFile moet geopend zijn verdwijnen uit de lijst met opties. 
-Dit is analoog aan de usecase Consult PatientFile, men brengt gewoon de originele toestand terug.
+Dit is analoog aan de use case Consult PatientFile. 
+Men brengt gewoon de originele toestand terug.
 
 \subsection{Approve Diagnosis}
-De DoctorController bied een methode aan om een lijst van alle niet goedgekeurde diagnoses op te vragen. 
+De DoctorController biedt een methode aan om een lijst van alle niet goedgekeurde diagnoses op te vragen. 
 Een diagnose goedkeuren of afwijzen gebeurt met de voorziene methodes. 
 De Commando's(ApproveDiagnosisCommand en DisapproveDiagnosisCommand) handelen deze usecase af. 
 
 \subsection{Discharge patient}
-De UI roept de DoctorController op om de patiënt te ontslaan uit het hospitaal. Indien dit niet kan worden er de nodige Exceptions gegooid.
+De UI roept de DoctorController op om de patiënt te ontslaan uit het hospitaal. 
+Indien dit niet kan, worden er de nodige Exceptions gegooid.
 De PatientFile wordt mee gesloten.
 
 \subsection{Undo/Redo Action}
@@ -379,24 +382,24 @@ Bijvoorbeeld een diagnose kan niet ongedaan gemaakt worden indien er al een beha
 
 \subsection{Select Location Preference}
 De preferentie wordt ingesteld aan de hand van een beschrijving die iedere preferentie heeft. 
-De informatie-expert bepaald wie het prototype heeft en dat de doctor telkens zijn eigen preferentie bijhoud.
+De informatie-expert bepaalt wie het prototype heeft en dat de dokter telkens zijn eigen preferentie bijhoudt.
 
 \subsection{Advance Time}
-De use-case Advance Time veranderd de tijd. Dit gebeurt door de juiste methode in de AdministratorController aan te roepen. 
-Deze actie informeert ook alle TimeObservers dat de tijd veranderd is. Dit wordt gebruikt door het Warehouse om automatisch alle Items die overdatum zijn weg te gooien. 
-De actie van alle niet-ingevulde behandelingen en medische testen in te laten vullen door de Administrator is een beetje onlogisch. 
+De use case Advance Time verandert de tijd. Dit gebeurt door de juiste methode in de AdministratorController aan te roepen. 
+Deze actie informeert ook alle TimeObservers dat de tijd veranderd is. Dit wordt gebruikt door het Warehouse om automatisch alle Items die over datum zijn weg te gooien. 
+De actie om alle niet-ingevulde behandelingen en medische testen in te laten vullen door de Administrator is een beetje onlogisch. 
 Om dit op te lossen is deze functionaliteit geïmplementeerd in de UI en maakt dit geen deel uit van de domeinlaag. 
 Hierdoor is de code logischer en duidelijker.
 
 \subsection{Fill Stock}
 Deze usecase werkt analoog aan de usecase Enter MedicalTestResults. 
-Er werd gekozen om het invullen van de informatie generisch te houden met het Argument-systeem aangezien er veel types medicijnen bestaan die elk hun eigen informatie hebben. 
-Aangezien alle informatie tot nu toe ingevuld moet worden zich buiten het systeem bevind en er geen enkele verwerking moet gebeuren na de creatie zijn er geen verantwoordelijkheden misplaatst.
+Er werd gekozen om het invullen van de informatie generisch te houden met het Argument-systeem aangezien er veel types medicijnen bestaan die elk hun eigen informatie bezitten. 
+Aangezien alle informatie die tot nu toe ingevuld moet worden zich buiten het systeem bevindt en er geen enkele verwerking moet gebeuren na de creatie zijn er geen verantwoordelijkheden misplaatst.
 De code blijft logisch en uitbreidbaar. Het gebruik van een factory-methode om de verschillende items in te vullen zou een overvloed aan code genereren. 
 Ook veel uitbreidbaarheid zou verloren raken doordat de verschillende types Stock hardcoded zouden worden, terwijl dit nu ook generisch is.
 
 \subsection{List orders}
-Verschillende methodes zijn voorzien om de juiste informatie op te vragen aan het warenhuis. Met het generische ontwerp van items vormt dit geen enkel probleem.
+Verschillende methodes zijn voorzien om de juiste informatie op te vragen aan het magazijn. Met het generische ontwerp van items vormt dit geen enkel probleem.
 
 \section{Test coverage}
 De test-coverage is ongeveer 70\%. Dit is consistent gebleven met de vorige iteratie. Het blijkt dat alle subsystemen goed getest zijn. 

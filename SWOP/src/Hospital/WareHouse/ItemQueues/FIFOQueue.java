@@ -1,9 +1,13 @@
 package Hospital.WareHouse.ItemQueues;
 
 import Hospital.Exception.Arguments.ArgumentIsNullException;
+import Hospital.WareHouse.ExpirationEvent;
 import Hospital.WareHouse.Item;
+import Hospital.WareHouse.StockChangeEvent;
 import Hospital.World.Time;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class FIFOQueue<I extends Item> implements ItemQueue<I> {
 
@@ -21,6 +25,9 @@ public class FIFOQueue<I extends Item> implements ItemQueue<I> {
     }
 
     public I get() {
+        if(items.isEmpty()){
+            return null;
+        }
         return items.removeFirst();
     }
 
@@ -37,13 +44,29 @@ public class FIFOQueue<I extends Item> implements ItemQueue<I> {
             throw new Error("New Time should not be null!");
         }
         try {
+            int hasExpired = 0;
             for (int i = items.size(); i > 0; i--) {
                 if (items.get(i - 1).isExpired(newTime)) {
                     items.remove(items.get(i - 1));
+                    hasExpired++;
                 }
+            }
+            if (hasExpired > 0) {
+                System.err.println(hasExpired + " items have expired!");
             }
         } catch (ArgumentIsNullException e) {
             throw new Error("Nothing can be wrong, newTime was not null.");
         }
+    }
+
+    @Override
+    public List<StockChangeEvent> getEventList() {
+        List<StockChangeEvent> out = new ArrayList<StockChangeEvent>();
+        for (Item item : items) {
+            if (item.hasExpirationTime()) {
+                out.add(new ExpirationEvent(item.getExpirationTime()));
+            }
+        }
+        return out;
     }
 }

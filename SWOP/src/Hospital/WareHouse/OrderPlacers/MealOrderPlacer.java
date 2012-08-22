@@ -36,7 +36,8 @@ public class MealOrderPlacer implements OrderPlacer {
      */
     @Override
     public int checkStock(int currentStockCount, int orderedItems, int maxStock) throws ArgumentConstraintException {
-        final int orderFormula = 15 + 3 * 2 * getNumberOfPatients() - (currentStockCount + orderedItems);
+        final int numberOfPatients = getNumberOfPatients();
+        final int orderFormula = 15 + 3 * 2 * numberOfPatients - (currentStockCount + orderedItems);
         final int maximumSpace = maxStock - currentStockCount - orderedItems;
         final int maximumSafety = Math.min(maximumSpace, orderFormula);
         final int minimumSafety = Math.max(0, maximumSafety);

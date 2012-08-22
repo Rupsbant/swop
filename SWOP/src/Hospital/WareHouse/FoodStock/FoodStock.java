@@ -1,11 +1,10 @@
 package Hospital.WareHouse.FoodStock;
 
-import java.util.ArrayList;
+import Hospital.WareHouse.Item;
 import java.util.List;
 
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
-import Hospital.Exception.Warehouse.ItemNotReservedException;
 import Hospital.Exception.Warehouse.NotEnoughItemsAvailableException;
 import Hospital.Patient.Patient;
 import Hospital.WareHouse.ItemReservation;
@@ -82,9 +81,11 @@ public class FoodStock extends Stock<Meal> {
             if (e.compareTo(newTime) >= 0) { //stop if later than new time
                 break;
             }
+            super.timeUpdate(e.getTime());
             e.doWork(events);
         }
         super.timeUpdate(newTime);
+        System.err.println(getFreeStock() +" meals over.");
     }
 
     /**
@@ -94,22 +95,21 @@ public class FoodStock extends Stock<Meal> {
         int nbPatients = getNumberOfPatients();
         try {
             ItemReservation reservation = reserveItem(nbPatients, getCurrentTime());
-            ArrayList<Meal> m = getItems(reservation);
+            List<Item> m = reservation.use();
             m.clear();
-            return "#" + nbPatients + "were fed";
-        } catch (ItemNotReservedException ex) {
-            throw new Error("Items were just reserved, check reservation mechanishm");
+            String out = "#" + nbPatients + " were fed at " + getCurrentTime()+", "+getFreeStock()+" over.";
+            return out;
         } catch (NotEnoughItemsAvailableException ex) {
-            Logger.getLogger(FoodStock.class.getName()).log(Level.SEVERE, "Not enough food available", ex);
+            //Logger.getLogger(FoodStock.class.getName()).log(Level.SEVERE, "Not enough food available", ex);
         }
-        return "#" + nbPatients + "were not fed";
+        final String out = "#" + nbPatients + " were not fed, not enough food available";
+        return out;
     }
-    
-    public int getPatientCapacity(){
-    	return super.getFreeStock()/6-getNumberOfPatients();
+
+    public int getPatientCapacity() {
+        return super.getFreeStock() / 6 - getNumberOfPatients();
     }
-    
-    
+
     /**
      * Gets the number of patients from the campus
      * @return the amount of patients checked into c

@@ -1,7 +1,9 @@
 package Hospital.WareHouse.ItemQueues;
 
 import Hospital.WareHouse.Item;
+import Hospital.WareHouse.StockChangeEvent;
 import Hospital.World.Time;
+import java.util.List;
 
 /**
  * An interface to define the storage-type of an item
@@ -44,4 +46,10 @@ public interface ItemQueue<I extends Item> {
      * @param newTime the new time to update to
      */
     public void timeUpdate(Time newTime);
+    
+    /**
+     * Generates a list of StockChangeEvents, such as expiration dates
+     * @return a list of StockChangeEvents
+     */
+    public List<StockChangeEvent> getEventList();
 }

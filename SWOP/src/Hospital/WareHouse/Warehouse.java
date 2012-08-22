@@ -45,17 +45,19 @@ public class Warehouse {
      * @throws WrongArgumentListException the arguments didn't meet the requirements for the item for which this order was made
      * @throws InvalidArgumentException thrown if the list or one of the arguments is null, or if the answer does not satisfy the constraints.
      */
-    public void processOrder(Order order, PublicArgument[] args) throws StockException, WrongArgumentListException, InvalidArgumentException {
+    public boolean processOrder(Order order, PublicArgument[] args) throws StockException, WrongArgumentListException, InvalidArgumentException {
         if (order == null) {
             throw new ArgumentIsNullException("The order is null");
         }
-        try {
-            for (Stock stock : stocks) {
+        for (Stock stock : stocks) {
+            try {
                 stock.processOrder(order, args);
+                return true;
+            } catch (OrderUnavailableException oue) {
+                ;//all but the stock for which this order was made will throw this exception
             }
-        } catch (OrderUnavailableException oue) {
-            ;//all but the stock for which this order was made will throw this exception
         }
+        return false;
     }
 
     /**

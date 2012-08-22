@@ -9,8 +9,8 @@ import HospitalUI.MainUI.UtilsUI;
 
 public class AdministratorUI {
 
-    AdministratorController ac;
-    WorldController wc;
+    private AdministratorController ac;
+    private WorldController wc;
 
     public AdministratorUI(AdministratorController ac, WorldController wc) {
         this.ac = ac;

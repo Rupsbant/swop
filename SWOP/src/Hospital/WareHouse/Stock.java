@@ -17,6 +17,7 @@ import Hospital.World.Time;
 import Hospital.World.TimeObserver;
 import Hospital.World.TimeSubject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
 import java.util.logging.Level;
@@ -171,11 +172,11 @@ public class Stock<I extends Item> implements TimeObserver {
         }
         ItemReservation reservation = new ItemReservation(count, execTime, this);
         reservations.add(reservation);
-        if(currentTime.compareTo(execTime)>=0){
+        if (currentTime.compareTo(execTime) >= 0) {
             try {
                 reservation.removeFromStock();
             } catch (ItemNotReservedException ex) {
-                Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
+                throw new Error(ex);
             }
         }
         return reservation;
@@ -204,6 +205,7 @@ public class Stock<I extends Item> implements TimeObserver {
             order += o.getAmount();
         }
         events.add(new ItemReservation(count, execTime, this));
+        events.addAll(items.getEventList());
         int items = getStockCount();
         return StockConsistency.evaluateEvents(events, items, order, getMaxStock(), getOrderPlacer());
     }
@@ -213,9 +215,11 @@ public class Stock<I extends Item> implements TimeObserver {
      */
     protected void restock() {
         try {
-            int toOrder = orderPlacer.checkStock(getStockCount(), getOrderedCount(), getMaxStock());
+            final int stockCount = getStockCount();
+            int toOrder = orderPlacer.checkStock(stockCount, getOrderedCount(), getMaxStock());
             if (toOrder != 0) {
                 orderList.placeOrder(toOrder, currentTime);
+                System.err.println("Ordered : " + toOrder+" on "+currentTime);
             }
         } catch (ArgumentConstraintException ex) {
             Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
@@ -347,8 +351,8 @@ public class Stock<I extends Item> implements TimeObserver {
     }
 
     private void updateTimeReservations() {
-        for(ItemReservation r : reservations){
-            if(r.compareTo(currentTime)<=0){
+        for (ItemReservation r : reservations) {
+            if (r.compareTo(currentTime) <= 0) {
                 try {
                     r.removeFromStock();
                 } catch (ItemNotReservedException ex) {

@@ -1,9 +1,13 @@
 package Hospital.WareHouse.ItemQueues;
 
 import Hospital.Exception.Arguments.ArgumentIsNullException;
+import Hospital.WareHouse.ExpirationEvent;
 import Hospital.WareHouse.Item;
+import Hospital.WareHouse.StockChangeEvent;
 import Hospital.World.Time;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A last-in-first-out structure for storing items, better known as a stack
@@ -69,5 +73,16 @@ public class LIFOQueue<I extends Item> implements ItemQueue<I> {
         } catch (ArgumentIsNullException e) {
             throw new Error("Nothing can be wrong, newTime was not null.");
         }
+    }
+
+    @Override
+    public List<StockChangeEvent> getEventList() {
+        List<StockChangeEvent> out = new ArrayList<StockChangeEvent>();
+        for (Item item : items) {
+            if (item.hasExpirationTime()) {
+                out.add(new ExpirationEvent(item.getExpirationTime()));
+            }
+        }
+        return out;
     }
 }

@@ -11,6 +11,7 @@ import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.NoPersonWithNameAndRoleException;
 import Hospital.Exception.NotLoggedInException;
 import Hospital.People.LoginInfo;
+import Hospital.People.StaffRole;
 import Hospital.World.CampusInfo;
 import HospitalUI.AdminUI.AdministratorUI;
 import HospitalUI.DoctorUI.DoctorUI;
@@ -102,7 +103,7 @@ public class MainUI {
             return;
         }
         System.out.println(login.getRole());
-        if (login.getRole().equals("Doctor")) {
+        if (login.getRole().equals(StaffRole.Doctor)) {
             DoctorController dc = (DoctorController) login;
             DoctorUI ui = new DoctorUI(dc, w);
             try {
@@ -110,7 +111,7 @@ public class MainUI {
             } catch (NotLoggedInException ex) {
                 Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (login.getRole().equals("HospitalAdministrator")) {
+        } else if (login.getRole().equals(StaffRole.HospitalAdministrator)) {
             AdministratorController ac = (AdministratorController) login;
             AdministratorUI ui = new AdministratorUI(ac, w);
             try {
@@ -118,7 +119,7 @@ public class MainUI {
             } catch (NotLoggedInException ex) {
                 Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (login.getRole().equals("Nurse")) {
+        } else if (login.getRole().equals(StaffRole.Nurse)) {
             try {
                 NurseController nc = (NurseController) login;
                 NurseUI ui = new NurseUI(nc, w);
@@ -128,7 +129,7 @@ public class MainUI {
             } catch (NotLoggedInException ex) {
                 Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (login.getRole().equals("WareHouseManager")) {
+        } else if (login.getRole().equals(StaffRole.WarehouseManager)) {
             WareHouseController whc = (WareHouseController) login;
             WareHouseUI ui = new WareHouseUI(whc);
             try {

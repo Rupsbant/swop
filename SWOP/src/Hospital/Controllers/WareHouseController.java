@@ -108,8 +108,8 @@ public class WareHouseController extends LoginController<WarehouseManager> {
         checkLoggedIn();
         Order o = getOrder(order);
         Warehouse w = this.getCampusController().getCampus().getWarehouse();
-        w.processOrder(o, arg);
-        return "Order was processed.";
+        boolean fun = w.processOrder(o, arg);
+        return (fun ? "Order was processed." : "Order was not found");
     }
 
     /**
