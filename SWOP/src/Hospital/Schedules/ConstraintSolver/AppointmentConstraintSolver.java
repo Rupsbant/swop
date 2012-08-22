@@ -10,6 +10,10 @@ import Hospital.World.Campus;
 import Hospital.World.Time;
 import java.util.List;
 
+/**
+ * A interface for finding good appointments
+ * @author Rupsbant
+ */
 public interface AppointmentConstraintSolver {
 
     void setDelayedTimeLength(DelayedTimeLength tf);
@@ -20,7 +24,11 @@ public interface AppointmentConstraintSolver {
 
     void setConstaints(List<TimeFrameConstraint> tfConstraints);
 
-    AppointmentConstraintSolver solve() throws SchedulingException;
+    /**
+     * Solves the problem with the given parameters by the set methods
+     * @throws SchedulingException
+     */
+    void solve() throws SchedulingException;
 
     Campus getCampus();
 

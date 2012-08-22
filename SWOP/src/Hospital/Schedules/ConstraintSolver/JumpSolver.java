@@ -12,6 +12,9 @@ import Hospital.World.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A AppointmentConstraintSolver that effeciently determines a Appointment
+ */
 public class JumpSolver implements AppointmentConstraintSolver {
 
     private DelayedTimeLength startTime;
@@ -29,11 +32,10 @@ public class JumpSolver implements AppointmentConstraintSolver {
     protected JumpSolver() {
     }
 
-    public JumpSolver solve() throws SchedulingException {
+    public void solve() throws SchedulingException {
         reset();
         List<Schedulable> testing = new ArrayList<Schedulable>();
         recursive(0, testing);
-        return this;
     }
 
     private void recursive(int pos, List<Schedulable> building) throws SchedulingException {
