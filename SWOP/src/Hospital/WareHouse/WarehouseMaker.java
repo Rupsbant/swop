@@ -33,11 +33,11 @@ public class WarehouseMaker {
     public static Warehouse getWarehouse(World w, Campus c){
         Warehouse warehouse = new Warehouse();
         try {
-            // we zetten de expiringtime van voedsel op 7 dagen en van medicatie op 3 jaar
+            // we zetten de expiringtime van voedsel op 60 dagen en van medicatie op 3 jaar
             // dit is enkel voor de beginstock en is random gekozen (stond nergens in opgave)
             WorldTime wt = w.getWorldTime();
             Time time = wt.getTime();
-            Time expiringTime1 = time.getLaterTime(7 * 24 * 60);
+            Time expiringTime1 = time.getLaterTime(60 * 24 * 60);
             Time expiringTime2 = time.getLaterTime(3 * 365 * 24 * 60);
 
             Stock plasterStock = new Stock(8, new FullyStockOrderPlacer(), new Plaster(), wt);
