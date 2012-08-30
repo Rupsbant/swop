@@ -5,9 +5,10 @@ import Hospital.Controllers.NurseController;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.ArgumentIsNullException;
 import Hospital.Exception.CannotChangeException;
-import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Constraints.Implementation.UnmovableConstraint;
+import Hospital.Schedules.Constraints.Implementation.WorkingHoursTimeConstraint;
 import Hospital.Schedules.SchedulableVisitor;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Campus;
 import java.util.List;
 

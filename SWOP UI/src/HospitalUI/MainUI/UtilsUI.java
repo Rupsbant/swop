@@ -24,6 +24,7 @@ public class UtilsUI {
         if (args.length == 0) {
             return;
         }
+        sc.nextLine();
         for (PublicArgument arg : args) {
             if (map.get(arg.getClass()) == null) {
                 BasicAnswerer.singleton.answer(arg, sc);
@@ -40,13 +41,10 @@ public class UtilsUI {
      * @return The array-index of the chosen option.
      */
     public static int selectCommand(Scanner sc, Object[] options) {
-        System.out.println("Press enter");
-        sc.nextLine();
         if (options.length == 0) {
             System.out.println("No options available, aborting!");
             return 0;
         }
-        System.out.println("\n\n");
         while (true) {
             System.out.println("Enter the number of a command");
             System.out.println("0 to exit");

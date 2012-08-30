@@ -1,6 +1,7 @@
+package SWOPUI;
+
 import Hospital.Controllers.WorldController;
 import HospitalUI.MainUI.MainUI;
-
 import java.util.Scanner;
 
 

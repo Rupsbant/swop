@@ -1,11 +1,13 @@
 package HospitalUI.DoctorUI.MedicalTests;
 
 import Hospital.Argument.PriorityArgument;
+import Hospital.Argument.PublicArgument;
 import Hospital.Controllers.MedicalTestController;
 import Hospital.Exception.Arguments.ArgumentConstraintException;
 import Hospital.Exception.Arguments.InvalidArgumentException;
 import Hospital.Exception.Patient.NoOpenedPatientFileException;
 import Hospital.Schedules.Constraints.Priority.Priority;
+import HospitalUI.MainUI.UtilsUI;
 import java.util.Scanner;
 
 public class OrderBloodAnalysis implements RunnableUI {
@@ -16,6 +18,7 @@ public class OrderBloodAnalysis implements RunnableUI {
         System.out.println("Enter the number of analyses there must be made");
         int numberOfAnalyses = sc.nextInt();
         PriorityArgument priorityArgument = new PriorityArgument("Enter the priority of the appointment");
+        UtilsUI.answerArguments(sc, new PublicArgument[]{priorityArgument});
         Priority priority = priorityArgument.getAnswer();
         try {
             String out = med.makeBloodAnalysis(focus, numberOfAnalyses, priority);

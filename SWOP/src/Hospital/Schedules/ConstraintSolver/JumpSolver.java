@@ -23,8 +23,8 @@ public class JumpSolver implements AppointmentConstraintSolver {
     private List<TimeFrameConstraint> tfConstraints;
 
     /*--------*\
-    |* Output *|
-    \*--------*/
+     |* Output *|
+     \*--------*/
     private List<Schedulable> output_list;
     private Time output_time;
     private Campus output_campus;
@@ -86,6 +86,7 @@ public class JumpSolver implements AppointmentConstraintSolver {
                     // Do all TimeFrameConstraints again, starting with the next one
                     currentTesting = outputTimeFrame;
                     finalTest = position;
+                    position = position + 1;
                 }
             } catch (ScheduleConstraintException ex) {
                 return;
