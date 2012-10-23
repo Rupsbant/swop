@@ -175,7 +175,6 @@ public class DischargePatientTest {
                 medTest = medTestInfo;
             }
         }
-
         PublicArgument[] args = mtrC.getArguments(medTest);
         args[0].enterAnswer("1");
         args[1].enterAnswer("Bar");

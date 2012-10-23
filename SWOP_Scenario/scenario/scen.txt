@@ -8,3 +8,10 @@
 <6,3,Armen,3,9,High>
 #Make XRay with 2 images
 <6,3,Benen,2,2,High>
+#Load other patient, Jeroen
+<2,2>
+#Make BloodAnalysis
+<6,1,Focus,124,Low>
+#Make XRayMachine, preempt previous Bloodanalysis
+<6,3,Benen,2,2,High>
+#End

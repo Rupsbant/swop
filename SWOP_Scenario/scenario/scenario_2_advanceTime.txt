@@ -1,0 +1,21 @@
+##Advance time and make patients eat automatically
+# Also order automatica
+#Login as HospitalAdmin
+<1,1,1>
+#Advance Time to 2011/11/25 8:00
+<3,2011/11/25 8:00>
+##Patienten eten, zie System.err
+#Advance Time to 2011/12/15 8:01
+<3,2011/12/15 8:01>
+#Relogin as Warehouse
+<0,1,2,1>
+#Fill stock:new Meals
+<1,6,1>
+#Enter date
+<2011/12/15/15/00>
+#Change to Doctor to see that the first time for Appointments has changed
+<0,1,3,1>
+<2,1>
+#Order MedicalTest
+<6,1,Focus,123,high>
+#End

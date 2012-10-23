@@ -24,7 +24,7 @@ public class UtilsUI {
         if (args.length == 0) {
             return;
         }
-        sc.nextLine();
+        //sc.nextLine();
         for (PublicArgument arg : args) {
             if (map.get(arg.getClass()) == null) {
                 BasicAnswerer.singleton.answer(arg, sc);

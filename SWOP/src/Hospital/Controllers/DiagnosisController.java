@@ -108,7 +108,7 @@ public class DiagnosisController {
         }
         DiagnosisSecondOpinion diagsec = (DiagnosisSecondOpinion) dc.getUser().getOpenedPatient().isValidDiagnosisInfo(diag);
         if (diagsec == null) {
-            throw new InvalidDiagnosisException("Diagnosis not found in all patients");
+            throw new InvalidDiagnosisException("Diagnosis not found for opened patient");
         }
         DiagnosisApproveCommand diaAppC = new DiagnosisApproveCommand(diagsec, dc.getUser());
         return dc.addCommand(diaAppC);

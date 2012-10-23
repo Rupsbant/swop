@@ -16,20 +16,15 @@ import java.util.regex.Pattern;
 
 public class SWOP_Scenario {
 
-    private final PrintStream fromUI_p;
-    private final PrintStream toUI_p;
-    private final Scanner toUI_sc;
+    private PrintStream fromUI_p;
+    private PrintStream toUI_p;
+    private Scanner toUI_sc;
     private final Scanner fromUI_sc;
     private final PrintStream orig_p;
     private final Scanner orig_sc;
     private final PipedInputStream fromUI_out;
 
     public SWOP_Scenario() throws IOException {
-        PipedInputStream toUI_in = new PipedInputStream();
-        toUI_sc = new Scanner(toUI_in);
-        final PipedOutputStream toUI_out = new PipedOutputStream(toUI_in);
-        toUI_p = new PrintStream(toUI_out);
-
         fromUI_out = new PipedInputStream();
         fromUI_sc = new Scanner(fromUI_out);
         PipedOutputStream fromUI_in = new PipedOutputStream(fromUI_out);
@@ -37,22 +32,13 @@ public class SWOP_Scenario {
 
         orig_sc = new Scanner(System.in);
         orig_p = System.out;
-        System.setOut(fromUI_p);
     }
 
     public void run() throws FileNotFoundException, IOException {
-        new Thread() {
-            @Override
-            public void run() {
-                MainUI m = new MainUI(WorldController.getBasicWorld());
-                //MainUI m = new MainUI(BasicWorld.getEmptyBasicWorld());
-                m.run(toUI_sc);
-            }
-        }.start();
-
         File f = null;
         do {
             if (f != null) {
+                startWorld();
                 runFile(f);
             }
             f = selectFile();
@@ -88,12 +74,12 @@ public class SWOP_Scenario {
                     break;
             }
         }
-
     }
 
     private void handleComment(String line) {
-        if (line.length() == 1) {
-            orig_p.println();
+        if (line.length() < 2) {
+            orig_p.println(line);
+            return;
         }
         orig_p.println(line);
         if (line.charAt(1) != '#') {
@@ -118,7 +104,7 @@ public class SWOP_Scenario {
                     fromUI_out.read();
                 case '\n':
                     String matches = handleMatcher(abc);
-                    if(matches!=null){
+                    if (matches != null) {
                         groups.add(matches);
                     }
                     orig_p.println(abc);
@@ -130,7 +116,7 @@ public class SWOP_Scenario {
         }
         System.out.println(abc);
         sleep(10);
-        for(String str : groups){
+        for (String str : groups) {
             System.err.println(str);
         }
         sleep(10);
@@ -174,5 +160,21 @@ public class SWOP_Scenario {
             return matcher.group();
         }
         return null;
+    }
+
+    private void startWorld() throws IOException {
+        PipedInputStream toUI_in = new PipedInputStream();
+        toUI_sc = new Scanner(toUI_in);
+        final PipedOutputStream toUI_out = new PipedOutputStream(toUI_in);
+        toUI_p = new PrintStream(toUI_out);
+        System.setOut(fromUI_p);
+        new Thread() {
+            @Override
+            public void run() {
+                MainUI m = new MainUI(WorldController.getBasicWorld());
+                //MainUI m = new MainUI(BasicWorld.getEmptyBasicWorld());
+                m.run(toUI_sc);
+            }
+        }.start();
     }
 }

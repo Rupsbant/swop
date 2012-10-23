@@ -1,9 +1,9 @@
 package Hospital.Schedules.Constraints.Priority;
 
 import Hospital.Schedules.Appointment;
-import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.Schedules.Schedulable;
 import Hospital.Schedules.Schedule;
+import Hospital.Schedules.TimeFrameConstraint;
 import Hospital.World.Time;
 import java.util.HashSet;
 import java.util.List;

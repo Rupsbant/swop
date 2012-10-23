@@ -29,17 +29,20 @@ public class MedicalTestCommand implements Command {
      */
     private boolean done;
     /**
-     * the command for creating the appointment for the medical test created by this command 
+     * the command for creating the appointment for the medical test created by
+     * this command
      */
     private AppointmentCommand appC;
 
     /**
      * Constructor
+     *
      * @param world the world in which this command must be executed
      * @param openedPatient the patient for whom the test must be created
-     * @param med  The medicaltest to add to the patient
+     * @param med The medicaltest to add to the patient
      * @param priority The priority at which the Appointment must be made
-     * @throws InvalidArgumentException If some parameter was not as expected: null or some constraint 
+     * @throws InvalidArgumentException If some parameter was not as expected:
+     * null or some constraint
      */
     public MedicalTestCommand(World world, Patient openedPatient, MedicalTest med, Priority priority)
             throws InvalidArgumentException {
@@ -51,6 +54,7 @@ public class MedicalTestCommand implements Command {
 
     /**
      * Executes the command by creating the medical test
+     *
      * @return the details of the created medical test
      * @throws CannotDoException the command was already executed
      */
@@ -62,14 +66,15 @@ public class MedicalTestCommand implements Command {
         if (made.isResultEntered()) {
             throw new CannotDoException("Results already entered, cannot undo.");
         }
-        appC.execute();
+        String out = appC.execute();
         toAdd.addMedicalTest(made);
         done = true;
-        return made.advancedString();
+        return out + "\n" + made.advancedString();
     }
 
     /**
      * Undoes the execution of this command
+     *
      * @throws CannotDoException the command was not yet executed
      * @see Hospital.Factory.Command#undo()
      */

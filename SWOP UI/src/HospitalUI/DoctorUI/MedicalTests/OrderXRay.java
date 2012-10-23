@@ -11,7 +11,6 @@ import HospitalUI.MainUI.UtilsUI;
 import java.util.Scanner;
 
 public class OrderXRay implements RunnableUI {
-
     public void run(Scanner sc, MedicalTestController med) {
         System.out.println("Enter the bodypart that must be scanned:");
         String bodyPart = sc.nextLine();

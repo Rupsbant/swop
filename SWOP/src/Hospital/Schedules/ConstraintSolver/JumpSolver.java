@@ -86,7 +86,8 @@ public class JumpSolver implements AppointmentConstraintSolver {
                     // Do all TimeFrameConstraints again, starting with the next one
                     currentTesting = outputTimeFrame;
                     finalTest = position;
-                    position = position + 1;
+                    position = position + size;
+                    //finalTest = (position + size - 1) % size;
                 }
             } catch (ScheduleConstraintException ex) {
                 return;
